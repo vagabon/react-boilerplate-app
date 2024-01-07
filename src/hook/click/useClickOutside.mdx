@@ -1,0 +1,16 @@
+import { Meta,  Source } from '@storybook/blocks';
+
+<Meta title="hook/useClickOutside" />
+
+# useClickOutside
+
+<Source code={`
+  const item = useRef(null);
+
+  const close = useCallback(() => {
+  }, []);
+
+  useClickOutside(item, close);
+
+  return <div rel={item}></div>
+`} />

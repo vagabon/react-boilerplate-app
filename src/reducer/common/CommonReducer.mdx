@@ -1,0 +1,34 @@
+import { Meta } from '@storybook/blocks';
+import { Source } from '@storybook/blocks';
+
+<Meta title="reducer/common.reducer" />
+
+# common.reducer
+
+<Source code={`
+  CommonReducers
+
+  const SUCCESS: MessageType = 'success';
+  
+  const initialState: ApiState = { message: '', type: SUCCESS, loading: false, history: [], scrolls: [] };
+
+  interface MessageButton {
+    label?: string;
+    url?: string;
+  }
+
+  interface ApiMessageState {
+    message: string;
+    type: MessageType;
+    button?: MessageButton;
+  }
+
+  type ScrollsType = { pathname: string; position: number };
+
+  interface ApiState extends ApiMessageState {
+    loading: boolean;
+    history: IPathDto[];
+    scrolls: ScrollsType[];
+  }
+
+`} language='javascript' />

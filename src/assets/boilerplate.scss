@@ -1,0 +1,46 @@
+@import '@fontsource/roboto/300.css';
+@import '@fontsource/roboto/400.css';
+@import '@fontsource/roboto/500.css';
+@import '@fontsource/roboto/700.css';
+
+
+html { font-size: 13px; }
+html, body, #root { height: 100%; }
+
+.flex { display: flex; flex-direction: column; }
+.grid { display: grid; }
+.flex-row { display: flex; flex-direction: row; }
+.flex-wrap { flex-wrap: wrap; }
+.flex1 { flex: 1; }
+.gap4 { gap: 4rem; }
+.align-center { align-items: center; }
+.align-end { align-items: end; }
+.align-start { align-items: flex-start; }
+.justify-center { justify-content: center; }
+.justify-end { justify-content: flex-end; }
+.space-between { justify-content: space-between; }
+.no-margin { margin: 0px !important; width: 100% !important; }
+.relative { position: relative; }
+.margin-10 { 
+  margin: 0px 10px !important; width: calc(100% - 20px) !important;
+  & > .MuiPaper-root { display: flex; }
+}
+.overflow { overflow: auto; }
+.overflow-x-none { overflow-x: hidden; }
+.no-overflow { overflow: hidden; .MuiCardContent-root { overflow: auto; } }
+
+.width100 { width: 100%; }
+.heigth100 { height: 100%; }
+
+.info { color: var(--mui-palette-info-main) !important; }
+.mode-dark .info { color: var(--mui-palette-info-main-dark) !important; }
+.success { color: var(--mui-palette-success-main) !important; }
+.mode-dark .success { color: var(--mui-palette-success-main-dark) !important; }
+.error { color: var(--mui-palette-error-main) !important; }
+.mode-dark .error { color: var(--mui-palette-error-main-dark) !important; }
+
+/*** ROOT ***/
+:root {
+    --mui-palette-primary-main: #9f9f9f8e;
+    --mui-palette-secondary-main: #9f9f9f8e;
+  }

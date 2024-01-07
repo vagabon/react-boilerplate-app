@@ -1,0 +1,8 @@
+node_modules/
+dist/
+build/
+.prettierrc.js
+**/*.scss
+**/*.css
+**/*.md*
+**/*.mdx

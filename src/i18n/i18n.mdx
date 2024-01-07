@@ -1,0 +1,30 @@
+import { Meta } from '@storybook/blocks';
+import { Source } from '@storybook/blocks';
+
+<Meta title="i18n/Docs" />
+
+# i18n
+
+<Source code={`
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import LanguageDetector from 'i18next-browser-languagedetector';
+import COMMON from '../locale/fr/common.json';
+
+const resources = {
+  fr: {
+    all: COMMON,
+    COMMON,
+  },
+};
+
+i18n
+  .use(LanguageDetector)
+  .use(initReactI18next)
+  .init({
+    resources,
+    supportedLngs: ['fr'],
+    ns: 'all',
+    fallbackLng: 'fr',
+  });
+`} language='javascript' />

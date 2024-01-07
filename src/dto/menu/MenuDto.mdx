@@ -1,0 +1,14 @@
+import { Meta,  Source } from '@storybook/blocks';
+
+<Meta title="dto/IMenuDto" />
+
+# IMenuDto
+
+<Source code={`
+export interface IMenuDto {
+  title: string;
+  link: string;
+  roles?: string[];
+  childrens?: IMenuDto[];
+}
+`} />

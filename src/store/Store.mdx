@@ -1,0 +1,28 @@
+import { Meta } from '@storybook/blocks';
+import { Source } from '@storybook/blocks';
+
+<Meta title="store/Store" />
+
+# store
+
+- useAppSelector
+- useAppDispatch
+
+<Source code={`
+  const reducers = combineReducers({
+    common: CommonReducers,
+  });
+
+  const store: ToolkitStore = configureStore({
+    reducer: reducers,
+  });
+
+  export type RootState = ReturnType<typeof store.getState>;
+  export type AppDispatch = typeof store.dispatch;
+
+  export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+  export const useAppDispatch = () => useDispatch<AppDispatch>();
+
+  export default store;
+
+`} language='javascript' />

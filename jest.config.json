@@ -1,0 +1,36 @@
+{
+  "testEnvironment": "jest-environment-jsdom",
+  "moduleFileExtensions": ["js", "jsx", "ts", "tsx"],
+  "roots": ["src"],
+  "modulePaths": ["src"],
+  "moduleDirectories": ["node_modules"],
+  "moduleNameMapper": {
+    "^.+\\.(css|less|scss)$": "babel-jest"
+  },
+  "setupFilesAfterEnv": ["<rootDir>/src/setupTests.js"],
+  "globals": {
+    "IS_REACT_ACT_ENVIRONMENT": true
+  },
+  "collectCoverageFrom": [
+    "src/**/*.{js,jsx,ts,tsx}",
+    "!<rootDir>/node_modules/",
+    "!<rootDir>/**/reportWebVitals.ts",
+    "!<rootDir>/**/setupTests.js",
+    "!src/vite-env.d.ts",
+    "!src/**/*Dto.ts",
+    "!src/**/*Router.tsx",
+    "!src/**/*Enum.ts",
+    "!src/**/*.stories.tsx",
+    "!src/**/Store.ts",
+    "!src/**/Helpers.tsx",
+    "!src/**/index.ts*"
+  ],
+  "coverageThreshold": {
+    "global": {
+      "branches": 10,
+      "functions": 10,
+      "lines": 10,
+      "statements": 10
+    }
+  }
+}

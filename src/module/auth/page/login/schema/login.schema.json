@@ -1,0 +1,9 @@
+{
+  "username": {
+    "required": true
+  },
+  "password": {
+    "max": 50,
+    "required": true
+  }
+}

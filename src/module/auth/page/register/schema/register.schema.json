@@ -1,0 +1,19 @@
+{
+  "username": {
+    "required": true
+  },
+  "email": {
+    "required": true,
+    "email": true
+  },
+  "password": {
+    "max": 50,
+    "required": true
+  },
+  "password2": {
+    "max": 50,
+    "required": true,
+    "same": "password",
+    "sameLabel": "ERRORS:SAME_PASSWORD"
+  }
+}

@@ -1,0 +1,18 @@
+import { Meta,  Source } from '@storybook/blocks';
+
+<Meta title="dto/ICurrentUserDto" />
+
+# ICurrentUserDto
+
+<Source code={`
+export interface ICurrentUserDto<U> {
+  user?: U;
+  jwt?: string;
+  jwtRefresh?: string;
+}
+
+export interface IAuthUserDto<U> {
+  isConnected?: boolean;
+  user: ICurrentUserDto<U> | null;
+}
+`} />

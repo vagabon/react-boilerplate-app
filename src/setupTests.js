@@ -54,13 +54,6 @@ global.mockDispatch = jest.fn();
 
 /***************************** AFTER EACH RESET MOCK *****************************/
 
-const mockDivCallbackChildren =
-  (name) =>
-  ({ children, callback }) => {
-    <div data-testid={name} onClick={callback}>
-      {children}
-    </div>;
-  };
 const mockWithChildren = (name, { children }) => <div data-testid={name}>{children}</div>;
 
 global.mockedUsedNavigate = jest.fn();
@@ -148,10 +141,6 @@ jest.mock('@vagabond-inc/react-boilerplate-md', () => ({
   MdTypo: (props) => mockWithChildren('MdTypo', props),
 
   MdTableWithPagination: (props) => mockWithChildren('MdTableWithPagination', props),
-
-  AppTheme: ({ children }) => <div data-testid='AppTheme'>{children}</div>,
-  Header: ({ children }) => <div data-testid='Header'>{children}</div>,
-  Footer: ({ children }) => <div data-testid='Footer'>{children}</div>,
 
   useFormError: () => ({ error: '' }),
   useAppTranslate: () => ({

@@ -19,6 +19,6 @@
     "resolveJsonModule": true,
     "emitDeclarationOnly": true
   },
-  "exclude": ["node_modules", "coverage", "**/*.test.js"],
+  "exclude": ["node_modules", "coverage"],
   "include": ["src", "src/mui/component/fab/.tsx"]
 }

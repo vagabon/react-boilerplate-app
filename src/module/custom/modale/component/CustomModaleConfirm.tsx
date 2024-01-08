@@ -1,5 +1,4 @@
-import { ID, MdButton, MdCard } from '@vagabond-inc/react-boilerplate-md';
-import { Trans } from 'react-i18next';
+import { ID, MdButton, MdCard, useAppTranslate } from '@vagabond-inc/react-boilerplate-md';
 import CustomModale, { ICustomModaleChildProps } from './CustomModale';
 
 export interface ICustomModaleConfirmProps extends ICustomModaleChildProps {
@@ -9,6 +8,8 @@ export interface ICustomModaleConfirmProps extends ICustomModaleChildProps {
 }
 
 const CustomModaleConfirm: React.FC<ICustomModaleConfirmProps> = ({ id, label, callback, ...rest }) => {
+  const { Trans } = useAppTranslate();
+
   return (
     <CustomModale {...rest} className='modal-confirm'>
       {({ closeModal, handleYes }) => (

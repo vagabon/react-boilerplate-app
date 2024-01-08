@@ -1,13 +1,26 @@
 {
   "testEnvironment": "jest-environment-jsdom",
-  "moduleFileExtensions": ["js", "jsx", "ts", "tsx"],
-  "roots": ["src"],
-  "modulePaths": ["src"],
-  "moduleDirectories": ["node_modules"],
+  "moduleFileExtensions": [
+    "js",
+    "jsx",
+    "ts",
+    "tsx"
+  ],
+  "roots": [
+    "src"
+  ],
+  "modulePaths": [
+    "src"
+  ],
+  "moduleDirectories": [
+    "node_modules"
+  ],
   "moduleNameMapper": {
     "^.+\\.(css|less|scss)$": "babel-jest"
   },
-  "setupFilesAfterEnv": ["<rootDir>/src/setupTests.js"],
+  "setupFilesAfterEnv": [
+    "<rootDir>/src/setupTests.js"
+  ],
   "globals": {
     "IS_REACT_ACT_ENVIRONMENT": true
   },
@@ -15,7 +28,7 @@
     "src/**/*.{js,jsx,ts,tsx}",
     "!<rootDir>/node_modules/",
     "!<rootDir>/**/reportWebVitals.ts",
-    "!<rootDir>/**/setupTests.js",
+    "!<rootDir>/**/setupTests*.*",
     "!src/vite-env.d.ts",
     "!src/**/*Dto.ts",
     "!src/**/*Router.tsx",

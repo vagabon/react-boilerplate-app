@@ -1,5 +1,11 @@
-import { CardMedia } from '@mui/material';
-import { IApiDto, JSONObject, MdAvatar, MdFormFile, ObjectUtils } from '@vagabond-inc/react-boilerplate-md';
+import {
+  IApiDto,
+  JSONObject,
+  MdAvatar,
+  MdCardMedia,
+  MdFormFile,
+  ObjectUtils,
+} from '@vagabond-inc/react-boilerplate-md';
 import { ChangeEvent, useCallback } from 'react';
 import { useCustomFormUpload } from '../../../custom/form/hook/useCustomFormUpload';
 import CustomModaleForm from '../../../custom/modale/component/CustomModaleForm';
@@ -27,13 +33,13 @@ const ProfileAvatar: React.FC<IProfileAvatarProps> = ({ user, disabled }) => {
   return (
     <>
       {user.username && (
-        <CardMedia>
+        <MdCardMedia>
           <MdAvatar
             name={user.username}
             image={user.avatar}
             sx={{ height: disabled ? '100px' : '200px', width: disabled ? '100px' : '200px', fontSize: '10rem' }}
           />
-        </CardMedia>
+        </MdCardMedia>
       )}
       {isUserPassword(user) && !disabled && (
         <CustomModaleForm

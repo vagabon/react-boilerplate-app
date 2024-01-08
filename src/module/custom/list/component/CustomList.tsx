@@ -1,4 +1,3 @@
-import { Checkbox } from '@mui/material';
 import {
   IApiDto,
   ID,
@@ -6,6 +5,7 @@ import {
   MdAvatar,
   MdChip,
   MdDivider,
+  MdFormCheckboxSimple,
   MdList,
   MdListItem,
   MdListItemAvatar,
@@ -14,7 +14,7 @@ import {
   MdListItemText,
   useAppTranslate,
 } from '@vagabond-inc/react-boilerplate-md';
-import React, { Fragment, MouseEvent, useCallback, useEffect, useState } from 'react';
+import React, { Fragment, useCallback, useEffect, useState } from 'react';
 import { useMessage } from '../../../../hook/message/useMessage';
 import CustomModaleConfirm from '../../modale/component/CustomModaleConfirm';
 
@@ -67,12 +67,10 @@ const CustomList: React.FC<ICustomListProps> = ({
   );
 
   const handleClickChecbox = useCallback(
-    (id: ID, checked: boolean, callback?: (id: ID, checked: boolean) => void) =>
-      (event: MouseEvent | MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        event.stopPropagation();
-        setDisabled(true);
-        callback?.(id, checked);
-      },
+    (id: ID, checked: boolean, callback?: (id: ID, checked: boolean) => void) => () => {
+      setDisabled(true);
+      callback?.(id, checked);
+    },
     [],
   );
 
@@ -115,12 +113,12 @@ const CustomList: React.FC<ICustomListProps> = ({
               )}
               {callbackCheckbox && (
                 <MdListItemIcon>
-                  <Checkbox
+                  <MdFormCheckboxSimple
+                    name={'checkbox-' + data.id}
                     edge='start'
-                    checked={data.checked}
-                    tabIndex={-1}
+                    checked={data.checked ?? false}
                     disableRipple
-                    onClick={handleClickChecbox(data.id, !data.checked, callbackCheckbox)}
+                    callbackClick={handleClickChecbox(data.id, !data.checked, callbackCheckbox)}
                     disabled={disabled}
                   />
                 </MdListItemIcon>

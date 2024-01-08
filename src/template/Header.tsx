@@ -1,5 +1,4 @@
 import { useCallback } from 'react';
-import { Link } from 'react-router-dom';
 import { useUserAuth } from '../hook/user/useUserAuth';
 import { CommonAction } from '../reducer/common/CommonReducer';
 import { useAppDispatch, useAppSelector } from '../store/Store';
@@ -31,7 +30,7 @@ export interface IHeaderProps {
 }
 
 const Header: React.FC<IHeaderProps> = ({ mode, conf, menu, callbackTheme }) => {
-  const { navigate } = useAppRouter();
+  const { navigate, Link } = useAppRouter();
   const dispatch = useAppDispatch();
   const { loading, history } = useAppSelector((state) => state.common);
   const { isLoggedIn, user } = useAppSelector((state) => state.auth);

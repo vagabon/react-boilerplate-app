@@ -1,6 +1,5 @@
-import { IMdInputTextProps, MdInputText } from '@vagabond-inc/react-boilerplate-md';
+import { IMdInputTextProps, MdInputText, useAppTranslate } from '@vagabond-inc/react-boilerplate-md';
 import { useCallback } from 'react';
-import { Trans } from 'react-i18next';
 import { IYupValidators } from '../../../../../utils/yup/YupUtils';
 import CustomModaleForm from '../../../../custom/modale/component/CustomModaleForm';
 import { IUserDto } from '../../../user/dto/UserDto';
@@ -25,6 +24,7 @@ const SCHEMA: IYupValidators = {
 
 const ProfileFormEmail: React.FC<IProfileFormEmailProps> = ({ user }) => {
   const { handleUpdateEmail, isUserPassword } = useUser();
+  const { Trans } = useAppTranslate();
 
   const handleSubmit = useCallback(
     (callback?: () => void) => (data: IUserDto) => {

@@ -1,10 +1,9 @@
 import { useCallback, useEffect, useState } from 'react';
-import { Trans } from 'react-i18next';
 
 import { useAppSelector } from '../../../../store/Store';
 import { IRegisterDto, RegisterDto } from './dto/RegisterDto';
 
-import { JSONObject, MdCard, MdInputText, useAppRouter } from '@vagabond-inc/react-boilerplate-md';
+import { JSONObject, MdCard, MdInputText, useAppRouter, useAppTranslate } from '@vagabond-inc/react-boilerplate-md';
 import AppContent from '../../../../app/content/AppContent';
 import AppFormik from '../../../../app/formik/AppFormik';
 import AuthFooter from '../../component/auth.footer/AuthFooter';
@@ -16,6 +15,7 @@ const DEFAULT_VALUES: JSONObject = new RegisterDto() as JSONObject;
 
 const RegisterPage: React.FC = () => {
   const { navigate } = useAppRouter();
+  const { Trans } = useAppTranslate();
   const [isRegister, setIsRegister] = useState<boolean>(false);
 
   const { isLoggedIn } = useAppSelector((state) => state.auth);

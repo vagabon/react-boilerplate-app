@@ -1,16 +1,20 @@
+// export md
 export * from '@vagabond-inc/react-boilerplate-md';
 
-// TODO : remove this to be Export
+// export i18n
 export { default as i18n } from 'i18next';
 export { default as LanguageDetector } from 'i18next-browser-languagedetector';
-export { Trans, initReactI18next } from 'react-i18next';
+export { initReactI18next } from 'react-i18next';
 
+// export router
+export { BrowserRouter, Link, Navigate, Route, Routes, useLocation } from 'react-router-dom';
+
+// export store
 export { configureStore, createSlice } from '@reduxjs/toolkit';
 export { Provider, TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 export { combineReducers } from 'redux';
 
-export { BrowserRouter, Link, Navigate, Route, Routes, useLocation } from 'react-router-dom';
-
+// export lib
 export { AxiosInterceptor } from './api/interceptor/AxiosInterceptor';
 export { ApiService } from './api/service/ApiService';
 export { ApiCrudService } from './api/service/crud/ApiCrudService';

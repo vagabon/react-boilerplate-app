@@ -1,3 +1,4 @@
+import babel from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
 import resolve from '@rollup/plugin-node-resolve';
@@ -35,11 +36,16 @@ export default [
     plugins: [
       external(),
       resolve(),
+      babel({
+        exclude: 'node_modules/**',
+        presets: ['@babel/env', '@babel/preset-react'],
+      }),
       commonjs(),
       typescript({
         compilerOptions: {
           baseUrl: '.',
         },
+        exclude: ['node_modules', 'coverage', '**/*.Tests*', '**/*.test.js'],
       }),
       postcss(),
       json(),

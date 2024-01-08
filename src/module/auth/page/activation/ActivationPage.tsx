@@ -1,12 +1,12 @@
-import { MdButton, MdCard } from '@vagabond-inc/react-boilerplate-md';
+import { MdButton, MdCard, useAppTranslate } from '@vagabond-inc/react-boilerplate-md';
 import { useEffect, useState } from 'react';
-import { Trans } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import AppContent from '../../../../app/content/AppContent';
 import { useAppSelector } from '../../../../store/Store';
 import AuthService from '../../service/AuthService';
 
 const ActivationPage: React.FC = () => {
+  const { Trans } = useAppTranslate();
   const params = useParams();
   const [isActivated, setIsActivated] = useState<boolean | undefined>(undefined);
 

@@ -1,5 +1,4 @@
-import { MdDivider } from '@vagabond-inc/react-boilerplate-md';
-import { Trans } from 'react-i18next';
+import { MdDivider, useAppTranslate } from '@vagabond-inc/react-boilerplate-md';
 import HasRole from '../../../../../hook/role/HasRole';
 import { IUserDto } from '../../../user/dto/UserDto';
 import { useUser } from '../../../user/hook/useUser';
@@ -13,6 +12,7 @@ export interface IProfileFormProps {
 }
 
 const ProfileForm: React.FC<IProfileFormProps> = ({ user, disabled }) => {
+  const { Trans } = useAppTranslate();
   const { isUserPassword } = useUser();
 
   return (

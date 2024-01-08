@@ -10,7 +10,6 @@ const config = {
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
     '@storybook/addon-jest',
-    '@storybook/addon-mdx-gfm',
   ],
 
   core: {

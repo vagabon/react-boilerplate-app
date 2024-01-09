@@ -46,14 +46,14 @@ const UserService = {
   },
 
   updateEmail: (id: ID, email: string): Promise<IUserDto> => {
-    return ApiService.put<IUserDto>(ENDPOINT_USERS + 'email', {
+    return ApiService.put<IUserDto>(ENDPOINT_USERS + '/email', {
       id,
       email,
     }).then((data) => data);
   },
 
   updatePassword: (id: ID, password: string, newPassword: string): Promise<IUserDto> => {
-    return ApiService.put<IUserDto>(ENDPOINT_USERS + 'password', {
+    return ApiService.put<IUserDto>(ENDPOINT_USERS + '/password', {
       id,
       password,
       newPassword,

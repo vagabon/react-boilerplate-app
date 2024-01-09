@@ -19,7 +19,6 @@ export const StorageUtils = {
         console.error('failed to load json', userStorage);
       }
     }
-    console.log('localstorage', user);
     return user;
   },
 

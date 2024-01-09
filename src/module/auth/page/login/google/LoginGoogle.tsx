@@ -9,7 +9,7 @@ const LoginGoogle: React.FC = () => {
     onSuccess: (codeResponse) => {
       doGoogleLogin(codeResponse.access_token);
     },
-    onError: (error) => console.log('Google Login Failed:', error),
+    onError: (error) => console.error('Google Login Failed:', error),
   });
 
   return (

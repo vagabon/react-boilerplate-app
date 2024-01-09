@@ -43,7 +43,7 @@ const AppFormik: React.FC<IAppFormikProps> = (props: IAppFormikProps) => {
     (values: IApiDto, validateForm: (values?: IApiDto) => Promise<FormikErrors<IApiDto>>): void => {
       dispatch(CommonAction.setMessage({ message: '', type: 'success' }));
       validateForm(values).then((errors: FormikErrors<IApiDto>) => {
-        console.log('form errors', values, errors);
+        console.debug('form errors', values, errors);
         if (Object.keys(errors).length > 0) {
           dispatch(CommonAction.setMessage({ message: 'COMMON:FORM.ERROR', type: 'error' }));
         } else {

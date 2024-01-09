@@ -1,5 +1,7 @@
 /********************************** LOCAL STORAGE *********************************/
 
+console.debug = jest.fn();
+
 const localStorageMock = (function () {
   let store = {};
   return {

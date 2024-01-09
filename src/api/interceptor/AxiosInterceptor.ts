@@ -34,7 +34,7 @@ export const AxiosInterceptor = <U>(
       return config;
     },
     (error: AxiosError) => {
-      console.log(error);
+      console.error(error);
       store.dispatch(CommonAction.setLoading(false));
       return error;
     },
@@ -53,7 +53,7 @@ export const AxiosInterceptor = <U>(
       return response;
     },
     async (error: AxiosError<U>) => {
-      console.log(error);
+      console.error(error);
       store.dispatch(CommonAction.setLoading(false));
       const originalRequest: InternalAxiosRequestConfig | undefined = error.config;
 

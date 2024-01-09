@@ -20,7 +20,6 @@ export const useCustomFormUpload = (endPoint: string) => {
     (id: ID, callback?: HandleChangeType) => (name: string, file: File) => {
       uploadImage(id, file).then((data) => {
         const event = { target: { name, value: data } };
-        console.log('FILE UPLOAD : ', data, event);
         callback?.(event);
       });
     },

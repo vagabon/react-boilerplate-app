@@ -4,6 +4,7 @@ import { StorageUtils } from '../../../utils/storage/StorageUtils';
 import { IUserDto } from '../../user/user/dto/UserDto';
 
 const user: ICurrentUserDto<IUserDto> | null = StorageUtils.getCurrentUser();
+console.log('load user', user);
 
 export interface AuthReducerState {
   isLoggedIn: boolean;

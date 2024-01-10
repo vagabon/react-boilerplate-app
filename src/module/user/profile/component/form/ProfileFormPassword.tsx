@@ -47,12 +47,23 @@ const ProfileFormPassword: React.FC<IProfileFormPasswordProps> = ({ user }) => {
         button='AUTH:USER.PASSWORD.BUTTON'>
         {(props) => (
           <>
-            <MdInputText {...(props as IMdInputTextProps)} label='AUTH:FIELDS.PASSWORD' name='password' />
-            <MdInputText {...(props as IMdInputTextProps)} label='AUTH:FIELDS.PASSWORD_NEW' name='newPassword' />
+            <MdInputText
+              {...(props as IMdInputTextProps)}
+              label='AUTH:FIELDS.PASSWORD'
+              name='password'
+              type='password'
+            />
+            <MdInputText
+              {...(props as IMdInputTextProps)}
+              label='AUTH:FIELDS.PASSWORD_NEW'
+              name='newPassword'
+              type='password'
+            />
             <MdInputText
               {...(props as IMdInputTextProps)}
               label='AUTH:FIELDS.PASSWORD_NEW_CONFIRM'
               name='newPasswordConfirm'
+              type='password'
             />
           </>
         )}

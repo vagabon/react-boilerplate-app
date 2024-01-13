@@ -97,8 +97,15 @@ export const mockBoilerPlateMd = {
   ),
   MdInputDatepicker: () => <input data-testid='MdInputDatepicker' />,
   MdInputText: ({ name, handleChange }) => <input data-testid='MdInputText' name={name} onChange={handleChange} />,
-  MdInputTextSimple: ({ name, value, handleChange }) => (
-    <input data-testid='MdInputTextSimple' name={name} value={value} onChange={handleChange} />
+  MdInputTextSimple: ({ name, value, handleChange, handleBlur, handleKeyEnter }) => (
+    <input
+      data-testid='MdInputTextSimple'
+      name={name}
+      value={value}
+      onChange={handleChange ? handleChange : () => {}}
+      onBlur={handleBlur}
+      onKeyUp={handleKeyEnter}
+    />
   ),
 
   MdGrid: (props) => mockWithChildren('MdGrid', props),

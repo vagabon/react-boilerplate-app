@@ -1,10 +1,3 @@
-import { useCallback } from 'react';
-import { useUserAuth } from '../hook/user/useUserAuth';
-import { CommonAction } from '../reducer/common/CommonReducer';
-import { useAppDispatch, useAppSelector } from '../store/Store';
-
-import CustomModaleConfirm from '../module/custom/modale/component/CustomModaleConfirm';
-
 import {
   IApiDto,
   IconClickable,
@@ -19,8 +12,13 @@ import {
   ModeType,
   useAppRouter,
 } from '@vagabond-inc/react-boilerplate-md';
+import { useCallback } from 'react';
 import { IMenuDto } from '../dto/menu/MenuDto';
 import HasRole from '../hook/role/HasRole';
+import { useUserAuth } from '../hook/user/useUserAuth';
+import CustomModaleConfirm from '../module/custom/modale/component/CustomModaleConfirm';
+import { CommonAction } from '../reducer/common/CommonReducer';
+import { useAppDispatch, useAppSelector } from '../store/Store';
 
 export interface IHeaderProps {
   mode: ModeType;
@@ -49,10 +47,11 @@ const Header: React.FC<IHeaderProps> = ({ mode, conf, menu, callbackTheme }) => 
           <div className='back-button' style={{ width: '30px' }}>
             {history.length > 1 && <MdButton variant='text' icon='back' callback={goBack} />}
           </div>
-          <MdTypo align='left' noWrap={true} sx={{ flex: 1 }}>
+          <MdTypo align='left' noWrap={true} sx={{ flex: 1, display: 'flex', gap: '1rem' }}>
             <Link to='/' style={{ display: 'flex' }}>
               <img src={conf.LOGO} width={40} alt={'Logo de ' + conf.TITLE} />
             </Link>
+            <span className='flex justify-center'>{conf.TITLE}</span>
           </MdTypo>
           <IconClickable icon={mode === 'dark' ? 'sun' : 'moon'} callback={callbackTheme} />
           <MdButton url='/auth/signup' label='AUTH:SIGNUP' variant='text' show={!isLoggedIn} />

@@ -95,6 +95,10 @@ export { default as CustomModaleConfirm } from './module/custom/modale/component
 export type { ICustomModaleConfirmProps } from './module/custom/modale/component/CustomModaleConfirm';
 export { default as CustomModaleForm } from './module/custom/modale/component/CustomModaleForm';
 export type { ICustomModaleFormProps } from './module/custom/modale/component/CustomModaleForm';
+
+export { default as CustomNotification } from './module/custom/notification/component/CustomNotification';
+export type { ICustomNotificationProps } from './module/custom/notification/component/CustomNotification';
+
 export { default as NewsRouter } from './module/news/NewsRouter';
 export { default as NewsCard } from './module/news/component/card/NewsCard';
 export type { INewsCardProps } from './module/news/component/card/NewsCard';

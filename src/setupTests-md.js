@@ -164,6 +164,9 @@ export const mockBoilerPlateMd = {
     switchTheme: jest.fn(),
   }),
 
+  DateUtils: {
+    format: (data, format) => data,
+  },
   I18nUtils: {
     translate: (t, label) => label,
   },

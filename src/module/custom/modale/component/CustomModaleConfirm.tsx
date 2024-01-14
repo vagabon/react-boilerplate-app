@@ -4,6 +4,7 @@ import CustomModale, { ICustomModaleChildProps } from './CustomModale';
 export interface ICustomModaleConfirmProps extends ICustomModaleChildProps {
   id?: ID;
   label?: string;
+  disabled?: boolean;
   callback?: (id: ID) => void;
 }
 

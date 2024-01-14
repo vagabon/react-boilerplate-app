@@ -7,6 +7,7 @@
   .MuiPaper-root { margin: 10px; padding: 10px; width: calc(100% - 20px); display: flex; flex-direction: column; }
   .MuiCardHeader-title { font-size: 1.5rem !important; }
   .max-width { max-width: 1200px; margin: 0 auto; width: 100%; }
+  .max-width-800 { max-width: 800; }
   #infinite-container { flex: 1; & > .max-width { flex: 1 } }
 }
 @media screen and (max-width: 900px) {
@@ -178,6 +179,13 @@
 .modal-medium > .MuiBox-root { 
   height: 30% !important; min-height: 280px !important; max-width: 600px;
   .MuiCardContent-root { justify-content: center; }
+}
+
+.modal-infinite {
+  .MuiBox-root { height: 70% !important; min-height: 480px !important;  }
+  .MuiCardContent-root { overflow: hidden; }
+  #infinite-container { overflow: auto; }
+  ul { width: 100%; }
 }
 
 .modal-confirm {

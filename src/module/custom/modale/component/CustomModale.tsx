@@ -22,10 +22,19 @@ export type ICustomModalChildrenType = (props: {
 }) => React.JSX.Element;
 
 export interface ICustomModaleProps extends ICustomModaleChildProps {
+  disabled?: boolean;
   children: ICustomModalChildrenType;
 }
 
-const CustomModale: React.FC<ICustomModaleProps> = ({ className, icon, iconColor, button, buttonColor, children }) => {
+const CustomModale: React.FC<ICustomModaleProps> = ({
+  className,
+  icon,
+  iconColor,
+  button,
+  buttonColor,
+  disabled,
+  children,
+}) => {
   const { open, openModal, closeModal, handleYes } = useModal();
 
   return (
@@ -33,8 +42,8 @@ const CustomModale: React.FC<ICustomModaleProps> = ({ className, icon, iconColor
       <MdCommonModal className={className} open={open} handleClose={closeModal}>
         {children({ closeModal, handleYes })}
       </MdCommonModal>
-      {icon && <IconClickable color={iconColor} icon={icon} callback={openModal} />}
-      {button && <MdButton label={button} color={buttonColor} callback={openModal} />}
+      {icon && <IconClickable color={iconColor} icon={icon} callback={openModal} disabled={disabled} />}
+      {button && <MdButton label={button} color={buttonColor} callback={openModal} disabled={disabled} />}
     </>
   );
 };

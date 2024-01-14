@@ -21,9 +21,10 @@ const LoginFacebook: React.FC = () => {
           <MdButton
             label='AUTH:LOGIN.FACEBOOK'
             variant='outlined'
+            color='facebook'
             startIcon='facebook'
             callback={onClick}
-            color='facebook'
+            sx={{ minWidth: '220px' }}
           />
         </div>
       )}

@@ -26,12 +26,13 @@ export interface ICustomListDto extends IApiDto {
   secondary?: string;
   name: string;
   checked?: boolean;
+  disabled?: boolean;
 }
 
 export interface ICustomListProps {
   className?: string;
   datas: ICustomListDto[];
-  buttonChildren?: (id: ID) => React.JSX.Element;
+  buttonChildren?: (data: ICustomListDto) => React.JSX.Element;
   callback?: (data: IApiDto) => void;
   callbackAvatar?: (data: IApiDto) => () => void;
   callbackCheckbox?: (id: ID, checked: boolean) => void;
@@ -125,15 +126,26 @@ const CustomList: React.FC<ICustomListProps> = ({
               )}
               <MdListItemText color={getTextColor(data.checked)} label={data.name} secondary={<>{data.secondary}</>} />
               {data.chip && <MdChip label={data.chip} />}
-              {buttonChildren && <>{buttonChildren(data.id)}</>}
+              {buttonChildren && <>{buttonChildren(data)}</>}
               {callbackSettings && (
                 <MdListItemIcon>
-                  <IconClickable icon='settings' color='primary' callback={() => callbackSettings(data)} />
+                  <IconClickable
+                    icon='settings'
+                    color='primary'
+                    callback={() => callbackSettings(data)}
+                    disabled={data.disabled}
+                  />
                 </MdListItemIcon>
               )}
               {callbackDelete && data.id && (
                 <MdListItemIcon>
-                  <CustomModaleConfirm id={data.id} icon='delete' iconColor='error' callback={callbackDelete} />
+                  <CustomModaleConfirm
+                    id={data.id}
+                    icon='delete'
+                    iconColor='error'
+                    callback={callbackDelete}
+                    disabled={data.disabled}
+                  />
                 </MdListItemIcon>
               )}
             </MdListItem>

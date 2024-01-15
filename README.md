@@ -1,54 +1,58 @@
-# @vagabond-ts/react-crud-mui
-
-## Description
-
-REACT CRUD MUI :
-
-- v0.0.1
+@vagabond-inc/react-boilerplate-app
 
 ## Documentation
 
-Npm : [@vagabond-ts/react-crud-mui](https://www.npmjs.com/package/@vagabond-ts/react-crud-mui)
+React Boilerplate Material Design :
 
-Example : [LostArk Roster](https://lostark-roster.vagabond.synology.me/)
+- A boilerplate based on React 18 with Material Design (@vagabond-inc/react-boilerplate-md / Mui) and Auth / Custom modules (Back Office on quarkus)
+- [storyBook](https://vagabond.synology.me/react-boilerplate-app)
+- Npm : [@vagabond-inc/react-boilerplate-app](https://www.npmjs.com/package/@vagabond-inc/react-boilerplate-app)
+- Github : [https://github.com/vagabon/react-boilerplate-app](https://github.com/vagabon/react-boilerplate-app)
+- Example : [Vagabond Blog & Tools](https://blog.vagabond.synology.me/)
 
-## libs
+## Technical stack
 
-npm install @mui/material @emotion/react @emotion/styled
-npm install @fontsource/roboto
-npm install @mui/icons-material
+- Node >= 18.16.0, npm >= 9.5.1
 
-npm install axios
-npm install react-router-dom
-npm install @reduxjs/toolkit react-redux
-npm install react-i18next i18next i18next-browser-languagedetector
-npm install formik yup
-npm install sass
+- React :
 
-npm install --save-dev @testing-library/jest-dom @testing-library/react @testing-library/user-event
-npm install --save-dev @jest/globals ts-jest
-npm install redux-mock-store --save-dev
+  - react: ~18.2.0
+  - react-dom: ~18.2.0
 
-npm install -D jest-sonar-reporter sonarqube-scanner
+- @vagabond-inc/react-boilerplate-md: 0.0.24
 
-npm install @react-oauth/google@latest
-npm i --save @greatsumini/react-facebook-login
+- Redux :
 
-## MUI
+  - react-redux: ~9.0.4
+  - @reduxjs/toolkit: ~2.0.1
 
-https://mui.com/material-ui/getting-started/overview/
+- Axios : ~1.6.2
+
+- Form :
+
+  - formik: ~2.4.5
+  - yup: ~1.3.3
+
+- Auth :
+
+  - @react-oauth/google: ~0.12.1
+  - @greatsumini/react-facebook-login: ~3.3.3
+
+- Test :
+  - @babel/preset-env: ~7.23.3
+  - @babel/preset-react: ~7.23.3
+  - @babel/preset-typescript: ~7.23.3
+  - babel-jest: ~29.7.0
+  - jest: ~29.7.0
+  - jest-environment-jsdom: ~29.7.0
 
 ## Installation
-
-TODO
 
 ```
 npm install
 ```
 
 # Storybook
-
-TODO
 
 ```
 npm run storybook
@@ -87,7 +91,7 @@ npm run ci
 Génération du build :
 
 ```
-npm run build:lib
+npm run build
 ```
 
 - livrable : /dist

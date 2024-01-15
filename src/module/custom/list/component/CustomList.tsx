@@ -9,7 +9,6 @@ import {
   MdList,
   MdListItem,
   MdListItemAvatar,
-  MdListItemButton,
   MdListItemIcon,
   MdListItemText,
   useAppTranslate,
@@ -18,21 +17,22 @@ import React, { Fragment, useCallback, useEffect, useState } from 'react';
 import { useMessage } from '../../../../hook/message/useMessage';
 import CustomModaleConfirm from '../../modale/component/CustomModaleConfirm';
 
-export interface ICustomListDto extends IApiDto {
+export interface ICustomListDto {
   avatar?: string;
   user?: IApiDto;
   icon?: string;
   chip?: string;
-  secondary?: string;
   name: string;
+  secondary?: string;
   checked?: boolean;
   disabled?: boolean;
+  entity: IApiDto;
 }
 
 export interface ICustomListProps {
   className?: string;
   datas: ICustomListDto[];
-  buttonChildren?: (data: ICustomListDto) => React.JSX.Element;
+  buttonChildren?: (data: IApiDto) => React.JSX.Element;
   callback?: (data: IApiDto) => void;
   callbackAvatar?: (data: IApiDto) => () => void;
   callbackCheckbox?: (id: ID, checked: boolean) => void;
@@ -94,14 +94,14 @@ const CustomList: React.FC<ICustomListProps> = ({
     <MdList className={'custom-list overflow overflow-x-none ' + className}>
       {!datas || datas.length === 0 ? (
         <MdListItem component='div' disablePadding>
-          <MdListItemButton>
+          <MdListItem>
             <MdListItemText color='flex align-center' label={t('NO_RESULT')} />
-          </MdListItemButton>
+          </MdListItem>
         </MdListItem>
       ) : (
         datas?.map((data) => (
-          <Fragment key={data.id}>
-            <MdListItem component='div' disablePadding callback={handleClick(data)}>
+          <Fragment key={data.entity.id}>
+            <MdListItem component='div' disablePadding callback={handleClick(data.entity)}>
               {data.avatar && (
                 <MdListItemAvatar>
                   <MdAvatar name={data.avatar} image={data.avatar} callback={callbackAvatar?.(data.user as IApiDto)} />
@@ -115,32 +115,32 @@ const CustomList: React.FC<ICustomListProps> = ({
               {callbackCheckbox && (
                 <MdListItemIcon>
                   <MdFormCheckboxSimple
-                    name={'checkbox-' + data.id}
+                    name={'checkbox-' + data.entity.id}
                     edge='start'
                     checked={data.checked ?? false}
                     disableRipple
-                    callbackClick={handleClickChecbox(data.id, !data.checked, callbackCheckbox)}
+                    callbackClick={handleClickChecbox(data.entity.id, !data.checked, callbackCheckbox)}
                     disabled={disabled}
                   />
                 </MdListItemIcon>
               )}
               <MdListItemText color={getTextColor(data.checked)} label={data.name} secondary={<>{data.secondary}</>} />
               {data.chip && <MdChip label={data.chip} />}
-              {buttonChildren && <>{buttonChildren(data)}</>}
+              {buttonChildren && <>{buttonChildren(data.entity)}</>}
               {callbackSettings && (
                 <MdListItemIcon>
                   <IconClickable
                     icon='settings'
                     color='primary'
-                    callback={() => callbackSettings(data)}
+                    callback={() => callbackSettings(data.entity)}
                     disabled={data.disabled}
                   />
                 </MdListItemIcon>
               )}
-              {callbackDelete && data.id && (
+              {callbackDelete && data.entity.id && (
                 <MdListItemIcon>
                   <CustomModaleConfirm
-                    id={data.id}
+                    id={data.entity.id}
                     icon='delete'
                     iconColor='error'
                     callback={callbackDelete}

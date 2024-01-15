@@ -50,9 +50,9 @@ const CustomFormModale: React.FC<ICustomFormModaleProps> = ({ conf, open, ...res
       <MdList className='modal-list'>
         {(!datas || datas.length === 0) && (
           <MdListItem component='div' disablePadding>
-            <MdListItemButton>
+            <MdListItem>
               <MdListItemText color='flex justify-center' label={t('NO_RESULT')} />
-            </MdListItemButton>
+            </MdListItem>
           </MdListItem>
         )}
         {datas?.map((data) => (

@@ -14,5 +14,5 @@ export const useRole = () => {
     [currentUser],
   );
 
-  return { currentUser, user: currentUser?.user, hasUserRole };
+  return { currentUser, userConnected: currentUser?.user, hasUserRole };
 };

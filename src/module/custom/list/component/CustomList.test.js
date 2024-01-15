@@ -15,7 +15,9 @@ describe('CustomList', () => {
     useAppSelectorSpy.mockImplementation((callback) => callback({ common: { message: 'test' } }));
     render(
       <CustomList
-        datas={[{ id: 1, avatar: 'avatar', chip: 'chip', name: 'name', icon: 'icon', checked: true }]}
+        datas={[
+          { id: 1, avatar: 'avatar', chip: 'chip', name: 'name', icon: 'icon', checked: true, entity: { id: 1 } },
+        ]}
         callback={callback}
         callbackCheckbox={callbackCheckbox}
         callbackDelete={callbackDelete}

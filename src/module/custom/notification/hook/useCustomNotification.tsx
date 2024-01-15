@@ -29,11 +29,11 @@ export const useCustomNotification = (entityId?: ID) => {
     if (notifications) {
       const newNotifications = notifications.map((notification) => {
         return {
-          id: notification.id,
           avatar: notification?.user?.avatar ?? ObjectUtils.capitalize(notification?.user?.username ?? '?'),
           user: notification?.user,
           name: notification.message,
           secondary: DateUtils.format(notification?.creationDate as string, 'Le DD MMM YYYY à hhhmm'),
+          entity: notification,
         } as ICustomListDto;
       });
 

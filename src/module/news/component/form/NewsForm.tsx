@@ -15,14 +15,18 @@ import { INewsDto } from '../../dto/NewsDto';
 import NEWS_SCHEMA from '../../schema/news.schema.json';
 import NewsCard from '../card/NewsCard';
 
-const NewsForm: React.FC = () => {
+export interface INewsFormProps {
+  idNews: number;
+}
+
+const NewsForm: React.FC<INewsFormProps> = ({ idNews }) => {
   const { news, createOrUpdateNews } = useCreateNews();
-  const [newsForm, setNewsForm] = useState<INewsDto>(news);
+  const [newsForm, setNewsForm] = useState<INewsDto>(news[idNews]);
   const { handleChangeFile } = useCustomFormUpload('news');
 
   useEffect(() => {
-    setNewsForm(news);
-  }, [news]);
+    setNewsForm(news[idNews]);
+  }, [news, idNews]);
 
   const handleChange = useCallback(
     (newsState: INewsDto, callback: HandleChangeType) => (event: ChangeEvent<JSONObject>) => {
@@ -37,7 +41,7 @@ const NewsForm: React.FC = () => {
 
   return (
     <AppContent id='news-form' className='markdown-form'>
-      <MdCard title={news.id ? 'NEWS_UPDATE' : 'NEW_CREATE'}>
+      <MdCard title={newsForm.id ? 'NEWS_UPDATE' : 'NEW_CREATE'}>
         <AppFormik initialValues={news} validationSchema={NEWS_SCHEMA} onSubmit={createOrUpdateNews}>
           {(props) => (
             <>

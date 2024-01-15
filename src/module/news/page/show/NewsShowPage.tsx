@@ -1,22 +1,20 @@
+import { useAppRouter } from '@vagabond-inc/react-boilerplate-md';
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 import HasRole from '../../../../hook/role/HasRole';
 import NewsCard from '../../component/card/NewsCard';
 import { useCreateNews } from '../../hook/useCreateNews';
 
 const NewsShowPage: React.FC = () => {
-  const params = useParams();
+  const {
+    params: { id },
+  } = useAppRouter();
   const { news, fetchById } = useCreateNews();
 
   useEffect(() => {
-    fetchById(params.id);
-  }, [params.id, fetchById]);
+    fetchById(id);
+  }, [id, fetchById]);
 
-  return (
-    <HasRole roles={[]}>
-      <NewsCard news={news} />
-    </HasRole>
-  );
+  return <HasRole roles={[]}>{id && <NewsCard news={news[parseInt(id)] ?? {}} />}</HasRole>;
 };
 
 export default NewsShowPage;

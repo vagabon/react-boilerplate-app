@@ -6,7 +6,7 @@ import { NewsAction } from '../reducer/NewsReducers';
 import NewsService from '../service/NewsService';
 
 export const useCreateNews = (): {
-  news: INewsDto;
+  news: INewsDto[];
   createOrUpdateNews: (news: INewsDto) => void;
   fetchById: (id: ID) => void;
 } => {
@@ -19,7 +19,6 @@ export const useCreateNews = (): {
         NewsService.fetchById(id).then((data) => {
           dispatch(NewsAction.setData(data));
         });
-      !id && dispatch(NewsAction.setData({}));
     },
     [dispatch],
   );

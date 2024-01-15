@@ -4,10 +4,11 @@ import NewsShowPage from './NewsShowPage';
 
 describe('NewsShowPage', () => {
   test('Given NewsShowPage when its mount then ', () => {
+    global.mockParams = { id: 1 };
     useAppSelectorSpy.mockImplementation((callback) =>
       callback({
         auth: { user: { user: { id: 1, profiles: [{ name: 'ADMIN', roles: 'ADMIN' }] } } },
-        news: { data: {}, datas: [] },
+        news: { data: [], datas: [] },
         common: { message: '' },
       }),
     );

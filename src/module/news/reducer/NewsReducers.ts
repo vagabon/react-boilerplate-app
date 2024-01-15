@@ -4,7 +4,7 @@ import { INewsDto } from '../dto/NewsDto';
 
 export interface NewsReducerState extends ReducerCrudState {
   datas: INewsDto[];
-  data: INewsDto;
+  data: INewsDto[];
 }
 
 const initialState: NewsReducerState = {

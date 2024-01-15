@@ -58,12 +58,13 @@ export const mockBoilerPlateMd = {
   MdBox: (props) => mockWithChildren('MdBox', props),
   MdBouttonGroup: (props) => mockWithChildren('MdBouttonGroup', props),
   MdButton: ({ callback }) => <button data-testid='MdButton' onClick={callback}></button>,
-  MdCard: ({ className, title, titleIconLeft, callbackLeft, children }) => (
+  MdCard: ({ className, title, titleIconLeft, callbackLeft, children, elementRigth }) => (
     <div data-testid='MdCard' className={className}>
       <div data-testid='MdCardHeader' onClick={titleIconLeft}>
         {title}
       </div>
       <div data-testid='MdCardLeft' onClick={callbackLeft}></div>
+      <div>{elementRigth && elementRigth?.()}</div>
       <div>{children}</div>
     </div>
   ),

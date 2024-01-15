@@ -2,7 +2,7 @@ import { ReducersActions } from './BaseReducer';
 
 const state = {
   datas: [{ id: '1', name: 'name' }],
-  data: {},
+  data: [],
   count: 0,
   search: '',
   page: 2,
@@ -34,9 +34,9 @@ describe('BASE REDUCER', () => {
   });
 
   test('Given ReducersActions When setData Then data from state is update', () => {
-    const data = { name: 'name' };
+    const data = { id: 1, name: 'name' };
     const tested = ReducersActions.setData(state, { payload: data });
-    expect(tested.data).toBe(data);
+    expect(tested.data[1]).toBe(data);
   });
 
   test('Given ReducersActions When setCount Then count from state is update', () => {

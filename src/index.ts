@@ -8,9 +8,10 @@ export { initReactI18next } from 'react-i18next';
 
 // export router
 export { BrowserRouter, Link, Navigate, Route, Routes, useLocation } from 'react-router-dom';
+export { StaticRouter } from 'react-router-dom/server';
 
 // export store
-export { configureStore, createSlice } from '@reduxjs/toolkit';
+export { PayloadAction, configureStore, createSlice } from '@reduxjs/toolkit';
 export { Provider, TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 export { combineReducers } from 'redux';
 
@@ -142,8 +143,9 @@ export { DefaultState, ReducersActions } from './reducer/BaseReducer';
 export type { ActionReturn, ReducerCrudState } from './reducer/BaseReducer';
 export { CommonAction, CommonReducer, default as CommonReducers } from './reducer/common/CommonReducer';
 export type { ApiState, MessageType } from './reducer/common/CommonReducer';
-export { default as Store, useAppDispatch, useAppSelector } from './store/Store';
+
 export type { AppDispatch, RootState } from './store/Store';
+
 export { SuspenceLoader } from './suspence/SuspenceLoader';
 export { default as AppTheme } from './template/AppTheme';
 export type { IAppThemeProps, IConfDto } from './template/AppTheme';

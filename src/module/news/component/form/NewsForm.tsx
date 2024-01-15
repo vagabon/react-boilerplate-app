@@ -21,11 +21,11 @@ export interface INewsFormProps {
 
 const NewsForm: React.FC<INewsFormProps> = ({ idNews }) => {
   const { news, createOrUpdateNews } = useCreateNews();
-  const [newsForm, setNewsForm] = useState<INewsDto>(news[idNews]);
+  const [newsForm, setNewsForm] = useState<INewsDto>({});
   const { handleChangeFile } = useCustomFormUpload('news');
 
   useEffect(() => {
-    setNewsForm(news[idNews]);
+    setNewsForm(news?.[idNews] ?? {});
   }, [news, idNews]);
 
   const handleChange = useCallback(
@@ -42,7 +42,7 @@ const NewsForm: React.FC<INewsFormProps> = ({ idNews }) => {
   return (
     <AppContent id='news-form' className='markdown-form'>
       <MdCard title={newsForm.id ? 'NEWS_UPDATE' : 'NEW_CREATE'}>
-        <AppFormik initialValues={news} validationSchema={NEWS_SCHEMA} onSubmit={createOrUpdateNews}>
+        <AppFormik initialValues={newsForm} validationSchema={NEWS_SCHEMA} onSubmit={createOrUpdateNews}>
           {(props) => (
             <>
               <MdInputText

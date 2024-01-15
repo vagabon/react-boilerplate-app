@@ -15,7 +15,10 @@ const NewsCard: React.FC<INewsCardProps> = (props: INewsCardProps) => {
 
   const summaryCallback = useCallback(
     (title?: string) => (newSummary: string) => {
-      let completeSummary = '[' + title + '](#' + id + ')\n\n';
+      let completeSummary = '';
+      if (title) {
+        completeSummary = '[' + title + '](#' + id + ')\n\n';
+      }
       completeSummary += newSummary;
       setSummary(completeSummary);
     },

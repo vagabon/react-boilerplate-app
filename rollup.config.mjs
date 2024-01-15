@@ -39,6 +39,7 @@ export default [
       babel({
         exclude: 'node_modules/**',
         presets: ['@babel/env', '@babel/preset-react'],
+        babelHelpers: 'runtime',
       }),
       commonjs(),
       typescript({

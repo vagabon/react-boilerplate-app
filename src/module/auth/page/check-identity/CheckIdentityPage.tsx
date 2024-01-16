@@ -17,8 +17,8 @@ const CheckIdentityPage: React.FC = () => {
   const handleCheckIdentity = useCallback((data: ICheckIdentityDto) => {
     AuthService.checkIdentityToken(data.token as string).then((data: ICheckIdentityDto) => {
       if (data.token !== '') {
-        AuthService.resetPassword(data.token as string).then((data: ICheckIdentityDto) => {
-          if (data.token !== '') {
+        AuthService.resetPassword(data.token as string).then((data) => {
+          if (data) {
             setState(true);
           }
         });

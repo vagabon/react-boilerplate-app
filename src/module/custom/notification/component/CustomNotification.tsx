@@ -5,11 +5,12 @@ import CustomList from '../../list/component/CustomList';
 import { useCustomNotification } from '../hook/useCustomNotification';
 
 export interface ICustomNotificationProps {
-  entityId?: ID;
+  entityId: ID;
+  type: string;
 }
 
-const CustomNotification: React.FC<ICustomNotificationProps> = ({ entityId }) => {
-  const { notifications, custumList, search, page, doSearch, doChangePage } = useCustomNotification(entityId);
+const CustomNotification: React.FC<ICustomNotificationProps> = ({ entityId, type }) => {
+  const { notifications, custumList, search, page, doSearch, doChangePage } = useCustomNotification(entityId, type);
 
   useEffect(() => {
     doSearch([])('');

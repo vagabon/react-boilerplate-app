@@ -18,7 +18,7 @@ interface INotificationDto extends IApiDto {
   search?: string;
 }
 
-export const useCustomNotification = (entityId?: ID) => {
+export const useCustomNotification = (entityId: ID, type: string) => {
   const [notifications, setNotifications] = useState<INotificationDto[]>([]);
   const [search, setSearch] = useState<string>('');
   const [page, setPage] = useState<number>(0);
@@ -43,15 +43,15 @@ export const useCustomNotification = (entityId?: ID) => {
 
   const fetchNotifications = useCallback(
     (oldNotification: INotificationDto[], filter: INotificationDto, page: number) => {
-      const champs = '(message%And|user.username%)AndEntityId';
+      const champs = '(message%And|user.username%)AndEntityIdAndType';
       const value = filter.search ?? '';
-      const values = value + ',' + value + ',' + entityId;
+      const values = value + ',' + value + ',' + entityId + ',' + type;
       ApiService.findBy<IPageableDto<INotificationDto[]>>(
         '/notification/findBy',
         champs,
         values,
         page,
-        10,
+        50,
         'id',
         'desc',
       ).then((data) => {
@@ -63,7 +63,7 @@ export const useCustomNotification = (entityId?: ID) => {
         }
       });
     },
-    [entityId],
+    [entityId, type],
   );
 
   const doSearch = useCallback(

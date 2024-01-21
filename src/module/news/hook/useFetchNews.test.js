@@ -1,10 +1,11 @@
 import { act, renderHook } from '@testing-library/react';
+import { NewsAction } from '../reducer/NewsReducers';
 import NewsService from '../service/NewsService';
 import { useFetchNews } from './useFetchNews';
 
 describe('useFetchNews', () => {
   test('Given useFetchNews when is mount with an id Then ', async () => {
-    const { result } = renderHook(() => useFetchNews());
+    const { result } = renderHook(() => useFetchNews('news', NewsAction));
 
     const mockServiceGet = spyOn(NewsService, 'fetchNews', { content: [{ id: 1 }] });
     await act(async () => {

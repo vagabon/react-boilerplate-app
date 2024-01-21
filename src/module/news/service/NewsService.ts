@@ -5,22 +5,20 @@ import { IPageableDto } from '../../../dto/pageable/PageableDto';
 import { CommonAction } from '../../../reducer/common/CommonReducer';
 import { INewsDto } from '../dto/NewsDto';
 
-const ENDPOINT_NEWS = '/news';
-const ENDPOINT_NEWS_FINDBY = '/news/findBy';
-
 const NewsService = {
   fetchNews: (
+    endPoint: string,
     filter: INewsDto,
     first: number,
     max: number,
     orderField: string,
     order: string,
   ): Promise<IPageableDto<INewsDto[]>> => {
-    const champs = '(title%And|Description%)';
+    const champs = '(title%And|Description%)AndActive';
     const value = filter.search ?? '';
-    const values = value + ',' + value;
+    const values = value + ',' + value + ',true';
     return ApiService.findBy<IPageableDto<INewsDto[]>>(
-      ENDPOINT_NEWS_FINDBY,
+      '/' + endPoint + '/findBy',
       champs,
       values,
       first,
@@ -30,20 +28,20 @@ const NewsService = {
     );
   },
 
-  fetchById: (id: ID): Promise<INewsDto> => {
-    return ApiService.findById<INewsDto>(ENDPOINT_NEWS, id);
+  fetchById: (endPoint: string, id: ID): Promise<INewsDto> => {
+    return ApiService.findById<INewsDto>('/' + endPoint, id);
   },
 
   createOrUpdate:
-    (data: INewsDto) =>
+    (endPoint: string, data: INewsDto) =>
     (dispatch: Dispatch): Promise<INewsDto> => {
       if (data.id !== null && data.id !== undefined && data.id !== '' && Number(data.id) > 0) {
-        return ApiService.put<INewsDto>(ENDPOINT_NEWS + '/', data).then((dataNew: INewsDto) => {
+        return ApiService.put<INewsDto>('/' + endPoint + '/', data).then((dataNew: INewsDto) => {
           dispatch(CommonAction.setMessage({ message: 'Sauvegarde OK', type: 'success' }));
           return Promise.resolve(dataNew);
         });
       } else {
-        return ApiService.post<INewsDto>(ENDPOINT_NEWS + '/', data).then((dataNew: INewsDto) => {
+        return ApiService.post<INewsDto>('/' + endPoint + '/', data).then((dataNew: INewsDto) => {
           dispatch(CommonAction.setMessage({ message: 'Création OK', type: 'success' }));
           return Promise.resolve(dataNew);
         });

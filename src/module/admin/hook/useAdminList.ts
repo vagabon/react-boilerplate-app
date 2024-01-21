@@ -21,8 +21,8 @@ export const useAdminList = (activePage: string, pageConf: IAdminTabDto, state: 
       state.table.sortBy,
       state.table.sortByOrder,
     ).then((data) => {
-      dispatch(AdminAction.setCount({ activePage, count: data.totalElements }));
-      dispatch(AdminAction.setDatas({ activePage, datas: data.content }));
+      dispatch(AdminAction.setCount({ activePage, count: data?.totalElements }));
+      dispatch(AdminAction.setDatas({ activePage, datas: data?.content ?? [] }));
     });
   }, [dispatch, activePage, pageConf, state?.filter, state?.table]);
 

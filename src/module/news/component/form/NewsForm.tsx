@@ -11,22 +11,23 @@ import AppContent from '../../../../app/content/AppContent';
 import AppFormik from '../../../../app/formik/AppFormik';
 import { useCreateNews } from '../../../../module/news/hook/useCreateNews';
 import { useCustomFormUpload } from '../../../custom/form/hook/useCustomFormUpload';
+import { INewsRouterProps } from '../../NewsRouter';
 import { INewsDto } from '../../dto/NewsDto';
 import NEWS_SCHEMA from '../../schema/news.schema.json';
 import NewsCard from '../card/NewsCard';
 
-export interface INewsFormProps {
-  idNews: number;
+export interface INewsFormProps extends INewsRouterProps {
+  news: INewsDto;
 }
 
-const NewsForm: React.FC<INewsFormProps> = ({ idNews }) => {
-  const { news, createOrUpdateNews } = useCreateNews();
+const NewsForm: React.FC<INewsFormProps> = ({ endPoint, newsAction, news }) => {
+  const { createOrUpdateNews } = useCreateNews(endPoint, newsAction, news.id as number);
   const [newsForm, setNewsForm] = useState<INewsDto>({});
-  const { handleChangeFile } = useCustomFormUpload('news');
+  const { handleChangeFile } = useCustomFormUpload(endPoint);
 
   useEffect(() => {
-    setNewsForm(news?.[idNews] ?? {});
-  }, [news, idNews]);
+    setNewsForm(news ?? {});
+  }, [news]);
 
   const handleChange = useCallback(
     (newsState: INewsDto, callback: HandleChangeType) => (event: ChangeEvent<JSONObject>) => {
@@ -41,13 +42,20 @@ const NewsForm: React.FC<INewsFormProps> = ({ idNews }) => {
 
   return (
     <AppContent id='news-form' className='markdown-form'>
-      <MdCard title={newsForm.id ? 'NEWS_UPDATE' : 'NEW_CREATE'}>
-        <AppFormik initialValues={newsForm} validationSchema={NEWS_SCHEMA} onSubmit={createOrUpdateNews}>
+      <MdCard title={news.id ? 'NEWS_UPDATE' : 'NEW_CREATE'}>
+        <AppFormik initialValues={news} validationSchema={NEWS_SCHEMA} onSubmit={createOrUpdateNews}>
           {(props) => (
             <>
               <MdInputText
                 label='Titre'
                 name='title'
+                {...props}
+                handleChange={handleChange(newsForm, props.handleChange)}
+              />
+              <MdInputText
+                label='Resume'
+                name='resume'
+                textarea={3}
                 {...props}
                 handleChange={handleChange(newsForm, props.handleChange)}
               />
@@ -68,12 +76,18 @@ const NewsForm: React.FC<INewsFormProps> = ({ idNews }) => {
                 name='image'
                 handleChangeFile={handleChangeFile(newsForm.id, handleChange(newsForm, props.handleChange))}
               />
+              <MdInputText
+                label='Tags'
+                name='tags'
+                {...props}
+                handleChange={handleChange(newsForm, props.handleChange)}
+              />
               <MdFormSwitch label='Actif' name='active' {...props} />
             </>
           )}
         </AppFormik>
       </MdCard>
-      <NewsCard news={newsForm} />
+      <NewsCard news={newsForm} endPoint={endPoint} />
     </AppContent>
   );
 };

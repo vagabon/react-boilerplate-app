@@ -42,16 +42,20 @@ const Header: React.FC<IHeaderProps> = ({ mode, conf, menu, callbackTheme }) => 
 
   return (
     <>
-      <MdBox component='header' sx={{ bgcolor: 'background.paper' }}>
-        <MdToolbar sx={{ borderBottom: 1, borderColor: 'divider' }}>
+      <MdBox component='header'>
+        <MdToolbar id='header' sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <div className='back-button' style={{ width: '30px' }}>
             {history.length > 1 && <MdButton variant='text' icon='back' callback={goBack} />}
           </div>
-          <MdTypo align='left' noWrap={true} sx={{ flex: 1, display: 'flex', gap: '1rem' }}>
-            <Link to='/' style={{ display: 'flex' }}>
+          <MdTypo variant='body2' align='left' color='secondary' noWrap={true} sx={{ flex: 1, display: 'flex' }}>
+            <Link to='/' style={{ display: 'contents' }}>
               <img src={conf.LOGO} width={40} alt={'Logo de ' + conf.TITLE} />
+              <span
+                className='flex justify-center'
+                style={{ marginLeft: '1rem', fontSize: '1.2rem', overflow: 'hidden' }}>
+                <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{conf.TITLE}</span>
+              </span>
             </Link>
-            <span className='flex justify-center'>{conf.TITLE}</span>
           </MdTypo>
           <IconClickable icon={mode === 'dark' ? 'sun' : 'moon'} callback={callbackTheme} />
           <MdButton url='/auth/signup' label='AUTH:SIGNUP' variant='text' show={!isLoggedIn} />
@@ -68,10 +72,9 @@ const Header: React.FC<IHeaderProps> = ({ mode, conf, menu, callbackTheme }) => 
         <MdToolbar
           id='menu'
           sx={{
-            bgcolor: 'background.paper',
             justifyContent: 'center',
-            borderBottom: '1px solid',
-            borderColor: 'rgba(0, 0, 0, 0.12)',
+            borderBottom: 1,
+            borderColor: 'divider',
           }}>
           <MdBouttonGroup variant='text' size='large'>
             {menu?.map((menu) => (

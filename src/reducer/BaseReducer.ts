@@ -1,4 +1,4 @@
-import { PayloadAction } from '@reduxjs/toolkit';
+import { ActionCreatorWithPayload, PayloadAction } from '@reduxjs/toolkit';
 import { IApiDto } from '@vagabond-inc/react-boilerplate-md';
 
 export type ActionReturn = { payload: IApiDto; type: string };
@@ -12,6 +12,17 @@ export interface ReducerCrudState {
 }
 
 export const DefaultState: ReducerCrudState = { datas: [], data: [], search: '', page: 0, count: 0 };
+
+export interface IReducersActionsProps {
+  setDatas: ActionCreatorWithPayload<IApiDto[], string>;
+  addDatas: ActionCreatorWithPayload<IApiDto[], string>;
+  updataDatas: ActionCreatorWithPayload<IApiDto, string>;
+  setData: ActionCreatorWithPayload<IApiDto, string>;
+  setCount: ActionCreatorWithPayload<number, string>;
+  setSearch: ActionCreatorWithPayload<string, string>;
+  setPage: ActionCreatorWithPayload<number, string>;
+  setSearchAndPage: ActionCreatorWithPayload<{ search: string; page: number }, string>;
+}
 
 export const ReducersActions = {
   setDatas: <T extends ReducerCrudState>(state: T, action: PayloadAction<IApiDto[]>) => {

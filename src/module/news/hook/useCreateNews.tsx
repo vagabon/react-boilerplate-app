@@ -1,34 +1,31 @@
 import { ID } from '@vagabond-inc/react-boilerplate-md';
 import { useCallback } from 'react';
+import { IReducersActionsProps } from '../../../reducer/BaseReducer';
 import { useAppDispatch, useAppSelector } from '../../../store/Store';
 import { INewsDto } from '../dto/NewsDto';
-import { NewsAction } from '../reducer/NewsReducers';
+import { NewsReducerState } from '../reducer/NewsReducers';
 import NewsService from '../service/NewsService';
 
-export const useCreateNews = (): {
-  news: INewsDto[];
-  createOrUpdateNews: (news: INewsDto) => void;
-  fetchById: (id: ID) => void;
-} => {
-  const { data: news } = useAppSelector((state) => state.news);
+export const useCreateNews = (endPoint: string, newsAction: IReducersActionsProps, idNews: number) => {
+  const { data: news } = useAppSelector<NewsReducerState>((state) => state[endPoint]);
   const dispatch = useAppDispatch();
 
   const fetchById = useCallback(
     (id: ID) => {
       id &&
-        NewsService.fetchById(id).then((data) => {
-          dispatch(NewsAction.setData(data));
+        NewsService.fetchById(endPoint, id).then((data) => {
+          dispatch(newsAction.setData(data));
         });
     },
-    [dispatch],
+    [dispatch, endPoint, newsAction],
   );
 
   const createOrUpdateNews = useCallback(
     (news: INewsDto) => {
-      NewsService.createOrUpdate(news)(dispatch);
+      NewsService.createOrUpdate(endPoint, news)(dispatch);
     },
-    [dispatch],
+    [dispatch, endPoint],
   );
 
-  return { news, fetchById, createOrUpdateNews };
+  return { news: news?.[idNews] ?? {}, fetchById, createOrUpdateNews };
 };

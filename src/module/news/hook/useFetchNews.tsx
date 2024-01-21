@@ -1,35 +1,28 @@
 import { useCallback, useState } from 'react';
+import { IReducersActionsProps } from '../../../reducer/BaseReducer';
 import { useAppDispatch, useAppSelector } from '../../../store/Store';
 import { INewsDto } from '../dto/NewsDto';
-import { NewsAction } from '../reducer/NewsReducers';
 import NewsService from '../service/NewsService';
 
-export const useFetchNews = (): {
-  news: INewsDto[];
-  search: string;
-  page: number;
-  fetchNews: (filter: INewsDto, page: number, max: number, orderBy: string, orderByAsc: string) => void;
-  doSearch: (search: string) => void;
-  doChangePage: (page: number) => (pageToAdd: number) => void;
-} => {
-  const { datas: news, search, page } = useAppSelector((state) => state.news);
+export const useFetchNews = (endPoint: string, newsAction: IReducersActionsProps) => {
+  const { datas: news, search, page } = useAppSelector((state) => state[endPoint]);
   const dispatch = useAppDispatch();
 
   const [stopLoad, setStopLoad] = useState(false);
 
   const fetchNews = useCallback(
     (filter: INewsDto, page: number, max: number, orderBy: string, orderByAsc: string = 'asc') => {
-      NewsService.fetchNews(filter, page, max, orderBy, orderByAsc).then((data) => {
-        if (data.content.length === 0 && page > 0) {
+      NewsService.fetchNews(endPoint, filter, page, max, orderBy, orderByAsc).then((data) => {
+        if (data?.content?.length === 0 && page > 0) {
           setStopLoad(true);
         } else {
-          dispatch(NewsAction.setCount(data.totalElements));
-          dispatch(page === 0 ? NewsAction.setDatas(data.content) : NewsAction.addDatas(data.content));
+          dispatch(newsAction.setCount(data.totalElements));
+          dispatch(page === 0 ? newsAction.setDatas(data?.content ?? []) : newsAction.addDatas(data?.content ?? []));
           setStopLoad(false);
         }
       });
     },
-    [dispatch],
+    [dispatch, endPoint, newsAction],
   );
 
   const doFetchDatas = useCallback(
@@ -41,10 +34,10 @@ export const useFetchNews = (): {
 
   const doSearch = useCallback(
     (search: string): void => {
-      dispatch(NewsAction.setSearchAndPage({ page: 0, search: search }));
+      dispatch(newsAction.setSearchAndPage({ page: 0, search: search }));
       doFetchDatas({ search }, 0);
     },
-    [dispatch, doFetchDatas],
+    [dispatch, doFetchDatas, newsAction],
   );
 
   const doChangePage = useCallback(
@@ -52,11 +45,11 @@ export const useFetchNews = (): {
       (pageToAdd: number): void => {
         if (!stopLoad) {
           const newPage = page + pageToAdd;
-          dispatch(NewsAction.setPage(newPage));
+          dispatch(newsAction.setPage(newPage));
           doFetchDatas({}, newPage);
         }
       },
-    [dispatch, doFetchDatas, stopLoad],
+    [dispatch, doFetchDatas, stopLoad, newsAction],
   );
 
   return { news, search, page, fetchNews, doSearch, doChangePage };

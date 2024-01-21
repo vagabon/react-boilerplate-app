@@ -1,5 +1,6 @@
 import { JSONObject, MdThemeProvider, useAppRouter, useTheme } from '@vagabond-inc/react-boilerplate-md';
 import { ReactNode, useEffect } from 'react';
+import { HelmetProvider } from 'react-helmet-async';
 import { IMenuDto } from '../dto/menu/MenuDto';
 import { CommonAction } from '../reducer/common/CommonReducer';
 import { useAppDispatch } from '../store/Store';
@@ -36,17 +37,19 @@ const AppTheme: React.FC<IAppThemeProps> = ({ palette, conf, menu, children }) =
   }, [location, dispatch]);
 
   return (
-    <MdThemeProvider theme={theme}>
-      <div className='flex heigth100'>
-        <Header mode={mode} conf={conf} menu={menu} callbackTheme={switchTheme(mode)} />
+    <HelmetProvider>
+      <MdThemeProvider theme={theme}>
+        <div className='flex heigth100'>
+          <Header mode={mode} conf={conf} menu={menu} callbackTheme={switchTheme(mode)} />
 
-        <div className={'flex main-container mode-' + mode}>{children}</div>
+          <div className={'flex main-container mode-' + mode}>{children}</div>
 
-        <ShowMessage />
+          <ShowMessage />
 
-        <Footer conf={conf} />
-      </div>
-    </MdThemeProvider>
+          <Footer conf={conf} />
+        </div>
+      </MdThemeProvider>
+    </HelmetProvider>
   );
 };
 

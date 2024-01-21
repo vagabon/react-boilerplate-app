@@ -1,11 +1,14 @@
 import { useEffect } from 'react';
 import InfiniteScrollPage from '../../../../page/InfiniteScrollPage';
+import { INewsRouterProps } from '../../NewsRouter';
 import { INewsDto } from '../../dto/NewsDto';
 import { useFetchNews } from '../../hook/useFetchNews';
 import NewsCardSmall from '../card/NewsCardSmall';
 
-const NewsList: React.FC = () => {
-  const { news, search, page, doSearch, doChangePage } = useFetchNews();
+export interface INewsListProps extends INewsRouterProps {}
+
+const NewsList: React.FC<INewsListProps> = ({ endPoint, newsAction }) => {
+  const { news, search, page, doSearch, doChangePage } = useFetchNews(endPoint, newsAction);
 
   useEffect(() => {
     doSearch('');
@@ -17,11 +20,11 @@ const NewsList: React.FC = () => {
       className='news-list'
       doChangePage={doChangePage(page)}
       doSearch={doSearch}
-      urlAdd='/news/add'
+      urlAdd={'/' + endPoint + '/add'}
       urlAddRole={['ADMIN']}>
       <>
         {news.map((oneNews: INewsDto) => (
-          <NewsCardSmall key={'news_' + oneNews.id} news={oneNews} />
+          <NewsCardSmall key={'news_' + oneNews.id} news={oneNews} endPoint={endPoint} />
         ))}
       </>
     </InfiniteScrollPage>

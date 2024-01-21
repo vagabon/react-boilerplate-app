@@ -18,7 +18,7 @@ const CustomFormSelect: React.FC<ICustomFormSelectProps> = ({ conf, label, name,
     conf.listEndPoint &&
       ApiService.get<IPageableDto<IApiDto[]>>(conf.listEndPoint).then((data) => {
         setDatas(
-          data.content.map((dat) => {
+          data?.content?.map((dat) => {
             return {
               id: dat.id,
               libelle: dat[conf.listName as keyof IApiDto],

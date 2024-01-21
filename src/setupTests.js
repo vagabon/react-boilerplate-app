@@ -31,6 +31,11 @@ global.mockDispatch = jest.fn();
 
 jest.mock('@vagabond-inc/react-boilerplate-md', () => ({ ...mockBoilerPlateMd }));
 
+jest.mock('react-helmet-async', () => ({
+  Helmet: ({ children }) => <div data-test-id='Helmet'>{children}</div>,
+  HelmetProvider: ({ children }) => <div data-test-id='HelmetProvider'>{children}</div>,
+}));
+
 window.ENV = {
   API_URL: 'http://localhost:8090',
 };

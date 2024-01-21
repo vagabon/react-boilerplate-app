@@ -5,7 +5,9 @@ export interface INewsDto extends IApiDto {
   title?: string;
   avatar?: string;
   image?: string;
+  resume?: string;
   description?: string;
   user?: IUserDto;
   search?: string;
+  tags?: string;
 }

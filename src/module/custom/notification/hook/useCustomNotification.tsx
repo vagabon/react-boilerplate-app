@@ -55,10 +55,10 @@ export const useCustomNotification = (entityId: ID, type: string) => {
         'id',
         'desc',
       ).then((data) => {
-        if (data.content.length === 0 && page > 0) {
+        if (data?.content?.length === 0 && page > 0) {
           setStopLoad(true);
         } else {
-          setNotifications([...oldNotification, ...data.content]);
+          setNotifications([...oldNotification, ...(data?.content ?? [])]);
           setStopLoad(false);
         }
       });

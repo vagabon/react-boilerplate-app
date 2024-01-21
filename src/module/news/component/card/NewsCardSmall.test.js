@@ -11,7 +11,7 @@ describe('NewsCardSmall', () => {
       description: 'description',
       date: '2023-12-28T15:30:22',
     };
-    render(<NewsCardSmall news={news} />);
+    render(<NewsCardSmall news={news} endPoint='news' />);
     expect(screen.getByTestId('MdCard')).toBeDefined();
   });
 });

@@ -1,4 +1,4 @@
-import { MdCard, MdMarkdown, useId } from '@vagabond-inc/react-boilerplate-md';
+import { MdCard, MdChip, MdMarkdown, useId } from '@vagabond-inc/react-boilerplate-md';
 import { useCallback, useState } from 'react';
 import AppContent from '../../../../app/content/AppContent';
 import { useRole } from '../../../../hook/role/useRole';
@@ -6,12 +6,13 @@ import { INewsDto } from '../../dto/NewsDto';
 
 export interface INewsCardProps {
   news: INewsDto;
+  endPoint: string;
 }
 
 const NewsCard: React.FC<INewsCardProps> = (props: INewsCardProps) => {
   const { id } = useId('title');
-  const [summary, setSummary] = useState<string>('');
   const { hasUserRole } = useRole();
+  const [summary, setSummary] = useState<string>('');
 
   const summaryCallback = useCallback(
     (title?: string) => (newSummary: string) => {
@@ -32,11 +33,16 @@ const NewsCard: React.FC<INewsCardProps> = (props: INewsCardProps) => {
         avatar={props.news.avatar}
         image={props.news.image}
         date={props.news.updatedDate}
-        urlUpdate={hasUserRole(['ADMIN']) ? '/news/update/' + props.news.id : undefined}>
+        urlUpdate={hasUserRole(['ADMIN']) ? '/' + props.endPoint + '/update/' + props.news.id : undefined}>
         <MdMarkdown content={props.news.description} summaryCallback={summaryCallback(props.news.title)}></MdMarkdown>
       </MdCard>
       <MdCard className='md-summary'>
         <MdMarkdown content={summary}></MdMarkdown>
+        <div className='flex-row flex-wrap '>
+          {props.news.tags?.split(',').map((tag) => (
+            <MdChip key={tag} label={tag} />
+          ))}
+        </div>
       </MdCard>
     </AppContent>
   );

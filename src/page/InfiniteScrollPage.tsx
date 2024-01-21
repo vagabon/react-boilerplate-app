@@ -27,13 +27,15 @@ const InfiniteScrollPage: React.FC<InfiniteScroolPageProps> = (props: InfiniteSc
   );
 
   return (
-    <>
+    <div
+      className={props.className}
+      style={{ flex: '1', alignItems: 'center', display: 'flex', overflow: 'hidden', flexDirection: 'column' }}>
       {props.search !== undefined && <MdSearchBar callBack={handleSearch(props.doSearch)} search={props.search} />}
       <AppInfiniteScrool id='infinite-container' callBack={onScroll(props.doChangePage)} className={props.className}>
         {props.children}
       </AppInfiniteScrool>
       <AppFabAdd {...props} />
-    </>
+    </div>
   );
 };
 

@@ -1,4 +1,5 @@
 import { render } from '@testing-library/react';
+import { NewsAction } from '../../reducer/NewsReducers';
 import NewsService from '../../service/NewsService';
 import NewsShowPage from './NewsShowPage';
 
@@ -13,7 +14,7 @@ describe('NewsShowPage', () => {
       }),
     );
     jest.spyOn(NewsService, 'fetchById').mockReturnValue(Promise.resolve({ id: 1 }));
-    const { container } = render(<NewsShowPage />);
+    const { container } = render(<NewsShowPage endPoint='news' newsAction={NewsAction} />);
     expect(container.getElementsByClassName('mardown-with-summary')[0]).toBeDefined();
   });
 });

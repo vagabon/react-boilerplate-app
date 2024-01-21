@@ -1,4 +1,5 @@
 import { render } from '@testing-library/react';
+import { NewsAction } from '../../reducer/NewsReducers';
 import NewsService from '../../service/NewsService';
 import NewsListPage from './NewsListPage';
 
@@ -12,7 +13,7 @@ describe('NewsListPage', () => {
       }),
     );
     jest.spyOn(NewsService, 'fetchNews').mockReturnValue(Promise.resolve({ content: [{ id: 1 }] }));
-    const { container } = render(<NewsListPage />);
+    const { container } = render(<NewsListPage endPoint='news' newsAction={NewsAction} />);
     expect(container.getElementsByClassName('container')[0]).toBeDefined();
   });
 });

@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { IReducersActionsProps } from '../../reducer/BaseReducer';
+import NotFoundPage from '../not-found/page/NotFoundPage';
 import NewsListPage from './page/list/NewsListPage';
 import NewsShowPage from './page/show/NewsShowPage';
 import NewsUpdatePage from './page/update/NewsUpdatePage';
@@ -17,6 +18,7 @@ const NewsRouter: React.FC<INewsRouterProps> = ({ ...props }) => {
         <Route path='/show/:id/:page' element={<NewsShowPage {...props} />} />
         <Route path='/add' element={<NewsUpdatePage {...props} />} />
         <Route path='/update/:id' element={<NewsUpdatePage {...props} />} />
+        <Route path='*' element={<NotFoundPage />}></Route>
       </Route>
     </Routes>
   );

@@ -32,8 +32,8 @@ global.mockDispatch = jest.fn();
 jest.mock('@vagabond-inc/react-boilerplate-md', () => ({ ...mockBoilerPlateMd }));
 
 jest.mock('react-helmet-async', () => ({
-  Helmet: ({ children }) => <div data-test-id='Helmet'>{children}</div>,
-  HelmetProvider: ({ children }) => <div data-test-id='HelmetProvider'>{children}</div>,
+  Helmet: ({ children }) => <div data-testid='Helmet'>{children}</div>,
+  HelmetProvider: ({ children }) => <div data-testid='HelmetProvider'>{children}</div>,
 }));
 
 window.ENV = {

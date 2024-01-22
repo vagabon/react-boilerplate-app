@@ -116,6 +116,7 @@ export { default as NewsUpdatePage } from './module/news/page/update/NewsUpdateP
 export { NewsAction, NewsReducer, default as NewsReducers } from './module/news/reducer/NewsReducers';
 export type { NewsReducerState } from './module/news/reducer/NewsReducers';
 export { default as NewsService } from './module/news/service/NewsService';
+export { default as NotFoundPage } from './module/not-found/page/NotFoundPage';
 export { default as UserRouter } from './module/user/UserRouter';
 export { default as ProfileAvatar } from './module/user/profile/component/ProfileAvatar';
 export type { IProfileAvatarProps } from './module/user/profile/component/ProfileAvatar';
@@ -133,12 +134,14 @@ export { default as ProfileService } from './module/user/profile/service/Profile
 export type { IUserDto } from './module/user/user/dto/UserDto';
 export { useUser } from './module/user/user/hook/useUser';
 export { default as UserService } from './module/user/user/service/UserService';
+
 export { default as CrudPage } from './page/CrudPage';
 export type { CrudPageProps } from './page/CrudPage';
 export { default as InfiniteScrollPage } from './page/InfiniteScrollPage';
 export type { InfiniteScroolPageProps } from './page/InfiniteScrollPage';
 export { default as ShowPage } from './page/ShowPage';
 export type { ShowPageProps } from './page/ShowPage';
+
 export { DefaultState, ReducersActions } from './reducer/BaseReducer';
 export type { ActionReturn, ReducerCrudState } from './reducer/BaseReducer';
 export { CommonAction, CommonReducer, default as CommonReducers } from './reducer/common/CommonReducer';

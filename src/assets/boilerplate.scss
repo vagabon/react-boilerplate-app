@@ -11,7 +11,7 @@ h1 { font-size: 3rem !important; margin: 0 0 5px !important; }
 h2 { font-size: 2.5rem !important; margin: 0 0 5px !important; }
 h3 { font-size: 2em !important; margin: 0 0 5px !important; }
 h4 { font-size: 1.5rem !important; margin: 0 0 5px !important; }
-h5 { font-size: 1rem !important; margin: 0 0 5px !important; }
+h5 { font-size: 1.3rem !important; margin: 0 0 5px !important; }
 .MuiCardContent-root p { margin: 0 0 15px !important; }
 
 .flex { display: flex; flex-direction: column; }
@@ -20,7 +20,7 @@ h5 { font-size: 1rem !important; margin: 0 0 5px !important; }
 .flex-wrap { flex-wrap: wrap; }
 .flex1 { flex: 1; }
 .gap4 { gap: 4rem; }
-.align-center { align-items: center; }
+.align-center { align-items: center !important; }
 .align-end { align-items: end; }
 .align-start { align-items: flex-start; }
 .justify-center { justify-content: center; }

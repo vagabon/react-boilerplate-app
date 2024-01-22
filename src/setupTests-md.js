@@ -53,7 +53,9 @@ export const mockBoilerPlateMd = {
     getIcon: jest.fn(),
   }),
 
+  MdAlert: ({ label }) => <div data-testid='MdAlert'>{label}</div>,
   MdAvatar: ({ callback }) => <div data-testid='MdAvatar' onClick={callback}></div>,
+  MdCollapse: ({ children }) => <div data-testid='MdCollapse'>{children}</div>,
   MdChip: ({ callbackDelete }) => <button data-testid='MdChip' onClick={callbackDelete}></button>,
   MdBox: (props) => mockWithChildren('MdBox', props),
   MdBouttonGroup: (props) => mockWithChildren('MdBouttonGroup', props),

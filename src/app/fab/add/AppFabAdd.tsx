@@ -27,7 +27,7 @@ const AppFabAdd: React.FC<IAppFabAddProps> = (props) => {
   return (
     <div className='max-width relative'>
       {props.urlAddRole && RoleUtils.hasProfile(currentUser, props.urlAddRole) && (
-        <div style={{ position: 'absolute', bottom: '5px', right: '5px' }}>
+        <div style={{ position: 'absolute', bottom: '-5px', right: '1px' }}>
           <MdFab size='medium' color='primary' callback={doCreate(props.callback)}></MdFab>
         </div>
       )}

@@ -2,6 +2,7 @@ import { ID, useAppRouter } from '@vagabond-inc/react-boilerplate-md';
 import { useCallback } from 'react';
 import { useRole } from '../../../hook/role/useRole';
 import { IReducersActionsProps } from '../../../reducer/BaseReducer';
+import { CommonAction } from '../../../reducer/common/CommonReducer';
 import { useAppDispatch, useAppSelector } from '../../../store/Store';
 import { INewsDto } from '../dto/NewsDto';
 import { NewsReducerState } from '../reducer/NewsReducers';
@@ -32,6 +33,7 @@ export const useCreateNews = (endPoint: string, newsAction: IReducersActionsProp
         endPoint,
         news,
       )(dispatch).then((data: INewsDto) => {
+        dispatch(CommonAction.sliceHistory());
         navigate('/' + endPoint + '/update/' + data.id);
       });
     },

@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
+import NotFoundPage from '../not-found/page/NotFoundPage';
 import ActivationPage from './page/activation/ActivationPage';
 import CheckIdentityPage from './page/check-identity/CheckIdentityPage';
 import ForgetPasswordPage from './page/forget-password/ForgetPasswordPage';
@@ -14,6 +15,7 @@ const AuthRouter: React.FC = () => {
         <Route path='/activation/:token' element={<ActivationPage />} />
         <Route path='/forget/password' element={<ForgetPasswordPage />} />
         <Route path='/check/identity' element={<CheckIdentityPage />} />
+        <Route path='*' element={<NotFoundPage />}></Route>
       </Route>
     </Routes>
   );

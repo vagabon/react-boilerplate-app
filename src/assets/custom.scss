@@ -5,12 +5,14 @@
 
 .main-container {
   overflow: auto; width: 100% !important; height: 100% !important; 
+  a:-webkit-any-link { color: inherit !important; }
   .container { overflow: auto; width: 100%;  }
-  .MuiPaper-root { margin: 10px; padding: 10px; width: calc(100% - 20px); display: flex; flex-direction: column; }
   .MuiCardHeader-title { font-size: 1.5rem !important; }
-  .max-width { max-width: 1200px; margin: 0 auto; width: 100%; padding-bottom: 20px; }
+  .MuiAlert-message { align-items: center; justify-content: center; display: flex; font-size: 1rem; }
+  .max-width { max-width: 1000px; margin: 0 auto; width: 100%; margin-bottom: 5px; }
   .max-width-800 { max-width: 800; }
-  #infinite-container { flex: 1; & > .max-width { flex: 1 } }
+  #infinite-container { flex: 1; overflow: auto; & > .max-width { flex: 1; gap: 10px;} }
+  .MuiListItemText-root { align-items: flex-start; flex-direction: column; display: flex; p { margin: 0px !important; } }
 }
 @media screen and (max-width: 900px) {
   .main-container {
@@ -90,7 +92,7 @@
     display: flex; flex-direction: row; align-items: start; 
     & > div { width: calc(80% - 20px) }
   }
-  .search-bar { width: calc(80% - 20px); }
+  .search-bar { width: calc(80% - 20px); max-width: 800px; }
 }  
 
 .md-summary {
@@ -100,14 +102,14 @@
 
 .mardown-with-summary {
   display: flex !important; flex-direction: row !important; align-items: flex-start !important;
-  & > .MuiPaper-root:nth-child(1) { width: 65% !important; }
-  & > .MuiPaper-root:nth-child(2) {  width: 28% !important; position: fixed !important; right: 30px !important; }
+  & > .MuiPaper-root:nth-child(1) { width: 72% !important; }
+  & > .MuiPaper-root:nth-child(2) {  width: 25% !important; position: fixed !important; right: 30px !important; }
 }
 
-@media screen and (min-width: 1500px) {
+@media screen and (min-width: 1400px) {
   .mardown-with-summary {
-    & > .MuiPaper-root:nth-child(1) { width: 73% !important; }
-    & > .MuiPaper-root:nth-child(2) { width: 18% !important; right: 10% !important; }
+    & > .MuiPaper-root:nth-child(1) { width: 80% !important; }
+    & > .MuiPaper-root:nth-child(2) { width: 15% !important; right: 10% !important; }
   }
 }
 

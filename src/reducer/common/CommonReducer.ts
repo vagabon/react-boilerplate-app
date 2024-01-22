@@ -23,7 +23,7 @@ export interface ApiState extends ApiMessageState {
 }
 
 const SUCCESS: MessageType = 'success';
-const HOME: string = '/home';
+const HOME: string = '';
 
 const initialState: ApiState = { message: '', type: SUCCESS, loading: false, history: [], scrolls: [] };
 
@@ -42,7 +42,7 @@ export const CommonReducer = createSlice({
     setMessageButton: (state: ApiState, action: PayloadAction<MessageButton>) => {
       const label: string = action.payload.label ?? 'Retour';
       const url: string =
-        action.payload.url ?? (state.history.length > 1 ? state.history[state.history.length - 2].link : '/home');
+        action.payload.url ?? (state.history.length > 1 ? state.history[state.history.length - 2].link : '');
       return {
         ...state,
         button: { label, url },

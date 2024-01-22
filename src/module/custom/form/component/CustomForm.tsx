@@ -34,6 +34,15 @@ const CustomForm: React.FC<ICustomFormProps> = ({ endPoint, conf, values, schema
     urlGoBack && navigate(urlGoBack);
   }, [navigate, urlGoBack]);
 
+  const getTextareaLength = useCallback((type: string) => {
+    if (type === 'textarea5') {
+      return 5;
+    } else if (type === 'textarea') {
+      return 10;
+    }
+    return undefined;
+  }, []);
+
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <AppFormik
@@ -47,6 +56,7 @@ const CustomForm: React.FC<ICustomFormProps> = ({ endPoint, conf, values, schema
             {conf?.map(([key, form]: [string, IFormDto]) => (
               <Fragment key={key}>
                 {(form.type === 'text' ||
+                  form.type === 'textarea5' ||
                   form.type === 'textarea' ||
                   form.type === 'date' ||
                   form.type === 'password') && (
@@ -54,7 +64,7 @@ const CustomForm: React.FC<ICustomFormProps> = ({ endPoint, conf, values, schema
                     label={form.label}
                     className={form.className ?? 'width100'}
                     name={key}
-                    textarea={form.type === 'textarea' ? 10 : undefined}
+                    textarea={getTextareaLength(form.type)}
                     {...props}
                     type={form.type as FormInputType}
                   />
@@ -69,12 +79,21 @@ const CustomForm: React.FC<ICustomFormProps> = ({ endPoint, conf, values, schema
                   />
                 )}
                 {form.type === 'upload' && (
-                  <MdFormFile
-                    label={form.label}
-                    name={key}
-                    values={props.values}
-                    handleChangeFile={handleChangeFile(values.id, props.handleChange)}
-                  />
+                  <>
+                    <MdInputText
+                      label={form.label}
+                      className={form.className ?? 'width100'}
+                      name={key}
+                      {...props}
+                      type={form.type as FormInputType}
+                    />
+                    <MdFormFile
+                      label={form.label}
+                      name={key}
+                      values={props.values}
+                      handleChangeFile={handleChangeFile(values.id, props.handleChange)}
+                    />
+                  </>
                 )}
                 {form.type === 'select' && (
                   <CustomFormSelect conf={form} label={form.label} name={key} listId={true} {...props} />

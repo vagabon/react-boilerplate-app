@@ -26,7 +26,7 @@ export interface IAppFormikProps {
   submitButton?: boolean;
 }
 
-const AppFormik: React.FC<IAppFormikProps> = (props: IAppFormikProps) => {
+const AppFormik: React.FC<IAppFormikProps> = ({ className = '', ...props }) => {
   const dispatch = useAppDispatch();
   const { navigate } = useAppRouter();
   const { history } = useAppSelector((state) => state.common);
@@ -81,7 +81,7 @@ const AppFormik: React.FC<IAppFormikProps> = (props: IAppFormikProps) => {
       enableReinitialize>
       {({ values, errors, touched, handleChange, handleBlur, validateForm, setFieldValue }) => (
         <>
-          <div className={'form-content ' + props.className}>
+          <div className={'form-content ' + className}>
             {props.children({
               values,
               state,

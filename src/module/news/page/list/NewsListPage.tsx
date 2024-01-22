@@ -1,5 +1,5 @@
 import HasRole from '../../../../hook/role/HasRole';
-import CustomSeo from '../../../custom/seo/Seo';
+import CustomSeo from '../../../custom/seo/component/CustomSeo';
 import { INewsRouterProps } from '../../NewsRouter';
 import NewsList from '../../component/list/NewsList';
 

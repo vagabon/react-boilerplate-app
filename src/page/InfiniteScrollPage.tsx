@@ -11,7 +11,7 @@ export interface InfiniteScroolPageProps extends IAppFabAddProps {
   doSearch?: (search: string) => void;
 }
 
-const InfiniteScrollPage: React.FC<InfiniteScroolPageProps> = (props: InfiniteScroolPageProps) => {
+const InfiniteScrollPage: React.FC<InfiniteScroolPageProps> = ({ className = '', ...props }) => {
   const handleSearch = useCallback(
     (callback?: (search: string) => void) => (search: string) => {
       callback?.(search);
@@ -28,10 +28,10 @@ const InfiniteScrollPage: React.FC<InfiniteScroolPageProps> = (props: InfiniteSc
 
   return (
     <div
-      className={props.className}
+      className={className}
       style={{ flex: '1', alignItems: 'center', display: 'flex', overflow: 'hidden', flexDirection: 'column' }}>
       {props.search !== undefined && <MdSearchBar callBack={handleSearch(props.doSearch)} search={props.search} />}
-      <AppInfiniteScrool id='infinite-container' callBack={onScroll(props.doChangePage)} className={props.className}>
+      <AppInfiniteScrool id='infinite-container' callBack={onScroll(props.doChangePage)} className={className}>
         {props.children}
       </AppInfiniteScrool>
       <AppFabAdd {...props} />

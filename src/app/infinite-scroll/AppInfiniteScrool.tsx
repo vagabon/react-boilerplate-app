@@ -7,7 +7,7 @@ export interface IAppInfiniteScroolProps {
   callBack?: () => void;
 }
 
-const AppInfiniteScrool: React.FC<IAppInfiniteScroolProps> = (props: IAppInfiniteScroolProps) => {
+const AppInfiniteScrool: React.FC<IAppInfiniteScroolProps> = ({ className = '', ...props }) => {
   const stopScroll = useRef(false);
 
   const handleNavigation = useCallback(
@@ -31,7 +31,7 @@ const AppInfiniteScrool: React.FC<IAppInfiniteScroolProps> = (props: IAppInfinit
   );
 
   return (
-    <div id={props.id} className={'flex container ' + props.className} onScroll={handleNavigation(props.callBack)}>
+    <div id={props.id} className={'flex container ' + className} onScroll={handleNavigation(props.callBack)}>
       <div className='flex max-width'>{props.children}</div>
     </div>
   );

@@ -7,11 +7,11 @@ export interface CrudPageProps extends IAppFabAddProps {
   doCreate?: () => void;
 }
 
-const CrudPage: React.FC<CrudPageProps> = (props: CrudPageProps) => {
+const CrudPage: React.FC<CrudPageProps> = ({ className = '', ...props }) => {
   return (
     <>
       <div className='main-container'>
-        <div className={'flex container ' + props.className}>{props.children}</div>
+        <div className={'flex container ' + className}>{props.children}</div>
       </div>
       <AppFabAdd {...props} />
     </>

@@ -41,7 +41,7 @@ export interface ICustomListProps {
 }
 
 const CustomList: React.FC<ICustomListProps> = ({
-  className,
+  className = '',
   datas,
   buttonChildren,
   callback,

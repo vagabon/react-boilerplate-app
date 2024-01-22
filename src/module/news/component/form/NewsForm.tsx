@@ -40,49 +40,56 @@ const NewsForm: React.FC<INewsFormProps> = ({ endPoint, newsAction, news }) => {
     [],
   );
 
+  const getLocale = useCallback(
+    (locale: string) => {
+      return endPoint.toUpperCase() + ':' + locale;
+    },
+    [endPoint],
+  );
+
   return (
     <AppContent id='news-form' className='markdown-form'>
-      <MdCard title={news.id ? 'NEWS_UPDATE' : 'NEW_CREATE'}>
+      <MdCard title={news.id ? getLocale('UPDATE') : getLocale('CREATE')}>
         <AppFormik initialValues={news} validationSchema={NEWS_SCHEMA} onSubmit={createOrUpdateNews}>
           {(props) => (
             <>
               <MdInputText
-                label='Titre'
+                label={getLocale('FIELDS.TITLE')}
                 name='title'
                 {...props}
                 handleChange={handleChange(newsForm, props.handleChange)}
               />
               <MdInputText
-                label='Resume'
+                label={getLocale('FIELDS.RESUME')}
                 name='resume'
                 textarea={3}
                 {...props}
                 handleChange={handleChange(newsForm, props.handleChange)}
               />
               <MdInputText
-                label='Description'
+                label={getLocale('FIELDS.DESCRIPTION')}
                 name='description'
                 textarea={10}
                 {...props}
                 handleChange={handleChange(newsForm, props.handleChange)}
               />
               <MdFormFile
-                label='AVATAR'
+                label={getLocale('FIELDS.AVATAR')}
                 name='avatar'
                 handleChangeFile={handleChangeFile(newsForm.id, handleChange(newsForm, props.handleChange))}
               />
               <MdFormFile
-                label='IMAGE'
+                label={getLocale('FIELDS.IMAGE')}
                 name='image'
                 handleChangeFile={handleChangeFile(newsForm.id, handleChange(newsForm, props.handleChange))}
               />
               <MdInputText
-                label='Tags'
+                label={getLocale('FIELDS.TAGS')}
                 name='tags'
                 {...props}
                 handleChange={handleChange(newsForm, props.handleChange)}
               />
-              <MdFormSwitch label='Actif' name='active' {...props} />
+              <MdFormSwitch label={'ACTIVE'} name='active' {...props} />
             </>
           )}
         </AppFormik>

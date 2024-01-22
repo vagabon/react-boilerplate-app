@@ -25,7 +25,7 @@ describe('CommonReducer', () => {
     expect(tested.message).toBe('');
     expect(tested.type).toBe('success');
     expect(tested.button.label).toBe('Retour');
-    expect(tested.button.url).toBe('/home');
+    expect(tested.button.url).toBe('');
   });
 
   test('Given CommonReducer When setMessageButton with a label and an url Then message button from state is update', () => {
@@ -67,7 +67,7 @@ describe('CommonReducer', () => {
   });
 
   test('Given CommonReducer When addHistory Then history from state is update', () => {
-    const history = { id: '1', title: 'title', link: '/home' };
+    const history = { id: '1', title: 'title', link: '' };
     const tested = CommonReducers(state, CommonAction.addHistory(history));
     expect(tested.history).toHaveLength(1);
   });

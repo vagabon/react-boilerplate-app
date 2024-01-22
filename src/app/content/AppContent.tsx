@@ -7,11 +7,11 @@ export interface IAppContentProps {
   children: ReactNode;
 }
 
-const AppContent: React.FC<IAppContentProps> = (props) => {
+const AppContent: React.FC<IAppContentProps> = ({ className = '', ...props }) => {
   const { id } = useId(props.id);
 
   return (
-    <div id={id} className={'flex max-width ' + props.className}>
+    <div id={id} className={'flex max-width ' + className}>
       {props.children}
     </div>
   );

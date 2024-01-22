@@ -1,7 +1,7 @@
 import { useAppRouter } from '@vagabond-inc/react-boilerplate-md';
 import { useEffect } from 'react';
 import HasRole from '../../../../hook/role/HasRole';
-import CustomSeo from '../../../custom/seo/Seo';
+import CustomSeo from '../../../custom/seo/component/CustomSeo';
 import { INewsRouterProps } from '../../NewsRouter';
 import NewsCard from '../../component/card/NewsCard';
 import { useCreateNews } from '../../hook/useCreateNews';

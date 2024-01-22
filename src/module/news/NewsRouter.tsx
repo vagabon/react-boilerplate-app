@@ -14,7 +14,7 @@ const NewsRouter: React.FC<INewsRouterProps> = ({ ...props }) => {
     <Routes>
       <Route>
         <Route path='/' element={<NewsListPage {...props} />} />
-        <Route path='/show/:id' element={<NewsShowPage {...props} />} />
+        <Route path='/show/:id/:page' element={<NewsShowPage {...props} />} />
         <Route path='/add' element={<NewsUpdatePage {...props} />} />
         <Route path='/update/:id' element={<NewsUpdatePage {...props} />} />
       </Route>

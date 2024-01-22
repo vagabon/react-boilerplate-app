@@ -37,7 +37,7 @@ const AppTheme: React.FC<IAppThemeProps> = ({ palette, conf, menu, children }) =
   }, [location, dispatch]);
 
   return (
-    <HelmetProvider>
+    <HelmetProvider data-rh='true' ata-react-helmet='true'>
       <MdThemeProvider theme={theme}>
         <div className='flex heigth100'>
           <Header mode={mode} conf={conf} menu={menu} callbackTheme={switchTheme(mode)} />

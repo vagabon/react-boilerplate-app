@@ -33,7 +33,9 @@ export const useCreateNews = (endPoint: string, newsAction: IReducersActionsProp
         endPoint,
         news,
       )(dispatch).then((data: INewsDto) => {
-        dispatch(CommonAction.sliceHistory());
+        if (!news.id) {
+          dispatch(CommonAction.sliceHistory());
+        }
         navigate('/' + endPoint + '/update/' + data.id);
       });
     },

@@ -67,7 +67,7 @@ describe('CommonReducer', () => {
   });
 
   test('Given CommonReducer When addHistory Then history from state is update', () => {
-    const history = { id: '1', title: 'title', link: '' };
+    const history = { id: '1', title: 'title', link: '/' };
     const tested = CommonReducers(state, CommonAction.addHistory(history));
     expect(tested.history).toHaveLength(1);
   });

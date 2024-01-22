@@ -20,7 +20,7 @@ const NewsShowPage: React.FC<INewsShowPageProps> = ({ endPoint, newsAction }) =>
 
   return (
     <HasRole roles={[]}>
-      <CustomSeo title={news.title} description={news.description} />
+      <CustomSeo title={news.title} description={news.description} image={news.image} />
       {id && <NewsCard news={news ?? {}} endPoint={endPoint} />}
     </HasRole>
   );

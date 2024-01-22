@@ -32,7 +32,7 @@ const NewsCard: React.FC<INewsCardProps> = (props: INewsCardProps) => {
         title={props.news.title}
         avatar={props.news.avatar}
         image={props.news.image}
-        date={props.news.updatedDate}
+        date={props.news.creationDate}
         urlUpdate={hasUserRole(['ADMIN']) ? '/' + props.endPoint + '/update/' + props.news.id : undefined}>
         <MdMarkdown content={props.news.description} summaryCallback={summaryCallback(props.news.title)}></MdMarkdown>
       </MdCard>

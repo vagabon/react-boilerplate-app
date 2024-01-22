@@ -23,7 +23,7 @@ export interface ApiState extends ApiMessageState {
 }
 
 const SUCCESS: MessageType = 'success';
-const HOME: string = '';
+const HOME: string = '/';
 
 const initialState: ApiState = { message: '', type: SUCCESS, loading: false, history: [], scrolls: [] };
 

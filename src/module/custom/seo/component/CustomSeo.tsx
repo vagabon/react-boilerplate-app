@@ -1,15 +1,32 @@
 import { WindowUtils } from '@vagabond-inc/react-boilerplate-md';
+import { useCallback } from 'react';
 import { Helmet } from 'react-helmet-async';
+
+const WEBSITE_TITLE = WindowUtils.getEnv('WEBSITE_TITLE');
+const API_URL: string = WindowUtils.getEnv('API_URL');
 
 export interface ICustomSeoProps {
   title?: string;
   description?: string;
+  image?: string;
   type?: string;
+  date?: string;
 }
 
-const WEBSITE_TITLE = WindowUtils.getEnv('WEBSITE_TITLE');
+const CustomSeo: React.FC<ICustomSeoProps> = ({
+  title,
+  description,
+  image = 'https://blog.vagabond.synology.me/images/logo.png',
+  type = 'webapp',
+  date,
+}) => {
+  const getImage = useCallback((image: string) => {
+    if (image && !image.includes('http://') && !image.startsWith('https://')) {
+      return API_URL + '/download?fileName=' + image;
+    }
+    return image;
+  }, []);
 
-const CustomSeo: React.FC<ICustomSeoProps> = ({ title, description, type = 'webapp' }) => {
   return (
     <Helmet data-rh='true' ata-react-helmet='true'>
       <title data-rh='true'>{WEBSITE_TITLE + ' | ' + title}</title>
@@ -21,6 +38,26 @@ const CustomSeo: React.FC<ICustomSeoProps> = ({ title, description, type = 'weba
       <meta name='twitter:card' content={type} />
       <meta name='twitter:title' content={title} />
       <meta name='twitter:description' content={description} />
+      <script type='application/ld+json'>
+        {JSON.stringify({
+          '@context': 'https://schema.org/',
+          '@type': 'Recipe',
+          name: { title },
+          image: [getImage(image)],
+          author: {
+            '@type': 'Organization',
+            name: 'Vagabond',
+          },
+          datePublished: { date },
+          description: { description },
+          keywords: 'vagabond,blog,react,quarkus',
+          aggregateRating: {
+            '@type': 'AggregateRating',
+            ratingValue: '5',
+            ratingCount: '12',
+          },
+        })}
+      </script>
     </Helmet>
   );
 };

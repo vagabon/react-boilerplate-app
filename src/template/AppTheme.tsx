@@ -21,11 +21,12 @@ export interface IConfDto {
 export interface IAppThemeProps {
   palette: JSONObject;
   conf: IConfDto;
+  version: string;
   menu: IMenuDto[];
   children: ReactNode;
 }
 
-const AppTheme: React.FC<IAppThemeProps> = ({ palette, conf, menu, children }) => {
+const AppTheme: React.FC<IAppThemeProps> = ({ palette, conf, version, menu, children }) => {
   const { location } = useAppRouter();
   const dispatch = useAppDispatch();
 
@@ -46,7 +47,7 @@ const AppTheme: React.FC<IAppThemeProps> = ({ palette, conf, menu, children }) =
 
           <ShowMessage />
 
-          <Footer conf={conf} />
+          <Footer conf={conf} version={version} />
         </div>
       </MdThemeProvider>
     </HelmetProvider>

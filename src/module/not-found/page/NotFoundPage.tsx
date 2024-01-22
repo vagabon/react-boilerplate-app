@@ -17,7 +17,7 @@ const NotFoundPage: React.FC<INotFoundPageProps> = () => {
   const { Trans } = useAppTranslate();
 
   return (
-    <AppContent>
+    <AppContent className='page-404'>
       <MdCard title='NOT_FOUND_PAGE'>
         <br />
         <MdAlert severity='error' label='NOT_FOUND_PAGE_DESCRIPTION' />

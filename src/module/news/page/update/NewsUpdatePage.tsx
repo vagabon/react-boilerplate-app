@@ -20,7 +20,7 @@ const NewsUpdatePage: React.FC<INewsShowPageProps> = ({ endPoint, newsAction }) 
 
   return (
     <>
-      <CustomSeo title={news.title} description={news.resume} />
+      <CustomSeo title={news.title} description={news.resume} image={news.image} />
       <HasRole roles={['ADMIN']}>{<NewsForm endPoint={endPoint} newsAction={newsAction} news={news ?? {}} />}</HasRole>
     </>
   );

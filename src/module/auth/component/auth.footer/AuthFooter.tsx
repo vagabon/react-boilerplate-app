@@ -11,11 +11,11 @@ const AuthFooter: React.FC<IAuthFooter> = (props: IAuthFooter) => {
   const getLink = useCallback((type: AuthFooterEnum) => {
     switch (type) {
       case AuthFooterEnum.SIGNIN:
-        return <MdLink label='AUTH:LOGIN.GET_ACCOUNT' href='/auth/signin' variant='body2' />;
+        return <MdLink label='AUTH:LOGIN.GET_ACCOUNT' href='/auth/signin' />;
       case AuthFooterEnum.SIGNUP:
-        return <MdLink label='AUTH:LOGIN.NO_ACCOUNT' href='/auth/signup' variant='body2' />;
+        return <MdLink label='AUTH:LOGIN.NO_ACCOUNT' href='/auth/signup' />;
       case AuthFooterEnum.FORGETED_PASSWORD:
-        return <MdLink label='AUTH:LOGIN.FORGET_PASSWORD' href='/auth/forget/password' variant='body2' />;
+        return <MdLink label='AUTH:LOGIN.FORGET_PASSWORD' href='/auth/forget/password' />;
     }
   }, []);
 

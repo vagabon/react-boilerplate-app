@@ -7,12 +7,20 @@ html { font-size: 13px; }
 html, body, #root { height: 100%; }
 
 body, span.MuiTypography-root, p.MuiTypography-root { font-size: 1.0rem !important; }
-h1 { font-size: 3rem !important; margin: 0 0 5px !important; }
-h2 { font-size: 2.5rem !important; margin: 0 0 5px !important; }
-h3 { font-size: 2em !important; margin: 0 0 5px !important; }
+h1 { font-size: 2.5rem !important; margin: 0 0 5px !important; }
+h2 { font-size: 2.1rem !important; margin: 0 0 5px !important; }
+h3 { font-size: 1.8em !important; margin: 0 0 5px !important; }
 h4 { font-size: 1.5rem !important; margin: 0 0 5px !important; }
 h5 { font-size: 1.3rem !important; margin: 0 0 5px !important; }
 .MuiCardContent-root p { margin: 0 0 15px !important; }
+
+@media screen and (max-width: 900px) {
+  h1 { font-size: 2rem !important; margin: 0 0 5px !important; }
+  h2 { font-size: 1.8rem !important; margin: 0 0 5px !important; }
+  h3 { font-size: 1.6em !important; margin: 0 0 5px !important; }
+  h4 { font-size: 1.3rem !important; margin: 0 0 5px !important; }
+  h5 { font-size: 1.1rem !important; margin: 0 0 5px !important; }
+}
 
 .flex { display: flex; flex-direction: column; }
 .grid { display: grid; }
@@ -38,6 +46,12 @@ h5 { font-size: 1.3rem !important; margin: 0 0 5px !important; }
 
 .width100 { width: 100%; }
 .heigth100 { height: 100%; }
+
+a.MuiTypography-root { font-size: 1rem; }
+a:-webkit-any-link { color: var(--mui-palette-primary-main) !important; }
+.mode-dark a:-webkit-any-link { color: var(--mui-palette-primary-main-dark) !important; }
+#header, #menu, .MuiPaper-elevation, .bento { a:-webkit-any-link { color: var(--mui-palette-secondary-main) !important; } }
+.mode-dark #header, #menu, .MuiPaper-elevation, .bento { a:-webkit-any-link { color: var(--mui-palette-secondary-main-dark) !important; } }
 
 .info { color: var(--mui-palette-info-main) !important; }
 .mode-dark .info { color: var(--mui-palette-info-main-dark) !important; }

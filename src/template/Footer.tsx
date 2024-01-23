@@ -13,8 +13,7 @@ const Footer: React.FC<IFoorterProps> = ({ conf, version }) => {
         <MdTypo variant='body2' color='secondary' align='center'>
           {'Copyright © '}
           {new Date().getFullYear()}{' '}
-          <MdLink label={conf.FOOTER.WEBSITE} href={conf.FOOTER.URL} target={conf.FOOTER.TARGET} color='inherit' />{' '}
-          {' ' + version}
+          <MdLink label={conf.FOOTER.WEBSITE} href={conf.FOOTER.URL} target={conf.FOOTER.TARGET} /> {' ' + version}
         </MdTypo>
       </MdContainer>
     </MdBox>

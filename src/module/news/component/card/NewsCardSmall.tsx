@@ -1,4 +1,4 @@
-import { MdCard, MdMarkdown } from '@vagabond-inc/react-boilerplate-md';
+import { MdCard, MdLink, MdMarkdown } from '@vagabond-inc/react-boilerplate-md';
 import { useRole } from '../../../../hook/role/useRole';
 import { CustomSeoUtils } from '../../../custom/seo/utils/CustomSeoUtils';
 import { INewsCardProps } from './NewsCard';
@@ -19,6 +19,10 @@ const NewsCardSmall: React.FC<INewsCardSmallProps> = (props: INewsCardSmallProps
       url={'/' + props.endPoint + '/show/' + props.news.id + '/' + CustomSeoUtils.convertTitle(props.news.title)}
       urlUpdate={hasUserRole(['ADMIN']) ? '/' + props.endPoint + '/update/' + props.news.id : undefined}>
       <MdMarkdown content={props.news.resume}></MdMarkdown>
+      <MdLink
+        href={'/' + props.endPoint + '/show/' + props.news.id + '/' + CustomSeoUtils.convertTitle(props.news.title)}
+        label='Lire la suite...'
+      />
     </MdCard>
   );
 };

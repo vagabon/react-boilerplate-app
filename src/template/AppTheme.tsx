@@ -40,10 +40,10 @@ const AppTheme: React.FC<IAppThemeProps> = ({ palette, conf, version, menu, chil
   return (
     <HelmetProvider data-rh='true' ata-react-helmet='true'>
       <MdThemeProvider theme={theme}>
-        <div className='flex heigth100'>
+        <div className={'flex heigth100 mode-' + mode}>
           <Header mode={mode} conf={conf} menu={menu} callbackTheme={switchTheme(mode)} />
 
-          <div className={'flex main-container mode-' + mode}>{children}</div>
+          <div className='flex main-container'>{children}</div>
 
           <ShowMessage />
 

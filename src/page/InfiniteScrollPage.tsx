@@ -27,9 +27,7 @@ const InfiniteScrollPage: React.FC<InfiniteScroolPageProps> = ({ className = '',
   );
 
   return (
-    <div
-      className={className}
-      style={{ flex: '1', alignItems: 'center', display: 'flex', overflow: 'hidden', flexDirection: 'column' }}>
+    <div style={{ flex: '1', alignItems: 'center', display: 'flex', overflow: 'hidden', flexDirection: 'column' }}>
       {props.search !== undefined && <MdSearchBar callBack={handleSearch(props.doSearch)} search={props.search} />}
       <AppInfiniteScrool id='infinite-container' callBack={onScroll(props.doChangePage)} className={className}>
         {props.children}

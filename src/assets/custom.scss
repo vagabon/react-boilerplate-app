@@ -2,22 +2,25 @@
 #header a:-webkit-any-link { color: inherit !important; }
 a.MuiTypography-root { font-size: 1rem; }
 
+$maxWidth: 1200px;
+
 /**** MAIN CONTENT ****/
 
 .main-container {
   overflow: auto; width: 100% !important; height: 100% !important; 
-  .container { overflow: auto; width: 100%;  }
+  .container { overflow: auto; width: 100%; padding: 5px; }
   .MuiCardHeader-title { font-size: 1.5rem !important; }
   .MuiAlert-message { align-items: center; justify-content: center; display: flex; font-size: 1rem; }
-  .max-width { max-width: 1000px; margin: 0 auto; width: 100%; margin-bottom: 5px; }
+  .max-width { max-width: $maxWidth; margin: 0 auto; width: 100%; margin-bottom: 5px; }
   .max-width-800 { max-width: 800; }
-  #infinite-container { flex: 1; overflow: auto; & > .max-width { flex: 1; gap: 10px;} }
+  #infinite-container { flex: 1; & > .max-width { gap: 10px; align-items: normal; justify-content: flex-start; } }
   .MuiListItemText-root { align-items: flex-start; flex-direction: column; display: flex; p { margin: 0px !important; } }
 }
 @media screen and (max-width: 900px) {
   .main-container {
     .search-bar { padding: 0px 5px !important; }
     .MuiPaper-root { margin: 5px !important; padding: 5px !important;  width: calc(100% - 10px) !important; }
+    #infinite-container { & > .max-width { gap: 5px; } }
     .modal > .MuiBox-root { width: 100% !important;  }
   }
 }
@@ -56,7 +59,7 @@ a.MuiTypography-root { font-size: 1rem; }
   #header {
     button { min-width: 30px !important; }
   }
-  .MuiCardContent-root { padding: 0px !important; }
+  .MuiCardContent-root { padding: 5px !important; }
   .MuiCardHeader-root { padding: 5px !important; }
 }
 
@@ -93,9 +96,17 @@ a.MuiTypography-root { font-size: 1rem; }
   .max-width { flex-wrap: wrap; justify-content: center; }
   .flex, .search-bar { 
     display: flex; flex-direction: row; align-items: start; 
-    & > div { width: calc(80% - 20px) }
+    & > div { width: calc(50% - 5px) }
   }
-  .search-bar { width: calc(80% - 20px); max-width: 800px; }
+  .bento { 
+    display: flex; flex-direction: column; gap: 10px; 
+    a { font-size: 2rem !important; text-decoration: none; }
+    & > div { width: calc(100% - 5px); flex: 1; }
+  }
+  .MuiList-root { 
+    margin-left: 30px;
+    .MuiListItemText-root { padding-left: 20px; }
+  }
 }  
 
 .md-summary {
@@ -122,7 +133,23 @@ a.MuiTypography-root { font-size: 1rem; }
     .MuiPaper-root:nth-child(1) { width: 100% !important; }
     .MuiPaper-root:nth-child(2) { display: none !important; }
   }
-  .news-list .flex { flex-direction: column !important; }
+  .news-list {
+    .flex { flex-direction: column !important; }
+    .bento { 
+      flex-direction: column; gap: 5px; width: 100% !important; 
+    }
+  }
+}
+
+/**** copyright ****/
+
+.home-page {
+  .copyright {
+    width: 100% !important;
+    .MuiCardContent-root { display: flex; flex-direction: row; gap: 1rem; }
+    .MuiCardMedia-root { justify-content: center; display: flex; }
+    .flex > div { width: 100%; }
+  }
 }
 
 /**** MANY TOO MANY ****/
@@ -142,7 +169,7 @@ a.MuiTypography-root { font-size: 1rem; }
 .MuiInputLabel-root { line-height: 1em !important; top: -3px !important; }
 .MuiOutlinedInput-root { min-height: 40px !important; }
 
-.search-bar { width: 100%; padding: 10px 0; max-width: 1200px; margin: 0 auto; }
+.search-bar { width: 100%; padding: 5px; max-width: $maxWidth; margin: 0 auto; }
 
 .form, .form-content {
   gap: 10px;

@@ -96,6 +96,9 @@ export { default as CustomModaleConfirm } from './module/custom/modale/component
 export type { ICustomModaleConfirmProps } from './module/custom/modale/component/CustomModaleConfirm';
 export { default as CustomModaleForm } from './module/custom/modale/component/CustomModaleForm';
 export type { ICustomModaleFormProps } from './module/custom/modale/component/CustomModaleForm';
+export { default as CustomSeo } from './module/custom/seo/component/CustomSeo';
+export type { ICustomSeoProps } from './module/custom/seo/component/CustomSeo';
+export { CustomSeoUtils } from './module/custom/seo/utils/CustomSeoUtils';
 
 export { default as CustomNotification } from './module/custom/notification/component/CustomNotification';
 export type { ICustomNotificationProps } from './module/custom/notification/component/CustomNotification';

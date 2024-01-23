@@ -16,6 +16,11 @@ $maxWidth: 1200px;
   #infinite-container { flex: 1; & > .max-width { gap: 10px; align-items: normal; justify-content: flex-start; } }
   .MuiListItemText-root { align-items: flex-start; flex-direction: column; display: flex; p { margin: 0px !important; } }
 }
+
+.justify-center  {
+  .MuiCardHeader-root .MuiTypography-root { justify-content: center; display: flex; }
+}
+
 @media screen and (max-width: 900px) {
   .main-container {
     .search-bar { padding: 0px 5px !important; }
@@ -141,6 +146,12 @@ $maxWidth: 1200px;
   }
 }
 
+.news-tags { 
+  display: flex; flex-direction: unset; flex-wrap: wrap; justify-content: center; margin: 20px 0px 0px; 
+  .MuiChip-label { font-weight: bold; font-size: 0.9rem; }
+}
+.share-buttons { display: flex; flex-direction: row; gap: 10px; align-items: center; justify-content: center; flex-wrap: wrap; margin: 20px 0px 0px; }
+
 /**** copyright ****/
 
 .home-page {
@@ -149,6 +160,16 @@ $maxWidth: 1200px;
     .MuiCardContent-root { display: flex; flex-direction: row; gap: 1rem; }
     .MuiCardMedia-root { justify-content: center; display: flex; }
     .flex > div { width: 100%; }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .home-page {
+    .copyright {
+      width: 100% !important;
+      .MuiCardContent-root { flex-direction: column; }
+      .MuiAvatar-root { width: 150px; height: 150px; }
+    }
   }
 }
 

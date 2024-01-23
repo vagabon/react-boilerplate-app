@@ -1,6 +1,7 @@
 import { MdCard, MdLink, MdMarkdown } from '@vagabond-inc/react-boilerplate-md';
 import { useRole } from '../../../../hook/role/useRole';
 import { CustomSeoUtils } from '../../../custom/seo/utils/CustomSeoUtils';
+import NewsShare from '../share/NewsShare';
 import { INewsCardProps } from './NewsCard';
 
 export interface INewsCardSmallProps extends INewsCardProps {
@@ -23,6 +24,7 @@ const NewsCardSmall: React.FC<INewsCardSmallProps> = (props: INewsCardSmallProps
         href={'/' + props.endPoint + '/show/' + props.news.id + '/' + CustomSeoUtils.convertTitle(props.news.title)}
         label='Lire la suite...'
       />
+      <NewsShare {...props} />
     </MdCard>
   );
 };

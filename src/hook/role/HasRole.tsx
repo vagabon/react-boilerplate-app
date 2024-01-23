@@ -6,6 +6,7 @@ export interface HasRoleProps {
   roles?: string[];
   showError?: boolean;
   children: ReactNode;
+  childrenIfNotAllowed?: ReactNode;
 }
 
 const HasRole: React.FC<HasRoleProps> = (props: HasRoleProps) => {
@@ -14,9 +15,10 @@ const HasRole: React.FC<HasRoleProps> = (props: HasRoleProps) => {
   return (
     <>
       {hasUserRole(props.roles) && props.children}
-      {!hasUserRole(props.roles) && props.showError && (
+      {!hasUserRole(props.roles) && props.showError && !props.childrenIfNotAllowed && (
         <MdBox sx={{ marginTop: '20px', textAlign: 'center' }}>Vous n&apos;êtes pas habilité à voir ce contenu.</MdBox>
       )}
+      {!hasUserRole(props.roles) && props.childrenIfNotAllowed && <>{props.childrenIfNotAllowed}</>}
     </>
   );
 };

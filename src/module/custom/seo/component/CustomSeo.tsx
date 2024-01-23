@@ -1,5 +1,5 @@
-import { WindowUtils } from '@vagabond-inc/react-boilerplate-md';
-import { useCallback } from 'react';
+import { WindowUtils, useAppRouter } from '@vagabond-inc/react-boilerplate-md';
+import { useCallback, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 
 const WEBSITE_TITLE = WindowUtils.getEnv('WEBSITE_TITLE');
@@ -20,6 +20,13 @@ const CustomSeo: React.FC<ICustomSeoProps> = ({
   type = 'webapp',
   date,
 }) => {
+  const { location } = useAppRouter();
+  const [url, setUrl] = useState<string>();
+
+  useEffect(() => {
+    setUrl(window.location.origin + location.pathname);
+  }, [location]);
+
   const getImage = useCallback((image: string) => {
     if (image && !image.includes('http://') && !image.startsWith('https://')) {
       return API_URL + '/download?fileName=' + image;
@@ -30,9 +37,11 @@ const CustomSeo: React.FC<ICustomSeoProps> = ({
   return (
     <Helmet data-rh='true' ata-react-helmet='true'>
       <title data-rh='true'>{WEBSITE_TITLE + ' | ' + title}</title>
+      <link rel='canonical' href={url} />
       <meta name='description' content={description} data-rh='true' />
       <meta property='og:type' content={type} />
       <meta property='og:title' content={WEBSITE_TITLE + ' | ' + title} />
+      <meta property='og:image' content={getImage(image)} />
       <meta property='og:description' content={description} />
       <meta name='twitter:creator' content={'@VagabondDev'} />
       <meta name='twitter:card' content={type} />

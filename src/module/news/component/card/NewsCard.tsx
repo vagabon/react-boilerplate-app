@@ -3,6 +3,7 @@ import { useCallback, useState } from 'react';
 import AppContent from '../../../../app/content/AppContent';
 import { useRole } from '../../../../hook/role/useRole';
 import { INewsDto } from '../../dto/NewsDto';
+import NewsShare from '../share/NewsShare';
 
 export interface INewsCardProps {
   news: INewsDto;
@@ -38,11 +39,12 @@ const NewsCard: React.FC<INewsCardProps> = (props: INewsCardProps) => {
       </MdCard>
       <MdCard className='md-summary'>
         <MdMarkdown content={summary}></MdMarkdown>
-        <div className='flex-row flex-wrap '>
+        <div className='news-tags'>
           {props.news.tags?.split(',').map((tag) => (
-            <MdChip key={tag} label={tag} />
+            <MdChip key={tag} label={tag} color='info' />
           ))}
         </div>
+        <NewsShare {...props} />
       </MdCard>
     </AppContent>
   );

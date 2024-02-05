@@ -4,9 +4,9 @@ import { withProvider, withTest } from '../../../../stories/Helpers';
 import LoginPage from './LoginPage';
 
 const meta: Meta<typeof LoginPage> = {
-  title: 'auth/LoginPage',
+  title: 'module/auth/LoginPage',
   component: LoginPage,
-  tags: ['auth'],
+  tags: ['module/auth'],
   argTypes: {},
   decorators: [withTest, withProvider],
 };

@@ -4,9 +4,9 @@ import { withProvider, withTest } from '../../../stories/Helpers';
 import AppFabAdd from './AppFabAdd';
 
 const meta: Meta<typeof AppFabAdd> = {
-  title: 'mui/AppFabAdd',
+  title: 'app/AppFabAdd',
   component: AppFabAdd,
-  tags: ['mui'],
+  tags: ['app'],
   argTypes: {},
   decorators: [withTest, withProvider],
 };

@@ -4,9 +4,9 @@ import { withProvider, withTest } from '../../stories/Helpers';
 import ShowMessage from './ShowMessage';
 
 const meta: Meta<typeof ShowMessage> = {
-  title: 'mui/ShowMessage',
+  title: 'template/ShowMessage',
   component: ShowMessage,
-  tags: ['mui'],
+  tags: ['template'],
   argTypes: {},
   decorators: [withTest, withProvider],
 };

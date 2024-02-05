@@ -4,9 +4,9 @@ import { withProvider, withTest } from '../../stories/Helpers';
 import AppContent from './AppContent';
 
 const meta: Meta<typeof AppContent> = {
-  title: 'mui/AppContent',
+  title: 'app/AppContent',
   component: AppContent,
-  tags: ['mui'],
+  tags: ['app'],
   argTypes: {},
   decorators: [withTest, withProvider],
 };

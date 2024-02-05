@@ -138,6 +138,11 @@ export const mockBoilerPlateMd = {
   MdThemeProvider: (props) => mockWithChildren('MdThemeProvider', props),
   MdTabs: ({ callback }) => <div data-testid='MdTabs' onClick={callback}></div>,
   MdToolbar: (props) => mockWithChildren('MdToolbar', props),
+  MdTreeView: ({ callback, children }) => (
+    <div data-testid='MdTreeView' onClick={callback}>
+      {children}
+    </div>
+  ),
   MdTypo: (props) => mockWithChildren('MdTypo', props),
 
   MdTableWithPagination: (props) => mockWithChildren('MdTableWithPagination', props),

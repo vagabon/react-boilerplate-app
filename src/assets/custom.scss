@@ -253,7 +253,8 @@ $maxWidth: 1200px;
 .modal-infinite {
   .MuiBox-root { height: 70% !important; min-height: 480px !important;  }
   .MuiCardContent-root { overflow: hidden; }
-  #infinite-container { overflow: auto; }
+  #infinite-container { overflow: auto; width: 100%; }
+  .news-list .MuiList-root { margin-left: 0px !important; }
   ul { width: 100%; }
 }
 

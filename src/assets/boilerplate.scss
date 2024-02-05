@@ -50,8 +50,9 @@ h5 { font-size: 1.3rem !important; margin: 0 0 5px !important; }
 a.MuiTypography-root { font-size: 1rem; }
 a:-webkit-any-link { color: var(--mui-palette-primary-main) !important; }
 .mode-dark a:-webkit-any-link { color: var(--mui-palette-primary-main-dark) !important; }
-#header, #menu, .bento { a:-webkit-any-link { color: var(--mui-palette-secondary-main) !important; } }
-.mode-dark { #header, #menu, .bento { a:-webkit-any-link { color: var(--mui-palette-secondary-main-dark) !important; } } }
+#header, #fade-menu, #menu, .bento { a:-webkit-any-link { color: var(--mui-palette-secondary-main) !important; } }
+.mode-dark { #header,  #fade-menu, #menu, .bento { a:-webkit-any-link { color: var(--mui-palette-secondary-main-dark) !important; } } }
+.mode-light { #header, #menu, .MuiTab-root, .search-bar { background-color: white; } }
 
 .info { color: var(--mui-palette-info-main) !important; }
 .mode-dark .info { color: var(--mui-palette-info-main-dark) !important; }

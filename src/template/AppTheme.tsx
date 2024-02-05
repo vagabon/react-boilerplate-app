@@ -33,6 +33,12 @@ const AppTheme: React.FC<IAppThemeProps> = ({ palette, conf, version, menu, chil
   const { mode, theme, switchTheme } = useTheme(palette);
 
   useEffect(() => {
+    document.body.classList.remove('mode-dark');
+    document.body.classList.remove('mode-light');
+    document.body.classList.add('mode-' + mode);
+  }, [mode]);
+
+  useEffect(() => {
     dispatch(CommonAction.clearMessage());
     dispatch(CommonAction.addHistory({ id: '', title: '', link: location.pathname }));
   }, [location, dispatch]);

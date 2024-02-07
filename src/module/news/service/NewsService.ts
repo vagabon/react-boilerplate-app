@@ -33,8 +33,7 @@ const NewsService = {
   },
 
   createOrUpdate:
-    (endPoint: string, data: INewsDto) =>
-    (dispatch: Dispatch): Promise<INewsDto> => {
+    (endPoint: string, data: INewsDto, dispatch: Dispatch): Promise<INewsDto> => {
       if (data.id !== null && data.id !== undefined && data.id !== '' && Number(data.id) > 0) {
         return ApiService.put<INewsDto>('/' + endPoint + '/', data).then((dataNew: INewsDto) => {
           dispatch(CommonAction.setMessage({ message: 'Sauvegarde OK', type: 'success' }));

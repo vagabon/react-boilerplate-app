@@ -29,12 +29,9 @@ export const useCreateNews = (endPoint: string, newsAction: IReducersActionsProp
       if (!news.user) {
         news = { ...news, user: userConnected };
       }
-      NewsService.createOrUpdate(
-        endPoint,
-        news,
-      )(dispatch).then((data: INewsDto) => {
+      NewsService.createOrUpdate(endPoint, news, dispatch).then((data: INewsDto) => {
         if (!news.id) {
-          dispatch(CommonAction.sliceHistory());
+          dispatch(CommonAction.sliceHistoryOnce());
         }
         navigate('/' + endPoint + '/update/' + data.id);
       });

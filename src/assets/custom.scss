@@ -31,7 +31,8 @@ $maxWidth: 1200px;
 }
 
 .page-404 a:-webkit-any-link { color: inherit !important; }
-#menu a { font-size: 1.1rem; }
+#menu { a { font-size: 1.1rem; } .MuiButtonBase-root { padding: 8px 11px !important; &.selected { border-width: 0px; border-bottom-width: 2px; border-radius: 0px; } } }
+#fade-menu { .Mui-selected { border-left: 2px solid rgba(234, 117, 0, 0.5) !important; } }
 
 /**** MUI ****/
 
@@ -290,7 +291,7 @@ $maxWidth: 1200px;
 /***** TABLE ****/
 
 .MuiTableCell-root { font-size: 1rem !important; }
-thead th.MuiTableCell-root { background-color: var(--mui-palette-primary-main) !important; }
+thead { th.MuiTableCell-root { background-color: var(--mui-palette-primary-main) !important; } }
 .mode-dark thead th.MuiTableCell-root { background-color: var(--mui-palette-primary-main-dark) !important; }
 
 .MuiTablePagination-toolbar { justify-content: center; & > div:nth-child(1) { flex: 0 !important; } }

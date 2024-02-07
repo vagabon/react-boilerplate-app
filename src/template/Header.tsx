@@ -12,7 +12,7 @@ import {
   ModeType,
   useAppRouter,
 } from '@vagabond-inc/react-boilerplate-md';
-import { useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { IMenuDto } from '../dto/menu/MenuDto';
 import HasRole from '../hook/role/HasRole';
 import { useUserAuth } from '../hook/user/useUserAuth';
@@ -28,11 +28,16 @@ export interface IHeaderProps {
 }
 
 const Header: React.FC<IHeaderProps> = ({ mode, conf, menu, callbackTheme }) => {
-  const { navigate, Link } = useAppRouter();
+  const { location, navigate, Link } = useAppRouter();
   const dispatch = useAppDispatch();
   const { loading, history } = useAppSelector((state) => state.common);
   const { isLoggedIn, user } = useAppSelector((state) => state.auth);
   const { handleLogout } = useUserAuth();
+  const [currentLocation, setCurrentLocation] = useState<string>(location.pathname);
+
+  useEffect(() => {
+    setCurrentLocation(location.pathname);
+  }, [location]);
 
   const goBack = useCallback((): void => {
     const lastPage = history[history.length - 2];
@@ -79,7 +84,12 @@ const Header: React.FC<IHeaderProps> = ({ mode, conf, menu, callbackTheme }) => 
           <MdBouttonGroup variant='text' size='large'>
             {menu?.map((menu) => (
               <HasRole roles={menu.roles} key={menu.title} showError={false}>
-                <MdMenuItem name={menu.title} url={menu.link} childrens={menu.childrens} />
+                <MdMenuItem
+                  name={menu.title}
+                  url={menu.link}
+                  childrens={menu.childrens}
+                  currentLocation={currentLocation}
+                />
               </HasRole>
             ))}
           </MdBouttonGroup>

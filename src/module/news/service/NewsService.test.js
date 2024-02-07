@@ -16,13 +16,13 @@ describe('NewsService', () => {
 
   test('Given NewsService when createOrUpdate then ApiService is called', () => {
     const mockService = jest.spyOn(ApiService, 'post').mockReturnValue(Promise.resolve({}));
-    NewsService.createOrUpdate('news', {})(mockDispatch);
+    NewsService.createOrUpdate('news', {}, mockDispatch);
     expect(mockService).toBeCalledTimes(1);
   });
 
   test('Given NewsService when createOrUpdate then ApiService is called', () => {
     const mockService = jest.spyOn(ApiService, 'put').mockReturnValue(Promise.resolve({}));
-    NewsService.createOrUpdate('news', { id: 1 })(mockDispatch);
+    NewsService.createOrUpdate('news', { id: 1 }, mockDispatch);
     expect(mockService).toBeCalledTimes(1);
   });
 });

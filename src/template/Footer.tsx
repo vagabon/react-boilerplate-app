@@ -8,7 +8,7 @@ export interface IFoorterProps {
 
 const Footer: React.FC<IFoorterProps> = ({ conf, version }) => {
   return (
-    <MdBox component='footer' sx={{ borderBottom: 1, borderColor: 'divider' }}>
+    <MdBox id='footer' component='footer' sx={{ borderBottom: 1, borderColor: 'divider' }}>
       <MdContainer maxWidth='lg'>
         <MdTypo variant='body2' color='secondary' align='center'>
           {'Copyright © '}

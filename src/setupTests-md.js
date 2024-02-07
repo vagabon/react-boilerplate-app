@@ -131,7 +131,12 @@ export const mockBoilerPlateMd = {
 
   MdLinearProgress: (props) => mockWithChildren('MdLinearProgress', props),
   MdLink: (props) => mockWithChildren('MdLink', props),
-  MdMarkdown: (props) => mockWithChildren('MdMarkdown', props),
+  MdMarkdown: ({ summaryCallback, content }) => (
+    <div data-testid='MdMarkdown'>
+      {summaryCallback?.('newSummary')}
+      {content}
+    </div>
+  ),
   MdMenuItem: (props) => mockWithChildren('MdMenuItem', props),
   MdSearchBar: ({ callback }) => <div data-testid='MdSearchBar' onClick={callback}></div>,
   MdSnackbar: (props) => mockWithChildren('MdSnackbar', props),

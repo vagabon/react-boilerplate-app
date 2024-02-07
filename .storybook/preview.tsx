@@ -1,6 +1,7 @@
 import { CssBaseline, PaletteColorOptions, ThemeProvider, createTheme } from '@mui/material';
 import React from 'react';
 import '../config';
+import '../src/assets/boilerplate.scss';
 import '../src/assets/custom.scss';
 import '../src/i18n/i18n';
 
@@ -16,7 +17,10 @@ const theme = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: '#afafaf',
+      main: '#45AD1C',
+    },
+    secondary: {
+      main: '#0D3296',
     },
     google: {
       main: '#ff6060',

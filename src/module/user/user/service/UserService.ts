@@ -1,4 +1,4 @@
-import { ID } from '@vagabond-inc/react-boilerplate-md';
+import { ID, UuidUtils } from '@vagabond-inc/react-boilerplate-md';
 import { Dispatch } from 'redux';
 import { ApiService } from '../../../../api/service/ApiService';
 import { CommonAction } from '../../../../reducer/common/CommonReducer';
@@ -35,13 +35,13 @@ const UserService = {
 
   create: (data: IUserDto) => (dispatch: Dispatch) => {
     return ApiService.post(ENDPOINT_USERS, data).then(() => {
-      dispatch(CommonAction.setMessage({ message: 'Création OK', type: 'success' }));
+      dispatch(CommonAction.setMessage({ id: UuidUtils.createUUID(), message: 'Création OK', type: 'success' }));
     });
   },
 
   update: (data: IUserDto) => (dispatch: Dispatch) => {
     return ApiService.put(ENDPOINT_USERS, data).then(() => {
-      dispatch(CommonAction.setMessage({ message: 'Sauvegarde OK', type: 'success' }));
+      dispatch(CommonAction.setMessage({ id: UuidUtils.createUUID(), message: 'Sauvegarde OK', type: 'success' }));
     });
   },
 

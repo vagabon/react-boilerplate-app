@@ -9,13 +9,12 @@ describe('useMessage', () => {
     useAppSelectorSpy.mockImplementation((callback) => callback({ common: { scrolls: [] } }));
     useAppDispatchSpy.mockReturnValue(mockDispatch);
     const ReactTested = () => {
-      const { message, setMessage, setMessageButton, clearMessage } = useMessage(menu);
+      const { message, setMessage, clearMessage } = useMessage(menu);
 
       useEffect(() => {
         setMessage('message');
-        setMessageButton('message');
         clearMessage();
-      }, [setMessage, setMessageButton, clearMessage]);
+      }, [setMessage, clearMessage]);
 
       return <>{message}</>;
     };

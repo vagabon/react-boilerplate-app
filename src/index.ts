@@ -19,6 +19,7 @@ export { combineReducers } from 'redux';
 export { AxiosInterceptor } from './api/interceptor/AxiosInterceptor';
 export { ApiService } from './api/service/ApiService';
 export { ApiCrudService } from './api/service/crud/ApiCrudService';
+
 export { default as AppContent } from './app/content/AppContent';
 export type { IAppContentProps } from './app/content/AppContent';
 export { default as AppFabAdd } from './app/fab/add/AppFabAdd';
@@ -27,6 +28,10 @@ export { default as AppFormik } from './app/formik/AppFormik';
 export type { IAppFormikProps } from './app/formik/AppFormik';
 export { default as AppInfiniteScrool } from './app/infinite-scroll/AppInfiniteScrool';
 export type { IAppInfiniteScroolProps } from './app/infinite-scroll/AppInfiniteScrool';
+
+export { default as AppInputWithButton } from './app/input-with-button/component/AppInputWithButton';
+export type { IAppInputWithButtonProps } from './app/input-with-button/component/AppInputWithButton';
+
 export type { IAuthUserDto, ICurrentUserDto } from './dto/current-user/CurrentUserDto';
 export type { IMenuDto } from './dto/menu/MenuDto';
 export type { IPageableDto } from './dto/pageable/PageableDto';
@@ -150,7 +155,7 @@ export type { ShowPageProps } from './page/ShowPage';
 export { DefaultState, ReducersActions } from './reducer/BaseReducer';
 export type { ActionReturn, ReducerCrudState } from './reducer/BaseReducer';
 export { CommonAction, CommonReducer, default as CommonReducers } from './reducer/common/CommonReducer';
-export type { ApiState, MessageType } from './reducer/common/CommonReducer';
+export type { IApiState as ApiState, MessageType } from './reducer/common/CommonReducer';
 
 export type { AppDispatch, RootState } from './store/Store';
 

@@ -107,7 +107,7 @@ export const mockBoilerPlateMd = {
       value={value}
       onChange={handleChange ? handleChange : () => {}}
       onBlur={handleBlur}
-      onKeyUp={handleKeyEnter}
+      onKeyUp={() => handleKeyEnter({ value: value })}
     />
   ),
 
@@ -166,6 +166,7 @@ export const mockBoilerPlateMd = {
     location: global.mockLocation,
     Link: (props) => mockWithChildren('MdLink', props),
     Navigate: jest.fn(),
+    handleNavigate: jest.fn(),
     BrowserRouter: (props) => mockWithChildren('BrowserRouter', props),
     Route: (props) => mockWithChildren('Route', props),
     Routes: (props) => mockWithChildren('Routes', props),

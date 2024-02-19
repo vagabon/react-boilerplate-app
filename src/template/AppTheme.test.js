@@ -69,7 +69,7 @@ describe('AppTheme', () => {
   test('renders AppTheme', () => {
     useAppSelectorSpy.mockImplementation((callback) =>
       callback({
-        common: { loading: false, history: [] },
+        common: { loading: false, history: [], message: { id: '', message: '', type: 'success' } },
         auth: { isLoggedIn: false },
       }),
     );

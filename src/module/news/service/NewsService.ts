@@ -1,4 +1,4 @@
-import { ID } from '@vagabond-inc/react-boilerplate-md';
+import { ID, UuidUtils } from '@vagabond-inc/react-boilerplate-md';
 import { Dispatch } from 'redux';
 import { ApiService } from '../../../api/service/ApiService';
 import { IPageableDto } from '../../../dto/pageable/PageableDto';
@@ -32,20 +32,19 @@ const NewsService = {
     return ApiService.findById<INewsDto>('/' + endPoint, id);
   },
 
-  createOrUpdate:
-    (endPoint: string, data: INewsDto, dispatch: Dispatch): Promise<INewsDto> => {
-      if (data.id !== null && data.id !== undefined && data.id !== '' && Number(data.id) > 0) {
-        return ApiService.put<INewsDto>('/' + endPoint + '/', data).then((dataNew: INewsDto) => {
-          dispatch(CommonAction.setMessage({ message: 'Sauvegarde OK', type: 'success' }));
-          return Promise.resolve(dataNew);
-        });
-      } else {
-        return ApiService.post<INewsDto>('/' + endPoint + '/', data).then((dataNew: INewsDto) => {
-          dispatch(CommonAction.setMessage({ message: 'Création OK', type: 'success' }));
-          return Promise.resolve(dataNew);
-        });
-      }
-    },
+  createOrUpdate: (endPoint: string, data: INewsDto, dispatch: Dispatch): Promise<INewsDto> => {
+    if (data.id !== null && data.id !== undefined && data.id !== '' && Number(data.id) > 0) {
+      return ApiService.put<INewsDto>('/' + endPoint + '/', data).then((dataNew: INewsDto) => {
+        dispatch(CommonAction.setMessage({ id: UuidUtils.createUUID(), message: 'Sauvegarde OK', type: 'success' }));
+        return Promise.resolve(dataNew);
+      });
+    } else {
+      return ApiService.post<INewsDto>('/' + endPoint + '/', data).then((dataNew: INewsDto) => {
+        dispatch(CommonAction.setMessage({ id: UuidUtils.createUUID(), message: 'Création OK', type: 'success' }));
+        return Promise.resolve(dataNew);
+      });
+    }
+  },
 };
 
 export default NewsService;

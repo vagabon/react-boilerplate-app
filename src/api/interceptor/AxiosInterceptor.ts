@@ -1,5 +1,6 @@
 import { EnhancedStore } from '@reduxjs/toolkit/dist/configureStore';
 import axios, { AxiosError, AxiosHeaders, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import { UuidUtils } from '../..';
 import { ICurrentUserDto } from '../../dto/current-user/CurrentUserDto';
 import { LoginAction } from '../../module/auth/reducer/AuthReducers';
 import { CommonAction } from '../../reducer/common/CommonReducer';
@@ -53,7 +54,6 @@ export const AxiosInterceptor = <U>(
       return response;
     },
     async (error: AxiosError<U>) => {
-      console.error(error);
       store.dispatch(CommonAction.setLoading(false));
       const originalRequest: InternalAxiosRequestConfig | undefined = error.config;
 
@@ -61,7 +61,7 @@ export const AxiosInterceptor = <U>(
         error.message ||
         JSON.stringify(error)) as string;
 
-      store.dispatch(CommonAction.setMessage({ message, type: 'error' }));
+      store.dispatch(CommonAction.setMessage({ id: UuidUtils.createUUID(), message, type: 'error' }));
 
       if (
         error.response &&

@@ -1,9 +1,9 @@
+import { AppBar } from '@mui/material';
 import {
   IApiDto,
   IconClickable,
   MdAvatar,
   MdBouttonGroup,
-  MdBox,
   MdButton,
   MdLinearProgress,
   MdMenuItem,
@@ -25,9 +25,20 @@ export interface IHeaderProps {
   conf: { TITLE: string; LOGO: string };
   menu: IMenuDto[];
   callbackTheme?: () => void;
+  widthDrawer?: boolean;
+  showOpenDrawer?: boolean;
+  callbackDrawer?: () => void;
 }
 
-const Header: React.FC<IHeaderProps> = ({ mode, conf, menu, callbackTheme }) => {
+const Header: React.FC<IHeaderProps> = ({
+  mode,
+  conf,
+  menu,
+  callbackTheme,
+  widthDrawer,
+  showOpenDrawer,
+  callbackDrawer,
+}) => {
   const { location, navigate, Link } = useAppRouter();
   const dispatch = useAppDispatch();
   const { loading, history } = useAppSelector((state) => state.common);
@@ -47,11 +58,16 @@ const Header: React.FC<IHeaderProps> = ({ mode, conf, menu, callbackTheme }) => 
 
   return (
     <>
-      <MdBox component='header'>
+      <AppBar sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
         <MdToolbar id='header' sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <div className='back-button' style={{ width: '30px' }}>
-            {history.length > 1 && <MdButton variant='text' icon='back' callback={goBack} />}
-          </div>
+          {widthDrawer && showOpenDrawer && (
+            <IconClickable color='inherit' icon='menu' aria-label='open drawer' callback={callbackDrawer} />
+          )}
+          {!widthDrawer && (
+            <div className='back-button' style={{ width: '30px' }}>
+              {history.length > 1 && <MdButton variant='text' icon='back' callback={goBack} />}
+            </div>
+          )}
           <MdTypo variant='body2' align='left' color='secondary' noWrap={true} sx={{ flex: 1, display: 'flex' }}>
             <Link to='/' style={{ display: 'contents' }}>
               <img src={conf.LOGO} width={40} alt={'Logo de ' + conf.TITLE} />
@@ -74,27 +90,29 @@ const Header: React.FC<IHeaderProps> = ({ mode, conf, menu, callbackTheme }) => 
           )}
           {user?.user && <CustomModaleConfirm icon='exit' iconColor='error' callback={handleLogout} />}
         </MdToolbar>
-        <MdToolbar
-          id='menu'
-          sx={{
-            justifyContent: 'center',
-            borderBottom: 1,
-            borderColor: 'divider',
-          }}>
-          <MdBouttonGroup variant='text' size='large'>
-            {menu?.map((menu) => (
-              <HasRole roles={menu.roles} key={menu.title} showError={false}>
-                <MdMenuItem
-                  name={menu.title}
-                  url={menu.link}
-                  childrens={menu.childrens}
-                  currentLocation={currentLocation}
-                />
-              </HasRole>
-            ))}
-          </MdBouttonGroup>
-        </MdToolbar>
-      </MdBox>
+        {!widthDrawer && (
+          <MdToolbar
+            id='menu'
+            sx={{
+              justifyContent: 'center',
+              borderBottom: 1,
+              borderColor: 'divider',
+            }}>
+            <MdBouttonGroup variant='text' size='large'>
+              {menu?.map((menu) => (
+                <HasRole roles={menu.roles} key={menu.title} showError={false}>
+                  <MdMenuItem
+                    name={menu.title}
+                    url={menu.link}
+                    childrens={menu.childrens}
+                    currentLocation={currentLocation}
+                  />
+                </HasRole>
+              ))}
+            </MdBouttonGroup>
+          </MdToolbar>
+        )}
+      </AppBar>
       {loading ? <MdLinearProgress /> : <div style={{ minHeight: '4px' }}></div>}
     </>
   );

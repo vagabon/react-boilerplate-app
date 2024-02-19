@@ -14,40 +14,13 @@ describe('CommonReducer', () => {
       type: 'error',
     };
     const tested = CommonReducers(state, CommonAction.setMessage(data));
-    expect(tested.message).toBe('test');
-    expect(tested.type).toBe('error');
-    expect(tested.button).toBe(undefined);
-  });
-
-  test('Given CommonReducer When setMessageButton Then message button from state is update with default value', () => {
-    const data = {};
-    const tested = CommonReducers(state, CommonAction.setMessageButton(data));
-    expect(tested.message).toBe('');
-    expect(tested.type).toBe('success');
-    expect(tested.button.label).toBe('Retour');
-    expect(tested.button.url).toBe('');
-  });
-
-  test('Given CommonReducer When setMessageButton with a label and an url Then message button from state is update', () => {
-    const data = { label: 'Test', url: '/test' };
-    const tested = CommonReducers({ history: [{ link: '/plouf' }] }, CommonAction.setMessageButton(data));
-    expect(tested.button.label).toBe('Test');
-    expect(tested.button.url).toBe('/test');
-  });
-
-  test('Given CommonReducer When setMessageButton with a an history Then message button from state is update', () => {
-    const data = { label: 'Test' };
-    const tested = CommonReducers(
-      { history: [{ link: '/previus' }, { link: '/plouf' }] },
-      CommonAction.setMessageButton(data),
-    );
-    expect(tested.button.label).toBe('Test');
-    expect(tested.button.url).toBe('/previus');
+    expect(tested.message).toStrictEqual({ message: 'test', type: 'error' });
+    expect(tested.message.type).toBe('error');
   });
 
   test('Given CommonReducer When clearMessage Then message from state is empty', () => {
     const tested = CommonReducers(state, CommonAction.clearMessage());
-    expect(tested.message).toBe('');
+    expect(tested.message).toStrictEqual({ id: '', message: '', type: 'success' });
   });
 
   test('Given CommonReducer When setLoading Then loading from state is update', () => {

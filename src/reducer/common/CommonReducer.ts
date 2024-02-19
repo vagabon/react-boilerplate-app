@@ -2,21 +2,18 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { UuidUtils } from '@vagabond-inc/react-boilerplate-md';
 import { IPathDto } from '../../dto/path/PathDto';
 
-interface MessageButton {
-  label?: string;
-  url?: string;
-}
 export type MessageType = 'error' | 'success' | 'info' | 'warning';
 
-interface ApiMessageState {
+export interface IMessageState {
+  id: string;
   message: string;
   type: MessageType;
-  button?: MessageButton;
 }
 
 type ScrollsType = { pathname: string; position: number };
 
-export interface ApiState extends ApiMessageState {
+export interface IApiState {
+  message: IMessageState;
   loading: boolean;
   history: IPathDto[];
   scrolls: ScrollsType[];
@@ -25,49 +22,42 @@ export interface ApiState extends ApiMessageState {
 const SUCCESS: MessageType = 'success';
 const HOME: string = '/';
 
-const initialState: ApiState = { message: '', type: SUCCESS, loading: false, history: [], scrolls: [] };
+const initialState: IApiState = {
+  message: { id: '', message: '', type: SUCCESS },
+  loading: false,
+  history: [],
+  scrolls: [],
+};
 
 export const CommonReducer = createSlice({
   name: 'common',
   initialState: initialState,
   reducers: {
-    setMessage: (state: ApiState, action: PayloadAction<ApiMessageState>) => {
+    setMessage: (state: IApiState, action: PayloadAction<IMessageState>) => {
       return {
         ...state,
-        message: action.payload.message,
-        type: action.payload.type,
-        button: undefined,
+        message: action.payload,
       };
     },
-    setMessageButton: (state: ApiState, action: PayloadAction<MessageButton>) => {
-      const label: string = action.payload.label ?? 'Retour';
-      const url: string =
-        action.payload.url ?? (state.history.length > 1 ? state.history[state.history.length - 2].link : '');
+    clearMessage: (state: IApiState) => {
       return {
         ...state,
-        button: { label, url },
+        message: { id: '', message: '', type: SUCCESS },
       };
     },
-    clearMessage: (state: ApiState) => {
-      return {
-        ...state,
-        message: '',
-        button: undefined,
-      };
-    },
-    setLoading: (state: ApiState, action: PayloadAction<boolean>) => {
+    setLoading: (state: IApiState, action: PayloadAction<boolean>) => {
       return {
         ...state,
         loading: action.payload,
       };
     },
-    setHistory: (state: ApiState, action: PayloadAction<IPathDto[]>) => {
+    setHistory: (state: IApiState, action: PayloadAction<IPathDto[]>) => {
       return {
         ...state,
         history: action.payload,
       };
     },
-    addHistory: (state: ApiState, action: PayloadAction<IPathDto>) => {
+    addHistory: (state: IApiState, action: PayloadAction<IPathDto>) => {
       let history: IPathDto[] = [...state.history];
       const pathname = action.payload.link;
 
@@ -85,7 +75,7 @@ export const CommonReducer = createSlice({
         history,
       };
     },
-    sliceHistoryOnce: (state: ApiState) => {
+    sliceHistoryOnce: (state: IApiState) => {
       const history = [...state.history];
       history.pop();
       return {
@@ -93,7 +83,7 @@ export const CommonReducer = createSlice({
         history: history,
       };
     },
-    sliceHistory: (state: ApiState) => {
+    sliceHistory: (state: IApiState) => {
       const history = [...state.history];
       history.pop();
       history.pop();
@@ -102,7 +92,7 @@ export const CommonReducer = createSlice({
         history: history,
       };
     },
-    setScrools: (state: ApiState, action: PayloadAction<ScrollsType>) => {
+    setScrools: (state: IApiState, action: PayloadAction<ScrollsType>) => {
       return {
         ...state,
         scrolls: {

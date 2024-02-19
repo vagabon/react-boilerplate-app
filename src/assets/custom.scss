@@ -13,7 +13,7 @@ $maxWidth: 1200px;
   .MuiAlert-message { align-items: center; justify-content: center; display: flex; font-size: 1rem; }
   .max-width { max-width: $maxWidth; margin: 0 auto; width: 100%; margin-bottom: 5px; }
   .max-width-800 { max-width: 800; }
-  #infinite-container { flex: 1; & > .max-width { gap: 10px; align-items: normal; justify-content: flex-start; } }
+  #infinite-container { flex: 1; margin-bottom: 40px; & > .max-width { gap: 10px; align-items: normal; justify-content: flex-start; } }
   .MuiListItemText-root { align-items: flex-start; flex-direction: column; display: flex; p { margin: 0px !important; } }
 }
 
@@ -21,9 +21,13 @@ $maxWidth: 1200px;
   .MuiCardHeader-root .MuiTypography-root { justify-content: center; display: flex; }
 }
 
+.main-container {
+  .MuiPaper-root { margin: 5px !important; padding: 5px !important;  width: calc(100% - 10px) !important; }
+}
+
 @media screen and (max-width: 900px) {
   .main-container {
-    .search-bar { padding: 0px 5px !important; }
+    .search-bar { padding: 0px 5px 5px !important; }
     .MuiPaper-root { margin: 5px !important; padding: 5px !important;  width: calc(100% - 10px) !important; }
     #infinite-container { & > .max-width { gap: 5px; } }
     .modal > .MuiBox-root { width: 100% !important;  }
@@ -71,7 +75,7 @@ $maxWidth: 1200px;
 
 /**** BUTTON ****/
 
-.input-add { gap: 10px; button { margin: 25px 0px 6px !important; min-width: 30px !important; } }
+.input-add { gap: 10px; button { margin: 16px 0px 2px !important; min-width: 30px !important; } }
 .back-button button { min-width: 30px; }
 
 /***** CONTAINER 50/50 with media screen ****/

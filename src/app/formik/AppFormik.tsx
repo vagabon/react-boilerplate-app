@@ -4,6 +4,7 @@ import {
   JSONObject,
   MdButton,
   SetFieldValueType,
+  UuidUtils,
   useAppRouter,
   useAppTranslate,
 } from '@vagabond-inc/react-boilerplate-md';
@@ -41,11 +42,13 @@ const AppFormik: React.FC<IAppFormikProps> = ({ className = '', ...props }) => {
 
   const doSubmit = useCallback(
     (values: IApiDto, validateForm: (values?: IApiDto) => Promise<FormikErrors<IApiDto>>): void => {
-      dispatch(CommonAction.setMessage({ message: '', type: 'success' }));
+      dispatch(CommonAction.clearMessage());
       validateForm(values).then((errors: FormikErrors<IApiDto>) => {
         console.debug('form errors', values, errors);
         if (Object.keys(errors).length > 0) {
-          dispatch(CommonAction.setMessage({ message: 'COMMON:FORM.ERROR', type: 'error' }));
+          dispatch(
+            CommonAction.setMessage({ id: UuidUtils.createUUID(), message: 'COMMON:FORM.ERROR', type: 'error' }),
+          );
         } else {
           dispatch(CommonAction.clearMessage());
           props.onSubmit?.(values);

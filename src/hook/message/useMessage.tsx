@@ -1,3 +1,4 @@
+import { UuidUtils } from '@vagabond-inc/react-boilerplate-md';
 import { useCallback } from 'react';
 import { CommonAction } from '../../reducer/common/CommonReducer';
 import { useAppDispatch, useAppSelector } from '../../store/Store';
@@ -8,14 +9,8 @@ export const useMessage = () => {
 
   const setMessage = useCallback(
     (message: string, type: 'success' | 'error' = 'error') => {
-      dispatch(CommonAction.setMessage({ message, type }));
-    },
-    [dispatch],
-  );
-
-  const setMessageButton = useCallback(
-    (url?: string, label?: string) => {
-      dispatch(CommonAction.setMessageButton({ url, label }));
+      const messageState = { id: UuidUtils.createUUID(), message, type };
+      dispatch(CommonAction.setMessage(messageState));
     },
     [dispatch],
   );
@@ -24,5 +19,5 @@ export const useMessage = () => {
     dispatch(CommonAction.clearMessage());
   }, [dispatch]);
 
-  return { message, setMessage, setMessageButton, clearMessage };
+  return { message, setMessage, clearMessage };
 };

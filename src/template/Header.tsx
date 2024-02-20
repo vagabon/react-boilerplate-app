@@ -113,6 +113,7 @@ const Header: React.FC<IHeaderProps> = ({
           </MdToolbar>
         )}
       </AppBar>
+      <div style={{ height: '50px' }}></div>
       {loading ? <MdLinearProgress /> : <div style={{ minHeight: '4px' }}></div>}
     </>
   );

@@ -1,5 +1,6 @@
+import { JSONObject, MdButton, MdInputTextSimple } from '@vagabond-inc/react-boilerplate-md';
 import { ChangeEvent, useCallback, useEffect, useState } from 'react';
-import { JSONObject, MdButton, MdInputTextSimple, useMessage } from '../../..';
+import { useMessage } from '../../../hook/message/useMessage';
 
 export interface IAppInputWithButtonProps {
   label?: string;

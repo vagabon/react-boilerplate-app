@@ -1,6 +1,8 @@
 // export md
 export * from '@vagabond-inc/react-boilerplate-md';
 
+export * from '@mui/x-charts';
+
 // export i18n
 export { default as i18n } from 'i18next';
 export { default as LanguageDetector } from 'i18next-browser-languagedetector';

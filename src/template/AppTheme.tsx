@@ -70,9 +70,7 @@ const AppTheme: React.FC<IAppThemeProps> = ({ palette, conf, version, menu, chil
                 variantDrawer={variantDrawer}
                 callbackClose={handleDrawerOpen(true)}
               />
-              <div className='flex main-container' style={{ marginTop: '50px' }}>
-                {children}
-              </div>
+              <div className='flex main-container'>{children}</div>
             </div>
 
             <ShowMessage />

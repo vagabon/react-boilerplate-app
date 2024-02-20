@@ -1,6 +1,6 @@
 import { EnhancedStore } from '@reduxjs/toolkit/dist/configureStore';
+import { UuidUtils } from '@vagabond-inc/react-boilerplate-md';
 import axios, { AxiosError, AxiosHeaders, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
-import { UuidUtils } from '../..';
 import { ICurrentUserDto } from '../../dto/current-user/CurrentUserDto';
 import { LoginAction } from '../../module/auth/reducer/AuthReducers';
 import { CommonAction } from '../../reducer/common/CommonReducer';
@@ -61,8 +61,6 @@ export const AxiosInterceptor = <U>(
         error.message ||
         JSON.stringify(error)) as string;
 
-      store.dispatch(CommonAction.setMessage({ id: UuidUtils.createUUID(), message, type: 'error' }));
-
       if (
         error.response &&
         error.response.status === 401 &&
@@ -82,11 +80,11 @@ export const AxiosInterceptor = <U>(
           StorageUtils.setCurrentUser(data.data);
           return axios(originalRequest);
         }
+      } else if (error.response && error.response.status === 401) {
+        store.dispatch(LoginAction.setLoginError());
+        window.location.href = URL_SIGNIN;
       } else {
-        if (error.response && error.response.status === 401) {
-          store.dispatch(LoginAction.setLoginError());
-          window.location.href = URL_SIGNIN;
-        }
+        store.dispatch(CommonAction.setMessage({ id: UuidUtils.createUUID(), message, type: 'error' }));
         return error;
       }
     },

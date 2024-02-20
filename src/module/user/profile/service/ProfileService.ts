@@ -1,9 +1,8 @@
+import { UuidUtils } from '@vagabond-inc/react-boilerplate-md';
 import { Dispatch } from 'redux';
-import { IProfileDto } from '../dto/ProfileDto';
-
-import { UuidUtils } from '../../../..';
 import { ApiService } from '../../../../api/service/ApiService';
 import { CommonAction } from '../../../../reducer/common/CommonReducer';
+import { IProfileDto } from '../dto/ProfileDto';
 
 const ProfileService = {
   loadRoles: (

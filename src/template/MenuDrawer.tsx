@@ -25,7 +25,6 @@ const MenuDrawer: React.FC<IDrawerProps> = ({ drawerWidth, openDrawer, variantDr
 
   const handleClickAway = useCallback(
     (callbackClose?: () => void) => () => {
-      console.log('clickAway');
       callbackClose?.();
     },
     [],

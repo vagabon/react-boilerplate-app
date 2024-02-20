@@ -2,7 +2,7 @@
 #header a:-webkit-any-link { color: inherit !important; }
 a.MuiTypography-root { font-size: 1rem; }
 
-$maxWidth: 1200px;
+$maxWidth: 1000px;
 
 /**** MAIN CONTENT ****/
 
@@ -13,21 +13,22 @@ $maxWidth: 1200px;
   .MuiAlert-message { align-items: center; justify-content: center; display: flex; font-size: 1rem; }
   .max-width { max-width: $maxWidth; margin: 0 auto; width: 100%; margin-bottom: 5px; }
   .max-width-800 { max-width: 800; }
-  #infinite-container { flex: 1; margin-bottom: 40px; & > .max-width { gap: 10px; align-items: normal; justify-content: flex-start; } }
+  #infinite-container { flex: 1; & > .max-width { align-items: normal; justify-content: flex-start; } }
   .MuiListItemText-root { align-items: flex-start; flex-direction: column; display: flex; p { margin: 0px !important; } }
+  .MuiPaper-root { margin: 5px !important; padding: 5px !important;  width: calc(100% - 10px); }
+  .search-bar { & > div { padding: 0px; margin: 0px; } }
 }
+
+.MuiCardHeader-root { padding-bottom: 0 !important; }
+.MuiCardContent-root:last-child { padding-bottom: 16px !important; }
+.MuiCardHeader-action { margin: 0 !important; padding: 0 !important; margin-top: 5px !important; }
 
 .justify-center  {
   .MuiCardHeader-root .MuiTypography-root { justify-content: center; display: flex; }
 }
 
-.main-container {
-  .MuiPaper-root { margin: 5px !important; padding: 5px !important;  width: calc(100% - 10px) !important; }
-}
-
 @media screen and (max-width: 900px) {
   .main-container {
-    .search-bar { padding: 0px 5px 5px !important; }
     .MuiPaper-root { margin: 5px !important; padding: 5px !important;  width: calc(100% - 10px) !important; }
     #infinite-container { & > .max-width { gap: 5px; } }
     .modal > .MuiBox-root { width: 100% !important;  }
@@ -52,7 +53,7 @@ $maxWidth: 1200px;
   a { text-decoration: none; }
 }
 .MuiToolbar-root {  
-  overflow: auto;  min-height: 48px !important;
+  overflow: auto;  min-height: 48px !important; padding-left: 4px !important; padding-right: 4px !important;
   .MuiAvatar-root { width: 30px; height: 30px; }
 }
 .MuiAvatar-root { background-color: var(--mui-palette-secondary-main) !important; }
@@ -194,8 +195,6 @@ $maxWidth: 1200px;
 .MuiFormControl-root { margin: 16px 0px 0px 0px !important; }
 .MuiInputLabel-root { line-height: 1em !important; top: -3px !important; }
 .MuiOutlinedInput-root { min-height: 40px !important; }
-
-.search-bar { width: 100%; padding: 5px; max-width: $maxWidth; margin: 0 auto; }
 
 .form, .form-content {
   gap: 10px;

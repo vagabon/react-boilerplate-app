@@ -1,11 +1,11 @@
 import { Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 
-import InboxIcon from '@mui/icons-material/MoveToInbox';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
-import { MdDivider, useAppRouter } from '@vagabond-inc/react-boilerplate-md';
+import { MdDivider, useAppRouter, useIcon } from '@vagabond-inc/react-boilerplate-md';
 import { useCallback, useEffect, useState } from 'react';
 import { IMenuDto } from '../dto/menu/MenuDto';
 import HasRole from '../hook/role/HasRole';
+import { useAuth } from '../module/auth/hook/useAuth';
 
 export interface IDrawerProps {
   drawerWidth: number;
@@ -16,7 +16,9 @@ export interface IDrawerProps {
 }
 
 const MenuDrawer: React.FC<IDrawerProps> = ({ drawerWidth, openDrawer, variantDrawer, menu, callbackClose }) => {
+  const { getIcon } = useIcon();
   const { location, handleNavigate } = useAppRouter();
+  const { isLoggedIn } = useAuth();
   const [currentLocation, setCurrentLocation] = useState<string>(location.pathname);
 
   useEffect(() => {
@@ -28,6 +30,16 @@ const MenuDrawer: React.FC<IDrawerProps> = ({ drawerWidth, openDrawer, variantDr
       callbackClose?.();
     },
     [],
+  );
+
+  const isCurrentLocation = useCallback(
+    (url: string) => {
+      if (url === '/') {
+        return currentLocation === '/';
+      }
+      return currentLocation?.startsWith(url);
+    },
+    [currentLocation],
   );
 
   return (
@@ -47,31 +59,36 @@ const MenuDrawer: React.FC<IDrawerProps> = ({ drawerWidth, openDrawer, variantDr
           {menu?.map((menu) => (
             <List key={menu.title}>
               <HasRole roles={menu.roles} key={menu.title} showError={false}>
-                <ListItem key={menu.link} disablePadding>
-                  <ListItemButton onClick={handleNavigate(menu.link, callbackClose)}>
-                    <ListItemIcon>
-                      <InboxIcon />
-                    </ListItemIcon>
-                    <ListItemText primary={menu.title} />
-                  </ListItemButton>
-                </ListItem>
-                {menu.childrens && (
-                  <List style={{ marginLeft: '14px' }}>
-                    {menu.childrens?.map((child) => (
-                      <HasRole roles={child.roles} key={child.title} showError={false}>
-                        <ListItem disablePadding>
-                          <ListItemButton onClick={handleNavigate(child.link, callbackClose)}>
-                            <ListItemIcon>
-                              <InboxIcon />
-                            </ListItemIcon>
-                            <ListItemText primary={child.title} />
-                          </ListItemButton>
-                        </ListItem>
-                      </HasRole>
-                    ))}
-                  </List>
+                {(!menu.isLogin || (menu.isLogin && !isLoggedIn)) && (
+                  <>
+                    <ListItem
+                      key={menu.link}
+                      disablePadding
+                      className={isCurrentLocation(menu.link) ? 'selected-secondary' : ''}>
+                      <ListItemButton onClick={handleNavigate(menu.link, callbackClose)}>
+                        {menu.icon && <ListItemIcon>{getIcon(menu.icon, 'secondary')}</ListItemIcon>}
+                        <ListItemText primary={menu.title} />
+                      </ListItemButton>
+                    </ListItem>
+                    {menu.childrens && (
+                      <List style={{ marginLeft: '14px' }}>
+                        {menu.childrens?.map((child) => (
+                          <HasRole roles={child.roles} key={menu.title + '-' + child.title} showError={false}>
+                            <ListItem
+                              disablePadding
+                              className={isCurrentLocation(child.link) ? 'selected-primary' : ''}>
+                              <ListItemButton onClick={handleNavigate(child.link, callbackClose)}>
+                                {menu.icon && <ListItemIcon>{getIcon(child.icon, 'primary')}</ListItemIcon>}
+                                <ListItemText primary={child.title} />
+                              </ListItemButton>
+                            </ListItem>
+                          </HasRole>
+                        ))}
+                      </List>
+                    )}
+                    <MdDivider />
+                  </>
                 )}
-                <MdDivider />
               </HasRole>
             </List>
           ))}

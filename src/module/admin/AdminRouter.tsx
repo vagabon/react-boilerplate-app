@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import NotFoundPage from '../not-found/page/NotFoundPage';
 import { IAdminTabConfDto } from './dto/AdminConfDto';
 import AdminShowPage from './page/show/AdminShowPage';
@@ -12,6 +12,7 @@ const AdminRouter: React.FC<IAdminRouterProps> = ({ conf }) => {
   return (
     <Routes>
       <Route>
+        <Route path='/' element={<Navigate to='/admin/tab/user' />} />
         <Route path='/tab/:tab' element={<AdminTabsPage conf={conf} />} />
         <Route path='/update/:page/:id' element={<AdminShowPage conf={conf} />} />
         <Route path='*' element={<NotFoundPage />}></Route>

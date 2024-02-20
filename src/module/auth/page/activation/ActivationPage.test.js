@@ -6,6 +6,7 @@ describe('ActivationPage', () => {
     useAppSelectorSpy.mockImplementation((callback) =>
       callback({
         common: { message: '' },
+        auth: { user: {}, isLoggedIn: false },
       }),
     );
     render(<ActivationPage />);

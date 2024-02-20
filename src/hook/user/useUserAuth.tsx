@@ -11,7 +11,7 @@ export const useUserAuth = () => {
   const handleLogout = useCallback(() => {
     AuthService.logout();
     dispatch(LoginAction.setLoginError());
-    navigate('');
+    navigate('/');
   }, [navigate, dispatch]);
 
   return { handleLogout };

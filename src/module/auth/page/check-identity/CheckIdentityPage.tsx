@@ -1,9 +1,10 @@
 import { MdCard, MdInputText, useAppTranslate } from '@vagabond-inc/react-boilerplate-md';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import AppContent from '../../../../app/content/AppContent';
 import AppFormik from '../../../../app/formik/AppFormik';
 import AuthFooter from '../../component/auth.footer/AuthFooter';
 import { AuthFooterEnum } from '../../component/auth.footer/enum/AuthFooterEnum';
+import { useAuth } from '../../hook/useAuth';
 import AuthService from '../../service/AuthService';
 import { ICheckIdentityDto } from './dto/CheckIdentityDto';
 import CHECK_IDENTITY_SCHEMA from './schema/check.identity.schema.json';
@@ -13,6 +14,11 @@ const DEFAULT_VALUES = { token: '' };
 const CheckIdentityPage: React.FC = () => {
   const { Trans } = useAppTranslate();
   const [state, setState] = useState<boolean>(false);
+  const { redirectIfLogged } = useAuth();
+
+  useEffect(() => {
+    redirectIfLogged();
+  }, [redirectIfLogged]);
 
   const handleCheckIdentity = useCallback((data: ICheckIdentityDto) => {
     AuthService.checkIdentityToken(data.token as string).then((data: ICheckIdentityDto) => {

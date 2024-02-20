@@ -1,30 +1,26 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import { useAppSelector } from '../../../../store/Store';
 import { IRegisterDto, RegisterDto } from './dto/RegisterDto';
 
-import { JSONObject, MdCard, MdInputText, useAppRouter, useAppTranslate } from '@vagabond-inc/react-boilerplate-md';
+import { JSONObject, MdCard, MdInputText, useAppTranslate } from '@vagabond-inc/react-boilerplate-md';
 import AppContent from '../../../../app/content/AppContent';
 import AppFormik from '../../../../app/formik/AppFormik';
 import AuthFooter from '../../component/auth.footer/AuthFooter';
 import { AuthFooterEnum } from '../../component/auth.footer/enum/AuthFooterEnum';
+import { useAuth } from '../../hook/useAuth';
 import AuthService from '../../service/AuthService';
 import REGISTER_SCHEMA from './schema/register.schema.json';
 
 const DEFAULT_VALUES: JSONObject = new RegisterDto() as JSONObject;
 
 const RegisterPage: React.FC = () => {
-  const { navigate } = useAppRouter();
   const { Trans } = useAppTranslate();
+  const { redirectIfLogged } = useAuth();
   const [isRegister, setIsRegister] = useState<boolean>(false);
 
-  const { isLoggedIn } = useAppSelector((state) => state.auth);
-
   useEffect(() => {
-    if (isLoggedIn) {
-      navigate('/profile');
-    }
-  }, [isLoggedIn, navigate]);
+    redirectIfLogged();
+  }, [redirectIfLogged]);
 
   const handleLogin = useCallback((data: IRegisterDto) => {
     if (data.username && data.email && data.password) {

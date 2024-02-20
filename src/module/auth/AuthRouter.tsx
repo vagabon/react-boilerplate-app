@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import NotFoundPage from '../not-found/page/NotFoundPage';
 import ActivationPage from './page/activation/ActivationPage';
 import CheckIdentityPage from './page/check-identity/CheckIdentityPage';
@@ -10,6 +10,7 @@ const AuthRouter: React.FC = () => {
   return (
     <Routes>
       <Route>
+        <Route path='/' element={<Navigate to='/auth/signin' />} />
         <Route path='/signin' element={<LoginPage />} />
         <Route path='/signup' element={<RegisterPage />} />
         <Route path='/activation/:token' element={<ActivationPage />} />

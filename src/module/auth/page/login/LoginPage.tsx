@@ -1,5 +1,6 @@
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { MdCard, MdFormCheckbox, MdInputText, WindowUtils } from '@vagabond-inc/react-boilerplate-md';
+import { useEffect } from 'react';
 import AppContent from '../../../../app/content/AppContent';
 import AppFormik from '../../../../app/formik/AppFormik';
 import AuthFooter from '../../component/auth.footer/AuthFooter';
@@ -14,7 +15,11 @@ const GOOGLE_CLIENT_ID: string = WindowUtils.getEnv('GOOGLE_CLIENT_ID');
 const DEFAULT_VALUES = { username: '', password: '', rememberMe: false };
 
 const LoginPage: React.FC = () => {
-  const { handleLogin } = useAuth();
+  const { handleLogin, redirectIfLogged } = useAuth();
+
+  useEffect(() => {
+    redirectIfLogged();
+  }, [redirectIfLogged]);
 
   return (
     <AppContent className='max-width-800'>

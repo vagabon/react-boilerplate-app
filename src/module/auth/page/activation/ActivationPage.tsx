@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import AppContent from '../../../../app/content/AppContent';
 import { useAppSelector } from '../../../../store/Store';
+import { useAuth } from '../../hook/useAuth';
 import AuthService from '../../service/AuthService';
 
 const ActivationPage: React.FC = () => {
@@ -11,6 +12,11 @@ const ActivationPage: React.FC = () => {
   const [isActivated, setIsActivated] = useState<boolean | undefined>(undefined);
 
   const { message } = useAppSelector((state) => state.common);
+  const { redirectIfLogged } = useAuth();
+
+  useEffect(() => {
+    redirectIfLogged();
+  }, [redirectIfLogged]);
 
   useEffect(() => {
     if (params.token) {

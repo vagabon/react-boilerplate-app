@@ -28,7 +28,7 @@ const AppInputWithButton: React.FC<IAppInputWithButtonProps> = ({ label, name, l
         setNameValue(value);
         callback?.(value);
       } else {
-        setMessage(localeIfEmpty ?? 'ERRORS:FIELD.EMPTY');
+        setMessage(localeIfEmpty ?? 'ERRORS:REQUIRED');
       }
     },
     [setMessage, localeIfEmpty],

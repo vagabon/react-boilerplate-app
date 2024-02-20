@@ -35,12 +35,12 @@ const NewsService = {
   createOrUpdate: (endPoint: string, data: INewsDto, dispatch: Dispatch): Promise<INewsDto> => {
     if (data.id !== null && data.id !== undefined && data.id !== '' && Number(data.id) > 0) {
       return ApiService.put<INewsDto>('/' + endPoint + '/', data).then((dataNew: INewsDto) => {
-        dispatch(CommonAction.setMessage({ id: UuidUtils.createUUID(), message: 'Sauvegarde OK', type: 'success' }));
+        dispatch(CommonAction.setMessage({ id: UuidUtils.createUUID(), message: 'UPDATE_OK', type: 'success' }));
         return Promise.resolve(dataNew);
       });
     } else {
       return ApiService.post<INewsDto>('/' + endPoint + '/', data).then((dataNew: INewsDto) => {
-        dispatch(CommonAction.setMessage({ id: UuidUtils.createUUID(), message: 'Création OK', type: 'success' }));
+        dispatch(CommonAction.setMessage({ id: UuidUtils.createUUID(), message: 'CREATION_OK', type: 'success' }));
         return Promise.resolve(dataNew);
       });
     }

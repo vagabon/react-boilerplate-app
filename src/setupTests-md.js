@@ -187,6 +187,7 @@ export const mockBoilerPlateMd = {
   ObjectUtils: {
     capitalize: jest.fn(),
     getDtoString: (data, name) => data[name],
+    getRecursivValue: (data, name) => data[name],
   },
   UuidUtils: {
     createUUID: () => 'uuid',

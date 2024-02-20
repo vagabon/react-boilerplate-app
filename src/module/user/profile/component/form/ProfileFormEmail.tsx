@@ -35,25 +35,27 @@ const ProfileFormEmail: React.FC<IProfileFormEmailProps> = ({ user }) => {
 
   return (
     <div className='flex flex-row align-center space-between'>
-      <b>
-        <Trans i18nKey='AUTH:FIELDS.EMAIL' />
-      </b>
-      <span>{user?.email}</span>
       {isUserPassword(user) && (
-        <CustomModaleForm
-          small={true}
-          title='AUTH:USER.EMAIL.TITLE'
-          initialValues={{}}
-          validationSchema={SCHEMA}
-          onSubmit={handleSubmit}
-          button='AUTH:USER.EMAIL.BUTTON'>
-          {(props) => (
-            <>
-              <MdInputText {...(props as IMdInputTextProps)} label='AUTH:FIELDS.EMAIL' name='email' />
-              <MdInputText {...(props as IMdInputTextProps)} label='AUTH:FIELDS.EMAIL_CONFIRM' name='emailConfirm' />
-            </>
-          )}
-        </CustomModaleForm>
+        <>
+          <b>
+            <Trans i18nKey='AUTH:FIELDS.EMAIL' />
+          </b>
+          <span>{user?.email}</span>
+          <CustomModaleForm
+            small={true}
+            title='AUTH:USER.EMAIL.TITLE'
+            initialValues={{}}
+            validationSchema={SCHEMA}
+            onSubmit={handleSubmit}
+            button='AUTH:USER.EMAIL.BUTTON'>
+            {(props) => (
+              <>
+                <MdInputText {...(props as IMdInputTextProps)} label='AUTH:FIELDS.EMAIL' name='email' />
+                <MdInputText {...(props as IMdInputTextProps)} label='AUTH:FIELDS.EMAIL_CONFIRM' name='emailConfirm' />
+              </>
+            )}
+          </CustomModaleForm>
+        </>
       )}
     </div>
   );

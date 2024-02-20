@@ -1,4 +1,6 @@
-import { AppBar } from '@mui/material';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import { AppBar, Badge, IconButton, MenuItem, SelectChangeEvent } from '@mui/material';
+import Select from '@mui/material/Select';
 import {
   IApiDto,
   IconClickable,
@@ -12,6 +14,7 @@ import {
   ModeType,
   useAppRouter,
 } from '@vagabond-inc/react-boilerplate-md';
+import { type i18n as i18nType } from 'i18next';
 import { useCallback, useEffect, useState } from 'react';
 import { IMenuDto } from '../dto/menu/MenuDto';
 import HasRole from '../hook/role/HasRole';
@@ -28,6 +31,8 @@ export interface IHeaderProps {
   widthDrawer?: boolean;
   showOpenDrawer?: boolean;
   callbackDrawer?: () => void;
+  i18n?: i18nType;
+  nbNotification?: number;
 }
 
 const Header: React.FC<IHeaderProps> = ({
@@ -38,13 +43,16 @@ const Header: React.FC<IHeaderProps> = ({
   widthDrawer,
   showOpenDrawer,
   callbackDrawer,
+  i18n,
+  nbNotification,
 }) => {
-  const { location, navigate, Link } = useAppRouter();
+  const { location, navigate, Link, handleNavigate } = useAppRouter();
   const dispatch = useAppDispatch();
   const { loading, history } = useAppSelector((state) => state.common);
   const { isLoggedIn, user } = useAppSelector((state) => state.auth);
   const { handleLogout } = useUserAuth();
   const [currentLocation, setCurrentLocation] = useState<string>(location.pathname);
+  const [language, setLanguage] = useState<string>(i18n?.language ?? 'fr');
 
   useEffect(() => {
     setCurrentLocation(location.pathname);
@@ -55,6 +63,16 @@ const Header: React.FC<IHeaderProps> = ({
     dispatch(CommonAction.sliceHistory());
     navigate(lastPage.link);
   }, [dispatch, navigate, history]);
+
+  const handleChangeLanguage = useCallback(
+    (event: SelectChangeEvent<string | undefined>) => {
+      const value = event.target.value as string;
+      localStorage.setItem('app_language', value);
+      i18n?.changeLanguage(value);
+      setLanguage(value);
+    },
+    [i18n],
+  );
 
   return (
     <>
@@ -79,7 +97,23 @@ const Header: React.FC<IHeaderProps> = ({
             </Link>
           </MdTypo>
           <IconClickable icon={mode === 'dark' ? 'sun' : 'moon'} callback={callbackTheme} />
-          <MdButton url='/auth/signup' label='AUTH:SIGNUP' variant='text' show={!isLoggedIn} />
+          {i18n && (
+            <Select value={language} onChange={handleChangeLanguage} className='select-language'>
+              <MenuItem value='fr'>fr</MenuItem>
+              <MenuItem value='en'>en</MenuItem>
+            </Select>
+          )}
+          {nbNotification !== undefined && (
+            <IconButton
+              size='large'
+              aria-label={'show ' + nbNotification + ' new notifications'}
+              onClick={handleNavigate('/notification')}>
+              <Badge badgeContent={nbNotification} color='error'>
+                <NotificationsIcon />
+              </Badge>
+            </IconButton>
+          )}
+          <MdButton url='/auth/signup' label='AUTH:SIGNUP' variant='outlined' show={!isLoggedIn} />
           <MdButton url='/auth/signin' label='AUTH:SIGNIN' show={!isLoggedIn} />
           {user?.user && (
             <MdAvatar

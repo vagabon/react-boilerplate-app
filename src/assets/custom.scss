@@ -2,6 +2,14 @@
 #header a:-webkit-any-link { color: inherit !important; }
 a.MuiTypography-root { font-size: 1rem; }
 
+#header {
+  gap: 2px;
+  .select-language {
+    width: 45px !important; height: 28px !important; min-height: 28px !important;
+    .MuiSelect-select { margin: 0; padding: 7px; }
+}
+}
+
 $maxWidth: 1000px;
 
 /**** MAIN CONTENT ****/

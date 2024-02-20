@@ -1,8 +1,10 @@
+import { I18nUtils, useAppTranslate } from '@vagabond-inc/react-boilerplate-md';
 import { closeSnackbar, useSnackbar } from 'notistack';
 import { useEffect, useRef } from 'react';
 import { useAppSelector } from '../../store/Store';
 
 const ShowMessage: React.FC = () => {
+  const { t } = useAppTranslate();
   const { message } = useAppSelector((state) => state.common);
   const { enqueueSnackbar } = useSnackbar();
   const lastMessage = useRef<string>();
@@ -10,9 +12,9 @@ const ShowMessage: React.FC = () => {
   useEffect(() => {
     if (message.id !== '' && message.message !== '' && message.message !== lastMessage.current) {
       lastMessage.current = message.message;
-      enqueueSnackbar(message.message, {
+      enqueueSnackbar(I18nUtils.translate(t, message.message), {
         variant: message.type,
-        autoHideDuration: 5000,
+        autoHideDuration: 3000,
         anchorOrigin: { horizontal: 'right', vertical: 'bottom' },
         onClick: () => {
           closeSnackbar();
@@ -23,7 +25,7 @@ const ShowMessage: React.FC = () => {
         },
       });
     }
-  }, [message, enqueueSnackbar]);
+  }, [t, message, enqueueSnackbar]);
 
   return <></>;
 };

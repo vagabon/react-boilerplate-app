@@ -28,7 +28,7 @@ const CustomFormManyToMany: React.FC<ICustomFormManyToManyProps> = ({ conf, labe
   const { message } = useMessage();
   const [open, setOpen] = useState(false);
   const [datas, setDatas] = useState<IApiDto[]>();
-  const { error } = useFormError(name, rest.errors, rest.touched, message);
+  const { error } = useFormError(name, rest.errors, rest.touched, message?.message);
 
   const validationSchema = rest.validationSchema?.[name as keyof JSONObject] ?? {};
 

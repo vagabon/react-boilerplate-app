@@ -42,7 +42,7 @@ const AdminService = {
     (endPoint: string, data: IApiDto) =>
     (dispatch: Dispatch): Promise<IApiDto> => {
       return ApiService.post<IApiDto>('/' + endPoint + ENDPOINT_CREATE, data).then((dataNew: IApiDto) => {
-        dispatch(CommonAction.setMessage({ id: UuidUtils.createUUID(), message: 'Création OK', type: 'success' }));
+        dispatch(CommonAction.setMessage({ id: UuidUtils.createUUID(), message: 'CREATION_OK', type: 'success' }));
         return Promise.resolve(dataNew);
       });
     },
@@ -51,7 +51,7 @@ const AdminService = {
     (endPoint: string, data: IApiDto) =>
     (dispatch: Dispatch): Promise<IApiDto> => {
       return ApiService.put<IApiDto>('/' + endPoint + ENDPOINT_UPDATE, data).then((dataNew: IApiDto) => {
-        dispatch(CommonAction.setMessage({ id: UuidUtils.createUUID(), message: 'Sauvegarde OK', type: 'success' }));
+        dispatch(CommonAction.setMessage({ id: UuidUtils.createUUID(), message: 'UPDATE_OK', type: 'success' }));
         return Promise.resolve(dataNew);
       });
     },

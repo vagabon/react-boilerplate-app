@@ -1,7 +1,7 @@
 import { Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 
 import ClickAwayListener from '@mui/material/ClickAwayListener';
-import { MdDivider, useAppRouter, useIcon } from '@vagabond-inc/react-boilerplate-md';
+import { I18nUtils, MdDivider, useAppRouter, useAppTranslate, useIcon } from '@vagabond-inc/react-boilerplate-md';
 import { useCallback, useEffect, useState } from 'react';
 import { IMenuDto } from '../dto/menu/MenuDto';
 import HasRole from '../hook/role/HasRole';
@@ -16,6 +16,7 @@ export interface IDrawerProps {
 }
 
 const MenuDrawer: React.FC<IDrawerProps> = ({ drawerWidth, openDrawer, variantDrawer, menu, callbackClose }) => {
+  const { t } = useAppTranslate();
   const { getIcon } = useIcon();
   const { location, handleNavigate } = useAppRouter();
   const { isLoggedIn } = useAuth();
@@ -59,7 +60,7 @@ const MenuDrawer: React.FC<IDrawerProps> = ({ drawerWidth, openDrawer, variantDr
           {menu?.map((menu) => (
             <List key={menu.title}>
               <HasRole roles={menu.roles} key={menu.title} showError={false}>
-                {(!menu.isLogin || (menu.isLogin && !isLoggedIn)) && (
+                {(!menu.notConnected || (menu.notConnected && !isLoggedIn)) && (
                   <>
                     <ListItem
                       key={menu.link}
@@ -67,7 +68,7 @@ const MenuDrawer: React.FC<IDrawerProps> = ({ drawerWidth, openDrawer, variantDr
                       className={isCurrentLocation(menu.link) ? 'selected-secondary' : ''}>
                       <ListItemButton onClick={handleNavigate(menu.link, callbackClose)}>
                         {menu.icon && <ListItemIcon>{getIcon(menu.icon, 'secondary')}</ListItemIcon>}
-                        <ListItemText primary={menu.title} />
+                        <ListItemText primary={I18nUtils.translate(t, menu.title)} />
                       </ListItemButton>
                     </ListItem>
                     {menu.childrens && (
@@ -79,7 +80,7 @@ const MenuDrawer: React.FC<IDrawerProps> = ({ drawerWidth, openDrawer, variantDr
                               className={isCurrentLocation(child.link) ? 'selected-primary' : ''}>
                               <ListItemButton onClick={handleNavigate(child.link, callbackClose)}>
                                 {menu.icon && <ListItemIcon>{getIcon(child.icon, 'primary')}</ListItemIcon>}
-                                <ListItemText primary={child.title} />
+                                <ListItemText primary={I18nUtils.translate(t, child.title)} />
                               </ListItemButton>
                             </ListItem>
                           </HasRole>

@@ -33,13 +33,13 @@ const ProfileService = {
 
   create: (data: IProfileDto) => (dispatch: Dispatch) => {
     return ApiService.post('/profiles/findBy/', data).then(() => {
-      dispatch(CommonAction.setMessage({ id: UuidUtils.createUUID(), message: 'Création OK', type: 'success' }));
+      dispatch(CommonAction.setMessage({ id: UuidUtils.createUUID(), message: 'CREATION_OK', type: 'success' }));
     });
   },
 
   update: (data: IProfileDto) => (dispatch: Dispatch) => {
     return ApiService.put('/profiles/findBy/', data).then(() => {
-      dispatch(CommonAction.setMessage({ id: UuidUtils.createUUID(), message: 'Sauvegarde OK', type: 'success' }));
+      dispatch(CommonAction.setMessage({ id: UuidUtils.createUUID(), message: 'UPDATE_OK', type: 'success' }));
     });
   },
 };

@@ -38,9 +38,9 @@ const ProfileAvatar: React.FC<IProfileAvatarProps> = ({ user, disabled }) => {
             name={user.username}
             image={user.avatar}
             sx={{
-              height: disabled ? '100px' : '200px',
-              width: disabled ? '100px' : '200px',
-              fontSize: disabled ? '5rem' : '10rem',
+              height: '100px',
+              width: '100px',
+              fontSize: '5rem',
             }}
           />
         </MdCardMedia>

@@ -3,6 +3,6 @@ export interface IMenuDto {
   link: string;
   roles?: string[];
   icon?: string;
-  isLogin?: boolean;
+  notConnected?: boolean;
   childrens?: IMenuDto[];
 }

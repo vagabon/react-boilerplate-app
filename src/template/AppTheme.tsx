@@ -1,4 +1,5 @@
 import { JSONObject, MdThemeProvider, useAppRouter, useTheme } from '@vagabond-inc/react-boilerplate-md';
+import { type i18n as i18nType } from 'i18next';
 import { SnackbarProvider } from 'notistack';
 import { ReactNode, useEffect } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
@@ -27,9 +28,11 @@ export interface IAppThemeProps {
   version: string;
   menu: IMenuDto[];
   children: ReactNode;
+  i18n?: i18nType;
+  nbNotification?: number;
 }
 
-const AppTheme: React.FC<IAppThemeProps> = ({ palette, conf, version, menu, children }) => {
+const AppTheme: React.FC<IAppThemeProps> = ({ palette, conf, version, menu, children, i18n, nbNotification }) => {
   const { location } = useAppRouter();
   const dispatch = useAppDispatch();
   const { mode, theme, switchTheme } = useTheme(palette);
@@ -60,6 +63,8 @@ const AppTheme: React.FC<IAppThemeProps> = ({ palette, conf, version, menu, chil
               showOpenDrawer={showOpenDrawer}
               callbackTheme={switchTheme(mode)}
               callbackDrawer={handleDrawerOpen(openDrawer)}
+              i18n={i18n}
+              nbNotification={nbNotification}
             />
 
             <div className='flex flex-row' style={{ gap: '10px', flex: '1', overflow: 'hidden' }}>

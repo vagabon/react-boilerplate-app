@@ -1,4 +1,11 @@
-import { IApiDto, IFormPropsDto, IListDto, MdFormSelect } from '@vagabond-inc/react-boilerplate-md';
+import {
+  IApiDto,
+  IFormPropsDto,
+  IListDto,
+  JSONObject,
+  MdFormSelect,
+  ObjectUtils,
+} from '@vagabond-inc/react-boilerplate-md';
 import { useEffect, useState } from 'react';
 import { ApiService } from '../../../../api/service/ApiService';
 import { IPageableDto } from '../../../../dto/pageable/PageableDto';
@@ -21,7 +28,7 @@ const CustomFormSelect: React.FC<ICustomFormSelectProps> = ({ conf, label, name,
           data?.content?.map((dat) => {
             return {
               id: dat.id,
-              libelle: dat[conf.listName as keyof IApiDto],
+              libelle: ObjectUtils.getRecursivValue(dat as JSONObject, conf.listName as string),
             } as IListDto;
           }),
         );

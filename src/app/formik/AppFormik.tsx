@@ -96,7 +96,7 @@ const AppFormik: React.FC<IAppFormikProps> = ({ className = '', ...props }) => {
               handleSubmit: (values: IApiDto) => doSubmit(values, validateForm),
               validateForm,
               setFieldValue: setFieldValue as SetFieldValueType,
-              errorMessage: message,
+              errorMessage: message?.message,
             })}
           </div>
           {(props.backButton || props.submitButton) && (

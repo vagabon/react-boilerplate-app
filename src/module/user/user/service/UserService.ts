@@ -35,13 +35,13 @@ const UserService = {
 
   create: (data: IUserDto) => (dispatch: Dispatch) => {
     return ApiService.post(ENDPOINT_USERS, data).then(() => {
-      dispatch(CommonAction.setMessage({ id: UuidUtils.createUUID(), message: 'Création OK', type: 'success' }));
+      dispatch(CommonAction.setMessage({ id: UuidUtils.createUUID(), message: 'CREATION_OK', type: 'success' }));
     });
   },
 
   update: (data: IUserDto) => (dispatch: Dispatch) => {
     return ApiService.put(ENDPOINT_USERS, data).then(() => {
-      dispatch(CommonAction.setMessage({ id: UuidUtils.createUUID(), message: 'Sauvegarde OK', type: 'success' }));
+      dispatch(CommonAction.setMessage({ id: UuidUtils.createUUID(), message: 'UPDATE_OK', type: 'success' }));
     });
   },
 

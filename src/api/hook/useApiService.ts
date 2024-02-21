@@ -1,8 +1,9 @@
+import { IApiDto } from '@vagabond-inc/react-boilerplate-md';
 import { useCallback, useRef } from 'react';
 import { useMessage } from '../../hook/message/useMessage';
 import { ApiService } from '../service/ApiService';
 
-export const useApiService = <T>() => {
+export const useApiService = <T extends IApiDto>() => {
   const { setMessage } = useMessage();
   const isLoad = useRef(false);
   const isLoadPost = useRef(false);
@@ -55,11 +56,11 @@ export const useApiService = <T>() => {
     (url: string, locale: string, callback?: (data: T) => void) => {
       if (!isLoadDelete.current) {
         isLoadDelete.current = true;
-        ApiService.delete(url)
+        ApiService.delete<T>(url)
           .then((data) => {
             isLoadDelete.current = false;
             setMessage(locale + ':DELETE_OK', 'success');
-            callback?.(data as T);
+            callback?.(data);
           })
           .catch(() => {
             isLoadDelete.current = false;

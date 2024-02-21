@@ -1,9 +1,8 @@
-import { IApiDto } from '@vagabond-inc/react-boilerplate-md';
 import { useCallback, useRef } from 'react';
 import { useMessage } from '../../hook/message/useMessage';
 import { ApiService } from '../service/ApiService';
 
-export const useApiService = <T extends IApiDto>() => {
+export const useApiService = <T>() => {
   const { setMessage } = useMessage();
   const isLoad = useRef(false);
   const isLoadPost = useRef(false);

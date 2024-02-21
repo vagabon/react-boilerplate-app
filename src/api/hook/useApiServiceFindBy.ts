@@ -1,9 +1,8 @@
-import { IApiDto } from '@vagabond-inc/react-boilerplate-md';
 import { useCallback, useRef } from 'react';
 import { IPageableDto } from '../../dto/pageable/PageableDto';
 import { ApiService } from '../service/ApiService';
 
-export const useApiServiceFindBy = <T extends IApiDto>(url: string, champs?: string, max?: number) => {
+export const useApiServiceFindBy = <T>(url: string, champs?: string, max?: number) => {
   const isLoad = useRef(false);
   const stopLoad = useRef(false);
 

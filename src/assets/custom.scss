@@ -4,6 +4,7 @@ a.MuiTypography-root { font-size: 1rem; }
 
 #header {
   gap: 2px;
+  a { text-decoration: none; }
   .select-language {
     width: 45px !important; height: 28px !important; min-height: 28px !important;
     .MuiSelect-select { margin: 0; padding: 7px; }
@@ -54,9 +55,6 @@ $maxWidth: 1000px;
   margin-right: 10px; min-width: 0px !important; 
   .MuiButtonBase-root { margin: 0px !important; padding: 6px !important; } 
 }
-#header {
-  a { text-decoration: none; }
-}
 .MuiToolbar-root {  
   overflow: auto;  min-height: 48px !important; padding-left: 4px !important; padding-right: 4px !important;
   .MuiAvatar-root { width: 30px; height: 30px; }
@@ -72,6 +70,8 @@ $maxWidth: 1000px;
 .mode-dark .MuiListItem-root.selected-primary {  border-left: 3px solid var(--mui-palette-primary-main-dark) !important; }
 .MuiListItem-root.selected-secondary {  border-left: 3px solid var(--mui-palette-secondary-main) !important; }
 .mode-dark .MuiListItem-root.selected-secondary {  border-left: 3px solid var(--mui-palette-secondary-main-dark) !important; }
+
+.MuiDrawer-root { ul {padding: 0px !important; } }
 
 .MuiListItemText-root { span { overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; } }
 
@@ -244,6 +244,8 @@ $maxWidth: 1000px;
 }
 
 /**** MODALE *****/
+
+.MuiBox-root { background-color: unset !important; border: 0 !important; }
 
 .modal-list { max-height: 380px; overflow: auto; }
 

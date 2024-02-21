@@ -103,7 +103,7 @@ const Header: React.FC<IHeaderProps> = ({
               <MenuItem value='en'>en</MenuItem>
             </Select>
           )}
-          {nbNotification !== undefined && (
+          {nbNotification !== undefined && isLoggedIn && (
             <IconButton
               size='large'
               aria-label={'show ' + nbNotification + ' new notifications'}

@@ -18,6 +18,9 @@ export { Provider, TypedUseSelectorHook, useDispatch, useSelector } from 'react-
 export { combineReducers } from 'redux';
 
 // export lib
+export { useApiService } from './api/hook/useApiService';
+export { useApiServiceCrud } from './api/hook/useApiServiceCrud';
+export { useApiServiceFindBy } from './api/hook/useApiServiceFindBy';
 export { AxiosInterceptor } from './api/interceptor/AxiosInterceptor';
 export { ApiService } from './api/service/ApiService';
 export { ApiCrudService } from './api/service/crud/ApiCrudService';

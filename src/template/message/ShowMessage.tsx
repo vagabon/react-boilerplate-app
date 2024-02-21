@@ -18,12 +18,11 @@ const ShowMessage: React.FC = () => {
         anchorOrigin: { horizontal: 'right', vertical: 'bottom' },
         onClick: () => {
           closeSnackbar();
-          lastMessage.current = '';
-        },
-        onclose: () => {
-          lastMessage.current = '';
         },
       });
+      setTimeout(() => {
+        lastMessage.current = '';
+      }, 3000);
     }
   }, [t, message, enqueueSnackbar]);
 

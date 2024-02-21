@@ -9,7 +9,7 @@ const RoleUtils = {
     }
     if (currentUser?.user) {
       profiles.forEach((role: string) => {
-        if (currentUser?.user?.profiles?.find((userProfile) => userProfile.name === role)) {
+        if (currentUser?.user?.profiles?.find((userProfile) => userProfile.roles?.includes(role))) {
           hasProfile = true;
         }
       });

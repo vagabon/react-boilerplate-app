@@ -59,7 +59,7 @@ const MenuDrawer: React.FC<IDrawerProps> = ({ drawerWidth, openDrawer, variantDr
         <Box sx={{ overflow: 'auto' }}>
           {menu?.map((menu) => (
             <List key={menu.title}>
-              <HasRole roles={menu.roles} key={menu.title} showError={false}>
+              <HasRole roles={menu.roles} notRroles={menu.notRoles} key={menu.title} showError={false}>
                 {(!menu.notConnected || (menu.notConnected && !isLoggedIn)) && (
                   <>
                     <ListItem
@@ -74,7 +74,11 @@ const MenuDrawer: React.FC<IDrawerProps> = ({ drawerWidth, openDrawer, variantDr
                     {menu.childrens && (
                       <List style={{ marginLeft: '14px' }}>
                         {menu.childrens?.map((child) => (
-                          <HasRole roles={child.roles} key={menu.title + '-' + child.title} showError={false}>
+                          <HasRole
+                            roles={child.roles}
+                            notRroles={child.notRoles}
+                            key={menu.title + '-' + child.title}
+                            showError={false}>
                             <ListItem
                               disablePadding
                               className={isCurrentLocation(child.link) ? 'selected-primary' : ''}>

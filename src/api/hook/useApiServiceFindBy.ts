@@ -32,8 +32,12 @@ export const useApiServiceFindBy = <T>(url: string, champs?: string, max?: numbe
             });
       }
     },
-    [url, champs, max],
+    [url, champs, stopLoad, max],
   );
 
-  return { fetchBy };
+  const resetStopLoad = useCallback(() => {
+    stopLoad.current = false;
+  }, []);
+
+  return { fetchBy, resetStopLoad };
 };

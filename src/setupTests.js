@@ -36,6 +36,10 @@ jest.mock('react-helmet-async', () => ({
   HelmetProvider: ({ children }) => <div data-testid='HelmetProvider'>{children}</div>,
 }));
 
+jest.mock('@mui/x-charts', () => ({
+  BarChart: ({ children }) => <div data-testid='BarChart'>{children}</div>,
+}));
+
 /******************* AFTER EACH RESET MOCK *****************************/
 
 global.mockStore = {};

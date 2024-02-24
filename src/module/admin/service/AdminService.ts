@@ -26,7 +26,15 @@ const AdminService = {
       '/' +
         endPoint +
         ENDPOINT_FINDBY +
-        encodeURI('?fields=' + champs + orderConst + '&values=' + values + '&first=' + first + '&max=' + max),
+        '?fields=' +
+        champs +
+        orderConst +
+        '&values=' +
+        values +
+        '&first=' +
+        first +
+        '&max=' +
+        max,
     ).then((data) => {
       return Promise.resolve(data);
     });

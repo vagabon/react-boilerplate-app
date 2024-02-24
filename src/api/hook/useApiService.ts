@@ -9,7 +9,7 @@ export const useApiService = <T>() => {
   const isLoadPut = useRef(false);
   const isLoadDelete = useRef(false);
 
-  const fetch = useCallback((url: string, callback?: (data: T) => void) => {
+  const httpGet = useCallback((url: string, callback?: (data: T) => void) => {
     if (!isLoad.current) {
       isLoad.current = true;
       ApiService.get<T>(url)
@@ -69,5 +69,5 @@ export const useApiService = <T>() => {
     [setMessage],
   );
 
-  return { fetch, httpPost, httpPut, deleteById };
+  return { httpGet, httpPost, httpPut, deleteById };
 };

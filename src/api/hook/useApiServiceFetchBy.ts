@@ -44,11 +44,11 @@ export const useApiServiceFetchBy = <T extends IApiDto>(
   );
 
   const doChangePage = useCallback(
-    (page: number, callback: (field: string) => void) =>
+    (page: number, callback: (field: string, page: number) => void) =>
       (pageToAdd: number): void => {
         const newPage = page + pageToAdd;
         dispatch(action.setPage(newPage));
-        callback(search);
+        callback(search, newPage);
       },
     [search, dispatch, action],
   );

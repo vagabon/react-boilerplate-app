@@ -30,9 +30,19 @@ export interface IAppThemeProps {
   children: ReactNode;
   i18n?: i18nType;
   nbNotification?: number;
+  showNotification?: boolean;
 }
 
-const AppTheme: React.FC<IAppThemeProps> = ({ palette, conf, version, menu, children, i18n, nbNotification }) => {
+const AppTheme: React.FC<IAppThemeProps> = ({
+  palette,
+  conf,
+  version,
+  menu,
+  children,
+  i18n,
+  nbNotification,
+  showNotification,
+}) => {
   const { location } = useAppRouter();
   const dispatch = useAppDispatch();
   const { mode, theme, switchTheme } = useTheme(palette);
@@ -43,6 +53,7 @@ const AppTheme: React.FC<IAppThemeProps> = ({ palette, conf, version, menu, chil
     document.body.classList.remove('mode-dark');
     document.body.classList.remove('mode-light');
     document.body.classList.add('mode-' + mode);
+    dispatch(CommonAction.setModeTheme(mode));
   }, [mode]);
 
   useEffect(() => {
@@ -65,6 +76,7 @@ const AppTheme: React.FC<IAppThemeProps> = ({ palette, conf, version, menu, chil
               callbackDrawer={handleDrawerOpen(openDrawer)}
               i18n={i18n}
               nbNotification={nbNotification}
+              showNotification={showNotification}
             />
 
             <div className='flex flex-row' style={{ gap: '10px', flex: '1', overflow: 'hidden' }}>

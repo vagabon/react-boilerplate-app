@@ -17,6 +17,7 @@ export interface IApiState {
   loading: boolean;
   history: IPathDto[];
   scrolls: ScrollsType[];
+  modeTheme: string;
 }
 
 const SUCCESS: MessageType = 'success';
@@ -27,6 +28,7 @@ const initialState: IApiState = {
   loading: false,
   history: [],
   scrolls: [],
+  modeTheme: '',
 };
 
 export const CommonReducer = createSlice({
@@ -99,6 +101,12 @@ export const CommonReducer = createSlice({
           ...state.scrolls,
           [action.payload.pathname]: action.payload.position,
         },
+      };
+    },
+    setModeTheme: (state: IApiState, action: PayloadAction<string>) => {
+      return {
+        ...state,
+        modeTheme: action?.payload,
       };
     },
   },

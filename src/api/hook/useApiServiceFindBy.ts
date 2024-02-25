@@ -24,7 +24,7 @@ export const useApiServiceFindBy = <T>(url: string, champs?: string, max?: numbe
                 stopLoad.current = true;
               } else {
                 callback(data);
-                stopLoad.current = false;
+                stopLoad.current = data?.content?.length < (max ?? 10);
               }
             })
             .catch(() => {

@@ -7,7 +7,7 @@ export const useAppChartBar = (title: string = 'Nombre de clicks') => {
   const [series, setSeries] = useState<IChartBarDto[]>([]);
 
   const convertToChartBar = useCallback(
-    (datas: IApiDto[], titleField: string, nbField: string) => {
+    (datas: IApiDto[], titleField: string, nbField: string, colors: string[] = ['#02b2af']) => {
       if (datas.length > 0) {
         const chartAxis: string[] = [];
         const chartSeries: number[] = [];
@@ -16,7 +16,7 @@ export const useAppChartBar = (title: string = 'Nombre de clicks') => {
           chartSeries.push(data[nbField as keyof IApiDto] as number);
         });
         setAxis(chartAxis);
-        setSeries([{ label: title, data: chartSeries }]);
+        setSeries([{ label: title, data: chartSeries, color: colors?.[0] }]);
       }
     },
     [title],

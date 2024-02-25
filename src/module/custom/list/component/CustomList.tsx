@@ -126,7 +126,11 @@ const CustomList: React.FC<ICustomListProps> = ({
                   />
                 </MdListItemIcon>
               )}
-              <MdListItemText color={getTextColor(data.checked)} label={data.name} secondary={<>{data.secondary}</>} />
+              <MdListItemText
+                color={getTextColor(data.checked) + ' ' + (data.checked ? 'checked' : 'not-checked')}
+                label={data.name}
+                secondary={<>{data.secondary}</>}
+              />
               {data.chip && <MdChip label={data.chip} icon={icon} />}
               {buttonChildren && <>{buttonChildren(data.entity)}</>}
               {callbackSettings && (

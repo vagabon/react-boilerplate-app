@@ -17,7 +17,7 @@ export const useApiServiceFetchBy = <T extends IApiDto>(
   const { fetchBy, resetStopLoad } = useApiServiceFindBy<T>(uri, query, max);
 
   const fetchByFields = useCallback(
-    (values: string, page: number, orderBy: string = 'id', orderByAsc: string = 'desc') => {
+    (values: string, page: number, orderBy: string, orderByAsc: string) => {
       fetchBy(values, page, orderBy, orderByAsc, (data) => {
         dispatch(action.setCount(data.totalElements));
         dispatch(page === 0 ? action.setDatas(data?.content ?? []) : action.addDatas(data?.content ?? []));
@@ -27,8 +27,8 @@ export const useApiServiceFetchBy = <T extends IApiDto>(
   );
 
   const doFetchByFields = useCallback(
-    (values: string, page: number) => {
-      fetchByFields(values, page, 'creationDate', 'desc');
+    (values: string, page: number, orderBy: string = 'creationDate', orderByAsc: string = 'desc') => {
+      fetchByFields(values, page, orderBy, orderByAsc);
     },
     [fetchByFields],
   );

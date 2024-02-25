@@ -33,6 +33,7 @@ export interface IHeaderProps {
   callbackDrawer?: () => void;
   i18n?: i18nType;
   nbNotification?: number;
+  showNotification?: boolean;
 }
 
 const Header: React.FC<IHeaderProps> = ({
@@ -45,6 +46,7 @@ const Header: React.FC<IHeaderProps> = ({
   callbackDrawer,
   i18n,
   nbNotification,
+  showNotification,
 }) => {
   const { location, navigate, Link, handleNavigate } = useAppRouter();
   const dispatch = useAppDispatch();
@@ -103,7 +105,7 @@ const Header: React.FC<IHeaderProps> = ({
               <MenuItem value='en'>en</MenuItem>
             </Select>
           )}
-          {nbNotification !== undefined && isLoggedIn && (
+          {showNotification && isLoggedIn && (
             <IconButton
               size='large'
               aria-label={'show ' + nbNotification + ' new notifications'}

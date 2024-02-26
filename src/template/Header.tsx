@@ -1,4 +1,3 @@
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import { AppBar, Badge, IconButton, MenuItem, SelectChangeEvent } from '@mui/material';
 import Select from '@mui/material/Select';
 import {
@@ -13,6 +12,7 @@ import {
   MdTypo,
   ModeType,
   useAppRouter,
+  useIcon,
 } from '@vagabond-inc/react-boilerplate-md';
 import { type i18n as i18nType } from 'i18next';
 import { useCallback, useEffect, useState } from 'react';
@@ -55,6 +55,7 @@ const Header: React.FC<IHeaderProps> = ({
   const { handleLogout } = useUserAuth();
   const [currentLocation, setCurrentLocation] = useState<string>(location.pathname);
   const [language, setLanguage] = useState<string>(i18n?.language ?? 'fr');
+  const { getIcon } = useIcon();
 
   useEffect(() => {
     setCurrentLocation(location.pathname);
@@ -111,7 +112,7 @@ const Header: React.FC<IHeaderProps> = ({
               aria-label={'show ' + nbNotification + ' new notifications'}
               onClick={handleNavigate('/notification')}>
               <Badge badgeContent={nbNotification} color='error'>
-                <NotificationsIcon />
+                {getIcon('notification')}
               </Badge>
             </IconButton>
           )}

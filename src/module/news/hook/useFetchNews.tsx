@@ -5,7 +5,7 @@ import { INewsDto } from '../dto/NewsDto';
 import NewsService from '../service/NewsService';
 
 export const useFetchNews = (endPoint: string, newsAction: IReducersActionsProps) => {
-  const { datas: news, search, page } = useAppSelector((state) => state[endPoint]);
+  const { datas: news, search, count, page } = useAppSelector((state) => state[endPoint]);
   const dispatch = useAppDispatch();
 
   const [stopLoad, setStopLoad] = useState(false);
@@ -52,5 +52,5 @@ export const useFetchNews = (endPoint: string, newsAction: IReducersActionsProps
     [dispatch, doFetchDatas, stopLoad, newsAction],
   );
 
-  return { news, search, page, fetchNews, doSearch, doChangePage };
+  return { news, search, count, page, fetchNews, doSearch, doChangePage };
 };

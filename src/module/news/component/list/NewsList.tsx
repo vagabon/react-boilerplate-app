@@ -9,7 +9,7 @@ import NewsCardSmall from '../card/NewsCardSmall';
 export interface INewsListProps extends INewsRouterProps {}
 
 const NewsList: React.FC<INewsListProps> = ({ endPoint, newsAction }) => {
-  const { news, search, page, doSearch, doChangePage } = useFetchNews(endPoint, newsAction);
+  const { news, search, count, page, doSearch, doChangePage } = useFetchNews(endPoint, newsAction);
 
   useEffect(() => {
     doSearch('');
@@ -26,6 +26,9 @@ const NewsList: React.FC<INewsListProps> = ({ endPoint, newsAction }) => {
         date={news?.[0]?.creationDate}
       />
       <InfiniteScrollPage
+        icon={endPoint === 'news' ? 'news' : 'blog'}
+        title={endPoint === 'news' ? 'NEWS:TITLE' : 'BLOG:TITLE'}
+        titleCount={count}
         search={search}
         className='news-list'
         doChangePage={doChangePage(page)}

@@ -32,6 +32,7 @@ export type { IAppButtonRefreshProps } from './app/button/component/refresh/AppB
 export { default as AppChartBar } from './app/chart/bar/component/AppChartBar';
 export type { IAppChartBarProps } from './app/chart/bar/component/AppChartBar';
 export type { IChartBarDto } from './app/chart/bar/dto/ChartBarDto';
+export { useAppChartBar } from './app/chart/bar/hook/useAppChartBar';
 
 export { default as AppContent } from './app/content/AppContent';
 export type { IAppContentProps } from './app/content/AppContent';

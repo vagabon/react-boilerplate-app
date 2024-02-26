@@ -26,7 +26,7 @@ const AppChartBar: React.FC<IAppChartBarProps> = ({
     if (charts.length > 0) {
       convertToChartBar(charts, titleField, nbField, colors);
     }
-  }, [convertToChartBar, charts, colors]);
+  }, [convertToChartBar, charts, titleField, nbField, colors]);
 
   return (
     <MdCard>

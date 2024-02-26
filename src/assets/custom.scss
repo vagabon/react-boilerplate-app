@@ -48,8 +48,19 @@ $maxWidth: 1000px;
 
 /**** MUI ****/
 
+.MuiChip-label { font-weight: bold; }
+.MuiCardHeader-root {
+   .MuiCardHeader-content, .MuiTypography-root { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+}
+tspan { font-weight: bold; }
+
+.MuiListItemText-root span, .MuiListItemText-secondary { overflow: hidden; text-overflow: ellipsis; display: -webkit-box !important; -webkit-line-clamp: 2 !important; -webkit-box-orient: vertical; }
+
+.MuiCardHeader-content > .MuiTypography-root .MuiSvgIcon-root:nth-child(1) { width: 25px; height: 25px; }
 .MuiChip-root { margin: 0; }
-.MuiCardContent-root { display: flex; flex-direction: column; flex: 1; }
+.MuiPaper-root { .MuiCardContent-root { display: flex; flex-direction: column; } }
+.search-bar-card { height: auto !important; }
+div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
 .MuiButtonBase-root { margin: 0px !important; } 
 .MuiListItemIcon-root { 
   margin-right: 10px; min-width: 0px !important; 
@@ -73,8 +84,6 @@ $maxWidth: 1000px;
 
 .MuiDrawer-root { ul {padding: 0px !important; } }
 
-.MuiListItemText-root { span { overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; } }
-
 .MuiChip-deleteIcon { color: var(--mui-palette-secondary-main) !important; }
 .mode-dark .MuiChip-deleteIcon { color: var(--mui-palette-secondary-main-dark) !important; }
 
@@ -91,6 +100,8 @@ $maxWidth: 1000px;
   }
   .MuiCardContent-root { padding: 5px !important; }
   .MuiCardHeader-root { padding: 5px !important; }
+  .MuiListItemText-root span, .MuiListItemText-secondary { -webkit-line-clamp: 1 !important; }
+  .news-list .MuiList-root { margin-left: 0 !important; }
 }
 
 /**** BUTTON ****/
@@ -126,7 +137,7 @@ $maxWidth: 1000px;
   .max-width { flex-wrap: wrap; justify-content: center; }
   .flex, .search-bar { 
     display: flex; flex-direction: row; align-items: start; 
-    & > div { width: calc(50% - 5px) }
+    & > div { width: calc(50% - 10px) }
   }
   .bento { 
     display: flex; flex-direction: column; gap: 10px; 
@@ -146,14 +157,14 @@ $maxWidth: 1000px;
 
 .mardown-with-summary {
   display: flex !important; flex-direction: row !important; align-items: flex-start !important;
-  & > .MuiPaper-root:nth-child(1) { width: 72% !important; }
-  & > .MuiPaper-root:nth-child(2) {  width: 25% !important; position: fixed !important; right: 30px !important; }
+  & > .MuiPaper-root:nth-child(1) { width: 69% !important; }
+  & > .MuiPaper-root:nth-child(2) {  width: 20% !important; position: fixed !important; right: 10px !important; }
 }
 
 @media screen and (min-width: 1400px) {
   .mardown-with-summary {
     & > .MuiPaper-root:nth-child(1) { width: 80% !important; }
-    & > .MuiPaper-root:nth-child(2) { width: 15% !important; right: 10% !important; }
+    & > .MuiPaper-root:nth-child(2) { width: 15% !important; right: 1% !important; }
   }
 }
 
@@ -278,7 +289,7 @@ $maxWidth: 1000px;
 .modal-infinite {
   .MuiBox-root { height: 70% !important; min-height: 480px !important;  }
   .MuiCardContent-root { overflow: hidden; }
-  #infinite-container { overflow: auto; width: 100%; }
+  #infinite-container { overflow: auto; width: 100%; flex: 1; }
   .news-list .MuiList-root { margin-left: 0px !important; }
   ul { width: 100%; }
 }

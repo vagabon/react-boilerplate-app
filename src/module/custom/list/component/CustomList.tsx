@@ -36,8 +36,10 @@ export interface ICustomListProps {
   buttonChildren?: (data: IApiDto) => React.JSX.Element;
   callback?: (data: IApiDto) => void;
   callbackAvatar?: (data: IApiDto) => () => void;
+  isCheckboxColor?: boolean;
   callbackCheckbox?: (id: ID, checked: boolean) => void;
   callbackDelete?: (id: ID) => void;
+  iconSettings?: string;
   callbackSettings?: (data: IApiDto) => void;
 }
 
@@ -48,13 +50,16 @@ const CustomList: React.FC<ICustomListProps> = ({
   buttonChildren,
   callback,
   callbackAvatar,
+  isCheckboxColor,
   callbackCheckbox,
   callbackDelete,
+  iconSettings = 'settings',
   callbackSettings,
 }) => {
   const { t } = useAppTranslate();
   const [disabled, setDisabled] = useState<boolean>();
   const { message } = useMessage();
+  console.log(callback);
 
   useEffect(() => {
     if (message !== '') {
@@ -88,9 +93,12 @@ const CustomList: React.FC<ICustomListProps> = ({
     [callbackCheckbox],
   );
 
-  const getTextColor = useCallback((checked?: boolean) => {
-    return checked ? 'success' : '';
-  }, []);
+  const getTextColor = useCallback(
+    (checked?: boolean) => {
+      return checked && isCheckboxColor ? 'success' : '';
+    },
+    [isCheckboxColor],
+  );
 
   return (
     <MdList className={'custom-list overflow overflow-x-none ' + className}>
@@ -103,16 +111,15 @@ const CustomList: React.FC<ICustomListProps> = ({
       ) : (
         datas?.map((data) => (
           <Fragment key={data.entity.id}>
-            <MdListItem component='div' disablePadding callback={handleClick(data.entity)}>
+            <MdListItem
+              component='div'
+              disablePadding
+              callback={handleClick(data.entity)}
+              isCursor={callback !== undefined}>
               {data.avatar && (
                 <MdListItemAvatar>
                   <MdAvatar name={data.avatar} image={data.avatar} callback={callbackAvatar?.(data.user as IApiDto)} />
                 </MdListItemAvatar>
-              )}
-              {data.icon && (
-                <MdListItemIcon>
-                  <IconClickable icon={data.icon} color={getIconColor(data.checked)} disabled={true} />
-                </MdListItemIcon>
               )}
               {callbackCheckbox && (
                 <MdListItemIcon>
@@ -126,6 +133,11 @@ const CustomList: React.FC<ICustomListProps> = ({
                   />
                 </MdListItemIcon>
               )}
+              {data.icon && (
+                <MdListItemIcon>
+                  <IconClickable icon={data.icon} color={getIconColor(data.checked)} disabled={true} />
+                </MdListItemIcon>
+              )}
               <MdListItemText
                 color={getTextColor(data.checked) + ' ' + (data.checked ? 'checked' : 'not-checked')}
                 label={data.name}
@@ -136,7 +148,7 @@ const CustomList: React.FC<ICustomListProps> = ({
               {callbackSettings && (
                 <MdListItemIcon>
                   <IconClickable
-                    icon='settings'
+                    icon={iconSettings}
                     color='primary'
                     callback={() => callbackSettings(data.entity)}
                     disabled={data.disabled}

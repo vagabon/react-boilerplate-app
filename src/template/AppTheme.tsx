@@ -54,7 +54,7 @@ const AppTheme: React.FC<IAppThemeProps> = ({
     document.body.classList.remove('mode-light');
     document.body.classList.add('mode-' + mode);
     dispatch(CommonAction.setModeTheme(mode));
-  }, [mode]);
+  }, [mode, dispatch]);
 
   useEffect(() => {
     dispatch(CommonAction.clearMessage());

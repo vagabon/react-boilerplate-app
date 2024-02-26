@@ -21,7 +21,8 @@ const ProfileShow: React.FC<IProfileShowProps> = ({ user, disabled, profileReact
   return (
     <AppContent className='flex1 profil-content'>
       <MdCard
-        title={'-- ' + user?.username + ' --'}
+        icon='profile'
+        title={user?.username}
         buttonchildren={
           <>
             {currentUser?.user?.id === user.id && !disabled && (

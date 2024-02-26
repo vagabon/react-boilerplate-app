@@ -45,6 +45,7 @@ global.spyOn = (object, method, data) => {
 global.mockedUsedNavigate = jest.fn();
 global.mockParams = {};
 global.mockLocation = { pathname: 'home' };
+global.currentUser = undefined;
 
 export const mockBoilerPlateMd = {
   IconClickable: ({ callback }) => <div data-testid='IconClickable' onClick={callback}></div>,
@@ -60,13 +61,14 @@ export const mockBoilerPlateMd = {
   MdBox: (props) => mockWithChildren('MdBox', props),
   MdBouttonGroup: (props) => mockWithChildren('MdBouttonGroup', props),
   MdButton: ({ callback }) => <button data-testid='MdButton' onClick={callback}></button>,
-  MdCard: ({ className, title, titleIconLeft, callbackLeft, children, elementRigth }) => (
+  MdCard: ({ className, title, titleIconLeft, callbackLeft, children, elementRigth, actions }) => (
     <div data-testid='MdCard' className={className}>
       <div data-testid='MdCardHeader' onClick={titleIconLeft}>
         {title}
       </div>
       <div data-testid='MdCardLeft' onClick={callbackLeft}></div>
       <div>{elementRigth && elementRigth?.()}</div>
+      <div>{actions}</div>
       <div>{children}</div>
     </div>
   ),
@@ -188,6 +190,11 @@ export const mockBoilerPlateMd = {
     capitalize: jest.fn(),
     getDtoString: (data, name) => data[name],
     getRecursivValue: (data, name) => data[name],
+    addOrReplace: () => [{ id: 1 }],
+  },
+  StorageUtils: {
+    getCurrentUser: () => global.currentUser,
+    setCurrentUser: jest.fn(),
   },
   UuidUtils: {
     createUUID: () => 'uuid',

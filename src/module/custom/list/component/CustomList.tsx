@@ -59,7 +59,6 @@ const CustomList: React.FC<ICustomListProps> = ({
   const { t } = useAppTranslate();
   const [disabled, setDisabled] = useState<boolean>();
   const { message } = useMessage();
-  console.log(callback);
 
   useEffect(() => {
     if (message !== '') {

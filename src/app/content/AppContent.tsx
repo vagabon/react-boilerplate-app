@@ -11,7 +11,7 @@ const AppContent: React.FC<IAppContentProps> = ({ className = '', ...props }) =>
   const { id } = useId(props.id);
 
   return (
-    <div id={id} className={'flex max-width ' + className}>
+    <div id={id} className={'max-width ' + className}>
       {props.children}
     </div>
   );

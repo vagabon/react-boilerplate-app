@@ -36,7 +36,7 @@ const InfiniteScrollPage: React.FC<InfiniteScroolPageProps> = ({
   );
 
   return (
-    <div style={{ flex: '1', alignItems: 'center', display: 'flex', overflow: 'hidden', flexDirection: 'column' }}>
+    <>
       {props.search !== undefined && (
         <MdCard className='search-bar-card' icon={icon} title={title} titleCount={titleCount}>
           <MdSearchBar callBack={handleSearch(props.doSearch)} search={props.search} />
@@ -46,7 +46,7 @@ const InfiniteScrollPage: React.FC<InfiniteScroolPageProps> = ({
         {props.children}
       </AppInfiniteScrool>
       <AppFabAdd {...props} />
-    </div>
+    </>
   );
 };
 

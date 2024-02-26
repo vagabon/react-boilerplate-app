@@ -28,10 +28,10 @@ const AdminTable: React.FC<IAdminListPageProps> = ({ activePage, conf }) => {
 
   return (
     <>
-      <MdCard className='no-margin flex flex1'>
+      <MdCard className='flex flex1'>
         <HasRole roles={['ADMIN']}>
           <MdSearchBar callBack={handleSearch} search={state?.filter?.search} />
-          {pageConf && state && state?.table && (
+          {pageConf && state?.table && (
             <MdTableWithPagination
               count={state?.count}
               datas={state?.datas as JSONObject[]}

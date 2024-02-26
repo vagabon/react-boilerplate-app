@@ -87,7 +87,7 @@ const AppTheme: React.FC<IAppThemeProps> = ({
                 variantDrawer={variantDrawer}
                 callbackClose={handleDrawerOpen(true)}
               />
-              <div className='flex main-container'>{children}</div>
+              <div className='main-container'>{children}</div>
             </div>
 
             <ShowMessage />

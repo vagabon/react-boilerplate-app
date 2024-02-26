@@ -31,8 +31,8 @@ const AppInfiniteScrool: React.FC<IAppInfiniteScroolProps> = ({ className = '', 
   );
 
   return (
-    <div id={props.id} className={'flex container ' + className} onScroll={handleNavigation(props.callBack)}>
-      <div className='flex max-width'>{props.children}</div>
+    <div id={props.id} className={'container ' + className} onScroll={handleNavigation(props.callBack)}>
+      <div className='max-width'>{props.children}</div>
     </div>
   );
 };

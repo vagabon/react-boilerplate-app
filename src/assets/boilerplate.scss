@@ -34,7 +34,6 @@ h5 { font-size: 1.3rem !important; margin: 0 0 5px !important; }
 .justify-center { justify-content: center; }
 .justify-end { justify-content: flex-end; }
 .space-between { justify-content: space-between; }
-.no-margin { margin: 0px !important; width: 100% !important; }
 .relative { position: relative; }
 .margin-10 { 
   margin: 0px 10px !important; width: calc(100% - 20px) !important;
@@ -42,7 +41,7 @@ h5 { font-size: 1.3rem !important; margin: 0 0 5px !important; }
 }
 .overflow { overflow: auto; }
 .overflow-x-none { overflow-x: hidden; }
-.no-overflow { overflow: hidden; .MuiCardContent-root { overflow: auto; } }
+.no-overflow { overflow: hidden; align-self: normal !important; .MuiCardContent-root { overflow: auto; } }
 
 .width100 { width: 100%; }
 .heigth100 { height: 100%; }

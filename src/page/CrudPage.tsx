@@ -11,7 +11,7 @@ const CrudPage: React.FC<CrudPageProps> = ({ className = '', ...props }) => {
   return (
     <>
       <div className='main-container'>
-        <div className={'flex container ' + className}>{props.children}</div>
+        <div className={'container ' + className}>{props.children}</div>
       </div>
       <AppFabAdd {...props} />
     </>

@@ -83,7 +83,7 @@ export const AxiosInterceptor = <U>(
       } else if (error.response && error.response.status === 401) {
         store.dispatch(LoginAction.setLoginError());
         window.location.href = URL_SIGNIN;
-      } else {
+      } else if (message !== 'Error invoking subclass method') {
         store.dispatch(CommonAction.setMessage({ id: UuidUtils.createUUID(), message, type: 'error' }));
         return error;
       }

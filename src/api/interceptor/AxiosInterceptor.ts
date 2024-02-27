@@ -83,7 +83,10 @@ export const AxiosInterceptor = <U>(
       } else if (error.response && error.response.status === 401) {
         store.dispatch(LoginAction.setLoginError());
         window.location.href = URL_SIGNIN;
-      } else if (message !== 'Error invoking subclass method') {
+      } else if (
+        message !== 'Error invoking subclass method' &&
+        !message.includes('Insufficient downstream requests to emit item')
+      ) {
         store.dispatch(CommonAction.setMessage({ id: UuidUtils.createUUID(), message, type: 'error' }));
         return error;
       }

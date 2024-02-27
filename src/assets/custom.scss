@@ -21,13 +21,13 @@ $maxWidth: 1000px;
   .container { overflow: auto; width: 100%; padding: 5px; }
   .MuiCardHeader-title { font-size: 1.5rem !important; }
   .MuiAlert-message { align-items: center; justify-content: center; display: flex; font-size: 1rem; }
-  .max-width { max-width: $maxWidth; margin: 0 auto; width: 100%; margin-bottom: 5px; display: flex; flex-direction: column; }
-  .max-width-800 { max-width: 800; }
   #infinite-container { 
     flex: 1; 
-    & > .max-width { align-items: normal; justify-content: flex-start; flex: 1; display: flex;} 
+    & > .max-width { align-items: normal; justify-content: flex-start; flex: 1; gap: 10px; } 
     .MuiPaper-root { padding: 0 !important; margin: 0 !important; width: 100% !important; } 
   }
+  .max-width { max-width: $maxWidth; margin: 0 auto; width: 100%; margin-bottom: 5px; display: flex; flex-direction: column; }
+  .max-width-800 { max-width: 800; }
   .MuiListItemText-root { align-items: flex-start; flex-direction: column; display: flex; p { margin: 0px !important; } }
   .MuiPaper-root { margin: 5px !important; padding: 5px !important;  width: calc(100% - 10px); }
   .search-bar-card { padding: 0; .MuiCardContent-root { padding: 0 0.5rem !important; } }

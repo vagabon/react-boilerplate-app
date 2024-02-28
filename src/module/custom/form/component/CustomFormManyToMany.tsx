@@ -33,7 +33,7 @@ const CustomFormManyToMany: React.FC<ICustomFormManyToManyProps> = ({ conf, labe
   const validationSchema = rest.validationSchema?.[name as keyof JSONObject] ?? {};
 
   useEffect(() => {
-    setDatas(rest.values[name as keyof JSONObject] as IApiDto[]);
+    setDatas(rest.values?.[name as keyof JSONObject] ?? []);
   }, [rest.values, name]);
 
   const handleSelectData = useCallback(
@@ -50,11 +50,11 @@ const CustomFormManyToMany: React.FC<ICustomFormManyToManyProps> = ({ conf, labe
   );
 
   const handleDelete = useCallback(
-    (id: ID, oldDatas: IApiDto[], callback: SetFieldValueType) => () => {
+    (id: ID, oldDatas: IApiDto[], callback?: SetFieldValueType) => () => {
       if (id && oldDatas) {
         const newDatas = oldDatas.filter((oneData: IApiDto) => oneData.id !== id);
         setDatas(newDatas);
-        callback(name, newDatas);
+        callback?.(name, newDatas);
       }
     },
     [name],
@@ -74,13 +74,15 @@ const CustomFormManyToMany: React.FC<ICustomFormManyToManyProps> = ({ conf, labe
         <div>
           <MdTypo paragraph={true} sx={{ marginLeft: '10px' }}>
             {I18nUtils.translate(t, label)}
-            {validationSchema['required'] ? ' *' : ''}
+            {validationSchema?.['required' as keyof JSONObject] ? ' *' : ''}
           </MdTypo>
           <div>
             {datas?.map((data: IApiDto) => (
               <MdChip
+                className='icon-error'
                 key={data.id}
                 label={(data?.[conf.m2m?.name as keyof IApiDto] as string) ?? ''}
+                icon='delete'
                 callbackDelete={handleDelete(data.id, datas, rest.setFieldValue)}
               />
             ))}

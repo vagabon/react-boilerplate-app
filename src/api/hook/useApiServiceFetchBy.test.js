@@ -17,6 +17,7 @@ describe('useApiServiceFetchBy', () => {
     const action = {
       setSearchAndPage: jest.fn(),
       setPage: jest.fn(),
+      setOrder: jest.fn(),
     };
     const { result } = renderHook(() => useApiServiceFetchBy('test', '/uri', 'query', action));
     await result.current.doFetchByFields('values', 0);
@@ -30,5 +31,8 @@ describe('useApiServiceFetchBy', () => {
     await result.current.doChangePage(0, callback)(1);
     expect(action.setPage).toHaveBeenCalledTimes(1);
     expect(callback).toHaveBeenCalledTimes(2);
+
+    await result.current.handleChangeOrder('date', callback);
+    expect(callback).toHaveBeenCalledTimes(3);
   });
 });

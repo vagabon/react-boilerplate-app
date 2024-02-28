@@ -32,6 +32,7 @@ export interface ICustomListDto {
 export interface ICustomListProps {
   className?: string;
   icon?: string;
+  chipClassName?: string;
   datas: ICustomListDto[];
   buttonChildren?: (data: IApiDto) => React.JSX.Element;
   callback?: (data: IApiDto) => void;
@@ -47,6 +48,7 @@ const CustomList: React.FC<ICustomListProps> = ({
   className = '',
   datas,
   icon,
+  chipClassName,
   buttonChildren,
   callback,
   callbackAvatar,
@@ -142,7 +144,7 @@ const CustomList: React.FC<ICustomListProps> = ({
                 label={data.name}
                 secondary={<>{data.secondary}</>}
               />
-              {data.chip && <MdChip label={data.chip} icon={icon} />}
+              {data.chip && <MdChip className={chipClassName} label={data.chip} icon={icon} />}
               {buttonChildren && <>{buttonChildren(data.entity)}</>}
               {callbackSettings && (
                 <MdListItemIcon>

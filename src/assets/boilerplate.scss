@@ -50,6 +50,15 @@ h5 { font-size: 1.3rem !important; margin: 0 0 5px !important; }
 .mode-dark .text-primary { color: var(--mui-palette-primary-dark) !important; }
 .text-secondary { color: var(--mui-palette-secondary-main) !important; }
 .mode-dark .text-secondary { color: var(--mui-palette-secondary-dark) !important; }
+.text-error { color: var(--mui-palette-error-main) !important; }
+.mode-dark .text-error { color: var(--mui-palette-error-dark) !important; }
+
+.icon-primary .MuiChip-deleteIcon { color: var(--mui-palette-primary-main) !important; }
+.mode-dark .icon-primary .MuiChip-deleteIcon { color: var(--mui-palette-primary-dark) !important; }
+.icon-secondary .MuiChip-deleteIcon { color: var(--mui-palette-secondary-main) !important; }
+.mode-dark .icon-secondary .MuiChip-deleteIcon { color: var(--mui-palette-secondary-dark) !important; }
+.icon-error .MuiChip-deleteIcon { color: var(--mui-palette-error-main) !important; }
+.mode-dark .icon-error .MuiChip-deleteIcon { color: var(--mui-palette-error-dark) !important; }
 
 a.MuiTypography-root { font-size: 1rem; }
 .main-container a:-webkit-any-link { color: var(--mui-palette-primary-main) !important; }
@@ -64,6 +73,19 @@ a.MuiTypography-root { font-size: 1rem; }
 .mode-dark .success { color: var(--mui-palette-success-main-dark) !important; }
 .error { color: var(--mui-palette-error-main) !important; }
 .mode-dark .error { color: var(--mui-palette-error-main-dark) !important; }
+
+.border { border: 0px solid; }
+.border-left { border-left: 2px solid; }
+.border-primary { border-color: var(--mui-palette-primary-main) !important; }
+.mode-dark .border-primary { border-color: var(--mui-palette-primary-main-dark) !important; }
+.border-secondary { border-color: var(--mui-palette-secondary-main) !important; }
+.mode-dark .border-secondary { border-color: var(--mui-palette-secondary-main-dark) !important; }
+.border-info { border-color: var(--mui-palette-info-main) !important; }
+.mode-dark .border-info { border-color: var(--mui-palette-info-main-dark) !important; }
+.border-success { border-color: var(--mui-palette-success-main) !important; }
+.mode-dark .border-success { border-color: var(--mui-palette-success-main-dark) !important; }
+.border-error { border-color: var(--mui-palette-error-main) !important; }
+.mode-dark .border-error { border-color: var(--mui-palette-error-main-dark) !important; }
 
 /*** ROOT ***/
 :root {

@@ -5,6 +5,7 @@ const state = {
   data: [],
   count: 0,
   search: '',
+  order: {},
   page: 2,
 };
 
@@ -47,6 +48,12 @@ describe('BASE REDUCER', () => {
   test('Given ReducersActions When setSearch Then search from state is update', () => {
     const tested = ReducersActions.setSearch(state, { payload: 'test' });
     expect(tested.search).toBe('test');
+  });
+
+  test('Given ReducersActions When setSearch Then order from state is update', () => {
+    const tested = ReducersActions.setOrder(state, { payload: { order: 'date', orderAsc: true } });
+    expect(tested.order.order).toBe('date');
+    expect(tested.order.orderAsc).toBe(true);
   });
 
   test('Given ReducersActions When setPage Then datas from state is equals to datas', () => {

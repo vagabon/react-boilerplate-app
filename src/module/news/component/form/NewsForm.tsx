@@ -30,8 +30,8 @@ const NewsForm: React.FC<INewsFormProps> = ({ endPoint, newsAction, news }) => {
   }, [news]);
 
   const handleChange = useCallback(
-    (newsState: INewsDto, callback: HandleChangeType) => (event: ChangeEvent<JSONObject>) => {
-      callback(event);
+    (newsState: INewsDto, callback?: HandleChangeType) => (event: ChangeEvent<JSONObject>) => {
+      callback?.(event);
       setNewsForm({
         ...newsState,
         [event.target['name' as keyof JSONObject]]: event.target['value' as keyof JSONObject],

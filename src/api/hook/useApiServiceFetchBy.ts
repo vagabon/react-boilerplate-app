@@ -1,7 +1,7 @@
 import { ReducerType } from '@reduxjs/toolkit';
-import { IApiDto } from '@vagabond-inc/react-boilerplate-md';
+import { IApiDto, IOrderDto, JSONObject } from '@vagabond-inc/react-boilerplate-md';
 import { useCallback } from 'react';
-import { IReducersActionsProps } from '../../reducer/BaseReducer';
+import { IOrderState, IReducersActionsProps } from '../../reducer/BaseReducer';
 import { useAppDispatch, useAppSelector } from '../../store/Store';
 import { useApiServiceFindBy } from './useApiServiceFindBy';
 
@@ -11,14 +11,15 @@ export const useApiServiceFetchBy = <T extends IApiDto>(
   query: string,
   action: IReducersActionsProps,
   max: number = 10,
+  orderList: IOrderDto[] = [{ id: 'id', libelle: 'ID', orderAsc: false }],
 ) => {
   const dispatch = useAppDispatch();
-  const { datas, search, count, page } = useAppSelector((state) => state[stateName as keyof ReducerType]);
+  const { datas, search, count, order, page } = useAppSelector((state) => state[stateName as keyof ReducerType]);
   const { fetchBy, resetStopLoad } = useApiServiceFindBy<T>(uri, query, max);
 
   const fetchByFields = useCallback(
-    (values: string, page: number, orderBy: string, orderByAsc: string) => {
-      fetchBy(values, page, orderBy, orderByAsc, (data) => {
+    (values: string, page: number, order?: IOrderState) => {
+      fetchBy(values, page, order?.order, order?.orderAsc ? '' : 'desc', (data) => {
         dispatch(action.setCount(data.totalElements));
         dispatch(page === 0 ? action.setDatas(data?.content ?? []) : action.addDatas(data?.content ?? []));
       });
@@ -27,8 +28,8 @@ export const useApiServiceFetchBy = <T extends IApiDto>(
   );
 
   const doFetchByFields = useCallback(
-    (values: string, page: number, orderBy: string = 'creationDate', orderByAsc: string = 'desc') => {
-      fetchByFields(values, page, orderBy, orderByAsc);
+    (values: string, page: number, order?: IOrderState) => {
+      fetchByFields(values, page, order);
     },
     [fetchByFields],
   );
@@ -44,14 +45,24 @@ export const useApiServiceFetchBy = <T extends IApiDto>(
   );
 
   const doChangePage = useCallback(
-    (page: number, callback: (field: string, page: number) => void) =>
+    (page: number, callback: (field: string, page: number, order?: IOrderState) => void) =>
       (pageToAdd: number): void => {
         const newPage = page + pageToAdd;
         dispatch(action.setPage(newPage));
-        callback(search, newPage);
+        callback(search, newPage, order);
       },
-    [search, dispatch, action],
+    [search, order, dispatch, action],
   );
 
-  return { datas, search, count, page, doFetchByFields, doSearch, doChangePage };
+  const handleChangeOrder = useCallback(
+    (value?: string | JSONObject, callback?: (field: string, order?: IOrderState) => void) => {
+      const order = { order: (value ?? orderList[0].id) as string, orderAsc: false };
+      dispatch(action.setOrder(order));
+      resetStopLoad();
+      callback?.(search, order);
+    },
+    [dispatch, search, action, orderList, resetStopLoad],
+  );
+
+  return { datas, search, count, page, doFetchByFields, doSearch, doChangePage, order, orderList, handleChangeOrder };
 };

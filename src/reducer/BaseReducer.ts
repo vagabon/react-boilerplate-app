@@ -3,15 +3,28 @@ import { IApiDto } from '@vagabond-inc/react-boilerplate-md';
 
 export type ActionReturn = { payload: IApiDto; type: string };
 
+export interface IOrderState {
+  order: string;
+  orderAsc?: boolean;
+}
+
 export interface ReducerCrudState {
   datas: IApiDto[];
   data: IApiDto[];
   count: number;
   search: string;
+  order: IOrderState;
   page: number;
 }
 
-export const DefaultState: ReducerCrudState = { datas: [], data: [], search: '', page: 0, count: 0 };
+export const DefaultState: ReducerCrudState = {
+  datas: [],
+  data: [],
+  search: '',
+  order: { order: 'id', orderAsc: false },
+  page: 0,
+  count: 0,
+};
 
 export interface IReducersActionsProps {
   setDatas: ActionCreatorWithPayload<IApiDto[], string>;
@@ -22,6 +35,7 @@ export interface IReducersActionsProps {
   setSearch: ActionCreatorWithPayload<string, string>;
   setPage: ActionCreatorWithPayload<number, string>;
   setSearchAndPage: ActionCreatorWithPayload<{ search: string; page: number }, string>;
+  setOrder: ActionCreatorWithPayload<IOrderState>;
 }
 
 export const ReducersActions = {
@@ -64,6 +78,10 @@ export const ReducersActions = {
   setSearch: <T extends ReducerCrudState>(state: T, action: PayloadAction<string>) => ({
     ...state,
     search: action.payload,
+  }),
+  setOrder: <T extends ReducerCrudState>(state: T, action: PayloadAction<IOrderState>) => ({
+    ...state,
+    order: action.payload,
   }),
   setPage: <T extends ReducerCrudState>(state: T, action: PayloadAction<number>) => ({
     ...state,

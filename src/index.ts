@@ -167,7 +167,7 @@ export { default as ShowPage } from './page/ShowPage';
 export type { ShowPageProps } from './page/ShowPage';
 
 export { DefaultState, ReducersActions } from './reducer/BaseReducer';
-export type { ActionReturn, ReducerCrudState } from './reducer/BaseReducer';
+export type { ActionReturn, IOrderState, ReducerCrudState } from './reducer/BaseReducer';
 export { CommonAction, CommonReducer, default as CommonReducers } from './reducer/common/CommonReducer';
 export type { IApiState as ApiState, MessageType } from './reducer/common/CommonReducer';
 

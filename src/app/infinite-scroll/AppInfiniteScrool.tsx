@@ -16,7 +16,7 @@ const AppInfiniteScrool: React.FC<IAppInfiniteScroolProps> = ({ className = '', 
       if (
         wrappedElement &&
         callBack &&
-        wrappedElement.scrollHeight - wrappedElement.scrollTop <= wrappedElement.clientHeight + 30
+        wrappedElement.scrollHeight - wrappedElement.scrollTop <= wrappedElement.clientHeight + 350
       ) {
         if (stopScroll.current === false) {
           stopScroll.current = true;

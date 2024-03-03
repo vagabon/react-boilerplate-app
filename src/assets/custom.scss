@@ -315,6 +315,10 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
   .MuiDivider-root { margin-left: 54px; }
 }
 
+.modal-small > .MuiBox-root { 
+  max-width: 500px; min-height: 220px !important; max-height: 300px !important;
+}
+
 @media screen and (max-width: 700px) {
   .modal-form > .MuiBox-root, .modal-form-small > .MuiBox-root, .modal-infinite > .MuiBox-root { width: 95% !important;  } 
   .modal-medium > .MuiBox-root { width: 95% !important; min-height: 380px !important; }

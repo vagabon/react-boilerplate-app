@@ -47,6 +47,8 @@ global.mockParams = {};
 global.mockLocation = { pathname: 'home' };
 global.currentUser = undefined;
 
+const mockT = (value) => value;
+
 export const mockBoilerPlateMd = {
   IconClickable: ({ callback }) => <div data-testid='IconClickable' onClick={callback}></div>,
 
@@ -67,7 +69,7 @@ export const mockBoilerPlateMd = {
         {title}
       </div>
       <div data-testid='MdCardLeft' onClick={callbackLeft}></div>
-      <div>{elementRigth && elementRigth?.()}</div>
+      <div>{elementRigth?.()}</div>
       <div>{actions}</div>
       <div>{children}</div>
     </div>
@@ -156,7 +158,7 @@ export const mockBoilerPlateMd = {
 
   useFormError: () => ({ error: '' }),
   useAppTranslate: () => ({
-    t: (label) => label,
+    t: mockT,
     Trans: ({ i18nKey }) => <div data-testid='Trans'>{i18nKey}</div>,
     i18n: jest.fn(),
     LanguageDetector: jest.fn(),
@@ -182,6 +184,8 @@ export const mockBoilerPlateMd = {
 
   DateUtils: {
     format: (data, format) => data,
+    showEndDate: () => ({ days: 1, hours: 2, minutes: 3 }),
+    isDateSupNow: () => true,
   },
   I18nUtils: {
     translate: (t, label) => label,

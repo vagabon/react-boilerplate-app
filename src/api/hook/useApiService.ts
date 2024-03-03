@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import { useCallback, useRef } from 'react';
 import { useMessage } from '../../hook/message/useMessage';
 import { ApiService } from '../service/ApiService';
@@ -23,19 +24,24 @@ export const useApiService = <T>() => {
     }
   }, []);
 
-  const httpPost = useCallback((url: string, data: T, callback?: (data: T) => void) => {
-    if (!isLoadPost.current) {
-      isLoadPost.current = true;
-      ApiService.post<T>(url, data)
-        .then((data) => {
-          isLoadPost.current = false;
-          callback?.(data);
-        })
-        .catch(() => {
-          isLoadPost.current = false;
-        });
-    }
-  }, []);
+  const httpPost = useCallback(
+    (url: string, data: T, callback?: (data: T) => void, callbackError?: (data: AxiosError) => void) => {
+      if (!isLoadPost.current) {
+        isLoadPost.current = true;
+        ApiService.post<T>(url, data)
+          .then((data) => {
+            isLoadPost.current = false;
+            callback?.(data);
+          })
+          .catch((error) => {
+            console.log(error);
+            callbackError?.(error);
+            isLoadPost.current = false;
+          });
+      }
+    },
+    [],
+  );
 
   const httpPut = useCallback((url: string, data: T, callback?: (data: T) => void) => {
     if (!isLoadPut.current) {

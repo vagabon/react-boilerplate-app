@@ -11,7 +11,7 @@ export const useAppTheme = () => {
   const [showOpenDrawer, setShowOpenDrawer] = useState(false);
 
   useEffect(() => {
-    if (windowSize.width && windowSize.width > 800) {
+    if (windowSize.width && windowSize.width > 1000) {
       setOpenDrawer(true);
       setVariantDrawer('permanent');
       setShowOpenDrawer(false);

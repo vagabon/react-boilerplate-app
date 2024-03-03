@@ -29,16 +29,14 @@ h5 { font-size: 1.3rem !important; margin: 0 0 5px !important; }
 .flex1 { flex: 1; }
 .gap4 { gap: 4rem; }
 .align-center { align-items: center !important; }
-.align-end { align-items: end; }
-.align-start { align-items: flex-start; }
+.align-end { align-items: end !important; }
+.align-start { align-items: flex-start  !important; }
+.ellipsis { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .justify-center { justify-content: center; }
 .justify-end { justify-content: flex-end; }
 .space-between { justify-content: space-between; }
 .relative { position: relative; }
-.margin-10 { 
-  margin: 0px 10px !important; width: calc(100% - 20px) !important;
-  & > .MuiPaper-root { display: flex; }
-}
+.main-container .MuiPaper-root.margin-top30 { margin-top: 30px !important; }
 .overflow { overflow: auto; }
 .overflow-x-none { overflow-x: hidden; }
 .no-overflow { overflow: hidden; align-self: normal !important; .MuiCardContent-root { overflow: auto; } }
@@ -47,18 +45,18 @@ h5 { font-size: 1.3rem !important; margin: 0 0 5px !important; }
 .heigth100 { height: 100%; }
 
 .text-primary { color: var(--mui-palette-primary-main) !important; }
-.mode-dark .text-primary { color: var(--mui-palette-primary-dark) !important; }
+.mode-dark .text-primary { color: var(--mui-palette-primary-main-dark) !important; }
 .text-secondary { color: var(--mui-palette-secondary-main) !important; }
-.mode-dark .text-secondary { color: var(--mui-palette-secondary-dark) !important; }
+.mode-dark .text-secondary { color: var(--mui-palette-secondary-main-dark) !important; }
 .text-error { color: var(--mui-palette-error-main) !important; }
-.mode-dark .text-error { color: var(--mui-palette-error-dark) !important; }
+.mode-dark .text-error { color: var(--mui-palette-error-main-dark) !important; }
 
 .icon-primary .MuiChip-deleteIcon { color: var(--mui-palette-primary-main) !important; }
 .mode-dark .icon-primary .MuiChip-deleteIcon { color: var(--mui-palette-primary-dark) !important; }
 .icon-secondary .MuiChip-deleteIcon { color: var(--mui-palette-secondary-main) !important; }
-.mode-dark .icon-secondary .MuiChip-deleteIcon { color: var(--mui-palette-secondary-dark) !important; }
+.mode-dark .icon-secondary .MuiChip-deleteIcon { color: var(--mui-palette-secondary-main-dark) !important; }
 .icon-error .MuiChip-deleteIcon { color: var(--mui-palette-error-main) !important; }
-.mode-dark .icon-error .MuiChip-deleteIcon { color: var(--mui-palette-error-dark) !important; }
+.mode-dark .icon-error .MuiChip-deleteIcon { color: var(--mui-palette-error-main-dark) !important; }
 
 a.MuiTypography-root { font-size: 1rem; }
 .main-container a:-webkit-any-link { color: var(--mui-palette-primary-main) !important; }

@@ -22,8 +22,7 @@ $maxWidth: 1000px;
   .MuiCardHeader-title { font-size: 1.5rem !important; }
   #infinite-container { 
     flex: 1; 
-    & > .max-width { align-items: normal; justify-content: flex-start; flex: 1; gap: 10px; } 
-    .MuiPaper-root { padding: 0 !important; margin: 0 !important; width: 100% !important; } 
+    & > .max-width { align-items: normal; justify-content: flex-start; flex: 1; gap: 10px; }
   }
   .max-width { max-width: $maxWidth; margin: 0 auto; width: 100%; margin-bottom: 5px; display: flex; flex-direction: column; }
   .max-width-800 { max-width: 800; }
@@ -145,7 +144,7 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
 /**** NEWS ***/
 .news-list {
   .max-width { flex-wrap: wrap; justify-content: center; }
-  .flex, .search-bar { 
+  .max-width, .search-bar { 
     display: flex; flex-direction: row; align-items: start; 
     & > div { width: calc(50% - 10px) }
   }

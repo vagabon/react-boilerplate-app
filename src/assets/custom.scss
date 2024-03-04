@@ -270,7 +270,7 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
 .modal-list { max-height: 380px; overflow: auto; }
 
 .modal > .MuiBox-root { 
-  width: 70% !important; height: 50% !important; min-height: 370px; display: flex; padding: 10px;
+  width: 70% !important; min-height: 50% !important; display: flex; padding: 10px;
   .MuiPaper-root:not(.MuiAlert-root) {
     display: flex; flex-direction: column; overflow: auto; width: 100% !important; height: 100%; 
     .MuiCardContent-root {
@@ -282,7 +282,7 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
 .modal-form { .MuiPaper-root:not(.MuiAlert-root) { overflow: hidden; box-shadow: unset !important; display: flex; flex-direction: column; height: 100%; } }
 
 .modal-form > .MuiBox-root, .modal-form-small > .MuiBox-root { 
-  height: 70% !important; min-height: 480px !important; display: flex; flex-direction: column;
+  display: flex; flex-direction: column;
   .form-content { flex: 1; overflow: auto; justify-content: flex-start; display: flex; flex-direction: column; }
 }
 
@@ -304,7 +304,7 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
 }
 
 .modal-confirm {
-  & > .MuiBox-root { width: 45% !important; max-width: 500px; height: 220px !important; min-height: 220px; }
+  & > .MuiBox-root { width: 45% !important; max-width: 500px; height: 220px !important; min-height: 220px !important; }
 } 
 
 .modal-card > .MuiBox-root { 

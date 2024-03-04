@@ -20,6 +20,7 @@ export interface ICustomModaleChildProps {
 }
 
 export type ICustomModalChildrenType = (props: {
+  openModal?: () => void;
   closeModal?: () => void;
   handleYes?: (id: ID, callback?: (id: ID) => void) => () => void;
 }) => React.JSX.Element;
@@ -56,7 +57,7 @@ const CustomModale: React.FC<ICustomModaleProps> = ({
   return (
     <>
       <MdCommonModal className={className} open={open} handleClose={handleClose(rest.callbackOpen)}>
-        {children({ closeModal: handleClose(rest.callbackOpen), handleYes })}
+        {children({ openModal: openModal, closeModal: handleClose(rest.callbackOpen), handleYes })}
       </MdCommonModal>
       {icon && <IconClickable color={iconColor} icon={icon} callback={openModal} disabled={disabled} />}
       {button && <MdButton label={button} color={buttonColor} callback={openModal} disabled={disabled} />}

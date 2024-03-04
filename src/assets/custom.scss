@@ -66,7 +66,7 @@ tspan { font-weight: bold; }
 
 .MuiTabs-root { margin: 6px 8px -4px !important; }
 
-.MuiListItemText-root span, .MuiListItemText-secondary { overflow: hidden; text-overflow: ellipsis; display: -webkit-box !important; -webkit-line-clamp: 2 !important; -webkit-box-orient: vertical; }
+.MuiListItemText-root, .MuiListItemText-secondary { overflow: hidden; text-overflow: ellipsis; display: -webkit-box !important; -webkit-line-clamp: 2 !important; -webkit-box-orient: vertical; }
 
 .MuiCardHeader-content > .MuiTypography-root .MuiSvgIcon-root:nth-child(1) { width: 25px; height: 25px; }
 .MuiChip-root { margin: 0; }
@@ -271,7 +271,7 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
 
 .modal > .MuiBox-root { 
   width: 70% !important; height: 50% !important; min-height: 370px; display: flex; padding: 10px;
-  .MuiPaper-root {
+  .MuiPaper-root:not(.MuiAlert-root) {
     display: flex; flex-direction: column; overflow: auto; width: 100% !important; height: 100%; 
     .MuiCardContent-root {
       width: 100%; display: flex; flex-direction: column;
@@ -279,7 +279,7 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
   } 
 }
 
-.modal-form { .MuiPaper-root, .MuiCardContent-root { overflow: hidden; } }
+.modal-form { .MuiPaper-root:not(.MuiAlert-root) { overflow: hidden; box-shadow: unset !important; display: flex; flex-direction: column; height: 100%; } }
 
 .modal-form > .MuiBox-root, .modal-form-small > .MuiBox-root { 
   height: 70% !important; min-height: 480px !important; display: flex; flex-direction: column;
@@ -323,7 +323,7 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
   .modal-medium > .MuiBox-root { width: 95% !important; min-height: 380px !important; }
   .modal-card > .MuiBox-root { width: 95% !important; }
   .modal-confirm {
-    .MuiCardContent-root { justify-content: center; margin-left: 13px; width: calc(100% - 13px) !important; }
+    .MuiCardContent-root { justify-content: center; margin-left: 13px; width: calc(100% - 15px) !important; }
     & > .MuiBox-root{ width: 90% !important; }
   }
 }

@@ -9,9 +9,10 @@ import {
   useAppTranslate,
 } from '@vagabond-inc/react-boilerplate-md';
 import { Formik, FormikErrors } from 'formik';
-import { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { IPathDto } from '../../dto/path/PathDto';
 import { useMessage } from '../../hook/message/useMessage';
+import CustomModaleConfirm from '../../module/custom/modale/component/CustomModaleConfirm';
 import { CommonAction } from '../../reducer/common/CommonReducer';
 import { useAppDispatch, useAppSelector } from '../../store/Store';
 import { IYupValidators, YupUtils } from '../../utils/yup/YupUtils';
@@ -25,6 +26,7 @@ export interface IAppFormikProps {
   children: (props: IFormPropsDto) => React.JSX.Element;
   backButton?: boolean;
   submitButton?: boolean;
+  modalConfirm?: string;
 }
 
 const AppFormik: React.FC<IAppFormikProps> = ({ className = '', ...props }) => {
@@ -41,7 +43,7 @@ const AppFormik: React.FC<IAppFormikProps> = ({ className = '', ...props }) => {
   }, [props.initialValues]);
 
   const doSubmit = useCallback(
-    (values: IApiDto, validateForm: (values?: IApiDto) => Promise<FormikErrors<IApiDto>>): void => {
+    (values: IApiDto, validateForm: (values?: IApiDto) => Promise<FormikErrors<IApiDto>>) => () => {
       dispatch(CommonAction.clearMessage());
       validateForm(values).then((errors: FormikErrors<IApiDto>) => {
         console.debug('form errors', values, errors);
@@ -93,19 +95,26 @@ const AppFormik: React.FC<IAppFormikProps> = ({ className = '', ...props }) => {
               validationSchema: props.validationSchema,
               handleChange,
               handleBlur,
-              handleSubmit: (values: IApiDto) => doSubmit(values, validateForm),
+              handleSubmit: (values: IApiDto) => doSubmit(values, validateForm)(),
               validateForm,
               setFieldValue: setFieldValue as SetFieldValueType,
               errorMessage: message?.message,
             })}
           </div>
-          {(props.backButton || props.submitButton) && (
+          {(props.backButton || props.submitButton || props.modalConfirm) && (
             <>
               <div style={{ height: '30px' }}>&nbsp;</div>
               <div className='width100 flex-row justify-end'>
                 {props.backButton && history.length > 1 && <MdButton label='Retour' variant='text' callback={goBack} />}
                 {props.submitButton && props.onSubmit && (
-                  <MdButton label='COMMON:SUBMIT' callback={() => doSubmit(values, validateForm)} />
+                  <MdButton label='COMMON:SUBMIT' callback={doSubmit(values, validateForm)} />
+                )}
+                {props.modalConfirm && (
+                  <CustomModaleConfirm
+                    label={props.modalConfirm}
+                    button='COMMON:SUBMIT'
+                    callback={doSubmit(values, validateForm)}
+                  />
                 )}
               </div>
             </>

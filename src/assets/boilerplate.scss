@@ -28,6 +28,7 @@ h5 { font-size: 1.3rem !important; margin: 0 0 5px !important; }
 .flex-wrap { flex-wrap: wrap; }
 .flex1 { flex: 1; }
 .gap4 { gap: 4rem; }
+.gap10 { gap: 10rem; }
 .align-center { align-items: center !important; }
 .align-end { align-items: end !important; }
 .align-start { align-items: flex-start  !important; }
@@ -41,6 +42,7 @@ h5 { font-size: 1.3rem !important; margin: 0 0 5px !important; }
 .overflow-x-none { overflow-x: hidden; }
 .no-overflow { overflow: hidden; align-self: normal !important; .MuiCardContent-root { overflow: auto; } }
 
+.width50 { width: 50%; }
 .width100 { width: 100%; }
 .heigth100 { height: 100%; }
 
@@ -85,8 +87,13 @@ a.MuiTypography-root { font-size: 1rem; }
 .border-error { border-color: var(--mui-palette-error-main) !important; }
 .mode-dark .border-error { border-color: var(--mui-palette-error-main-dark) !important; }
 
+
+@media (max-width: 800px) {
+  .width50 { width: 100% !important; }
+}
+
 /*** ROOT ***/
 :root {
-    --mui-palette-primary-main: #9f9f9f8e;
-    --mui-palette-secondary-main: #9f9f9f8e;
-  }
+  --mui-palette-primary-main: #9f9f9f8e;
+  --mui-palette-secondary-main: #9f9f9f8e;
+}

@@ -1,18 +1,25 @@
 {
   "username": {
-    "required": true
+    "required": true,
+    "min": 5,
+    "max": 50,
+    "regexp": "^[a-zA-Z0-9_-]{5,50}(?! )+"
   },
   "email": {
     "required": true,
     "email": true
   },
   "password": {
+    "required": true,
     "max": 50,
-    "required": true
+    "regexp": "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$",
+    "regexpError": "ERRORS:FORMAT_PASSWORD"
   },
   "password2": {
-    "max": 50,
     "required": true,
+    "max": 50,
+    "regexp": "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$",
+    "regexpError": "ERRORS:FORMAT_PASSWORD",
     "same": "password",
     "sameLabel": "ERRORS:SAME_PASSWORD"
   }

@@ -31,6 +31,16 @@ global.mockDispatch = jest.fn();
 
 jest.mock('@vagabond-inc/react-boilerplate-md', () => ({ ...mockBoilerPlateMd }));
 
+global.mockEnqueueSnackbar = jest.fn();
+
+jest.mock('notistack', () => ({
+  useSnackbar: () => ({
+    enqueueSnackbar: global.mockEnqueueSnackbar,
+  }),
+  closeSnackbar: jest.fn(),
+  SnackbarProvider: ({ children }) => <>{children}</>,
+}));
+
 jest.mock('react-helmet-async', () => ({
   Helmet: ({ children }) => <div data-testid='Helmet'>{children}</div>,
   HelmetProvider: ({ children }) => <div data-testid='HelmetProvider'>{children}</div>,

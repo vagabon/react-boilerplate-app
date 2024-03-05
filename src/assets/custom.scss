@@ -243,6 +243,8 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
 .MuiFormControl-root { margin: 16px 0px 0px 0px !important; }
 .MuiInputLabel-root { line-height: 1em !important; top: -3px !important; }
 .MuiOutlinedInput-root { min-height: 40px !important; }
+.MuiSelect-select { display: flex !important; align-items: center !important; }
+.MuiCardContent-root p { margin: 0 !important; }
 
 .form, .form-content {
   gap: 10px;

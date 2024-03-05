@@ -42,7 +42,6 @@ const ProfileFormEmail: React.FC<IProfileFormEmailProps> = ({ user }) => {
           </b>
           <span>{user?.email}</span>
           <CustomModaleForm
-            small={true}
             title='AUTH:USER.EMAIL.TITLE'
             initialValues={{}}
             validationSchema={SCHEMA}

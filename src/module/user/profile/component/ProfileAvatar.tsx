@@ -48,7 +48,6 @@ const ProfileAvatar: React.FC<IProfileAvatarProps> = ({ user, disabled }) => {
       <MdFormFile label='Avatar' name='avatar' handleChangeFile={handleChangeFile(user.id, callbackFile())} />
       {isUserPassword(user) && !disabled && (
         <CustomModaleForm
-          small={true}
           title='AUTH:USER.AVATAR.TITLE'
           initialValues={{}}
           validationSchema={{}}

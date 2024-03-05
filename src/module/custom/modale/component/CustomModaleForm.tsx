@@ -17,13 +17,12 @@ const CustomModaleForm: React.FC<ICustomModaleFormProps> = ({
   title,
   initialValues,
   validationSchema,
-  small,
   onSubmit,
   children,
   ...rest
 }) => {
   return (
-    <CustomModaleCard {...rest} title={title} className={'modal-form' + (small ? '-small ' : ' ')}>
+    <CustomModaleCard {...rest} title={title} className={'modal-form'}>
       {({ closeModal }) => (
         <AppFormik
           className='flex justify-center'

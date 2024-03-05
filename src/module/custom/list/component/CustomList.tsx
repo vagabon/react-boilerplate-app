@@ -168,7 +168,7 @@ const CustomList: React.FC<ICustomListProps> = ({
                 </MdListItemIcon>
               )}
             </MdListItem>
-            <MdDivider variant={data.avatar ? 'inset' : 'fullWidth'} component='li' />
+            <MdDivider variant={data.avatar ? 'inset' : 'fullWidth'} />
           </Fragment>
         ))
       )}

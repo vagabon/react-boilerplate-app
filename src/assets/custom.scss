@@ -57,6 +57,12 @@ $maxWidth: 1000px;
 
 /**** MUI ****/
 
+.MuiDivider-root { margin: 10px 0px; list-style: none; }
+
+.MuiCardContent-root { overflow: auto; }
+.MuiTab-root { min-width: 110px !important; padding: 0 10px !important; &.MuiButtonBase-root { align-items: baseline; max-width: max-content !important; } }
+.MuiTabs-scroller, .MuiTabs-flexContainer { overflow: auto; }
+
 .MuiChip-label { font-weight: bold; }
 .MuiCardHeader-root {
   padding-bottom: 0 !important; 
@@ -66,7 +72,10 @@ tspan { font-weight: bold; }
 
 .MuiTabs-root { margin: 6px 8px -4px !important; }
 
-.MuiListItemText-root, .MuiListItemText-secondary { overflow: hidden; text-overflow: ellipsis; display: -webkit-box !important; -webkit-line-clamp: 2 !important; -webkit-box-orient: vertical; }
+.MuiListItemText-root, .MuiListItemText-secondary { 
+  overflow: hidden; text-overflow: ellipsis; display: -webkit-box !important; -webkit-line-clamp: 2 !important; -webkit-box-orient: vertical; 
+  .MuiCardContent-root p { margin: 0 !important; } 
+}
 
 .MuiCardHeader-content > .MuiTypography-root .MuiSvgIcon-root:nth-child(1) { width: 25px; height: 25px; }
 .MuiChip-root { margin: 0; }
@@ -265,34 +274,23 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
 
 /**** MODALE *****/
 
-.MuiBox-root { background-color: unset !important; border: 0 !important; }
-
-.modal-list { max-height: 380px; overflow: auto; }
 
 .modal > .MuiBox-root { 
-  width: 70% !important; min-height: 50% !important; display: flex; padding: 10px;
-  .MuiPaper-root:not(.MuiAlert-root) {
-    display: flex; flex-direction: column; overflow: auto; width: 100% !important; height: 100%; 
-    .MuiCardContent-root {
-      width: 100%; display: flex; flex-direction: column;
-    }
-  } 
-}
+    width: 45vw !important; min-height: 50vh !important; max-height: 95vh; display: flex; padding: 10px; background-color: unset !important; border: 0 !important;
+    .MuiPaper-root:not(.MuiAlert-root) {
+      display: flex; flex-direction: column; overflow: auto; width: 100% !important;
+      .MuiCardContent-root { width: 100%; display: flex; flex-direction: column; overflow: auto; }
+    } 
+  }
 
-.modal-form { .MuiPaper-root:not(.MuiAlert-root) { overflow: hidden; box-shadow: unset !important; display: flex; flex-direction: column; height: 100%; } }
+.modal-small > .MuiBox-root {  min-height: 35vh !important; }
 
-.modal-form > .MuiBox-root, .modal-form-small > .MuiBox-root { 
-  display: flex; flex-direction: column;
-  .form-content { flex: 1; overflow: auto; justify-content: flex-start; display: flex; flex-direction: column; }
-}
-
-.modal-form-small > .MuiBox-root { 
-  height: 50% !important; min-height: 320px !important; 
-}
-
-.modal-medium > .MuiBox-root { 
-  height: 30% !important; min-height: 280px !important; max-width: 600px;
-  .MuiCardContent-root { justify-content: center; }
+.modal-form { 
+  .MuiPaper-root:not(.MuiAlert-root) { overflow: hidden; box-shadow: unset !important; display: flex; flex-direction: column; height: 100%; } 
+  & > .MuiBox-root { 
+    display: flex; flex-direction: column; min-height: 25% !important;
+    .form-content { flex: 1; overflow: auto; justify-content: flex-start; display: flex; flex-direction: column; }
+  }
 }
 
 .modal-infinite {
@@ -304,36 +302,26 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
 }
 
 .modal-confirm {
-  & > .MuiBox-root { width: 45% !important; max-width: 500px; height: 220px !important; min-height: 220px !important; }
+  & > .MuiBox-root { width: 45% !important; max-width: 500px; min-height: 220px !important; }
 } 
 
-.modal-card > .MuiBox-root { 
-  max-width: 800px; min-height: 480px; 
-  .MuiCardHeader-root, .MuiCardContent-root { padding: 10px; overflow: hidden; }
-  ul button { margin: 0px; }
-  .MuiDivider-root { margin-left: 54px; }
+@media screen and (max-width: 1300px) {
+  .modal > .MuiBox-root { width: 55vw !important; }
 }
 
-.modal-small > .MuiBox-root { 
-  max-width: 500px; min-height: 220px !important; max-height: 300px !important;
+@media screen and (max-width: 1000px) {
+  .modal > .MuiBox-root { width: 70vw !important; }
 }
 
 @media screen and (max-width: 700px) {
-  .modal-form > .MuiBox-root, .modal-form-small > .MuiBox-root, .modal-infinite > .MuiBox-root { width: 95% !important;  } 
-  .modal-medium > .MuiBox-root { width: 95% !important; min-height: 380px !important; }
-  .modal-card > .MuiBox-root { width: 95% !important; }
-  .modal-confirm {
-    .MuiCardContent-root { justify-content: center; margin-left: 13px; width: calc(100% - 15px) !important; }
-    & > .MuiBox-root{ width: 90% !important; }
-  }
+  .modal > .MuiBox-root {  width: 90vw !important; } 
+  .modal-infinite > .MuiBox-root { width: 90vw !important;  } 
+  .modal-confirm > .MuiCardContent-root { justify-content: center; margin-left: 13px; width: calc(100% - 15px) !important; }
 }
 
 @media (max-height: 500px) {
-  .modal-form > .MuiBox-root { height: 70% !important; min-height: 100% !important; } 
-}
-
-@media (max-height: 300px) {
-  .modal > .MuiBox-root {  min-height: 100% !important; } 
+  .modal > .MuiBox-root {  min-height: 95vh !important; } 
+  .modal-small > .MuiBox-root {  min-height: 70vh !important; } 
 }
 
 /***** TABLE ****/

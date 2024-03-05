@@ -54,6 +54,7 @@ export const mockBoilerPlateMd = {
 
   useIcon: () => ({
     getIcon: jest.fn(),
+    getIconListDto: () => [{ id: 'icon', libelle: 'libelle', icon: 'icon' }],
   }),
 
   MdAlert: ({ label }) => <div data-testid='MdAlert'>{label}</div>,

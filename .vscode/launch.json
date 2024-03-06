@@ -1,0 +1,16 @@
+{
+  "configurations": [
+    {
+      "name": "start app",
+      "command": "npm unlink @vagabond-inc/react-boilerplate-md && npm link @vagabond-inc/react-boilerplate-md && npm link && npm run build:dev",
+      "request": "launch",
+      "type": "node-terminal"
+    }, 
+    {
+      "name": "sonarqube app",
+      "command": "npm run ci && npx sonar-scanner -Dsonar.login=$SONAR_TOKEN",
+      "request": "launch",
+      "type": "node-terminal"
+    }
+  ]
+}

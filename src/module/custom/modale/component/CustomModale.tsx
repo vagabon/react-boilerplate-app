@@ -14,6 +14,7 @@ export interface ICustomModaleChildProps {
   icon?: string;
   iconColor?: IconColorType;
   button?: string;
+  buttonSize?: 'small' | 'medium' | 'large';
   buttonColor?: ButtonColorType;
   open?: boolean;
   callbackOpen?: () => void;
@@ -35,6 +36,7 @@ const CustomModale: React.FC<ICustomModaleProps> = ({
   icon,
   iconColor,
   button,
+  buttonSize,
   buttonColor,
   disabled,
   children,
@@ -60,7 +62,9 @@ const CustomModale: React.FC<ICustomModaleProps> = ({
         {children({ openModal: openModal, closeModal: handleClose(rest.callbackOpen), handleYes })}
       </MdCommonModal>
       {icon && <IconClickable color={iconColor} icon={icon} callback={openModal} disabled={disabled} />}
-      {button && <MdButton label={button} color={buttonColor} callback={openModal} disabled={disabled} />}
+      {button && (
+        <MdButton size={buttonSize} label={button} color={buttonColor} callback={openModal} disabled={disabled} />
+      )}
     </>
   );
 };

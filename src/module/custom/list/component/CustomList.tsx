@@ -111,7 +111,7 @@ const CustomList: React.FC<ICustomListProps> = ({
         </MdListItem>
       ) : (
         datas?.map((data) => (
-          <Fragment key={data.entity.id}>
+          <Fragment key={'custom-list-' + data.name + data.entity.id}>
             <MdListItem
               component='div'
               disablePadding

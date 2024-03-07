@@ -14,6 +14,6 @@ describe('AuthReducers', () => {
 
   test('Given AuthReducers when setLoginSuccess then state is merged', () => {
     const tested = AuthReducers(state, LoginAction.setLoginError());
-    expect(tested.user).toBe(null);
+    expect(tested.user).toBe(undefined);
   });
 });

@@ -3,15 +3,15 @@ import { ICurrentUserDto } from '../../../dto/current-user/CurrentUserDto';
 import { StorageUtils } from '../../../utils/storage/StorageUtils';
 import { IUserDto } from '../../user/user/dto/UserDto';
 
-const user: ICurrentUserDto<IUserDto> | null = StorageUtils.getCurrentUser();
+const user = StorageUtils.getCurrentUser<ICurrentUserDto<IUserDto> | undefined>();
 console.log('load user', user);
 
 export interface AuthReducerState {
   isLoggedIn: boolean;
-  user: ICurrentUserDto<IUserDto> | null;
+  user: ICurrentUserDto<IUserDto> | undefined;
 }
 
-const initialState: AuthReducerState = user ? { isLoggedIn: true, user } : { isLoggedIn: false, user: null };
+const initialState: AuthReducerState = user ? { isLoggedIn: true, user } : { isLoggedIn: false, user: undefined };
 
 export const AuthReducer = createSlice({
   name: 'login',
@@ -25,7 +25,7 @@ export const AuthReducer = createSlice({
     setLoginError: (state: AuthReducerState) => ({
       ...state,
       isLoggedIn: false,
-      user: null,
+      user: undefined,
     }),
   },
 });

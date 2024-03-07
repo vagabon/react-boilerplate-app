@@ -17,16 +17,15 @@ const LoginFacebook: React.FC = () => {
         console.error('Facebook Login Failed !', error);
       }}
       render={({ onClick }) => (
-        <div className='flex align-center margin-5'>
-          <MdButton
-            label='AUTH:LOGIN.FACEBOOK'
-            variant='outlined'
-            color='facebook'
-            startIcon='facebook'
-            callback={onClick}
-            sx={{ minWidth: '220px' }}
-          />
-        </div>
+        <MdButton
+          label='AUTH:LOGIN.FACEBOOK'
+          variant='outlined'
+          size='large'
+          color='facebook'
+          startIcon='facebook'
+          callback={onClick}
+          fullWidth
+        />
       )}
     />
   );

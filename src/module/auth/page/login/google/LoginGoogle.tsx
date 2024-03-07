@@ -13,16 +13,15 @@ const LoginGoogle: React.FC = () => {
   });
 
   return (
-    <div className='flex align-center' style={{ marginBottom: '10px' }}>
-      <MdButton
-        label='AUTH:LOGIN.GOOGLE'
-        variant='outlined'
-        color='google'
-        startIcon='google'
-        callback={handleGoogleLogin}
-        sx={{ minWidth: '220px', marginBottom: '5px' }}
-      />
-    </div>
+    <MdButton
+      label='AUTH:LOGIN.GOOGLE'
+      variant='outlined'
+      size='large'
+      color='google'
+      startIcon='google'
+      callback={handleGoogleLogin}
+      fullWidth
+    />
   );
 };
 

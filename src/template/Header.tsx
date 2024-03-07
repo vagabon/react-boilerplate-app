@@ -70,7 +70,6 @@ const Header: React.FC<IHeaderProps> = ({
   const handleChangeLanguage = useCallback(
     (event: SelectChangeEvent<string | undefined>) => {
       const value = event.target.value as string;
-      localStorage.setItem('app_language', value);
       i18n?.changeLanguage(value);
       setLanguage(value);
     },

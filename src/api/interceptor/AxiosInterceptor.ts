@@ -70,7 +70,7 @@ export const AxiosInterceptor = <U>(
       ) {
         originalRequest['_retry' as keyof InternalAxiosRequestConfig] = 'true';
 
-        const user: ICurrentUserDto<U> | null = StorageUtils.getCurrentUser<U>();
+        const user = StorageUtils.getCurrentUser<ICurrentUserDto<U>>();
         if (user) {
           axios.defaults.headers.common['Authorization'] = '';
           const data = await axios.post(apiUrl + refreshTokenEndPoint, {

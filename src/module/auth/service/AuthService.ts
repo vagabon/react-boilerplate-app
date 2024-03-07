@@ -15,7 +15,7 @@ const ENDPOINT_GOOGLE_CONNECT = ENDPOINT_USER + '/google-connect';
 const ENDPOINT_FACEBOOK_CONNECT = ENDPOINT_USER + '/facebook-connect';
 
 const AuthService = {
-  register: (username: string, email: string, password: string) => {
+  register: (username?: string, email?: string, password?: string) => {
     return ApiService.post(ENDPOINT_SIGNUP, {
       username,
       email,
@@ -24,13 +24,7 @@ const AuthService = {
   },
 
   login: (username: string, password: string) => {
-    return ApiService.post<IUserDto>(ENDPOINT_SIGNIN, {
-      username,
-      password,
-    }).then((data) => {
-      StorageUtils.setCurrentUser(data as ICurrentUserDto<IUserDto>);
-      return data;
-    });
+    return ApiService.post<IUserDto>(ENDPOINT_SIGNIN, { username, password });
   },
 
   updateLocalStorage: (data: ICurrentUserDto<IUserDto>) => {
@@ -38,39 +32,27 @@ const AuthService = {
   },
 
   activation: (token: string) => {
-    return ApiService.post(ENDPOINT_ACTIVATION, {
-      token,
-    });
+    return ApiService.post(ENDPOINT_ACTIVATION, { token });
   },
 
   createIdentityToken: (email: string) => {
-    return ApiService.post(ENDPOINT_CREATE_IDENTITY_TOKEN, {
-      email,
-    });
+    return ApiService.post(ENDPOINT_CREATE_IDENTITY_TOKEN, { email });
   },
 
   checkIdentityToken: (token: string) => {
-    return ApiService.post<ICheckIdentityDto>(ENDPOINT_CHECK_IDENTITY_TOKEN, {
-      token,
-    });
+    return ApiService.post<ICheckIdentityDto>(ENDPOINT_CHECK_IDENTITY_TOKEN, { token });
   },
 
   resetPassword: (token: string) => {
-    return ApiService.post<ICheckIdentityDto>(ENDPOINT_RESET_PASSWORD, {
-      token,
-    });
+    return ApiService.post<ICheckIdentityDto>(ENDPOINT_RESET_PASSWORD, { token });
   },
 
   googleConnect: (googleToken: string) => {
-    return ApiService.post<IUserDto>(ENDPOINT_GOOGLE_CONNECT, {
-      googleToken,
-    });
+    return ApiService.post<IUserDto>(ENDPOINT_GOOGLE_CONNECT, { googleToken });
   },
 
   facebookConnect: (accessToken: string) => {
-    return ApiService.post<IUserDto>(ENDPOINT_FACEBOOK_CONNECT, {
-      accessToken,
-    });
+    return ApiService.post<IUserDto>(ENDPOINT_FACEBOOK_CONNECT, { accessToken });
   },
 
   logout: () => {

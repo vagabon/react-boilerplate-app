@@ -18,6 +18,7 @@ export const useAuth = () => {
     (data: IUserDto) => {
       AuthService.login(data.username as string, data.password as string).then((data) => {
         dispatch(LoginAction.setLoginSuccess(data as ICurrentUserDto<IUserDto>));
+        StorageUtils.setCurrentUser(data as ICurrentUserDto<IUserDto>);
         navigate(URL_LOGIN_REDIRECT);
       });
     },

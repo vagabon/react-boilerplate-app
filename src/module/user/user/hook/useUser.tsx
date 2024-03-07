@@ -1,5 +1,6 @@
 import { ID } from '@vagabond-inc/react-boilerplate-md';
 import { useCallback, useState } from 'react';
+import { ICurrentUserDto } from '../../../../dto/current-user/CurrentUserDto';
 import { useMessage } from '../../../../hook/message/useMessage';
 import { useAppSelector } from '../../../../store/Store';
 import { StorageUtils } from '../../../../utils/storage/StorageUtils';
@@ -22,7 +23,7 @@ export const useUser = () => {
 
   const updateLocalUser = useCallback(
     (newUser: IUserDto) => {
-      let user = StorageUtils.getCurrentUser<IUserDto>();
+      let user = StorageUtils.getCurrentUser<ICurrentUserDto<IUserDto>>();
       if (user?.user) {
         user = {
           ...user,

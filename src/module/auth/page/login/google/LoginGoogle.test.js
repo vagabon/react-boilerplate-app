@@ -11,9 +11,9 @@ jest.mock('@react-oauth/google', () => ({
 
 describe('LoginGoogle', () => {
   test('Given LoginGoogle when its mount then ', () => {
-    const { container } = render(<LoginGoogle />);
+    render(<LoginGoogle />);
     jest.spyOn(AuthService, 'googleConnect').mockReturnValue(Promise.resolve({}));
-    expect(container.getElementsByClassName('align-center')[0]).toBeDefined();
-    fireEvent.click(screen.getAllByRole('button')[0]);
+    expect(screen.getByTestId('MdButton')).toBeDefined();
+    fireEvent.click(screen.getByTestId('MdButton'));
   });
 });

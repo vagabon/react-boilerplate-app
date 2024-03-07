@@ -6,6 +6,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { IMenuDto } from '../dto/menu/MenuDto';
 import { CommonAction } from '../reducer/common/CommonReducer';
 import { useAppDispatch } from '../store/Store';
+import CookieConsents from './CookieConsents';
 import Footer from './Footer';
 import Header from './Header';
 import MenuDrawer from './MenuDrawer';
@@ -92,6 +93,7 @@ const AppTheme: React.FC<IAppThemeProps> = ({
 
             <ShowMessage />
 
+            <CookieConsents />
             <Footer conf={conf} version={version} />
           </div>
         </MdThemeProvider>

@@ -1,5 +1,5 @@
 import { GoogleOAuthProvider } from '@react-oauth/google';
-import { MdCard, MdFormCheckbox, MdInputText, WindowUtils } from '@vagabond-inc/react-boilerplate-md';
+import { MdCard, MdInputText, WindowUtils } from '@vagabond-inc/react-boilerplate-md';
 import { useEffect } from 'react';
 import AppContent from '../../../../app/content/AppContent';
 import AppFormik from '../../../../app/formik/AppFormik';
@@ -12,7 +12,7 @@ import LOGIN_SCHEMA from './schema/login.schema.json';
 
 const GOOGLE_CLIENT_ID: string = WindowUtils.getEnv('GOOGLE_CLIENT_ID');
 
-const DEFAULT_VALUES = { username: '', password: '', rememberMe: false };
+const DEFAULT_VALUES = { username: '', password: '' };
 
 const LoginPage: React.FC = () => {
   const { handleLogin, redirectIfLogged } = useAuth();
@@ -32,11 +32,12 @@ const LoginPage: React.FC = () => {
             backButton={false}>
             {(props) => (
               <>
+                <div className='flex-row-responsive gap10 align-center justify-center' style={{ marginBottom: '10px' }}>
+                  <LoginGoogle />
+                  <LoginFacebook />
+                </div>
                 <MdInputText label='AUTH:FIELDS.LOGIN' name='username' {...props} />
                 <MdInputText label='AUTH:FIELDS.PASSWORD' name='password' type='password' {...props} />
-                <MdFormCheckbox label='AUTH:FIELDS.REMEMBER_ME' name='rememberMe' {...props} />
-                <LoginGoogle />
-                <LoginFacebook />
               </>
             )}
           </AppFormik>

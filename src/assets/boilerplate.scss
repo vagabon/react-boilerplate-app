@@ -37,7 +37,8 @@ h5 { font-size: 1.3rem !important; margin: 0 0 5px !important; }
 .gap10 { gap: 10px; }
 .align-center { align-items: center !important; }
 .align-end { align-items: end !important; }
-.align-start { align-items: flex-start  !important; }
+.align-start { align-items: flex-start !important; }
+.align-stretch { align-items: stretch !important; }
 .ellipsis { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .justify-center { justify-content: center; }
 .justify-end { justify-content: flex-end; }

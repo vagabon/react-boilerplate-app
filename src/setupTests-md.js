@@ -124,6 +124,14 @@ export const mockBoilerPlateMd = {
     </div>
   ),
   MdList: (props) => mockWithChildren('MdList', props),
+  MdListSimple: ({ title, items }) => (
+    <ul data-testid='MdListSimple'>
+      {title}
+      {items.map((item) => (
+        <li key={item.label}>{item.label}</li>
+      ))}
+    </ul>
+  ),
   MdListItem: ({ callback, children }) => (
     <div data-testid='MdListItem' onClick={callback}>
       {children}

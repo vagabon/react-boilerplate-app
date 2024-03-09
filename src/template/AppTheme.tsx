@@ -80,7 +80,7 @@ const AppTheme: React.FC<IAppThemeProps> = ({
               showNotification={showNotification}
             />
 
-            <div className='flex flex-row' style={{ gap: '10px', flex: '1', overflow: 'hidden' }}>
+            <div className='flex flex-row' style={{ flex: '1', overflow: 'hidden' }}>
               <MenuDrawer
                 menu={menu}
                 drawerWidth={drawerWidth}

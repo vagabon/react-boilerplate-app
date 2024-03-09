@@ -1,4 +1,4 @@
-import { MdBox } from '@vagabond-inc/react-boilerplate-md';
+import { MdCard } from '@vagabond-inc/react-boilerplate-md';
 import { ReactNode } from 'react';
 import { useRole } from './useRole';
 
@@ -17,7 +17,9 @@ const HasRole: React.FC<HasRoleProps> = (props: HasRoleProps) => {
     <>
       {hasUserRole(props.roles, props.notRroles) && props.children}
       {!hasUserRole(props.roles, props.notRroles) && props.showError && !props.childrenIfNotAllowed && (
-        <MdBox sx={{ marginTop: '20px', textAlign: 'center' }}>Vous n&apos;êtes pas habilité à voir ce contenu.</MdBox>
+        <MdCard style={{ marginTop: '20px', textAlign: 'center' }}>
+          Vous n&apos;êtes pas habilité à voir ce contenu.
+        </MdCard>
       )}
       {!hasUserRole(props.roles, props.notRroles) && props.childrenIfNotAllowed && <>{props.childrenIfNotAllowed}</>}
     </>

@@ -9,19 +9,19 @@ const SCHEMA: IYupValidators = {
   password: {
     type: 'password',
     required: true,
-    regexp: '^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$',
+    regexp: '^(?=.*[A-Za-z])(?=.*\\d)(?=.*[-_@$!%*?&])[A-Za-z\\d-_@$!%*?&]{8,}$',
     regexpError: 'ERRORS:FORMAT_PASSWORD',
   },
   newPassword: {
     type: 'password',
     required: true,
-    regexp: '^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$',
+    regexp: '^(?=.*[A-Za-z])(?=.*\\d)(?=.*[-_@$!%*?&])[A-Za-z\\d-_@$!%*?&]{8,}$',
     regexpError: 'ERRORS:FORMAT_PASSWORD',
   },
   newPasswordConfirm: {
     type: 'password',
     required: true,
-    regexp: '^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$',
+    regexp: '^(?=.*[A-Za-z])(?=.*\\d)(?=.*[-_@$!%*?&])[A-Za-z\\d-_@$!%*?&]{8,}$',
     regexpError: 'ERRORS:FORMAT_PASSWORD',
     same: 'newPassword',
     sameLabel: 'ERRORS:SAME_PASSWORD',

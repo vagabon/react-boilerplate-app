@@ -7,7 +7,7 @@ import { IUserDto } from '../../user/user/dto/UserDto';
 import { LoginAction } from '../reducer/AuthReducers';
 import AuthService from '../service/AuthService';
 
-const URL_LOGIN_REDIRECT = '/';
+const URL_LOGIN_REDIRECT = '/profile';
 
 export const useAuth = () => {
   const dispatch = useAppDispatch();

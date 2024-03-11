@@ -12,13 +12,13 @@
   "password": {
     "required": true,
     "max": 50,
-    "regexp": "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$",
+    "regexp": "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[-_@$!%*?&])[A-Za-z\\d-_@$!%*?&]{8,}$",
     "regexpError": "ERRORS:FORMAT_PASSWORD"
   },
   "password2": {
     "required": true,
     "max": 50,
-    "regexp": "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$",
+    "regexp": "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[-_@$!%*?&])[A-Za-z\\d-_@$!%*?&]{8,}$",
     "regexpError": "ERRORS:FORMAT_PASSWORD",
     "same": "password",
     "sameLabel": "ERRORS:SAME_PASSWORD"

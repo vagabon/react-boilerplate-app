@@ -20,13 +20,15 @@ export interface IConfDto {
     WEBSITE: string;
     URL: string;
     TARGET: string;
+    MENTION_URL?: string;
+    CGV_URL?: string;
   };
 }
 
 export interface IAppThemeProps {
   palette: JSONObject;
   conf: IConfDto;
-  version: string;
+  email: string;
   menu: IMenuDto[];
   children: ReactNode;
   i18n?: i18nType;
@@ -37,7 +39,7 @@ export interface IAppThemeProps {
 const AppTheme: React.FC<IAppThemeProps> = ({
   palette,
   conf,
-  version,
+  email,
   menu,
   children,
   i18n,
@@ -94,7 +96,7 @@ const AppTheme: React.FC<IAppThemeProps> = ({
             <ShowMessage />
 
             <CookieConsents />
-            <Footer conf={conf} version={version} />
+            <Footer conf={conf} email={email} />
           </div>
         </MdThemeProvider>
       </HelmetProvider>

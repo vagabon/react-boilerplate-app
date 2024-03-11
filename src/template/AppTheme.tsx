@@ -63,7 +63,6 @@ const AppTheme: React.FC<IAppThemeProps> = ({
 
   useEffect(() => {
     getScrollPage(location.pathname);
-    return () => {};
   }, [getScrollPage, location.pathname]);
 
   useEffect(() => {

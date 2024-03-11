@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import { useCallback, useRef } from 'react';
 import { IPageableDto } from '../../dto/pageable/PageableDto';
 import { ApiService } from '../service/ApiService';
@@ -13,6 +14,7 @@ export const useApiServiceFindBy = <T>(url: string, champs?: string, max?: numbe
       orderBy: string = 'id',
       orderByAsc: string = 'desc',
       callback: (data: IPageableDto<T[]>) => void = () => {},
+      callbackError?: (data: AxiosError) => void,
     ) => {
       if (!isLoad.current) {
         isLoad.current = true;
@@ -23,12 +25,13 @@ export const useApiServiceFindBy = <T>(url: string, champs?: string, max?: numbe
               if (data?.content?.length === 0 && page > 0) {
                 stopLoad.current = true;
               } else {
-                callback(data);
                 stopLoad.current = data?.content?.length < (max ?? 10);
+                callback(data);
               }
             })
-            .catch(() => {
+            .catch((error) => {
               isLoad.current = false;
+              callbackError?.(error);
             });
       }
     },

@@ -73,6 +73,7 @@ describe('AppTheme', () => {
         auth: { isLoggedIn: false },
       }),
     );
+    Element.prototype.scrollTo = () => {};
     render(<AppTheme palette={palette} conf={conf} menu={menu} />);
     expect(screen.getByTestId('MdThemeProvider')).toBeDefined();
   });

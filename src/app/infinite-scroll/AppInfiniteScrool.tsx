@@ -19,8 +19,9 @@ const AppInfiniteScrool: React.FC<IAppInfiniteScroolProps> = ({ className = '', 
     (callBack?: () => void) => () => {
       const wrappedElement = document.getElementById(props.id);
       const scrollTop = wrappedElement?.scrollTop ?? 0;
-      console.log(`myRef.scrollTop: ${scrollTop}`);
+
       dispatch(CommonAction.setScrools({ pathname: location.pathname, position: scrollTop }));
+
       if (
         wrappedElement &&
         callBack &&

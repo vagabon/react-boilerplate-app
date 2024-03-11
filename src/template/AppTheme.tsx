@@ -1,7 +1,7 @@
 import { JSONObject, MdThemeProvider, useAppRouter, useTheme } from '@vagabond-inc/react-boilerplate-md';
 import { type i18n as i18nType } from 'i18next';
 import { SnackbarProvider } from 'notistack';
-import { ReactNode, useEffect } from 'react';
+import { ReactNode, useEffect, useRef } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { IMenuDto } from '../dto/menu/MenuDto';
 import { CommonAction } from '../reducer/common/CommonReducer';
@@ -46,11 +46,25 @@ const AppTheme: React.FC<IAppThemeProps> = ({
   nbNotification,
   showNotification,
 }) => {
-  const { location } = useAppRouter();
   const dispatch = useAppDispatch();
+  const { location } = useAppRouter();
   const { mode, theme, switchTheme } = useTheme(palette);
-  const { drawerWidth, openDrawer, variantDrawer, showOpenDrawer, handleDrawerOpen, handleCloseSnackbar } =
-    useAppTheme();
+  const {
+    drawerWidth,
+    openDrawer,
+    variantDrawer,
+    showOpenDrawer,
+    handleDrawerOpen,
+    handleCloseSnackbar,
+    getScrollPage,
+    handleScroll,
+  } = useAppTheme();
+  const mainContainer = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    getScrollPage(location.pathname);
+    return () => {};
+  }, [getScrollPage, location.pathname]);
 
   useEffect(() => {
     document.body.classList.remove('mode-dark');
@@ -90,7 +104,12 @@ const AppTheme: React.FC<IAppThemeProps> = ({
                 variantDrawer={variantDrawer}
                 callbackClose={handleDrawerOpen(true)}
               />
-              <div className='main-container'>{children}</div>
+              <div
+                ref={mainContainer}
+                className='main-container'
+                onScroll={handleScroll(mainContainer, location.pathname)}>
+                {children}
+              </div>
             </div>
 
             <ShowMessage />

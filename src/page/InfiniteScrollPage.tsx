@@ -2,7 +2,6 @@ import { MdCard, MdSearchBar } from '@vagabond-inc/react-boilerplate-md';
 import { ReactNode, useCallback } from 'react';
 import AppFabAdd, { IAppFabAddProps } from '../app/fab/add/AppFabAdd';
 import AppInfiniteScrool from '../app/infinite-scroll/AppInfiniteScrool';
-
 export interface InfiniteScroolPageProps extends IAppFabAddProps {
   icon?: string;
   title?: string;

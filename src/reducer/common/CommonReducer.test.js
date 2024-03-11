@@ -76,7 +76,7 @@ describe('CommonReducer', () => {
   });
 
   test('Given CommonReducer When setScrools Then scroll from state is update', () => {
-    state.scrolls = { pathname: 0 };
+    state.scrolls = [{ pathname: '/', position: 0 }];
     const scroll = { pathname: 'pathname2', position: 1000 };
     const tested = CommonReducers(state, CommonAction.setScrools(scroll));
     expect(Object.entries(tested.scrolls)).toHaveLength(2);

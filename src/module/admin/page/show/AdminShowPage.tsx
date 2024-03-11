@@ -75,7 +75,7 @@ const AdminShowPage: React.FC<IAdminShowPageProps> = ({ conf }) => {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <AppContent>
+      <AppContent seoTitle='SEO:ADMIN.TITLE' seoDescription='SEO:ADMIN.DESCRIPTION'>
         <HasRole roles={['ADMIN']}>
           <MdCard title={getTitle()}>
             {state && (

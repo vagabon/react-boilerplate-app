@@ -28,7 +28,11 @@ const NewsCard: React.FC<INewsCardProps> = (props: INewsCardProps) => {
   );
 
   return (
-    <AppContent id={id} className='mardown-with-summary'>
+    <AppContent
+      id={id}
+      className='mardown-with-summary'
+      seoTitle='SEO:NEWS.TITLE'
+      seoDescription='SEO:NEWS.DESCRIPTION'>
       <MdCard
         title={props.news.title}
         avatar={props.news.avatar}

@@ -1,4 +1,4 @@
-import { WindowUtils, useAppRouter } from '@vagabond-inc/react-boilerplate-md';
+import { I18nUtils, WindowUtils, useAppRouter, useAppTranslate } from '@vagabond-inc/react-boilerplate-md';
 import { useCallback, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 
@@ -20,6 +20,7 @@ const CustomSeo: React.FC<ICustomSeoProps> = ({
   type = 'webapp',
   date,
 }) => {
+  const { t } = useAppTranslate();
   const { location } = useAppRouter();
   const [url, setUrl] = useState<string>();
 
@@ -36,13 +37,13 @@ const CustomSeo: React.FC<ICustomSeoProps> = ({
 
   return (
     <Helmet data-rh='true' ata-react-helmet='true'>
-      <title data-rh='true'>{WEBSITE_TITLE + ' | ' + title}</title>
+      <title data-rh='true'>{WEBSITE_TITLE + ' | ' + I18nUtils.translate(t, title as string)}</title>
       <link rel='canonical' href={url} />
       <meta name='description' content={description} data-rh='true' />
       <meta property='og:type' content={type} />
       <meta property='og:title' content={WEBSITE_TITLE + ' | ' + title} />
       <meta property='og:image' content={getImage(image)} />
-      <meta property='og:description' content={description} />
+      <meta property='og:description' content={I18nUtils.translate(t, description as string)} />
       <meta name='twitter:creator' content={'@VagabondDev'} />
       <meta name='twitter:card' content={type} />
       <meta name='twitter:title' content={title} />

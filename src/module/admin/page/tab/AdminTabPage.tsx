@@ -29,7 +29,7 @@ const AdminTabsPage: React.FC<IAdminTabsPageProps> = ({ conf }) => {
   );
 
   return (
-    <AppContent className='flex1'>
+    <AppContent className='flex1' seoTitle='SEO:ADMIN.TITLE' seoDescription='SEO:ADMIN.DESCRIPTION'>
       <HasRole roles={['ADMIN']}>
         {activeTab && <MdTabs value={activeTab} callback={handleChange} tabs={conf.tabs} />}
         {activeTab && <AdminTable activePage={activeTab} conf={conf} />}

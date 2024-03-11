@@ -33,7 +33,7 @@ const CheckIdentityPage: React.FC = () => {
   }, []);
 
   return (
-    <AppContent>
+    <AppContent seoTitle='SEO:IDENTITY.TITLE' seoDescription='SEO:IDENTITY.DESCRIPTION'>
       <MdCard title='AUTH:CHECK_IDENTITY.TITLE'>
         {state === false && (
           <AppFormik

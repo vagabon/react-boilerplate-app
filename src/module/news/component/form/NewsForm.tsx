@@ -48,7 +48,11 @@ const NewsForm: React.FC<INewsFormProps> = ({ endPoint, newsAction, news }) => {
   );
 
   return (
-    <AppContent id='news-form' className='markdown-form'>
+    <AppContent
+      id='news-form'
+      className='markdown-form'
+      seoTitle='SEO:NEWS.TITLE'
+      seoDescription='SEO:NEWS.DESCRIPTION'>
       <MdCard title={news.id ? getLocale('UPDATE') : getLocale('CREATE')}>
         <AppFormik initialValues={news} validationSchema={NEWS_SCHEMA} onSubmit={createOrUpdateNews}>
           {(props) => (

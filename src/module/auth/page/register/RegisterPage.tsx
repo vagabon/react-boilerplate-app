@@ -47,7 +47,7 @@ const RegisterPage: React.FC = () => {
   );
 
   return (
-    <AppContent>
+    <AppContent seoTitle='SEO:REGISTER.TITLE' seoDescription='SEO:REGISTER.DESCRIPTION'>
       <MdCard title='AUTH:REGISTER.TITLE'>
         {!isRegister && (
           <AppFormik

@@ -19,7 +19,7 @@ const ProfileShow: React.FC<IProfileShowProps> = ({ user, disabled, profileReact
   const { user: currentUser } = useAppSelector((state) => state.auth);
 
   return (
-    <AppContent className='flex1 profil-content'>
+    <AppContent className='flex1 profil-content' seoTitle='SEO:PROFIL.TITLE' seoDescription='SEO:PROFIL.DESCRIPTION'>
       <MdCard
         icon='profile'
         title={user?.username}

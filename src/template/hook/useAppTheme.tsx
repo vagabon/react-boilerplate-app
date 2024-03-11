@@ -1,10 +1,14 @@
 import { SnackbarKey, closeSnackbar } from 'notistack';
-import { useCallback, useEffect, useState } from 'react';
+import { MutableRefObject, useCallback, useEffect, useState } from 'react';
 import { useAppResize } from '../../app/resize/hook/useAppResize';
+import { CommonAction, ScrollsType } from '../../reducer/common/CommonReducer';
+import { useAppDispatch, useAppSelector } from '../../store/Store';
+
+const drawerWidth = 240;
 
 export const useAppTheme = () => {
-  const drawerWidth = 240;
-
+  const dispatch = useAppDispatch();
+  const { scrolls } = useAppSelector((state) => state.common);
   const { windowSize } = useAppResize();
   const [openDrawer, setOpenDrawer] = useState(false);
   const [variantDrawer, setVariantDrawer] = useState<'permanent' | 'persistent' | 'temporary'>('temporary');
@@ -34,5 +38,37 @@ export const useAppTheme = () => {
     [],
   );
 
-  return { drawerWidth, openDrawer, variantDrawer, showOpenDrawer, handleDrawerOpen, handleCloseSnackbar };
+  const getScrollPage = useCallback(
+    (pathname: string) => {
+      const scroll = scrolls?.filter((scroll: ScrollsType) => scroll.pathname === pathname);
+      const classes = document.getElementsByClassName('main-container');
+      if (classes?.length > 0 && scroll?.length > 0) {
+        classes[0].scrollTo(0, scroll ? scroll[0].position : 0);
+      }
+      const classesInfinite = document.getElementsByClassName('infinite-container');
+      if (classesInfinite?.length > 0 && scroll?.length > 0) {
+        classesInfinite[0].scrollTo(0, scroll ? scroll[0].position : 0);
+      }
+    },
+    [scrolls],
+  );
+
+  const handleScroll = useCallback(
+    (mainContainer: MutableRefObject<HTMLDivElement | null>, pathname: string) => () => {
+      const scrollTop = mainContainer?.current?.scrollTop ?? 0;
+      dispatch(CommonAction.setScrools({ pathname: pathname, position: scrollTop }));
+    },
+    [dispatch],
+  );
+
+  return {
+    drawerWidth,
+    openDrawer,
+    variantDrawer,
+    showOpenDrawer,
+    handleDrawerOpen,
+    handleCloseSnackbar,
+    getScrollPage,
+    handleScroll,
+  };
 };

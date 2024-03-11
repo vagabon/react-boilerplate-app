@@ -35,7 +35,7 @@ const ActivationPage: React.FC = () => {
   }, [message]);
 
   return (
-    <AppContent>
+    <AppContent seoTitle='SEO:ACTIVATION.TITLE' seoDescription='SEO:ACTIVATION.DESCRIPTION'>
       <MdCard title='AUTH:ACTIVATION.TITLE'>
         {isActivated === undefined && <Trans i18nKey='AUTH:ACTIVATION.CURRENT' />}
         {isActivated === false && <Trans i18nKey='AUTH:ACTIVATION.FAIL' />}

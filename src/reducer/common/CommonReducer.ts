@@ -10,7 +10,7 @@ export interface IMessageState {
   type: MessageType;
 }
 
-type ScrollsType = { pathname: string; position: number };
+export type ScrollsType = { pathname: string; position: number };
 
 export interface IApiState {
   message: IMessageState;
@@ -95,12 +95,19 @@ export const CommonReducer = createSlice({
       };
     },
     setScrools: (state: IApiState, action: PayloadAction<ScrollsType>) => {
+      let scrolls = [...state.scrolls];
+      if (scrolls.find((scroll) => scroll.pathname === action.payload.pathname)) {
+        scrolls = scrolls.map((scroll) =>
+          scroll.pathname === action.payload.pathname
+            ? { pathname: action.payload.pathname, position: action.payload.position }
+            : scroll,
+        );
+      } else {
+        scrolls.push({ pathname: action.payload.pathname, position: action.payload.position });
+      }
       return {
         ...state,
-        scrolls: {
-          ...state.scrolls,
-          [action.payload.pathname]: action.payload.position,
-        },
+        scrolls,
       };
     },
     setModeTheme: (state: IApiState, action: PayloadAction<string>) => {

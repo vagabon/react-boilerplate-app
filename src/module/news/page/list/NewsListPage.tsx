@@ -7,7 +7,7 @@ export interface INewsListPageProps extends INewsRouterProps {}
 
 const NewsListPage: React.FC<INewsListPageProps> = ({ endPoint, newsAction }) => {
   return (
-    <AppContent className='no-overflow'>
+    <AppContent className='no-overflow' seoTitle='SEO:NEWS.TITLE' seoDescription='SEO:NEWS.DESCRIPTION'>
       <HasRole roles={[]}>
         <NewsList endPoint={endPoint} newsAction={newsAction} />
       </HasRole>

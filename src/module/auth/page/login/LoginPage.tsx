@@ -22,7 +22,7 @@ const LoginPage: React.FC = () => {
   }, [redirectIfLogged]);
 
   return (
-    <AppContent className='max-width-800'>
+    <AppContent className='max-width-800' seoTitle='SEO:LOGIN.TITLE' seoDescription='SEO:LOGIN.DESCRIPTION'>
       <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
         <MdCard title='AUTH:LOGIN.TITLE'>
           <AppFormik

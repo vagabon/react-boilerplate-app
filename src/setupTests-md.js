@@ -57,6 +57,12 @@ export const mockBoilerPlateMd = {
     getIconListDto: () => [{ id: 'icon', libelle: 'libelle', icon: 'icon' }],
   }),
 
+  MdAccordion: ({ title, description }) => (
+    <div data-testid='MdAccordion'>
+      {title}
+      <div data-testid='MdAccordionDescription'>{description}</div>
+    </div>
+  ),
   MdAlert: ({ label }) => <div data-testid='MdAlert'>{label}</div>,
   MdAvatar: ({ callback }) => <div data-testid='MdAvatar' onClick={callback}></div>,
   MdCollapse: ({ children }) => <div data-testid='MdCollapse'>{children}</div>,

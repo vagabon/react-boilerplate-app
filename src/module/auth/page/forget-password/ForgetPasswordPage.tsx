@@ -30,7 +30,7 @@ const ForgetPasswordPage: React.FC = () => {
   );
 
   return (
-    <AppContent>
+    <AppContent seoTitle='SEO:FORGET_PASSWORD.TITLE' seoDescription='SEO:FORGET_PASSWORD.DESCRIPTION'>
       <MdCard title='AUTH:FORGET_PASSWORD.TITLE'>
         <AppFormik
           initialValues={DEFAULT_VALUES}

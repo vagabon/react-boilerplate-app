@@ -12,7 +12,8 @@ const ShowMessage: React.FC = () => {
   useEffect(() => {
     if (message.id !== '' && message.message !== '' && message.message !== lastMessage.current) {
       lastMessage.current = message.message;
-      enqueueSnackbar(I18nUtils.translate(t, message.message), {
+      const messages = message.message.split(';');
+      enqueueSnackbar(I18nUtils.translate(t, messages[0]), {
         variant: message.type,
         autoHideDuration: 3000,
         anchorOrigin: { horizontal: 'right', vertical: 'bottom' },

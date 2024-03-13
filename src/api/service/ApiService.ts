@@ -1,7 +1,7 @@
 import { ID, JSON, WindowUtils } from '@vagabond-inc/react-boilerplate-md';
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 
-const API_URL: string = WindowUtils.getEnv('API_URL');
+const API_URL = WindowUtils.getEnv('API_URL') as string;
 
 export const ApiService = {
   get: <T>(endPoint: string, baseUrl: string = API_URL): Promise<T> => {

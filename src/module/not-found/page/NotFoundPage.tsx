@@ -9,7 +9,7 @@ import {
 } from '@vagabond-inc/react-boilerplate-md';
 import AppContent from '../../../app/content/AppContent';
 
-const EMAIL_CONTACT = WindowUtils.getEnv('EMAIL_CONTACT');
+const EMAIL_CONTACT = WindowUtils.getEnv('EMAIL_CONTACT') as string;
 
 export interface INotFoundPageProps {}
 

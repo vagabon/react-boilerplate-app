@@ -2,7 +2,7 @@ import FacebookLogin from '@greatsumini/react-facebook-login';
 import { MdButton, WindowUtils } from '@vagabond-inc/react-boilerplate-md';
 import { useAuth } from '../../../hook/useAuth';
 
-const FACEBOOK_CLIENT_ID: string = WindowUtils.getEnv('FACEBOOK_CLIENT_ID');
+const FACEBOOK_CLIENT_ID = WindowUtils.getEnv('FACEBOOK_CLIENT_ID') as string;
 
 const LoginFacebook: React.FC = () => {
   const { handleFacebookLogin } = useAuth();

@@ -62,7 +62,7 @@ const RegisterPage: React.FC = () => {
                 <MdInputText label='AUTH:FIELDS.PASSWORD' name='password' type='password' {...props} />
                 <MdInputText label='AUTH:FIELDS.PASSWORD_CONFIRM' name='password2' type='password' {...props} />
                 <div className='flex' style={{ marginTop: '15px', alignItems: 'flex-end' }}>
-                  <ReCAPTCHA sitekey={WindowUtils.getEnv('GOOGLE_CAPTCHA_ID')} ref={captchaRef} />
+                  <ReCAPTCHA sitekey={WindowUtils.getEnv('GOOGLE_CAPTCHA_ID') as string} ref={captchaRef} />
                 </div>
               </>
             )}

@@ -2,8 +2,8 @@ import { I18nUtils, WindowUtils, useAppRouter, useAppTranslate } from '@vagabond
 import { useCallback, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 
-const WEBSITE_TITLE = WindowUtils.getEnv('WEBSITE_TITLE');
-const API_URL: string = WindowUtils.getEnv('API_URL');
+const WEBSITE_TITLE = WindowUtils.getEnv('WEBSITE_TITLE') as string;
+const API_URL = WindowUtils.getEnv('API_URL') as string;
 
 export interface ICustomSeoProps {
   title?: string;

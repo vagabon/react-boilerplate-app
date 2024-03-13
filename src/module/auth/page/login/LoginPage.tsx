@@ -10,7 +10,7 @@ import LoginFacebook from './facebook/LoginFacebook';
 import LoginGoogle from './google/LoginGoogle';
 import LOGIN_SCHEMA from './schema/login.schema.json';
 
-const GOOGLE_CLIENT_ID: string = WindowUtils.getEnv('GOOGLE_CLIENT_ID');
+const GOOGLE_CLIENT_ID = WindowUtils.getEnv('GOOGLE_CLIENT_ID') as string;
 
 const DEFAULT_VALUES = { username: '', password: '' };
 

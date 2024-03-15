@@ -30,13 +30,12 @@ global.mockComponent =
   };
 global.mockComponentWithCallBack =
   (name) =>
-  ({ onClick, children }) =>
-    (
-      <>
-        <input data-testid={name} onClick={onClick} />
-        {children}
-      </>
-    );
+  ({ onClick, children }) => (
+    <>
+      <input data-testid={name} onClick={onClick} />
+      {children}
+    </>
+  );
 
 global.spyOn = (object, method, data) => {
   return jest.spyOn(object, method).mockReturnValue(Promise.resolve(data));
@@ -169,6 +168,7 @@ export const mockBoilerPlateMd = {
   ),
   MdTypo: (props) => mockWithChildren('MdTypo', props),
 
+  MdTable: (props) => mockWithChildren('MdTable', props),
   MdTableWithPagination: (props) => mockWithChildren('MdTableWithPagination', props),
 
   useFormError: () => ({ error: '' }),

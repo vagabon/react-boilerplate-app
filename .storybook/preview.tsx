@@ -1,5 +1,7 @@
 import { CssBaseline, PaletteColorOptions, ThemeProvider, createTheme } from '@mui/material';
+import { SnackbarProvider } from 'notistack';
 import React from 'react';
+import { HelmetProvider } from 'react-helmet-async';
 import '../config';
 import '../src/assets/boilerplate.scss';
 import '../src/assets/custom.scss';
@@ -35,10 +37,14 @@ const theme = createTheme({
 });
 
 export const withMuiTheme = (Story, context) => (
-  <ThemeProvider theme={theme}>
-    <CssBaseline />
-    <Story {...context} />
-  </ThemeProvider>
+  <SnackbarProvider maxSnack={5}>
+    <HelmetProvider data-rh='true' ata-react-helmet='true'>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Story {...context} />
+      </ThemeProvider>
+    </HelmetProvider>
+  </SnackbarProvider>
 );
 
 export const decorators = [withMuiTheme];

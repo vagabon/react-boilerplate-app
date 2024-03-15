@@ -34,7 +34,7 @@ export const useAdminList = (activePage: string, pageConf: IAdminTabDto, state: 
   );
 
   const handleTableChange = useCallback(
-    (page: number, rowsPerPage: number, sortBy: string, sortByOrder: 'asc' | 'desc') => {
+    (page: number, rowsPerPage: number = 10, sortBy: string = 'id', sortByOrder: 'asc' | 'desc' = 'asc') => {
       dispatch(AdminAction.setPage({ activePage, table: { page, rowsPerPage, sortBy, sortByOrder } }));
     },
     [dispatch, activePage],

@@ -1,10 +1,8 @@
-import { ID, JSON, WindowUtils } from '@vagabond-inc/react-boilerplate-md';
+import { ID, JSON } from '@vagabond-inc/react-boilerplate-md';
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 
-const API_URL = WindowUtils.getEnv('API_URL') as string;
-
 export const ApiService = {
-  get: <T>(endPoint: string, baseUrl: string = API_URL): Promise<T> => {
+  get: <T>(baseUrl: string, endPoint: string): Promise<T> => {
     return axios.get(encodeURI(baseUrl + endPoint)).then(
       (response: AxiosResponse) => {
         return ApiService.returnPromise<T>(response);
@@ -15,8 +13,8 @@ export const ApiService = {
     );
   },
 
-  put: <T>(endPoint: string, data: T): Promise<T> => {
-    return axios.put(encodeURI(API_URL + endPoint), data).then(
+  put: <T>(baseUrl: string, endPoint: string, data: T): Promise<T> => {
+    return axios.put(encodeURI(baseUrl + endPoint), data).then(
       (response: AxiosResponse) => {
         return ApiService.returnPromise<T>(response);
       },
@@ -27,13 +25,14 @@ export const ApiService = {
   },
 
   post: <T>(
+    baseUrl: string,
     endPoint: string,
     data: T,
     config: JSON = {
       'Content-Type': 'application/json',
     },
   ): Promise<T> => {
-    return axios.post(encodeURI(API_URL + endPoint), data, config).then(
+    return axios.post(encodeURI(baseUrl + endPoint), data, config).then(
       (response: AxiosResponse) => {
         return ApiService.returnPromise<T>(response);
       },
@@ -43,8 +42,8 @@ export const ApiService = {
     );
   },
 
-  patch: <T>(endPoint: string, data: T): Promise<T> => {
-    return axios.patch(encodeURI(API_URL + endPoint), data).then(
+  patch: <T>(baseUrl: string, endPoint: string, data: T): Promise<T> => {
+    return axios.patch(encodeURI(baseUrl + endPoint), data).then(
       (response: AxiosResponse) => {
         return ApiService.returnPromise<T>(response);
       },
@@ -54,8 +53,8 @@ export const ApiService = {
     );
   },
 
-  delete: <T>(endPoint: string): Promise<T> => {
-    return axios.delete(encodeURI(API_URL + endPoint)).then(
+  delete: <T>(baseUrl: string, endPoint: string): Promise<T> => {
+    return axios.delete(encodeURI(baseUrl + endPoint)).then(
       (response: AxiosResponse) => {
         return ApiService.returnPromise<T>(response);
       },
@@ -73,8 +72,8 @@ export const ApiService = {
     }
   },
 
-  findById: <T>(endPoint: string, id: ID): Promise<T> => {
-    return ApiService.get<T>(endPoint + '/' + id).then(
+  findById: <T>(baseUrl: string, endPoint: string, id: ID): Promise<T> => {
+    return ApiService.get<T>(baseUrl, endPoint + '/' + id).then(
       (data: T) => {
         return Promise.resolve(data);
       },
@@ -85,6 +84,7 @@ export const ApiService = {
   },
 
   findBy: <T>(
+    baseUrl: string,
     endPoint: string,
     champs: string,
     values: string,
@@ -97,6 +97,7 @@ export const ApiService = {
     const orderConst: string = orderField ? '>>' + orderField + orderType : '';
     const champsComplete = champs + orderConst;
     return ApiService.get<T>(
+      baseUrl,
       endPoint + '?fields=' + champsComplete + '&values=' + values + '&first=' + first + '&max=' + max,
     ).then(
       (data: T) => {
@@ -108,8 +109,8 @@ export const ApiService = {
     );
   },
 
-  countBy: (endPoint: string, champs: string, values: string) => {
-    return ApiService.get<{ count: number }>(endPoint + '?fields=' + champs + '&values=' + values).then(
+  countBy: (baseUrl: string, endPoint: string, champs: string, values: string) => {
+    return ApiService.get<{ count: number }>(baseUrl, endPoint + '?fields=' + champs + '&values=' + values).then(
       (data: { count: number }) => {
         return Promise.resolve(data.count);
       },

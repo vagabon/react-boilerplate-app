@@ -6,6 +6,7 @@ import { IProfileDto } from '../dto/ProfileDto';
 
 const ProfileService = {
   loadRoles: (
+    apiUrl: string,
     filter: IProfileDto,
     first: number,
     max: number,
@@ -13,6 +14,7 @@ const ProfileService = {
     order: string,
   ): Promise<IProfileDto[]> => {
     return ApiService.findBy<IProfileDto[]>(
+      apiUrl,
       '/profiles/findBy',
       'name%',
       filter.search + '',
@@ -23,22 +25,22 @@ const ProfileService = {
     );
   },
 
-  countRoles: (search: string): Promise<number> => {
-    return ApiService.countBy('/profiles/countBy', 'name%', search + '');
+  countRoles: (apiUrl: string, search: string): Promise<number> => {
+    return ApiService.countBy(apiUrl, '/profiles/countBy', 'name%', search + '');
   },
 
-  loadRole: (id: string | undefined): Promise<IProfileDto> => {
-    return ApiService.findById<IProfileDto>('/profiles/findBy/', id);
+  loadRole: (apiUrl: string, id: string | undefined): Promise<IProfileDto> => {
+    return ApiService.findById<IProfileDto>(apiUrl, '/profiles/findBy/', id);
   },
 
-  create: (data: IProfileDto) => (dispatch: Dispatch) => {
-    return ApiService.post('/profiles/findBy/', data).then(() => {
+  create: (apiUrl: string, data: IProfileDto) => (dispatch: Dispatch) => {
+    return ApiService.post(apiUrl, '/profiles/findBy/', data).then(() => {
       dispatch(CommonAction.setMessage({ id: UuidUtils.createUUID(), message: 'CREATION_OK', type: 'success' }));
     });
   },
 
-  update: (data: IProfileDto) => (dispatch: Dispatch) => {
-    return ApiService.put('/profiles/findBy/', data).then(() => {
+  update: (apiUrl: string, data: IProfileDto) => (dispatch: Dispatch) => {
+    return ApiService.put(apiUrl, '/profiles/findBy/', data).then(() => {
       dispatch(CommonAction.setMessage({ id: UuidUtils.createUUID(), message: 'UPDATE_OK', type: 'success' }));
     });
   },

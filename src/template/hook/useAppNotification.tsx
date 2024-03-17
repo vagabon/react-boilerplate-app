@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { useNotification } from '../../module/notification/hook/useNotification';
 
-export const useAppNotification = () => {
-  const { nbNotification, fetchNotificationUnread } = useNotification();
+export const useAppNotification = (apiUrl: string) => {
+  const { nbNotification, fetchNotificationUnread } = useNotification(apiUrl);
   const interval = useRef<NodeJS.Timeout>();
 
   useEffect(() => {

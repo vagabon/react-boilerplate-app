@@ -2,8 +2,12 @@ import { useGoogleLogin } from '@react-oauth/google';
 import { MdButton } from '@vagabond-inc/react-boilerplate-md';
 import { useAuth } from '../../../hook/useAuth';
 
-const LoginGoogle: React.FC = () => {
-  const { handleGoogleLogin: doGoogleLogin } = useAuth();
+export interface ILoginGoogleProps {
+  apiUrl: string;
+}
+
+const LoginGoogle: React.FC<ILoginGoogleProps> = ({ apiUrl }) => {
+  const { handleGoogleLogin: doGoogleLogin } = useAuth(apiUrl);
 
   const handleGoogleLogin = useGoogleLogin({
     onSuccess: (codeResponse) => {

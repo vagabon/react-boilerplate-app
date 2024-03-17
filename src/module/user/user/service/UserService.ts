@@ -9,12 +9,20 @@ const ENDPOINT_USERS_FINDBY = ENDPOINT_USERS + '/findBy';
 const ENDPOINT_USERS_COUNTBY = ENDPOINT_USERS + '/countBy';
 
 const UserService = {
-  fetchById: (id: ID): Promise<IUserDto> => {
-    return ApiService.findById<IUserDto>(ENDPOINT_USERS, id);
+  fetchById: (apiUrl: string, id: ID): Promise<IUserDto> => {
+    return ApiService.findById<IUserDto>(apiUrl, ENDPOINT_USERS, id);
   },
 
-  loadUsers: (filter: IUserDto, first: number, max: number, orderField: string, order: string): Promise<IUserDto[]> => {
+  loadUsers: (
+    apiUrl: string,
+    filter: IUserDto,
+    first: number,
+    max: number,
+    orderField: string,
+    order: string,
+  ): Promise<IUserDto[]> => {
     return ApiService.findBy<IUserDto[]>(
+      apiUrl,
       ENDPOINT_USERS_FINDBY,
       'username%And|Email%',
       filter.search + ',' + filter.search,
@@ -25,35 +33,35 @@ const UserService = {
     );
   },
 
-  countUsers: (search: string): Promise<number> => {
-    return ApiService.countBy(ENDPOINT_USERS_COUNTBY, 'username%And|Email%', search + ',' + search);
+  countUsers: (apiUrl: string, search: string): Promise<number> => {
+    return ApiService.countBy(apiUrl, ENDPOINT_USERS_COUNTBY, 'username%And|Email%', search + ',' + search);
   },
 
-  loadUser: (id: string | undefined): Promise<IUserDto> => {
-    return ApiService.findById<IUserDto>(ENDPOINT_USERS, id);
+  loadUser: (apiUrl: string, id: string | undefined): Promise<IUserDto> => {
+    return ApiService.findById<IUserDto>(apiUrl, ENDPOINT_USERS, id);
   },
 
-  create: (data: IUserDto) => (dispatch: Dispatch) => {
-    return ApiService.post(ENDPOINT_USERS, data).then(() => {
+  create: (apiUrl: string, data: IUserDto) => (dispatch: Dispatch) => {
+    return ApiService.post(apiUrl, ENDPOINT_USERS, data).then(() => {
       dispatch(CommonAction.setMessage({ id: UuidUtils.createUUID(), message: 'CREATION_OK', type: 'success' }));
     });
   },
 
-  update: (data: IUserDto) => (dispatch: Dispatch) => {
-    return ApiService.put(ENDPOINT_USERS, data).then(() => {
+  update: (apiUrl: string, data: IUserDto) => (dispatch: Dispatch) => {
+    return ApiService.put(apiUrl, ENDPOINT_USERS, data).then(() => {
       dispatch(CommonAction.setMessage({ id: UuidUtils.createUUID(), message: 'UPDATE_OK', type: 'success' }));
     });
   },
 
-  updateEmail: (id: ID, email: string): Promise<IUserDto> => {
-    return ApiService.put<IUserDto>(ENDPOINT_USERS + '/email', {
+  updateEmail: (apiUrl: string, id: ID, email: string): Promise<IUserDto> => {
+    return ApiService.put<IUserDto>(apiUrl, ENDPOINT_USERS + '/email', {
       id,
       email,
     }).then((data) => data);
   },
 
-  updatePassword: (id: ID, password: string, newPassword: string): Promise<IUserDto> => {
-    return ApiService.put<IUserDto>(ENDPOINT_USERS + '/password', {
+  updatePassword: (apiUrl: string, id: ID, password: string, newPassword: string): Promise<IUserDto> => {
+    return ApiService.put<IUserDto>(apiUrl, ENDPOINT_USERS + '/password', {
       id,
       password,
       newPassword,

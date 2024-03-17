@@ -5,17 +5,18 @@ import NewsShare from '../share/NewsShare';
 import { INewsCardProps } from './NewsCard';
 
 export interface INewsCardSmallProps extends INewsCardProps {
+  apiUrl: string;
   endPoint: string;
 }
 
-const NewsCardSmall: React.FC<INewsCardSmallProps> = (props: INewsCardSmallProps) => {
+const NewsCardSmall: React.FC<INewsCardSmallProps> = ({ apiUrl, ...props }) => {
   const { hasUserRole } = useRole();
 
   return (
     <MdCard
       title={props.news.title}
-      avatar={props.news.avatar}
-      image={props.news.image}
+      avatar={apiUrl + '/download?fileName=' + props.news.avatar}
+      image={apiUrl + '/download?fileName=' + props.news.image}
       date={props.news.creationDate}
       url={'/' + props.endPoint + '/show/' + props.news.id + '/' + CustomSeoUtils.convertTitle(props.news.title)}
       urlUpdate={hasUserRole(['ADMIN']) ? '/' + props.endPoint + '/update/' + props.news.id : undefined}>

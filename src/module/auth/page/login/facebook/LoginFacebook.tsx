@@ -1,15 +1,18 @@
 import FacebookLogin from '@greatsumini/react-facebook-login';
-import { MdButton, WindowUtils } from '@vagabond-inc/react-boilerplate-md';
+import { MdButton } from '@vagabond-inc/react-boilerplate-md';
 import { useAuth } from '../../../hook/useAuth';
 
-const FACEBOOK_CLIENT_ID = WindowUtils.getEnv('FACEBOOK_CLIENT_ID') as string;
+export interface ILoginFacebookProps {
+  apiUrl: string;
+  facebookClientId: string;
+}
 
-const LoginFacebook: React.FC = () => {
-  const { handleFacebookLogin } = useAuth();
+const LoginFacebook: React.FC<ILoginFacebookProps> = ({ apiUrl, facebookClientId }) => {
+  const { handleFacebookLogin } = useAuth(apiUrl);
 
   return (
     <FacebookLogin
-      appId={FACEBOOK_CLIENT_ID}
+      appId={facebookClientId}
       onSuccess={(response) => {
         handleFacebookLogin(response.accessToken);
       }}

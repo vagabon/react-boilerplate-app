@@ -3,16 +3,19 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import AppContent from '../../../../app/content/AppContent';
 import { useAppSelector } from '../../../../store/Store';
+import { IBaseCustomSeoProps } from '../../../custom/seo/component/CustomSeo';
 import { useAuth } from '../../hook/useAuth';
 import AuthService from '../../service/AuthService';
 
-const ActivationPage: React.FC = () => {
+export interface IActivationPageProps extends IBaseCustomSeoProps {}
+
+const ActivationPage: React.FC<IActivationPageProps> = ({ ...rest }) => {
   const { Trans } = useAppTranslate();
   const params = useParams();
   const [isActivated, setIsActivated] = useState<boolean | undefined>(undefined);
 
   const { message } = useAppSelector((state) => state.common);
-  const { redirectIfLogged } = useAuth();
+  const { redirectIfLogged } = useAuth(rest.apiUrl);
 
   useEffect(() => {
     redirectIfLogged();
@@ -20,11 +23,11 @@ const ActivationPage: React.FC = () => {
 
   useEffect(() => {
     if (params.token) {
-      AuthService.activation(params.token).then(() => {
+      AuthService.activation(rest.apiUrl, params.token).then(() => {
         setIsActivated(true);
       });
     }
-  }, [params.token]);
+  }, [rest.apiUrl, params.token]);
 
   useEffect(() => {
     if (message !== '') {
@@ -35,7 +38,7 @@ const ActivationPage: React.FC = () => {
   }, [message]);
 
   return (
-    <AppContent seoTitle='SEO:ACTIVATION.TITLE' seoDescription='SEO:ACTIVATION.DESCRIPTION'>
+    <AppContent {...rest} seoTitle='SEO:ACTIVATION.TITLE' seoDescription='SEO:ACTIVATION.DESCRIPTION'>
       <MdCard title='AUTH:ACTIVATION.TITLE'>
         {isActivated === undefined && <Trans i18nKey='AUTH:ACTIVATION.CURRENT' />}
         {isActivated === false && <Trans i18nKey='AUTH:ACTIVATION.FAIL' />}

@@ -3,7 +3,7 @@ import { useCallback, useRef } from 'react';
 import { useMessage } from '../../hook/message/useMessage';
 import { ApiService } from '../service/ApiService';
 
-export const useApiService = <T>() => {
+export const useApiService = <T>(apiUrl: string) => {
   const { setMessage } = useMessage();
   const isLoad = useRef(false);
   const isLoadPost = useRef(false);
@@ -14,7 +14,7 @@ export const useApiService = <T>() => {
     (url: string, callback?: (data: T) => void, callbackError?: (data?: AxiosError) => void) => {
       if (!isLoad.current) {
         isLoad.current = true;
-        ApiService.get<T>(url)
+        ApiService.get<T>(apiUrl, url)
           .then((data) => {
             isLoad.current = false;
             callback?.(data);
@@ -25,14 +25,14 @@ export const useApiService = <T>() => {
           });
       }
     },
-    [],
+    [apiUrl],
   );
 
   const httpPost = useCallback(
     (url: string, data: T, callback?: (data: T) => void, callbackError?: (data: AxiosError) => void) => {
       if (!isLoadPost.current) {
         isLoadPost.current = true;
-        ApiService.post<T>(url, data)
+        ApiService.post<T>(apiUrl, url, data)
           .then((data) => {
             isLoadPost.current = false;
             callback?.(data);
@@ -43,14 +43,14 @@ export const useApiService = <T>() => {
           });
       }
     },
-    [],
+    [apiUrl],
   );
 
   const httpPut = useCallback(
     (url: string, data: T, callback?: (data: T) => void, callbackError?: (data: AxiosError) => void) => {
       if (!isLoadPut.current) {
         isLoadPut.current = true;
-        ApiService.put<T>(url, data)
+        ApiService.put<T>(apiUrl, url, data)
           .then((data) => {
             isLoadPut.current = false;
             callback?.(data);
@@ -61,14 +61,14 @@ export const useApiService = <T>() => {
           });
       }
     },
-    [],
+    [apiUrl],
   );
 
   const deleteById = useCallback(
     (url: string, locale: string, callback?: (data: T) => void, callbackError?: (data: AxiosError) => void) => {
       if (!isLoadDelete.current) {
         isLoadDelete.current = true;
-        ApiService.delete<T>(url)
+        ApiService.delete<T>(apiUrl, url)
           .then((data) => {
             isLoadDelete.current = false;
             setMessage(locale + ':DELETE_OK', 'success');
@@ -80,7 +80,7 @@ export const useApiService = <T>() => {
           });
       }
     },
-    [setMessage],
+    [apiUrl, setMessage],
   );
 
   return { httpGet, httpPost, httpPut, deleteById };

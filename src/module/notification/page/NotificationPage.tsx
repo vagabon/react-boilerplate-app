@@ -6,21 +6,22 @@ import HasRole from '../../../hook/role/HasRole';
 import { useAuth } from '../../auth/hook/useAuth';
 import CustomModale from '../../custom/modale/component/CustomModale';
 import CustomModaleConfirm from '../../custom/modale/component/CustomModaleConfirm';
+import { IBaseCustomSeoProps } from '../../custom/seo/component/CustomSeo';
 import NotificationList from '../component/list/NotificationList';
 import { INotificationDto } from '../dto/NotificationDto';
 import { useNotification } from '../hook/useNotification';
 import { useNotificationFetch } from '../hook/useNotificationFetch';
 
-export interface INotificationPageProps {
+export interface INotificationPageProps extends IBaseCustomSeoProps {
   handleSelect: (notification: INotificationDto) => void;
   header: ReactNode;
 }
 
-const NotificationPage: React.FC<INotificationPageProps> = ({ handleSelect, header }) => {
-  const { user } = useAuth();
-  const { handleReadAll, handleCheckbox, handleClick, open, notification, closeModal } = useNotification();
+const NotificationPage: React.FC<INotificationPageProps> = ({ handleSelect, header, ...rest }) => {
+  const { user } = useAuth(rest.apiUrl);
+  const { handleReadAll, handleCheckbox, handleClick, open, notification, closeModal } = useNotification(rest.apiUrl);
   const { notifications, count, page, search, doFetchNotifications, doSearchNotifications, doChangePageNotifications } =
-    useNotificationFetch();
+    useNotificationFetch(rest.apiUrl);
 
   useEffect(() => {
     page === 0 && user?.id && doFetchNotifications({ title: '' }, page, user?.id);
@@ -29,6 +30,7 @@ const NotificationPage: React.FC<INotificationPageProps> = ({ handleSelect, head
   return (
     <HasRole roles={['USER']} showError={true}>
       <AppContent
+        {...rest}
         className='no-overflow'
         seoTitle='SEO:NOTIFICATION.TITLE'
         seoDescription='SEO:NOTIFICATION.DESCRIPTION'>
@@ -47,6 +49,7 @@ const NotificationPage: React.FC<INotificationPageProps> = ({ handleSelect, head
           <MdSearchBar search={search} callBack={doSearchNotifications(user?.id)} />
         </MdCard>
         <NotificationList
+          {...rest}
           notifications={notifications}
           callbackClick={handleClick(notifications)}
           callbackCheckbox={handleCheckbox(notifications)}

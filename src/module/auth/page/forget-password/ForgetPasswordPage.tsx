@@ -5,6 +5,7 @@ import { MdCard, MdInputText, useAppRouter } from '@vagabond-inc/react-boilerpla
 import { useCallback, useEffect } from 'react';
 import AppContent from '../../../../app/content/AppContent';
 import AppFormik from '../../../../app/formik/AppFormik';
+import { IBaseCustomSeoProps } from '../../../custom/seo/component/CustomSeo';
 import AuthFooter from '../../component/auth.footer/AuthFooter';
 import { AuthFooterEnum } from '../../component/auth.footer/enum/AuthFooterEnum';
 import { useAuth } from '../../hook/useAuth';
@@ -12,9 +13,11 @@ import FORGET_PASSWORD_SCHEMA from './schema/forget.password.schema.json';
 
 const DEFAULT_VALUES = { email: '' };
 
-const ForgetPasswordPage: React.FC = () => {
+export interface IForgetPasswordPageProps extends IBaseCustomSeoProps {}
+
+const ForgetPasswordPage: React.FC<IForgetPasswordPageProps> = ({ ...rest }) => {
   const { navigate } = useAppRouter();
-  const { redirectIfLogged } = useAuth();
+  const { redirectIfLogged } = useAuth(rest.apiUrl);
 
   useEffect(() => {
     redirectIfLogged();
@@ -22,15 +25,15 @@ const ForgetPasswordPage: React.FC = () => {
 
   const handleForgetPassword = useCallback(
     (data: IUserDto) => {
-      AuthService.createIdentityToken(data.email as string).then(() => {
+      AuthService.createIdentityToken(rest.apiUrl, data.email as string).then(() => {
         navigate('/auth/check/identity');
       });
     },
-    [navigate],
+    [rest.apiUrl, navigate],
   );
 
   return (
-    <AppContent seoTitle='SEO:FORGET_PASSWORD.TITLE' seoDescription='SEO:FORGET_PASSWORD.DESCRIPTION'>
+    <AppContent {...rest} seoTitle='SEO:FORGET_PASSWORD.TITLE' seoDescription='SEO:FORGET_PASSWORD.DESCRIPTION'>
       <MdCard title='AUTH:FORGET_PASSWORD.TITLE'>
         <AppFormik
           initialValues={DEFAULT_VALUES}

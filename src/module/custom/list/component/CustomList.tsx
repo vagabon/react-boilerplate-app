@@ -15,6 +15,7 @@ import {
 } from '@vagabond-inc/react-boilerplate-md';
 import React, { Fragment, useCallback, useEffect, useState } from 'react';
 import { useMessage } from '../../../../hook/message/useMessage';
+import { useAppImage } from '../../../../template/hook/useAppImage';
 import CustomModaleConfirm from '../../modale/component/CustomModaleConfirm';
 
 export interface ICustomListDto {
@@ -30,6 +31,7 @@ export interface ICustomListDto {
 }
 
 export interface ICustomListProps {
+  apiUrl: string;
   className?: string;
   icon?: string;
   chipClassName?: string;
@@ -45,6 +47,7 @@ export interface ICustomListProps {
 }
 
 const CustomList: React.FC<ICustomListProps> = ({
+  apiUrl,
   className = '',
   datas,
   icon,
@@ -61,6 +64,7 @@ const CustomList: React.FC<ICustomListProps> = ({
   const { t } = useAppTranslate();
   const [disabled, setDisabled] = useState<boolean>();
   const { message } = useMessage();
+  const { getImage } = useAppImage(apiUrl);
 
   useEffect(() => {
     if (message !== '') {
@@ -119,7 +123,11 @@ const CustomList: React.FC<ICustomListProps> = ({
               isCursor={callback !== undefined}>
               {data.avatar && (
                 <MdListItemAvatar>
-                  <MdAvatar name={data.avatar} image={data.avatar} callback={callbackAvatar?.(data.user as IApiDto)} />
+                  <MdAvatar
+                    name={data.avatar}
+                    image={getImage(data.avatar)}
+                    callback={callbackAvatar?.(data.user as IApiDto)}
+                  />
                 </MdListItemAvatar>
               )}
               {callbackCheckbox && (

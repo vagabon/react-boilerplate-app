@@ -5,7 +5,7 @@ import { useFetchNews } from './useFetchNews';
 
 describe('useFetchNews', () => {
   test('Given useFetchNews when is mount with an id Then ', async () => {
-    const { result } = renderHook(() => useFetchNews('news', NewsAction));
+    const { result } = renderHook(() => useFetchNews('http://', 'news', NewsAction));
 
     const mockServiceGet = spyOn(NewsService, 'fetchNews', { content: [{ id: 1 }] });
     await act(async () => {

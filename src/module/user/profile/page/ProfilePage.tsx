@@ -1,20 +1,22 @@
 import { ID, useAppRouter } from '@vagabond-inc/react-boilerplate-md';
 import { useEffect } from 'react';
 import { useAppSelector } from '../../../../store/Store';
+import { IBaseCustomSeoProps } from '../../../custom/seo/component/CustomSeo';
 import { useUser } from '../../user/hook/useUser';
 import ProfileShow from '../component/ProfileShow';
 
-interface IProfilePageProps {
+interface IProfilePageProps extends IBaseCustomSeoProps {
+  apiUrl: string;
   profileReact: (id: ID) => React.JSX.Element;
 }
 
-const ProfilePage: React.FC<IProfilePageProps> = ({ profileReact }) => {
+const ProfilePage: React.FC<IProfilePageProps> = ({ profileReact, ...rest }) => {
   const {
     navigate,
     params: { id = -1 },
   } = useAppRouter();
   const { user: currentUser } = useAppSelector((state) => state.auth);
-  const { user, fetchById } = useUser();
+  const { user, fetchById } = useUser(rest.apiUrl);
 
   useEffect(() => {
     if (id !== -1) {
@@ -27,7 +29,7 @@ const ProfilePage: React.FC<IProfilePageProps> = ({ profileReact }) => {
     return <></>;
   }
 
-  return <ProfileShow user={id !== -1 ? user : currentUser.user} profileReact={profileReact} />;
+  return <ProfileShow {...rest} user={id !== -1 ? user : currentUser.user} profileReact={profileReact} />;
 };
 
 export default ProfilePage;

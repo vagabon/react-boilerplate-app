@@ -2,6 +2,7 @@ import { MdCard, MdInputText, useAppTranslate } from '@vagabond-inc/react-boiler
 import { useCallback, useEffect, useState } from 'react';
 import AppContent from '../../../../app/content/AppContent';
 import AppFormik from '../../../../app/formik/AppFormik';
+import { IBaseCustomSeoProps } from '../../../custom/seo/component/CustomSeo';
 import AuthFooter from '../../component/auth.footer/AuthFooter';
 import { AuthFooterEnum } from '../../component/auth.footer/enum/AuthFooterEnum';
 import { useAuth } from '../../hook/useAuth';
@@ -11,29 +12,34 @@ import CHECK_IDENTITY_SCHEMA from './schema/check.identity.schema.json';
 
 const DEFAULT_VALUES = { token: '' };
 
-const CheckIdentityPage: React.FC = () => {
+export interface ICheckIdentityPageProps extends IBaseCustomSeoProps {}
+
+const CheckIdentityPage: React.FC<ICheckIdentityPageProps> = ({ ...rest }) => {
   const { Trans } = useAppTranslate();
   const [state, setState] = useState<boolean>(false);
-  const { redirectIfLogged } = useAuth();
+  const { redirectIfLogged } = useAuth(rest.apiUrl);
 
   useEffect(() => {
     redirectIfLogged();
   }, [redirectIfLogged]);
 
-  const handleCheckIdentity = useCallback((data: ICheckIdentityDto) => {
-    AuthService.checkIdentityToken(data.token as string).then((data: ICheckIdentityDto) => {
-      if (data.token !== '') {
-        AuthService.resetPassword(data.token as string).then((data) => {
-          if (data) {
-            setState(true);
-          }
-        });
-      }
-    });
-  }, []);
+  const handleCheckIdentity = useCallback(
+    (data: ICheckIdentityDto) => {
+      AuthService.checkIdentityToken(rest.apiUrl, data.token as string).then((data: ICheckIdentityDto) => {
+        if (data.token !== '') {
+          AuthService.resetPassword(rest.apiUrl, data.token as string).then((data) => {
+            if (data) {
+              setState(true);
+            }
+          });
+        }
+      });
+    },
+    [rest.apiUrl],
+  );
 
   return (
-    <AppContent seoTitle='SEO:IDENTITY.TITLE' seoDescription='SEO:IDENTITY.DESCRIPTION'>
+    <AppContent {...rest} seoTitle='SEO:IDENTITY.TITLE' seoDescription='SEO:IDENTITY.DESCRIPTION'>
       <MdCard title='AUTH:CHECK_IDENTITY.TITLE'>
         {state === false && (
           <AppFormik

@@ -29,6 +29,7 @@ export interface IConfDto {
 }
 
 export interface IAppThemeProps {
+  apiUrl: string;
   palette: JSONObject;
   conf: IConfDto;
   email: string;
@@ -40,6 +41,7 @@ export interface IAppThemeProps {
 }
 
 const AppTheme: React.FC<IAppThemeProps> = ({
+  apiUrl,
   palette,
   conf,
   email,
@@ -55,8 +57,8 @@ const AppTheme: React.FC<IAppThemeProps> = ({
   const { mode, theme, switchTheme } = useTheme(palette);
   const { drawerWidth, openDrawer, variantDrawer, showOpenDrawer, handleDrawerOpen, handleCloseSnackbar } =
     useAppTheme();
-  useAppFirebaseToken(generateToken);
-  const { nbNotification } = useAppNotification();
+  useAppFirebaseToken(apiUrl, generateToken);
+  const { nbNotification } = useAppNotification(apiUrl);
   const { handleScroll, getScrollPage } = useAppScroll();
 
   useEffect(() => {
@@ -81,6 +83,7 @@ const AppTheme: React.FC<IAppThemeProps> = ({
         <MdThemeProvider theme={theme}>
           <div className={'flex heigth100 mode-' + mode}>
             <Header
+              apiUrl={apiUrl}
               mode={mode}
               conf={conf}
               menu={menu}
@@ -95,6 +98,7 @@ const AppTheme: React.FC<IAppThemeProps> = ({
 
             <div className='flex flex-row' style={{ flex: '1', overflow: 'hidden' }}>
               <MenuDrawer
+                apiUrl={apiUrl}
                 menu={menu}
                 drawerWidth={drawerWidth}
                 openDrawer={openDrawer}

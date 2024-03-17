@@ -2,12 +2,9 @@ import { IMdInputTextProps, MdInputText, useAppTranslate } from '@vagabond-inc/r
 import { useCallback } from 'react';
 import { IYupValidators } from '../../../../../utils/yup/YupUtils';
 import CustomModaleForm from '../../../../custom/modale/component/CustomModaleForm';
+import { IBaseCustomSeoProps } from '../../../../custom/seo/component/CustomSeo';
 import { IUserDto } from '../../../user/dto/UserDto';
 import { useUser } from '../../../user/hook/useUser';
-
-export interface IProfileFormEmailProps {
-  user: IUserDto;
-}
 
 const SCHEMA: IYupValidators = {
   email: {
@@ -22,8 +19,12 @@ const SCHEMA: IYupValidators = {
   },
 };
 
-const ProfileFormEmail: React.FC<IProfileFormEmailProps> = ({ user }) => {
-  const { handleUpdateEmail, isUserPassword } = useUser();
+export interface IProfileFormEmailProps extends IBaseCustomSeoProps {
+  user: IUserDto;
+}
+
+const ProfileFormEmail: React.FC<IProfileFormEmailProps> = ({ user, ...rest }) => {
+  const { handleUpdateEmail, isUserPassword } = useUser(rest.apiUrl);
   const { Trans } = useAppTranslate();
 
   const handleSubmit = useCallback(

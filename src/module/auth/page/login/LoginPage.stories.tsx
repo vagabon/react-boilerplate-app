@@ -15,7 +15,7 @@ export default meta;
 type Story = StoryObj<typeof LoginPage>;
 
 export const Primary: Story = {
-  args: {},
+  args: { googleClientId: 'GOOGLE_CLIENT_ID', facebookClientId: 'FACEBOOK_CLIENT_ID' },
 };
 Primary.parameters = {
   jest: [],

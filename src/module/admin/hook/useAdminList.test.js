@@ -13,6 +13,7 @@ describe('useAdminList', () => {
     const mockService = jest.spyOn(AdminService, 'findBy').mockReturnValue(Promise.resolve({}));
     const { result } = renderHook(() =>
       useAdminList(
+        'http://',
         'name',
         { name: 'name' },
         { filter: { search: '' }, table: { page: 0, rowsPerPage: 10, sortBy: 'id', sortByOrder: 'asc' } },

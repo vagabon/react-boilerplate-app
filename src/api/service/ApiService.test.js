@@ -3,10 +3,12 @@ import { ApiService } from './ApiService';
 import axios from 'axios';
 jest.mock('axios');
 
+const URL = 'http://localhost:8090';
+
 describe('ApiService - get', () => {
   const assertCallGetMethod = async (user = null) => {
     axios.get.mockResolvedValue({ data: 'TEST' });
-    const test = await ApiService.get('/test');
+    const test = await ApiService.get(URL, '/test');
     expect(test).toBe('TEST');
   };
 
@@ -14,7 +16,7 @@ describe('ApiService - get', () => {
     axios.get.mockImplementation(() => Promise.reject(message));
 
     try {
-      await ApiService.get('/test');
+      await ApiService.get(URL, '/test');
     } catch (error) {
       expect(error).toBe('ERROR');
     }
@@ -35,7 +37,7 @@ describe('ApiService - put', () => {
   const assertCallPutMethod = async () => {
     axios.put.mockResolvedValue({ data: 'TEST' });
 
-    const test = await ApiService.put('/test', []);
+    const test = await ApiService.put(URL, '/test', []);
     expect(test).toBe('TEST');
     expect(axios.put).toBeCalledWith('http://localhost:8090/test', []);
   };
@@ -44,7 +46,7 @@ describe('ApiService - put', () => {
     axios.put.mockImplementation(() => Promise.reject(message));
 
     try {
-      await ApiService.put('/test', []);
+      await ApiService.put(URL, '/test', []);
     } catch (error) {
       expect(error).toBe('ERROR');
     }
@@ -64,7 +66,7 @@ describe('ApiService - patch', () => {
   const assertCallPatchMethod = async () => {
     axios.patch.mockResolvedValue({ data: 'TEST' });
 
-    const test = await ApiService.patch('/test', []);
+    const test = await ApiService.patch(URL, '/test', []);
     expect(test).toBe('TEST');
     expect(axios.patch).toBeCalledWith('http://localhost:8090/test', []);
   };
@@ -73,7 +75,7 @@ describe('ApiService - patch', () => {
     axios.patch.mockImplementation(() => Promise.reject(message));
 
     try {
-      await ApiService.patch('/test', []);
+      await ApiService.patch(URL, '/test', []);
     } catch (error) {
       expect(error).toBe('ERROR');
     }
@@ -93,7 +95,7 @@ describe('ApiService - post', () => {
   const assertCallPostMethod = async () => {
     axios.post.mockResolvedValue({ data: 'TEST' });
 
-    const test = await ApiService.post('/test', []);
+    const test = await ApiService.post(URL, '/test', []);
     expect(test).toBe('TEST');
     expect(axios.post).toBeCalledWith('http://localhost:8090/test', [], { 'Content-Type': 'application/json' });
   };
@@ -102,7 +104,7 @@ describe('ApiService - post', () => {
     axios.post.mockImplementation(() => Promise.reject(message));
 
     try {
-      await ApiService.post('/test', []);
+      await ApiService.post(URL, '/test', []);
     } catch (error) {
       expect(error).toBe('ERROR');
     }
@@ -121,14 +123,14 @@ describe('ApiService - post', () => {
 describe('ApiService - findBy', () => {
   const assertCallGetMethod = async (orderField, order) => {
     axios.get.mockResolvedValue({ data: 'TEST' });
-    const test = await ApiService.findBy('/test', 'username', 'value', 0, 10, orderField, order);
+    const test = await ApiService.findBy(URL, '/test', 'username', 'value', 0, 10, orderField, order);
     expect(test).toBe('TEST');
   };
 
   const assertCallGetMethodKo = async (message) => {
     axios.get.mockImplementation(() => Promise.reject(message));
     try {
-      await ApiService.findBy('/test', 'username', 'value', 0, 10, null, null);
+      await ApiService.findBy(URL, '/test', 'username', 'value', 0, 10, null, null);
     } catch (error) {
       expect(error).toBe('ERROR');
     }
@@ -160,14 +162,14 @@ describe('ApiService - findBy', () => {
 describe('ApiService - countBy', () => {
   const assertCallGetMethod = async () => {
     axios.get.mockResolvedValue({ data: { count: 5 } });
-    const test = await ApiService.countBy('/test', 'username', 'value');
+    const test = await ApiService.countBy(URL, '/test', 'username', 'value');
     expect(test).toBe(5);
   };
 
   const assertCallGetMethodKo = async (message) => {
     axios.get.mockImplementation(() => Promise.reject(message));
     try {
-      await ApiService.countBy('/test', 'username', 'value');
+      await ApiService.countBy(URL, '/test', 'username', 'value');
     } catch (error) {
       expect(error).toBe('ERROR');
     }
@@ -187,14 +189,14 @@ describe('ApiService - countBy', () => {
 describe('ApiService - findById', () => {
   const assertCallGetMethod = async () => {
     axios.get.mockResolvedValue({ data: 'TEST' });
-    const test = await ApiService.findById('/test', '1');
+    const test = await ApiService.findById(URL, '/test', '1');
     expect(test).toBe('TEST');
   };
 
   const assertCallGetMethodKo = async (message) => {
     axios.get.mockImplementation(() => Promise.reject(message));
     try {
-      await ApiService.findById('/test', '1');
+      await ApiService.findById(URL, '/test', '1');
     } catch (error) {
       expect(error).toBe('ERROR');
     }
@@ -215,14 +217,14 @@ describe('ApiService - delete', () => {
   const assertCallDeleteMethod = async () => {
     const data = { id: 1, data: 'TEST' };
     axios.delete.mockResolvedValue(data);
-    const test = await ApiService.delete('/test', data);
+    const test = await ApiService.delete(URL, '/test', data);
     expect(test).toBe('TEST');
   };
 
   const assertCallDeleteMethodKo = async (message) => {
     axios.delete.mockImplementation(() => Promise.reject(message));
     try {
-      await ApiService.delete('/test', { id: 1, data: 'TEST' });
+      await ApiService.delete(URL, '/test', { id: 1, data: 'TEST' });
     } catch (error) {
       expect(error).toBe('ERROR');
     }

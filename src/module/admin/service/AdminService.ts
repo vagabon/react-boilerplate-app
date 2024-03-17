@@ -11,6 +11,7 @@ const ENDPOINT_UPDATE = '/';
 
 const AdminService = {
   findBy: (
+    apiUrl: string,
     endPoint: string,
     champs: string,
     value: string,
@@ -23,6 +24,7 @@ const AdminService = {
     const orderConst = orderField ? '>>' + orderField + orderString : '';
     const values = value + ',' + value + ',' + value + ',' + value + ',' + value;
     return ApiService.get<IPageableDto<IApiDto[]>>(
+      apiUrl,
       '/' +
         endPoint +
         ENDPOINT_FINDBY +
@@ -40,25 +42,25 @@ const AdminService = {
     });
   },
 
-  findById: <T>(endPoint: string, id: string | undefined) => {
-    return ApiService.get<T>('/' + endPoint + ENDPOINT_FINDBY_ID + id).then((data: T) => {
+  findById: <T>(apiUrl: string, endPoint: string, id: string | undefined) => {
+    return ApiService.get<T>(apiUrl, '/' + endPoint + ENDPOINT_FINDBY_ID + id).then((data: T) => {
       return Promise.resolve(data);
     });
   },
 
   create:
-    (endPoint: string, data: IApiDto) =>
+    (apiUrl: string, endPoint: string, data: IApiDto) =>
     (dispatch: Dispatch): Promise<IApiDto> => {
-      return ApiService.post<IApiDto>('/' + endPoint + ENDPOINT_CREATE, data).then((dataNew: IApiDto) => {
+      return ApiService.post<IApiDto>(apiUrl, '/' + endPoint + ENDPOINT_CREATE, data).then((dataNew: IApiDto) => {
         dispatch(CommonAction.setMessage({ id: UuidUtils.createUUID(), message: 'CREATION_OK', type: 'success' }));
         return Promise.resolve(dataNew);
       });
     },
 
   update:
-    (endPoint: string, data: IApiDto) =>
+    (apiUrl: string, endPoint: string, data: IApiDto) =>
     (dispatch: Dispatch): Promise<IApiDto> => {
-      return ApiService.put<IApiDto>('/' + endPoint + ENDPOINT_UPDATE, data).then((dataNew: IApiDto) => {
+      return ApiService.put<IApiDto>(apiUrl, '/' + endPoint + ENDPOINT_UPDATE, data).then((dataNew: IApiDto) => {
         dispatch(CommonAction.setMessage({ id: UuidUtils.createUUID(), message: 'UPDATE_OK', type: 'success' }));
         return Promise.resolve(dataNew);
       });

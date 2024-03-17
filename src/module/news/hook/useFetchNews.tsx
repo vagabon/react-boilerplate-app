@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../../store/Store';
 import { INewsDto } from '../dto/NewsDto';
 import NewsService from '../service/NewsService';
 
-export const useFetchNews = (endPoint: string, newsAction: IReducersActionsProps) => {
+export const useFetchNews = (apiUrl: string, endPoint: string, newsAction: IReducersActionsProps) => {
   const { datas: news, search, count, page } = useAppSelector((state) => state[endPoint]);
   const dispatch = useAppDispatch();
 
@@ -12,7 +12,7 @@ export const useFetchNews = (endPoint: string, newsAction: IReducersActionsProps
 
   const fetchNews = useCallback(
     (filter: INewsDto, page: number, max: number, orderBy: string, orderByAsc: string = 'asc') => {
-      NewsService.fetchNews(endPoint, filter, page, max, orderBy, orderByAsc).then((data) => {
+      NewsService.fetchNews(apiUrl, endPoint, filter, page, max, orderBy, orderByAsc).then((data) => {
         if (data?.content?.length === 0 && page > 0) {
           setStopLoad(true);
         } else {
@@ -22,7 +22,7 @@ export const useFetchNews = (endPoint: string, newsAction: IReducersActionsProps
         }
       });
     },
-    [dispatch, endPoint, newsAction],
+    [apiUrl, dispatch, endPoint, newsAction],
   );
 
   const doFetchDatas = useCallback(

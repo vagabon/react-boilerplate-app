@@ -2,6 +2,7 @@ import { IMdInputTextProps, MdInputText } from '@vagabond-inc/react-boilerplate-
 import { useCallback } from 'react';
 import { IYupValidators } from '../../../../../utils/yup/YupUtils';
 import CustomModaleForm from '../../../../custom/modale/component/CustomModaleForm';
+import { IBaseCustomSeoProps } from '../../../../custom/seo/component/CustomSeo';
 import { IUserDto } from '../../../user/dto/UserDto';
 import { useUser } from '../../../user/hook/useUser';
 
@@ -28,12 +29,12 @@ const SCHEMA: IYupValidators = {
   },
 };
 
-export interface IProfileFormPasswordProps {
+export interface IProfileFormPasswordProps extends IBaseCustomSeoProps {
   user?: IUserDto;
 }
 
-const ProfileFormPassword: React.FC<IProfileFormPasswordProps> = ({ user }) => {
-  const { handleUpdatePassword } = useUser();
+const ProfileFormPassword: React.FC<IProfileFormPasswordProps> = ({ user, ...rest }) => {
+  const { handleUpdatePassword } = useUser(rest.apiUrl);
 
   const handleSubmit = useCallback(
     (callback?: () => void) => (data: IUserDto) => {

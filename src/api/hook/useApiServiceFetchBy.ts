@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../store/Store';
 import { useApiServiceFindBy } from './useApiServiceFindBy';
 
 export const useApiServiceFetchBy = <T extends IApiDto>(
+  apiUrl: string,
   stateName: string,
   uri: string,
   query: string,
@@ -15,7 +16,7 @@ export const useApiServiceFetchBy = <T extends IApiDto>(
 ) => {
   const dispatch = useAppDispatch();
   const { datas, search, count, order, page } = useAppSelector((state) => state[stateName as keyof ReducerType]);
-  const { fetchBy, resetStopLoad } = useApiServiceFindBy<T>(uri, query, max);
+  const { fetchBy, resetStopLoad } = useApiServiceFindBy<T>(apiUrl, uri, query, max);
 
   const fetchByFields = useCallback(
     (values: string, page: number, order?: IOrderState) => {

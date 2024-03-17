@@ -7,17 +7,18 @@ import HasRole from '../../../../hook/role/HasRole';
 import { useAppDispatch } from '../../../../store/Store';
 import { IYupValidators } from '../../../../utils/yup/YupUtils';
 import CustomForm from '../../../custom/form/component/CustomForm';
+import { IBaseCustomSeoProps } from '../../../custom/seo/component/CustomSeo';
 import { IAdminTabConfDto, IAdminTabDto } from '../../dto/AdminConfDto';
 import { useAdminConf } from '../../hook/useAdminConf';
 import { useAdminState } from '../../hook/useAdminState';
 import { AdminAction } from '../../reducer/AdminReducer';
 import AdminService from '../../service/AdminService';
 
-export interface IAdminShowPageProps {
+export interface IAdminShowPageProps extends IBaseCustomSeoProps {
   conf: IAdminTabConfDto;
 }
 
-const AdminShowPage: React.FC<IAdminShowPageProps> = ({ conf }) => {
+const AdminShowPage: React.FC<IAdminShowPageProps> = ({ conf, ...rest }) => {
   const { t } = useAppTranslate();
   const dispatch = useAppDispatch();
   const {
@@ -29,7 +30,7 @@ const AdminShowPage: React.FC<IAdminShowPageProps> = ({ conf }) => {
 
   useEffect(() => {
     if (id !== '-1' && pageConf?.name === page) {
-      AdminService.findById<IApiDto>(page, id).then((data) => {
+      AdminService.findById<IApiDto>(rest.apiUrl, page, id).then((data) => {
         let newData = data;
         formConf.forEach(([key, form]) => {
           const value = newData[key as keyof JSONObject];
@@ -43,14 +44,15 @@ const AdminShowPage: React.FC<IAdminShowPageProps> = ({ conf }) => {
       const data: IApiDto = { id: '' };
       dispatch(AdminAction.setData({ activePage: page, data }));
     }
-  }, [dispatch, page, id, pageConf, formConf]);
+  }, [rest.apiUrl, dispatch, page, id, pageConf, formConf]);
 
   const handleUpdate = useCallback(
     (data: IApiDto) => {
       if (data.id !== null && data.id !== undefined && data.id !== '' && Number(data.id) > 0) {
-        AdminService.update(page, data)(dispatch);
+        AdminService.update(rest.apiUrl, page, data)(dispatch);
       } else {
         AdminService.create(
+          rest.apiUrl,
           page,
           data,
         )(dispatch).then((dataNew: IApiDto) => {
@@ -59,7 +61,7 @@ const AdminShowPage: React.FC<IAdminShowPageProps> = ({ conf }) => {
         });
       }
     },
-    [dispatch, page],
+    [rest.apiUrl, dispatch, page],
   );
 
   const getTitle = useCallback(() => {
@@ -75,11 +77,12 @@ const AdminShowPage: React.FC<IAdminShowPageProps> = ({ conf }) => {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <AppContent seoTitle='SEO:ADMIN.TITLE' seoDescription='SEO:ADMIN.DESCRIPTION'>
+      <AppContent {...rest} seoTitle='SEO:ADMIN.TITLE' seoDescription='SEO:ADMIN.DESCRIPTION'>
         <HasRole roles={['ADMIN']}>
           <MdCard title={getTitle()}>
             {state && (
               <CustomForm
+                {...rest}
                 endPoint={page}
                 urlGoBack={'/admin/tab/' + page}
                 conf={formConf}

@@ -5,12 +5,17 @@ import CustomList from '../../list/component/CustomList';
 import { useCustomNotification } from '../hook/useCustomNotification';
 
 export interface ICustomNotificationProps {
+  apiUrl: string;
   entityId: ID;
   type: string;
 }
 
-const CustomNotification: React.FC<ICustomNotificationProps> = ({ entityId, type }) => {
-  const { notifications, custumList, search, page, doSearch, doChangePage } = useCustomNotification(entityId, type);
+const CustomNotification: React.FC<ICustomNotificationProps> = ({ apiUrl, entityId, type }) => {
+  const { notifications, custumList, search, page, doSearch, doChangePage } = useCustomNotification(
+    apiUrl,
+    entityId,
+    type,
+  );
 
   useEffect(() => {
     doSearch([])('');
@@ -24,7 +29,7 @@ const CustomNotification: React.FC<ICustomNotificationProps> = ({ entityId, type
         className='news-list'
         doChangePage={doChangePage(notifications, page)}
         doSearch={doSearch([])}>
-        <CustomList datas={custumList} />
+        <CustomList apiUrl={apiUrl} datas={custumList} />
       </InfiniteScrollPage>
     </MdCard>
   );

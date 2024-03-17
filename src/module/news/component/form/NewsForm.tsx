@@ -11,19 +11,20 @@ import AppContent from '../../../../app/content/AppContent';
 import AppFormik from '../../../../app/formik/AppFormik';
 import { useCreateNews } from '../../../../module/news/hook/useCreateNews';
 import { useCustomFormUpload } from '../../../custom/form/hook/useCustomFormUpload';
+import { IBaseCustomSeoProps } from '../../../custom/seo/component/CustomSeo';
 import { INewsRouterProps } from '../../NewsRouter';
 import { INewsDto } from '../../dto/NewsDto';
 import NEWS_SCHEMA from '../../schema/news.schema.json';
 import NewsCard from '../card/NewsCard';
 
-export interface INewsFormProps extends INewsRouterProps {
+export interface INewsFormProps extends INewsRouterProps, IBaseCustomSeoProps {
   news: INewsDto;
 }
 
-const NewsForm: React.FC<INewsFormProps> = ({ endPoint, newsAction, news }) => {
-  const { createOrUpdateNews } = useCreateNews(endPoint, newsAction, news.id as number);
+const NewsForm: React.FC<INewsFormProps> = ({ endPoint, newsAction, news, ...rest }) => {
+  const { createOrUpdateNews } = useCreateNews(rest.apiUrl, endPoint, newsAction, news.id as number);
   const [newsForm, setNewsForm] = useState<INewsDto>({});
-  const { handleChangeFile } = useCustomFormUpload(endPoint);
+  const { handleChangeFile } = useCustomFormUpload(rest.apiUrl, endPoint);
 
   useEffect(() => {
     setNewsForm(news ?? {});
@@ -49,6 +50,7 @@ const NewsForm: React.FC<INewsFormProps> = ({ endPoint, newsAction, news }) => {
 
   return (
     <AppContent
+      {...rest}
       id='news-form'
       className='markdown-form'
       seoTitle='SEO:NEWS.TITLE'
@@ -98,7 +100,7 @@ const NewsForm: React.FC<INewsFormProps> = ({ endPoint, newsAction, news }) => {
           )}
         </AppFormik>
       </MdCard>
-      <NewsCard news={newsForm} endPoint={endPoint} />
+      <NewsCard {...rest} news={newsForm} endPoint={endPoint} />
     </AppContent>
   );
 };

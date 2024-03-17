@@ -18,12 +18,13 @@ import { IFormDto } from '../../../admin/dto/AdminConfDto';
 import CustomFormModale from './CustomFormModale';
 
 export interface ICustomFormManyToManyProps extends IFormPropsDto {
+  apiUrl: string;
   conf: IFormDto;
   label: string;
   name: string;
 }
 
-const CustomFormManyToMany: React.FC<ICustomFormManyToManyProps> = ({ conf, label, name, ...rest }) => {
+const CustomFormManyToMany: React.FC<ICustomFormManyToManyProps> = ({ conf, label, name, apiUrl, ...rest }) => {
   const { t } = useAppTranslate();
   const { message } = useMessage();
   const [open, setOpen] = useState(false);
@@ -93,6 +94,7 @@ const CustomFormManyToMany: React.FC<ICustomFormManyToManyProps> = ({ conf, labe
         <MdFormError error={error} />
       </div>
       <CustomFormModale
+        apiUrl={apiUrl}
         conf={conf.m2m}
         open={open}
         handleClose={handleModalClose}

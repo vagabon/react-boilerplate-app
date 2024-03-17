@@ -13,7 +13,7 @@ describe('useCreateNews', () => {
   });
 
   test('Given useCreateNews when fetchById Then service is called', async () => {
-    const { result } = renderHook(() => useCreateNews('news', { setData: jest.fn() }));
+    const { result } = renderHook(() => useCreateNews('http://', 'news', { setData: jest.fn() }));
 
     const mockServiceGet = spyOn(NewsService, 'fetchById', { id: 1 });
     await act(async () => {
@@ -23,7 +23,7 @@ describe('useCreateNews', () => {
   });
 
   test('Given useCreateNews when createOrUpdateNews Then service is called', async () => {
-    const { result } = renderHook(() => useCreateNews('news', { setData: jest.fn() }));
+    const { result } = renderHook(() => useCreateNews('http://', 'news', { setData: jest.fn() }));
 
     const mockServiceCreateOrUpdate = spyOn(NewsService, 'createOrUpdate', { id: 1 });
     await act(async () => {

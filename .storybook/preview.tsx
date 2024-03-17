@@ -2,7 +2,6 @@ import { CssBaseline, PaletteColorOptions, ThemeProvider, createTheme } from '@m
 import { SnackbarProvider } from 'notistack';
 import React from 'react';
 import { HelmetProvider } from 'react-helmet-async';
-import '../config';
 import '../src/assets/boilerplate.scss';
 import '../src/assets/custom.scss';
 import '../src/i18n/i18n';

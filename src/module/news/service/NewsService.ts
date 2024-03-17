@@ -7,6 +7,7 @@ import { INewsDto } from '../dto/NewsDto';
 
 const NewsService = {
   fetchNews: (
+    apiUrl: string,
     endPoint: string,
     filter: INewsDto,
     first: number,
@@ -18,6 +19,7 @@ const NewsService = {
     const value = filter.search ?? '';
     const values = value + ',' + value + ',true';
     return ApiService.findBy<IPageableDto<INewsDto[]>>(
+      apiUrl,
       '/' + endPoint + '/findBy',
       champs,
       values,
@@ -28,18 +30,18 @@ const NewsService = {
     );
   },
 
-  fetchById: (endPoint: string, id: ID): Promise<INewsDto> => {
-    return ApiService.findById<INewsDto>('/' + endPoint, id);
+  fetchById: (apiUrl: string, endPoint: string, id: ID): Promise<INewsDto> => {
+    return ApiService.findById<INewsDto>(apiUrl, '/' + endPoint, id);
   },
 
-  createOrUpdate: (endPoint: string, data: INewsDto, dispatch: Dispatch): Promise<INewsDto> => {
+  createOrUpdate: (apiUrl: string, endPoint: string, data: INewsDto, dispatch: Dispatch): Promise<INewsDto> => {
     if (data.id !== null && data.id !== undefined && data.id !== '' && Number(data.id) > 0) {
-      return ApiService.put<INewsDto>('/' + endPoint + '/', data).then((dataNew: INewsDto) => {
+      return ApiService.put<INewsDto>(apiUrl, '/' + endPoint + '/', data).then((dataNew: INewsDto) => {
         dispatch(CommonAction.setMessage({ id: UuidUtils.createUUID(), message: 'UPDATE_OK', type: 'success' }));
         return Promise.resolve(dataNew);
       });
     } else {
-      return ApiService.post<INewsDto>('/' + endPoint + '/', data).then((dataNew: INewsDto) => {
+      return ApiService.post<INewsDto>(apiUrl, '/' + endPoint + '/', data).then((dataNew: INewsDto) => {
         dispatch(CommonAction.setMessage({ id: UuidUtils.createUUID(), message: 'CREATION_OK', type: 'success' }));
         return Promise.resolve(dataNew);
       });

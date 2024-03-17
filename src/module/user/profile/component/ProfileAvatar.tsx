@@ -7,20 +7,23 @@ import {
   ObjectUtils,
 } from '@vagabond-inc/react-boilerplate-md';
 import { ChangeEvent, useCallback } from 'react';
+import { useAppImage } from '../../../../template/hook/useAppImage';
 import { useCustomFormUpload } from '../../../custom/form/hook/useCustomFormUpload';
 import CustomModaleForm from '../../../custom/modale/component/CustomModaleForm';
 import { IUserDto } from '../../user/dto/UserDto';
 import { useUser } from '../../user/hook/useUser';
 
 export interface IProfileAvatarProps {
+  apiUrl: string;
   user: IUserDto;
   disabled?: boolean;
 }
 
-const ProfileAvatar: React.FC<IProfileAvatarProps> = ({ user, disabled }) => {
-  const { handleUpdateAvatar, isUserPassword } = useUser();
+const ProfileAvatar: React.FC<IProfileAvatarProps> = ({ apiUrl, user, disabled }) => {
+  const { handleUpdateAvatar, isUserPassword } = useUser(apiUrl);
+  const { getImage } = useAppImage(apiUrl);
 
-  const { handleChangeFile } = useCustomFormUpload('user');
+  const { handleChangeFile } = useCustomFormUpload(apiUrl, 'user');
 
   const callbackFile = useCallback(
     (callback?: () => void) => (event: ChangeEvent<JSONObject>) => {
@@ -36,7 +39,7 @@ const ProfileAvatar: React.FC<IProfileAvatarProps> = ({ user, disabled }) => {
         <MdCardMedia>
           <MdAvatar
             name={user.username}
-            image={user.avatar}
+            image={getImage(user.avatar as string)}
             sx={{
               height: '100px',
               width: '100px',

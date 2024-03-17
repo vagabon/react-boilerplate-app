@@ -9,42 +9,42 @@ import AuthService from '../service/AuthService';
 
 const URL_LOGIN_REDIRECT = '/profile';
 
-export const useAuth = () => {
+export const useAuth = (apiUrl: string) => {
   const dispatch = useAppDispatch();
   const { navigate } = useAppRouter();
   const { isLoggedIn, user } = useAppSelector((state) => state.auth);
 
   const handleLogin = useCallback(
     (data: IUserDto) => {
-      AuthService.login(data.username as string, data.password as string).then((data) => {
+      AuthService.login(apiUrl, data.username as string, data.password as string).then((data) => {
         dispatch(LoginAction.setLoginSuccess(data as ICurrentUserDto<IUserDto>));
         StorageUtils.setCurrentUser(data as ICurrentUserDto<IUserDto>);
         navigate(URL_LOGIN_REDIRECT);
       });
     },
-    [dispatch, navigate],
+    [apiUrl, dispatch, navigate],
   );
 
   const handleGoogleLogin = useCallback(
     (token: string) => {
-      AuthService.googleConnect(token).then((data) => {
+      AuthService.googleConnect(apiUrl, token).then((data) => {
         dispatch(LoginAction.setLoginSuccess(data as ICurrentUserDto<IUserDto>));
         StorageUtils.setCurrentUser(data as ICurrentUserDto<IUserDto>);
         navigate(URL_LOGIN_REDIRECT);
       });
     },
-    [dispatch, navigate],
+    [apiUrl, dispatch, navigate],
   );
 
   const handleFacebookLogin = useCallback(
     (token: string) => {
-      AuthService.facebookConnect(token).then((data) => {
+      AuthService.facebookConnect(apiUrl, token).then((data) => {
         dispatch(LoginAction.setLoginSuccess(data as ICurrentUserDto<IUserDto>));
         StorageUtils.setCurrentUser(data as ICurrentUserDto<IUserDto>);
         navigate(URL_LOGIN_REDIRECT);
       });
     },
-    [dispatch, navigate],
+    [apiUrl, dispatch, navigate],
   );
 
   const updateLocalStorage = useCallback(

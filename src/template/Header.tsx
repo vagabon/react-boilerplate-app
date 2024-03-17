@@ -22,8 +22,10 @@ import { useUserAuth } from '../hook/user/useUserAuth';
 import CustomModaleConfirm from '../module/custom/modale/component/CustomModaleConfirm';
 import { CommonAction } from '../reducer/common/CommonReducer';
 import { useAppDispatch, useAppSelector } from '../store/Store';
+import { useAppImage } from './hook/useAppImage';
 
 export interface IHeaderProps {
+  apiUrl: string;
   mode: ModeType;
   conf: { TITLE: string; LOGO: string };
   menu: IMenuDto[];
@@ -37,6 +39,7 @@ export interface IHeaderProps {
 }
 
 const Header: React.FC<IHeaderProps> = ({
+  apiUrl,
   mode,
   conf,
   menu,
@@ -56,6 +59,7 @@ const Header: React.FC<IHeaderProps> = ({
   const [currentLocation, setCurrentLocation] = useState<string>(location.pathname);
   const [language, setLanguage] = useState<string>(i18n?.language ?? 'fr');
   const { getIcon } = useIcon();
+  const { getImage } = useAppImage(apiUrl);
 
   useEffect(() => {
     setCurrentLocation(location.pathname);
@@ -121,7 +125,7 @@ const Header: React.FC<IHeaderProps> = ({
             <MdAvatar
               url='/profile'
               name={user.user?.username as string}
-              image={user.user['avatar' as keyof IApiDto] as string}
+              image={getImage(user.user['avatar' as keyof IApiDto])}
             />
           )}
           {user?.user && <CustomModaleConfirm icon='exit' iconColor='error' callback={handleLogout} />}

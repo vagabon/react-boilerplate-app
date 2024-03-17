@@ -8,6 +8,7 @@ import HasRole from '../hook/role/HasRole';
 import { useAuth } from '../module/auth/hook/useAuth';
 
 export interface IDrawerProps {
+  apiUrl: string;
   drawerWidth: number;
   openDrawer: boolean;
   variantDrawer: 'permanent' | 'persistent' | 'temporary';
@@ -15,11 +16,18 @@ export interface IDrawerProps {
   callbackClose?: () => void;
 }
 
-const MenuDrawer: React.FC<IDrawerProps> = ({ drawerWidth, openDrawer, variantDrawer, menu, callbackClose }) => {
+const MenuDrawer: React.FC<IDrawerProps> = ({
+  apiUrl,
+  drawerWidth,
+  openDrawer,
+  variantDrawer,
+  menu,
+  callbackClose,
+}) => {
   const { t } = useAppTranslate();
   const { getIcon } = useIcon();
   const { location, handleNavigate } = useAppRouter();
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn } = useAuth(apiUrl);
   const [currentLocation, setCurrentLocation] = useState<string>(location.pathname);
 
   useEffect(() => {

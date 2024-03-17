@@ -13,13 +13,14 @@ import { IManyToManyDto } from '../../../admin/dto/AdminConfDto';
 import AdminService from '../../../admin/service/AdminService';
 
 interface ICustomFormModaleProps {
+  apiUrl: string;
   conf?: IManyToManyDto;
   open: boolean;
   handleClose: () => void;
   handleSelect: (data: IApiDto) => () => void;
 }
 
-const CustomFormModale: React.FC<ICustomFormModaleProps> = ({ conf, open, ...rest }) => {
+const CustomFormModale: React.FC<ICustomFormModaleProps> = ({ apiUrl, conf, open, ...rest }) => {
   const { t } = useAppTranslate();
   const [search, setSearch] = useState<string>('');
   const [datas, setDatas] = useState<IApiDto[]>([]);
@@ -27,11 +28,13 @@ const CustomFormModale: React.FC<ICustomFormModaleProps> = ({ conf, open, ...res
   const loadDatas = useCallback(
     (search: string): void => {
       conf &&
-        AdminService.findBy(conf.endPoint, conf.fields, search, 0, 500, conf.order, conf.orderBy).then((datas) => {
-          setDatas(datas.content);
-        });
+        AdminService.findBy(apiUrl, conf.endPoint, conf.fields, search, 0, 500, conf.order, conf.orderBy).then(
+          (datas) => {
+            setDatas(datas.content);
+          },
+        );
     },
-    [conf],
+    [apiUrl, conf],
   );
 
   const handleSearch = useCallback((search: string): void => {

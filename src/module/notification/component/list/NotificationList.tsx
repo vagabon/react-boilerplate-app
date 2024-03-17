@@ -6,6 +6,7 @@ import { INotificationDto } from '../../dto/NotificationDto';
 import { NotificationUtils } from '../../utils/NotificationUtils';
 
 export interface INotificationListProps {
+  apiUrl: string;
   notifications: INotificationDto[];
   doChangePage: (pageToAdd: number) => void;
   callbackClick: (data: IApiDto) => void;
@@ -14,6 +15,7 @@ export interface INotificationListProps {
 }
 
 const NotificationList: React.FC<INotificationListProps> = ({
+  apiUrl,
   notifications,
   doChangePage,
   callbackClick,
@@ -30,6 +32,7 @@ const NotificationList: React.FC<INotificationListProps> = ({
     <InfiniteScrollPage doChangePage={doChangePage}>
       <MdCard>
         <CustomList
+          apiUrl={apiUrl}
           className='notification-list'
           callback={callbackClick}
           callbackCheckbox={callbackCheckbox}

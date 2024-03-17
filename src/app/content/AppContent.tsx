@@ -3,6 +3,8 @@ import { ReactNode } from 'react';
 import CustomSeo from '../../module/custom/seo/component/CustomSeo';
 
 export interface IAppContentProps {
+  apiUrl: string;
+  website: string;
   id?: string;
   className?: string;
   children: ReactNode;
@@ -10,12 +12,19 @@ export interface IAppContentProps {
   seoDescription: string;
 }
 
-const AppContent: React.FC<IAppContentProps> = ({ className = '', seoTitle, seoDescription, ...props }) => {
+const AppContent: React.FC<IAppContentProps> = ({
+  apiUrl,
+  website,
+  className = '',
+  seoTitle,
+  seoDescription,
+  ...props
+}) => {
   const { id } = useId(props.id);
 
   return (
     <>
-      <CustomSeo title={seoTitle} description={seoDescription} image={''} date={''} />
+      <CustomSeo apiUrl={apiUrl} website={website} title={seoTitle} description={seoDescription} image={''} date={''} />
       <div id={id} className={'max-width ' + className}>
         {props.children}
       </div>

@@ -19,7 +19,7 @@ describe('useApiServiceFetchBy', () => {
       setPage: jest.fn(),
       setOrder: jest.fn(),
     };
-    const { result } = renderHook(() => useApiServiceFetchBy('test', '/uri', 'query', action));
+    const { result } = renderHook(() => useApiServiceFetchBy('http://', 'test', '/uri', 'query', action));
     await result.current.doFetchByFields('values', 0);
     expect(mockService).toHaveBeenCalledTimes(1);
 

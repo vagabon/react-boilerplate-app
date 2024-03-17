@@ -2,15 +2,16 @@ import { MdCard, MdChip, MdMarkdown, useId } from '@vagabond-inc/react-boilerpla
 import { useCallback, useState } from 'react';
 import AppContent from '../../../../app/content/AppContent';
 import { useRole } from '../../../../hook/role/useRole';
+import { IBaseCustomSeoProps } from '../../../custom/seo/component/CustomSeo';
 import { INewsDto } from '../../dto/NewsDto';
 import NewsShare from '../share/NewsShare';
 
-export interface INewsCardProps {
+export interface INewsCardProps extends IBaseCustomSeoProps {
   news: INewsDto;
   endPoint: string;
 }
 
-const NewsCard: React.FC<INewsCardProps> = (props: INewsCardProps) => {
+const NewsCard: React.FC<INewsCardProps> = ({ apiUrl, ...props }) => {
   const { id } = useId('title');
   const { hasUserRole } = useRole();
   const [summary, setSummary] = useState<string>('');
@@ -29,14 +30,16 @@ const NewsCard: React.FC<INewsCardProps> = (props: INewsCardProps) => {
 
   return (
     <AppContent
+      apiUrl={apiUrl}
+      website={props.website}
       id={id}
       className='mardown-with-summary'
       seoTitle='SEO:NEWS.TITLE'
       seoDescription='SEO:NEWS.DESCRIPTION'>
       <MdCard
         title={props.news.title}
-        avatar={props.news.avatar}
-        image={props.news.image}
+        avatar={apiUrl + '/download?fileName=' + props.news.avatar}
+        image={apiUrl + '/download?fileName=' + props.news.image}
         date={props.news.creationDate}
         urlUpdate={hasUserRole(['ADMIN']) ? '/' + props.endPoint + '/update/' + props.news.id : undefined}>
         <MdMarkdown content={props.news.description} summaryCallback={summaryCallback(props.news.title)}></MdMarkdown>
@@ -44,9 +47,7 @@ const NewsCard: React.FC<INewsCardProps> = (props: INewsCardProps) => {
       <MdCard className='md-summary'>
         <MdMarkdown content={summary}></MdMarkdown>
         <div className='news-tags'>
-          {props.news.tags?.split(',').map((tag) => (
-            <MdChip key={tag} label={tag} color='info' />
-          ))}
+          {props.news.tags?.split(',').map((tag) => <MdChip key={tag} label={tag} color='info' />)}
         </div>
         <NewsShare {...props} />
       </MdCard>

@@ -1,5 +1,5 @@
+import { ID } from '@vagabond-inc/react-boilerplate-md';
 import { useCallback, useState } from 'react';
-import { ID } from '../../..';
 import { useApiService } from '../../../api/hook/useApiService';
 import { useModal } from '../../../hook/modal/useModal';
 import { useAppDispatch, useAppSelector } from '../../../store/Store';
@@ -11,12 +11,12 @@ const URI_NOTIFICATION = '/notification/';
 const URI_NOTIFICATION_COUNT = '/notification/count/';
 const URI_NOTIFICATION_READALL = '/notification/readAll/';
 
-export const useNotification = () => {
+export const useNotification = (apiUrl: string) => {
   const dispatch = useAppDispatch();
   const { nbNotification } = useAppSelector((state) => state.notification);
-  const { user } = useAuth();
-  const { httpGet } = useApiService();
-  const { httpPut } = useApiService();
+  const { user } = useAuth(apiUrl);
+  const { httpGet } = useApiService(apiUrl);
+  const { httpPut } = useApiService(apiUrl);
   const { open, openModal, closeModal } = useModal();
   const [notification, setNotification] = useState<INotificationDto>({});
 

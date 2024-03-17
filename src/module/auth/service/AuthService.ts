@@ -15,44 +15,44 @@ const ENDPOINT_GOOGLE_CONNECT = ENDPOINT_USER + '/google-connect';
 const ENDPOINT_FACEBOOK_CONNECT = ENDPOINT_USER + '/facebook-connect';
 
 const AuthService = {
-  register: (username?: string, email?: string, password?: string) => {
-    return ApiService.post(ENDPOINT_SIGNUP, {
+  register: (apiUrl: string, username?: string, email?: string, password?: string) => {
+    return ApiService.post(apiUrl, ENDPOINT_SIGNUP, {
       username,
       email,
       password,
     });
   },
 
-  login: (username: string, password: string) => {
-    return ApiService.post<IUserDto>(ENDPOINT_SIGNIN, { username, password });
+  login: (apiUrl: string, username: string, password: string) => {
+    return ApiService.post<IUserDto>(apiUrl, ENDPOINT_SIGNIN, { username, password });
   },
 
   updateLocalStorage: (data: ICurrentUserDto<IUserDto>) => {
     StorageUtils.setCurrentUser(data);
   },
 
-  activation: (token: string) => {
-    return ApiService.post(ENDPOINT_ACTIVATION, { token });
+  activation: (apiUrl: string, token: string) => {
+    return ApiService.post(apiUrl, ENDPOINT_ACTIVATION, { token });
   },
 
-  createIdentityToken: (email: string) => {
-    return ApiService.post(ENDPOINT_CREATE_IDENTITY_TOKEN, { email });
+  createIdentityToken: (apiUrl: string, email: string) => {
+    return ApiService.post(apiUrl, ENDPOINT_CREATE_IDENTITY_TOKEN, { email });
   },
 
-  checkIdentityToken: (token: string) => {
-    return ApiService.post<ICheckIdentityDto>(ENDPOINT_CHECK_IDENTITY_TOKEN, { token });
+  checkIdentityToken: (apiUrl: string, token: string) => {
+    return ApiService.post<ICheckIdentityDto>(apiUrl, ENDPOINT_CHECK_IDENTITY_TOKEN, { token });
   },
 
-  resetPassword: (token: string) => {
-    return ApiService.post<ICheckIdentityDto>(ENDPOINT_RESET_PASSWORD, { token });
+  resetPassword: (apiUrl: string, token: string) => {
+    return ApiService.post<ICheckIdentityDto>(apiUrl, ENDPOINT_RESET_PASSWORD, { token });
   },
 
-  googleConnect: (googleToken: string) => {
-    return ApiService.post<IUserDto>(ENDPOINT_GOOGLE_CONNECT, { googleToken });
+  googleConnect: (apiUrl: string, googleToken: string) => {
+    return ApiService.post<IUserDto>(apiUrl, ENDPOINT_GOOGLE_CONNECT, { googleToken });
   },
 
-  facebookConnect: (accessToken: string) => {
-    return ApiService.post<IUserDto>(ENDPOINT_FACEBOOK_CONNECT, { accessToken });
+  facebookConnect: (apiUrl: string, accessToken: string) => {
+    return ApiService.post<IUserDto>(apiUrl, ENDPOINT_FACEBOOK_CONNECT, { accessToken });
   },
 
   logout: () => {

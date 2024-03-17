@@ -18,6 +18,7 @@ import CustomFormManyToMany from './CustomFormManyToMany';
 import CustomFormSelect from './CustomFormSelect';
 
 export interface ICustomFormProps {
+  apiUrl: string;
   endPoint: string;
   conf: [string, IFormDto][];
   values: IApiDto;
@@ -26,9 +27,17 @@ export interface ICustomFormProps {
   handleUpdate: (data: IApiDto) => void;
 }
 
-const CustomForm: React.FC<ICustomFormProps> = ({ endPoint, conf, values, schema, urlGoBack, handleUpdate }) => {
+const CustomForm: React.FC<ICustomFormProps> = ({
+  apiUrl,
+  endPoint,
+  conf,
+  values,
+  schema,
+  urlGoBack,
+  handleUpdate,
+}) => {
   const { navigate } = useAppRouter();
-  const { handleChangeFile } = useCustomFormUpload(endPoint);
+  const { handleChangeFile } = useCustomFormUpload(apiUrl, endPoint);
 
   const handleGoBack = useCallback(() => {
     urlGoBack && navigate(urlGoBack);
@@ -96,9 +105,18 @@ const CustomForm: React.FC<ICustomFormProps> = ({ endPoint, conf, values, schema
                   </>
                 )}
                 {form.type === 'select' && (
-                  <CustomFormSelect conf={form} label={form.label} name={key} listId={true} {...props} />
+                  <CustomFormSelect
+                    apiUrl={apiUrl}
+                    conf={form}
+                    label={form.label}
+                    name={key}
+                    listId={true}
+                    {...props}
+                  />
                 )}
-                {form.type === 'm2m' && <CustomFormManyToMany conf={form} label={form.label} name={key} {...props} />}
+                {form.type === 'm2m' && (
+                  <CustomFormManyToMany apiUrl={apiUrl} conf={form} label={form.label} name={key} {...props} />
+                )}
                 {form.type === 'switch' && (
                   <MdFormSwitch className={form.className} label={form.label} name={key} {...props} />
                 )}

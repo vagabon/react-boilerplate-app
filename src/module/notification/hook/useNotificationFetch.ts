@@ -6,8 +6,9 @@ import { NotificationAction } from '../reducer/NotificationReducer';
 
 const URI_NOTIFICATION_FINDYBY = '/notification/findBy';
 
-export const useNotificationFetch = () => {
+export const useNotificationFetch = (apiUrl: string) => {
   const { datas, search, count, page, doFetchByFields, doSearch, doChangePage } = useApiServiceFetchBy(
+    apiUrl,
     'notification',
     URI_NOTIFICATION_FINDYBY,
     '(title%And|message%)AndUser.idAndActive',

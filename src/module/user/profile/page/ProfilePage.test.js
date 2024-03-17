@@ -19,7 +19,7 @@ describe('ProfilePage', () => {
     };
 
     jest.spyOn(UserService, 'fetchById').mockReturnValue(Promise.resolve(mockUser));
-    render(<ProfilePage profileReact={profileReact} />);
+    render(<ProfilePage apiUrl='https://example.com' profileReact={profileReact} />);
     waitFor(() => {
       expect(screen.getAllByTestId('CardContent')).toBeDefined();
     });
@@ -30,7 +30,7 @@ describe('ProfilePage', () => {
       callback({ auth: { user: null }, common: { message: '', history: [] } }),
     );
     jest.spyOn(UserService, 'fetchById').mockReturnValue(Promise.resolve({}));
-    render(<ProfilePage profileReact={() => <></>} />);
+    render(<ProfilePage apiUrl='https://example.com' profileReact={() => <></>} />);
     expect(screen.queryByTestId(/CardContent/)).toBeNull();
   });
 });

@@ -1,15 +1,16 @@
 import AppContent from '../../../../app/content/AppContent';
 import HasRole from '../../../../hook/role/HasRole';
+import { IBaseCustomSeoProps } from '../../../custom/seo/component/CustomSeo';
 import { INewsRouterProps } from '../../NewsRouter';
 import NewsList from '../../component/list/NewsList';
 
-export interface INewsListPageProps extends INewsRouterProps {}
+export interface INewsListPageProps extends INewsRouterProps, IBaseCustomSeoProps {}
 
-const NewsListPage: React.FC<INewsListPageProps> = ({ endPoint, newsAction }) => {
+const NewsListPage: React.FC<INewsListPageProps> = ({ endPoint, newsAction, ...rest }) => {
   return (
-    <AppContent className='no-overflow' seoTitle='SEO:NEWS.TITLE' seoDescription='SEO:NEWS.DESCRIPTION'>
+    <AppContent {...rest} className='no-overflow' seoTitle='SEO:NEWS.TITLE' seoDescription='SEO:NEWS.DESCRIPTION'>
       <HasRole roles={[]}>
-        <NewsList endPoint={endPoint} newsAction={newsAction} />
+        <NewsList {...rest} endPoint={endPoint} newsAction={newsAction} />
       </HasRole>
     </AppContent>
   );

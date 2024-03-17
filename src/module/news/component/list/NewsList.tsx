@@ -1,15 +1,15 @@
 import { useEffect } from 'react';
 import InfiniteScrollPage from '../../../../page/InfiniteScrollPage';
-import CustomSeo from '../../../custom/seo/component/CustomSeo';
+import CustomSeo, { IBaseCustomSeoProps } from '../../../custom/seo/component/CustomSeo';
 import { INewsRouterProps } from '../../NewsRouter';
 import { INewsDto } from '../../dto/NewsDto';
 import { useFetchNews } from '../../hook/useFetchNews';
 import NewsCardSmall from '../card/NewsCardSmall';
 
-export interface INewsListProps extends INewsRouterProps {}
+export interface INewsListProps extends INewsRouterProps, IBaseCustomSeoProps {}
 
-const NewsList: React.FC<INewsListProps> = ({ endPoint, newsAction }) => {
-  const { news, search, count, page, doSearch, doChangePage } = useFetchNews(endPoint, newsAction);
+const NewsList: React.FC<INewsListProps> = ({ endPoint, newsAction, ...rest }) => {
+  const { news, search, count, page, doSearch, doChangePage } = useFetchNews(rest.apiUrl, endPoint, newsAction);
 
   useEffect(() => {
     doSearch('');
@@ -18,6 +18,7 @@ const NewsList: React.FC<INewsListProps> = ({ endPoint, newsAction }) => {
   return (
     <>
       <CustomSeo
+        {...rest}
         title={news?.[0]?.title ?? 'News'}
         description={
           news?.[0]?.resume ?? 'Vagabond Blog and Tools about React,Java,Quakus technologies for all developers.'
@@ -37,7 +38,7 @@ const NewsList: React.FC<INewsListProps> = ({ endPoint, newsAction }) => {
         urlAddRole={['ADMIN']}>
         <>
           {news.map((oneNews: INewsDto) => (
-            <NewsCardSmall key={'news_' + oneNews.id} news={oneNews} endPoint={endPoint} />
+            <NewsCardSmall {...rest} key={'news_' + oneNews.id} news={oneNews} endPoint={endPoint} />
           ))}
         </>
       </InfiniteScrollPage>

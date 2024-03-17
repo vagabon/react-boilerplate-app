@@ -5,7 +5,7 @@ import { IAdminStateDto } from '../dto/AdminReducerDto';
 import { AdminAction } from '../reducer/AdminReducer';
 import AdminService from '../service/AdminService';
 
-export const useAdminList = (activePage: string, pageConf: IAdminTabDto, state: IAdminStateDto) => {
+export const useAdminList = (apiUrl: string, activePage: string, pageConf: IAdminTabDto, state: IAdminStateDto) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -13,6 +13,7 @@ export const useAdminList = (activePage: string, pageConf: IAdminTabDto, state: 
       return;
     }
     AdminService.findBy(
+      apiUrl,
       pageConf.name,
       pageConf.findByChamps,
       state.filter.search,
@@ -24,7 +25,7 @@ export const useAdminList = (activePage: string, pageConf: IAdminTabDto, state: 
       dispatch(AdminAction.setCount({ activePage, count: data?.totalElements }));
       dispatch(AdminAction.setDatas({ activePage, datas: data?.content ?? [] }));
     });
-  }, [dispatch, activePage, pageConf, state?.filter, state?.table]);
+  }, [apiUrl, dispatch, activePage, pageConf, state?.filter, state?.table]);
 
   const handleSearch = useCallback(
     (search: string) => {

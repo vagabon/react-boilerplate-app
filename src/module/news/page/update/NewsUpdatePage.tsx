@@ -1,18 +1,18 @@
 import { useAppRouter } from '@vagabond-inc/react-boilerplate-md';
 import { useEffect } from 'react';
 import HasRole from '../../../../hook/role/HasRole';
-import CustomSeo from '../../../custom/seo/component/CustomSeo';
+import CustomSeo, { IBaseCustomSeoProps } from '../../../custom/seo/component/CustomSeo';
 import { INewsRouterProps } from '../../NewsRouter';
 import NewsForm from '../../component/form/NewsForm';
 import { useCreateNews } from '../../hook/useCreateNews';
 
-export interface INewsShowPageProps extends INewsRouterProps {}
+export interface INewsShowPageProps extends INewsRouterProps, IBaseCustomSeoProps {}
 
-const NewsUpdatePage: React.FC<INewsShowPageProps> = ({ endPoint, newsAction }) => {
+const NewsUpdatePage: React.FC<INewsShowPageProps> = ({ endPoint, newsAction, ...rest }) => {
   const {
     params: { id },
   } = useAppRouter();
-  const { news, fetchById } = useCreateNews(endPoint, newsAction, parseInt(id as string));
+  const { news, fetchById } = useCreateNews(rest.apiUrl, endPoint, newsAction, parseInt(id as string));
 
   useEffect(() => {
     fetchById(id);
@@ -20,8 +20,10 @@ const NewsUpdatePage: React.FC<INewsShowPageProps> = ({ endPoint, newsAction }) 
 
   return (
     <>
-      <CustomSeo title={news.title} description={news.resume} image={news.image} />
-      <HasRole roles={['ADMIN']}>{<NewsForm endPoint={endPoint} newsAction={newsAction} news={news ?? {}} />}</HasRole>
+      <CustomSeo {...rest} title={news.title} description={news.resume} image={news.image} />
+      <HasRole roles={['ADMIN']}>
+        {<NewsForm {...rest} endPoint={endPoint} newsAction={newsAction} news={news ?? {}} />}
+      </HasRole>
     </>
   );
 };

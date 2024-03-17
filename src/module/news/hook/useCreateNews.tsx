@@ -8,7 +8,7 @@ import { INewsDto } from '../dto/NewsDto';
 import { NewsReducerState } from '../reducer/NewsReducers';
 import NewsService from '../service/NewsService';
 
-export const useCreateNews = (endPoint: string, newsAction: IReducersActionsProps, idNews: number) => {
+export const useCreateNews = (apiUrl: string, endPoint: string, newsAction: IReducersActionsProps, idNews: number) => {
   const { navigate } = useAppRouter();
   const { userConnected } = useRole();
   const { data: news } = useAppSelector<NewsReducerState>((state) => state[endPoint]);
@@ -17,11 +17,11 @@ export const useCreateNews = (endPoint: string, newsAction: IReducersActionsProp
   const fetchById = useCallback(
     (id: ID) => {
       id &&
-        NewsService.fetchById(endPoint, id).then((data) => {
+        NewsService.fetchById(apiUrl, endPoint, id).then((data) => {
           dispatch(newsAction.setData(data));
         });
     },
-    [dispatch, endPoint, newsAction],
+    [apiUrl, dispatch, endPoint, newsAction],
   );
 
   const createOrUpdateNews = useCallback(
@@ -29,14 +29,14 @@ export const useCreateNews = (endPoint: string, newsAction: IReducersActionsProp
       if (!news.user) {
         news = { ...news, user: userConnected };
       }
-      NewsService.createOrUpdate(endPoint, news, dispatch).then((data: INewsDto) => {
+      NewsService.createOrUpdate(apiUrl, endPoint, news, dispatch).then((data: INewsDto) => {
         if (!news.id) {
           dispatch(CommonAction.sliceHistoryOnce());
         }
         navigate('/' + endPoint + '/update/' + data.id);
       });
     },
-    [dispatch, endPoint, navigate, userConnected],
+    [apiUrl, dispatch, endPoint, navigate, userConnected],
   );
 
   return { news: news?.[idNews] ?? {}, fetchById, createOrUpdateNews };

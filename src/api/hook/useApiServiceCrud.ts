@@ -3,7 +3,7 @@ import { useCallback, useRef } from 'react';
 import { useMessage } from '../../hook/message/useMessage';
 import { ApiCrudService } from '../service/crud/ApiCrudService';
 
-export const useApiServiceCrud = <T extends IApiDto>() => {
+export const useApiServiceCrud = <T extends IApiDto>(apiUrl: string) => {
   const { setMessage } = useMessage();
   const isLoad = useRef(false);
 
@@ -12,7 +12,7 @@ export const useApiServiceCrud = <T extends IApiDto>() => {
       if (!isLoad.current) {
         isLoad.current = true;
         const entityIdBeforePersist = data.id;
-        ApiCrudService.createOrUpdate<T>(url, data)
+        ApiCrudService.createOrUpdate<T>(apiUrl, url, data)
           .then((data) => {
             isLoad.current = false;
             if (!entityIdBeforePersist) {
@@ -27,7 +27,7 @@ export const useApiServiceCrud = <T extends IApiDto>() => {
           });
       }
     },
-    [setMessage],
+    [apiUrl, setMessage],
   );
 
   return { createOrUpdate };

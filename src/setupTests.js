@@ -48,6 +48,7 @@ jest.mock('react-helmet-async', () => ({
 
 jest.mock('@mui/x-charts', () => ({
   BarChart: ({ children }) => <div data-testid='BarChart'>{children}</div>,
+  PieChart: ({ children }) => <div data-testid='PieChart'>{children}</div>,
 }));
 
 /******************* AFTER EACH RESET MOCK *****************************/

@@ -8,18 +8,21 @@ import { useAuth } from '../../../auth/hook/useAuth';
 import { IUserDto } from '../dto/UserDto';
 import UserService from '../service/UserService';
 
-export const useUser = () => {
-  const { updateLocalStorage } = useAuth();
+export const useUser = (apiUrl: string) => {
+  const { updateLocalStorage } = useAuth(apiUrl);
   const { setMessage } = useMessage();
   const [user, setUser] = useState<IUserDto>({});
   const { user: currentUser } = useAppSelector((state) => state.auth);
 
-  const fetchById = useCallback((id: ID) => {
-    id &&
-      UserService.fetchById(id).then((data) => {
-        setUser(data);
-      });
-  }, []);
+  const fetchById = useCallback(
+    (id: ID) => {
+      id &&
+        UserService.fetchById(apiUrl, id).then((data) => {
+          setUser(data);
+        });
+    },
+    [apiUrl],
+  );
 
   const updateLocalUser = useCallback(
     (newUser: IUserDto) => {
@@ -51,24 +54,24 @@ export const useUser = () => {
 
   const handleUpdateEmail = useCallback(
     (id: ID, email: string, callback?: () => void) => {
-      UserService.updateEmail(id, email).then((data) => {
+      UserService.updateEmail(apiUrl, id, email).then((data) => {
         updateLocalUser({ ...data });
         setMessage('AUTH:USER.EMAIL.SUCCESS', 'success');
         callback?.();
       });
     },
-    [updateLocalUser, setMessage],
+    [apiUrl, updateLocalUser, setMessage],
   );
 
   const handleUpdatePassword = useCallback(
     (id: ID, password: string, newPassword: string, callback?: () => void) => {
-      UserService.updatePassword(id, password, newPassword).then((data) => {
+      UserService.updatePassword(apiUrl, id, password, newPassword).then((data) => {
         updateLocalUser({ ...data });
         setMessage('AUTH:USER.PASSWORD.SUCCESS', 'success');
         callback?.();
       });
     },
-    [updateLocalUser, setMessage],
+    [apiUrl, updateLocalUser, setMessage],
   );
 
   const isUserPassword = useCallback(

@@ -42,10 +42,9 @@ global.spyOn = (object, method, data) => {
 };
 
 global.mockedUsedNavigate = jest.fn();
-global.mockParams = {};
+global.mockParams = { id: 0 };
 global.mockLocation = { pathname: 'home' };
 global.currentUser = undefined;
-global.params = { id: 0 };
 
 const mockT = (value) => value;
 

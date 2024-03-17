@@ -45,19 +45,12 @@ global.mockedUsedNavigate = jest.fn();
 global.mockParams = {};
 global.mockLocation = { pathname: 'home' };
 global.currentUser = undefined;
+global.params = { id: 0 };
 
 const mockT = (value) => value;
 
 export const mockBoilerPlateMd = {
   IconClickable: ({ callback }) => <div data-testid='IconClickable' onClick={callback}></div>,
-
-  useAppRouter: () => ({
-    location: global.mockLocation,
-    params: global.params,
-    navigate: jest.fn(),
-    handleNavigate: () => global.mockNavigate,
-    handleNavigateWithId: () => jest.fn(),
-  }),
 
   useIcon: () => ({
     getIcon: jest.fn(),
@@ -198,6 +191,8 @@ export const mockBoilerPlateMd = {
     BrowserRouter: (props) => mockWithChildren('BrowserRouter', props),
     Route: (props) => mockWithChildren('Route', props),
     Routes: (props) => mockWithChildren('Routes', props),
+    handleNavigate: () => global.mockNavigate,
+    handleNavigateWithId: () => jest.fn(),
   }),
   useId: () => ({ id: 1 }),
   useTheme: () => ({

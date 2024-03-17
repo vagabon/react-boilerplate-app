@@ -2,12 +2,14 @@ import { MdCard, MdSearchBar } from '@vagabond-inc/react-boilerplate-md';
 import { ReactNode, useCallback } from 'react';
 import AppFabAdd, { IAppFabAddProps } from '../app/fab/add/AppFabAdd';
 import AppInfiniteScrool from '../app/infinite-scroll/AppInfiniteScrool';
+
 export interface InfiniteScroolPageProps extends IAppFabAddProps {
   icon?: string;
   title?: string;
   titleCount?: number;
   className?: string;
   search?: string;
+  isCard?: boolean;
   children: ReactNode;
   doChangePage?: (pageToAdd: number) => void;
   doSearch?: (search: string) => void;
@@ -18,6 +20,7 @@ const InfiniteScrollPage: React.FC<InfiniteScroolPageProps> = ({
   title,
   titleCount,
   className = '',
+  isCard = true,
   ...props
 }) => {
   const handleSearch = useCallback(
@@ -37,9 +40,15 @@ const InfiniteScrollPage: React.FC<InfiniteScroolPageProps> = ({
   return (
     <>
       {props.search !== undefined && (
-        <MdCard className='search-bar-card' icon={icon} title={title} titleCount={titleCount}>
-          <MdSearchBar callBack={handleSearch(props.doSearch)} search={props.search} />
-        </MdCard>
+        <>
+          {isCard ? (
+            <MdCard className='search-bar-card' icon={icon} title={title} titleCount={titleCount}>
+              <MdSearchBar callBack={handleSearch(props.doSearch)} search={props.search} />
+            </MdCard>
+          ) : (
+            <MdSearchBar callBack={handleSearch(props.doSearch)} search={props.search} />
+          )}
+        </>
       )}
       <AppInfiniteScrool id='infinite-container' callBack={onScroll(props.doChangePage)} className={className}>
         {props.children}

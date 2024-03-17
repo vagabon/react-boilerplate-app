@@ -174,7 +174,7 @@ export const mockBoilerPlateMd = {
   useFormError: () => ({ error: '' }),
   useAppTranslate: () => ({
     t: mockT,
-    Trans: ({ i18nKey }) => <div data-testid='Trans'>{i18nKey}</div>,
+    Trans: ({ i18nKey }) => <span data-testid='Trans'>{i18nKey}</span>,
     i18n: jest.fn(),
     LanguageDetector: jest.fn(),
     initReactI18next: jest.fn(),

@@ -43,7 +43,7 @@ export const useCustomNotification = (entityId: ID, type: string) => {
 
   const fetchNotifications = useCallback(
     (oldNotification: INotificationDto[], filter: INotificationDto, page: number) => {
-      const champs = '(message%And|user.username%)AndEntityIdAndType';
+      const champs = '(message%And|user.username%)AndEntityIdAndCategory';
       const value = filter.search ?? '';
       const values = value + ',' + value + ',' + entityId + ',' + type;
       ApiService.findBy<IPageableDto<INotificationDto[]>>(

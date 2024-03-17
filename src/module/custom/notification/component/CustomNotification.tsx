@@ -19,6 +19,7 @@ const CustomNotification: React.FC<ICustomNotificationProps> = ({ entityId, type
   return (
     <MdCard>
       <InfiniteScrollPage
+        isCard={false}
         search={search}
         className='news-list'
         doChangePage={doChangePage(notifications, page)}

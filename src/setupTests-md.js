@@ -51,6 +51,14 @@ const mockT = (value) => value;
 export const mockBoilerPlateMd = {
   IconClickable: ({ callback }) => <div data-testid='IconClickable' onClick={callback}></div>,
 
+  useAppRouter: () => ({
+    location: global.mockLocation,
+    params: global.params,
+    navigate: jest.fn(),
+    handleNavigate: () => global.mockNavigate,
+    handleNavigateWithId: () => jest.fn(),
+  }),
+
   useIcon: () => ({
     getIcon: jest.fn(),
     getIconListDto: () => [{ id: 'icon', libelle: 'libelle', icon: 'icon' }],
@@ -64,6 +72,7 @@ export const mockBoilerPlateMd = {
   ),
   MdAlert: ({ label }) => <div data-testid='MdAlert'>{label}</div>,
   MdAvatar: ({ callback }) => <div data-testid='MdAvatar' onClick={callback}></div>,
+  MdBackdrop: ({ children }) => <div data-testid='MdBackdrop'>{children}</div>,
   MdCollapse: ({ children }) => <div data-testid='MdCollapse'>{children}</div>,
   MdChip: ({ callbackDelete }) => <button data-testid='MdChip' onClick={callbackDelete}></button>,
   MdBox: (props) => mockWithChildren('MdBox', props),

@@ -10,6 +10,9 @@ import CookieConsents from './CookieConsents';
 import Footer from './Footer';
 import Header from './Header';
 import MenuDrawer from './MenuDrawer';
+import { useAppFirebaseToken } from './hook/useAppFirebaseToken';
+import { useAppNotification } from './hook/useAppNotification';
+import { useAppScroll } from './hook/useAppScroll';
 import { useAppTheme } from './hook/useAppTheme';
 import ShowMessage from './message/ShowMessage';
 
@@ -32,8 +35,8 @@ export interface IAppThemeProps {
   menu: IMenuDto[];
   children: ReactNode;
   i18n?: i18nType;
-  nbNotification?: number;
   showNotification?: boolean;
+  generateToken: () => Promise<string | undefined>;
 }
 
 const AppTheme: React.FC<IAppThemeProps> = ({
@@ -43,23 +46,18 @@ const AppTheme: React.FC<IAppThemeProps> = ({
   menu,
   children,
   i18n,
-  nbNotification,
   showNotification,
+  generateToken,
 }) => {
   const dispatch = useAppDispatch();
+  const mainContainer = useRef<HTMLDivElement | null>(null);
   const { location } = useAppRouter();
   const { mode, theme, switchTheme } = useTheme(palette);
-  const {
-    drawerWidth,
-    openDrawer,
-    variantDrawer,
-    showOpenDrawer,
-    handleDrawerOpen,
-    handleCloseSnackbar,
-    getScrollPage,
-    handleScroll,
-  } = useAppTheme();
-  const mainContainer = useRef<HTMLDivElement | null>(null);
+  const { drawerWidth, openDrawer, variantDrawer, showOpenDrawer, handleDrawerOpen, handleCloseSnackbar } =
+    useAppTheme();
+  useAppFirebaseToken(generateToken);
+  const { nbNotification } = useAppNotification();
+  const { handleScroll, getScrollPage } = useAppScroll();
 
   useEffect(() => {
     getScrollPage(location.pathname);

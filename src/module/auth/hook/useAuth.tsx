@@ -58,7 +58,7 @@ export const useAuth = () => {
   const redirectIfLogged = useCallback(
     (url: string = URL_LOGIN_REDIRECT) => {
       if (isLoggedIn) {
-        navigate(url);
+        navigate(url, { replace: true });
       }
     },
     [isLoggedIn, navigate],

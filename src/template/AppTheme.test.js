@@ -71,6 +71,7 @@ describe('AppTheme', () => {
       callback({
         common: { loading: false, history: [], message: { id: '', message: '', type: 'success' } },
         auth: { isLoggedIn: false },
+        notification: { nbNotification: 0, datas: [] },
       }),
     );
     Element.prototype.scrollTo = () => {};

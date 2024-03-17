@@ -93,6 +93,7 @@ export type { IRegisterDto } from './module/auth/page/register/dto/RegisterDto';
 export { AuthReducer, default as AuthReducers, LoginAction } from './module/auth/reducer/AuthReducers';
 export type { AuthReducerState } from './module/auth/reducer/AuthReducers';
 export { default as AuthService } from './module/auth/service/AuthService';
+
 export { default as CustomForm } from './module/custom/form/component/CustomForm';
 export type { ICustomFormProps } from './module/custom/form/component/CustomForm';
 export { default as CustomFormManyToMany } from './module/custom/form/component/CustomFormManyToMany';
@@ -140,7 +141,17 @@ export { default as NewsUpdatePage } from './module/news/page/update/NewsUpdateP
 export { NewsAction, NewsReducer, default as NewsReducers } from './module/news/reducer/NewsReducers';
 export type { NewsReducerState } from './module/news/reducer/NewsReducers';
 export { default as NewsService } from './module/news/service/NewsService';
+
+export { default as NotificationRouter } from './module/notification/NotificationRouter';
+export type { INotificationDto } from './module/notification/dto/NotificationDto';
+export {
+  NotificationAction,
+  NotificationReducer,
+  default as NotificationReducers,
+} from './module/notification/reducer/NotificationReducer';
+
 export { default as NotFoundPage } from './module/not-found/page/NotFoundPage';
+
 export { default as UserRouter } from './module/user/UserRouter';
 export { default as ProfileAvatar } from './module/user/profile/component/ProfileAvatar';
 export type { IProfileAvatarProps } from './module/user/profile/component/ProfileAvatar';

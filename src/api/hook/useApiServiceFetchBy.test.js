@@ -32,7 +32,7 @@ describe('useApiServiceFetchBy', () => {
     expect(action.setPage).toHaveBeenCalledTimes(1);
     expect(callback).toHaveBeenCalledTimes(2);
 
-    await result.current.handleChangeOrder('date', callback);
+    await result.current.doChangeOrder('date', callback);
     expect(callback).toHaveBeenCalledTimes(3);
   });
 });

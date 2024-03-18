@@ -1,6 +1,6 @@
 import { ReducerType } from '@reduxjs/toolkit';
 import { IApiDto, IOrderDto, JSONObject } from '@vagabond-inc/react-boilerplate-md';
-import { useCallback } from 'react';
+import { useCallback, useRef } from 'react';
 import { IOrderState, IReducersActionsProps } from '../../reducer/BaseReducer';
 import { useAppDispatch, useAppSelector } from '../../store/Store';
 import { useApiServiceFindBy } from './useApiServiceFindBy';
@@ -14,6 +14,7 @@ export const useApiServiceFetchBy = <T extends IApiDto>(
   max: number = 10,
   orderList: IOrderDto[] = [{ id: 'id', libelle: 'ID', orderAsc: false }],
 ) => {
+  const firstRender = useRef(false);
   const dispatch = useAppDispatch();
   const { datas, search, count, order, page } = useAppSelector((state) => state[stateName as keyof ReducerType]);
   const { fetchBy, resetStopLoad } = useApiServiceFindBy<T>(apiUrl, uri, query, max);
@@ -23,6 +24,7 @@ export const useApiServiceFetchBy = <T extends IApiDto>(
       fetchBy(values, page, order?.order, order?.orderAsc ? '' : 'desc', (data) => {
         dispatch(action.setCount(data.totalElements));
         dispatch(page === 0 ? action.setDatas(data?.content ?? []) : action.addDatas(data?.content ?? []));
+        firstRender.current = true;
       });
     },
     [fetchBy, dispatch, action],
@@ -55,7 +57,7 @@ export const useApiServiceFetchBy = <T extends IApiDto>(
     [search, order, dispatch, action],
   );
 
-  const handleChangeOrder = useCallback(
+  const doChangeOrder = useCallback(
     (value?: string | JSONObject, callback?: (field: string, order?: IOrderState) => void) => {
       const order = { order: (value ?? orderList[0].id) as string, orderAsc: false };
       dispatch(action.setOrder(order));
@@ -65,5 +67,17 @@ export const useApiServiceFetchBy = <T extends IApiDto>(
     [dispatch, search, action, orderList, resetStopLoad],
   );
 
-  return { datas, search, count, page, doFetchByFields, doSearch, doChangePage, order, orderList, handleChangeOrder };
+  return {
+    firstRender: firstRender.current,
+    datas,
+    search,
+    count,
+    page,
+    doFetchByFields,
+    doSearch,
+    doChangePage,
+    order,
+    orderList,
+    doChangeOrder,
+  };
 };

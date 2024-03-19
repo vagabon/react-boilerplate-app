@@ -6,11 +6,10 @@ export const useAppFirebaseToken = (apiUrl: string, generateToken: () => Promise
   const { user: currentUser } = useAppSelector((state) => state.auth);
 
   useEffect(() => {
-    const token = localStorage.getItem('fire_token');
+    const fireToken = localStorage.getItem('fire_token');
     currentUser?.user?.id &&
-      !token &&
       generateToken().then((token) => {
-        token &&
+        (!fireToken || fireToken !== token) &&
           ApiService.put(apiUrl, '/notification/token/user', { userId: currentUser?.user?.id, token: token }).then(
             (data) => {
               data?.token && localStorage.setItem('fire_token', data?.token);

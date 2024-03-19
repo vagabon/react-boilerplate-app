@@ -29,9 +29,16 @@ export const useAppTheme = () => {
     [],
   );
 
-  const handleCloseSnackbar = useCallback(
-    (snackbarId: SnackbarKey) => <button onClick={() => closeSnackbar(snackbarId)}>X</button>,
+  const handleClose = useCallback(
+    (snackbarId: SnackbarKey) => () => {
+      closeSnackbar(snackbarId);
+    },
     [],
+  );
+
+  const handleCloseSnackbar = useCallback(
+    (snackbarId: SnackbarKey) => <button onClick={handleClose(snackbarId)}>X</button>,
+    [handleClose],
   );
 
   return {

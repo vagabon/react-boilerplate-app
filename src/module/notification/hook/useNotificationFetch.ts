@@ -27,8 +27,8 @@ export const useNotificationFetch = (apiUrl: string) => {
 
   const doSearchNotifications = useCallback(
     (userId: ID) =>
-      (title: string): void => {
-        doSearch(title, (field: string) => {
+      (title?: string): void => {
+        doSearch(title as string, (field: string) => {
           doFetchNotifications({ title: field }, 0, userId);
         });
       },

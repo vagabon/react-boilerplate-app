@@ -10,6 +10,8 @@ export { PayloadAction, configureStore, createSlice } from '@reduxjs/toolkit';
 export { Provider, TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 export { Action, Reducer, combineReducers } from 'redux';
 
+export { Variant } from '@mui/material/styles/createTypography';
+
 // export lib
 export { useApiService } from './api/hook/useApiService';
 export { useApiServiceCrud } from './api/hook/useApiServiceCrud';
@@ -21,6 +23,8 @@ export { ApiCrudService } from './api/service/crud/ApiCrudService';
 
 export { default as AppButtonRefresh } from './app/button/component/refresh/AppButtonRefresh';
 export type { IAppButtonRefreshProps } from './app/button/component/refresh/AppButtonRefresh';
+export { default as AppButtonReport } from './app/button/component/report/AppButtonReport';
+export type { IAppButtonReportProps } from './app/button/component/report/AppButtonReport';
 
 export { default as AppChartBar } from './app/chart/bar/component/AppChartBar';
 export type { IAppChartBarProps } from './app/chart/bar/component/AppChartBar';
@@ -165,8 +169,6 @@ export type { IUserDto } from './module/user/user/dto/UserDto';
 export { useUser } from './module/user/user/hook/useUser';
 export { default as UserService } from './module/user/user/service/UserService';
 
-export { default as CrudPage } from './page/CrudPage';
-export type { CrudPageProps } from './page/CrudPage';
 export { default as InfiniteScrollPage } from './page/InfiniteScrollPage';
 export type { InfiniteScroolPageProps } from './page/InfiniteScrollPage';
 export { default as ShowPage } from './page/ShowPage';

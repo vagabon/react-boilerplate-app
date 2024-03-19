@@ -23,8 +23,6 @@ const PROFILE_M2M = {
 };
 
 describe('CustomForm', () => {
-  beforeAll(() => {});
-
   test('Given CustomForm when its mount then ', () => {
     useAppSelectorSpy.mockImplementation((callback) =>
       callback({

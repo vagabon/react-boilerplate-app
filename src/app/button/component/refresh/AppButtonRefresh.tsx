@@ -1,17 +1,23 @@
 import { MdButton } from '@vagabond-inc/react-boilerplate-md';
+import { useCallback } from 'react';
 
 export interface IAppButtonRefreshProps {
-  callback?: () => void;
+  data?: string;
+  callback?: (data?: string) => void;
 }
 
-const AppButtonRefresh: React.FC<IAppButtonRefreshProps> = ({ callback }) => {
+const AppButtonRefresh: React.FC<IAppButtonRefreshProps> = ({ data, callback }) => {
+  const handleClick = useCallback(() => {
+    callback?.(data);
+  }, [data, callback]);
+
   return (
     <>
       {callback && (
         <MdButton
           icon='refresh'
           variant='outlined'
-          callback={callback}
+          callback={handleClick}
           sx={{ minWidth: '27px !important', width: '27px', marginLeft: '0.3rem !important' }}
         />
       )}

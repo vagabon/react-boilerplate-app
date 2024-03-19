@@ -42,7 +42,7 @@ const NotificationPage: React.FC<INotificationPageProps> = ({ handleSelect, head
           actions={
             <>
               <CustomModaleConfirm button='READ_ALL' label='READ_ALL_CONFIRM' callback={handleReadAll()} />
-              <AppButtonRefresh callback={() => doSearchNotifications(user?.id)(search)} />
+              <AppButtonRefresh data={search} callback={doSearchNotifications(user?.id)} />
             </>
           }>
           <div className='flex flex-row align-start width100 gap10'>{header}</div>

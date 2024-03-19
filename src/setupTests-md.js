@@ -194,6 +194,13 @@ export const mockBoilerPlateMd = {
     handleNavigateWithId: () => jest.fn(),
   }),
   useId: () => ({ id: 1 }),
+  useTab: () => ({
+    tabs: [],
+    handleChangeTab: jest.fn(),
+    updateTab: (callback) => {
+      callback({ name: 'name' });
+    },
+  }),
   useTheme: () => ({
     mode: 'dark',
     theme: {},
@@ -222,9 +229,6 @@ export const mockBoilerPlateMd = {
   },
   UuidUtils: {
     createUUID: () => 'uuid',
-  },
-  WindowUtils: {
-    getEnv: () => 'http://localhost:8090',
   },
 };
 

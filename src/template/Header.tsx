@@ -15,7 +15,7 @@ import {
   useIcon,
 } from '@vagabond-inc/react-boilerplate-md';
 import { type i18n as i18nType } from 'i18next';
-import { useCallback, useEffect, useState } from 'react';
+import { ReactNode, useCallback, useEffect, useState } from 'react';
 import { IMenuDto } from '../dto/menu/MenuDto';
 import HasRole from '../hook/role/HasRole';
 import { useUserAuth } from '../hook/user/useUserAuth';
@@ -36,6 +36,7 @@ export interface IHeaderProps {
   i18n?: i18nType;
   nbNotification?: number;
   showNotification?: boolean;
+  reactHeader?: ReactNode;
 }
 
 const Header: React.FC<IHeaderProps> = ({
@@ -49,6 +50,7 @@ const Header: React.FC<IHeaderProps> = ({
   callbackDrawer,
   i18n,
   nbNotification,
+  reactHeader,
   showNotification,
 }) => {
   const { location, navigate, Link, handleNavigate } = useAppRouter();
@@ -128,6 +130,7 @@ const Header: React.FC<IHeaderProps> = ({
               image={getImage(user.user['avatar' as keyof IApiDto])}
             />
           )}
+          {reactHeader}
           {user?.user && <CustomModaleConfirm icon='exit' iconColor='error' callback={handleLogout} />}
         </MdToolbar>
         {!widthDrawer && (

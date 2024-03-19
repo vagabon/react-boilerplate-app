@@ -6,6 +6,12 @@
 html { font-size: 13px; }
 html, body, #root { height: 100%; }
 
+button { cursor: pointer; &:focus { outline: none; } }
+
+.animate { transition: all .1s ease-in-out; }
+.animate:hover { transform: scale(1.03); }
+.no-animate .animate:hover { transform: scale(1.00) !important; }
+
 body, span.MuiTypography-root, p.MuiTypography-root { font-size: 1.0rem !important; }
 h1 { font-size: 2.5rem !important; margin: 0 0 5px !important; }
 h2 { font-size: 2.1rem !important; margin: 0 0 5px !important; }
@@ -33,7 +39,9 @@ h5 { font-size: 1.3rem !important; margin: 0 0 5px !important; }
 
 .flex-wrap { flex-wrap: wrap; }
 .flex1 { flex: 1; }
+.border0 { border: 0px !important; }
 .gap4 { gap: 4px; }
+.gap5 { gap: 5px; }
 .gap10 { gap: 10px; }
 .align-center { align-items: center !important; }
 .align-end { align-items: end !important; }

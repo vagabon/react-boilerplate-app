@@ -18,6 +18,7 @@ export const AuthReducer = createSlice({
   initialState: initialState,
   reducers: {
     setLoginSuccess: (state: AuthReducerState, action: PayloadAction<ICurrentUserDto<IUserDto>>) => ({
+      // TODO : save just the jwt if user dont want cookie
       ...state,
       isLoggedIn: true,
       user: action.payload,

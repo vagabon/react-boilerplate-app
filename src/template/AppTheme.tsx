@@ -38,6 +38,7 @@ export interface IAppThemeProps {
   i18n?: i18nType;
   showNotification?: boolean;
   generateToken: () => Promise<string | undefined>;
+  reactHeader?: ReactNode;
 }
 
 const AppTheme: React.FC<IAppThemeProps> = ({
@@ -50,6 +51,7 @@ const AppTheme: React.FC<IAppThemeProps> = ({
   i18n,
   showNotification,
   generateToken,
+  reactHeader,
 }) => {
   const dispatch = useAppDispatch();
   const mainContainer = useRef<HTMLDivElement | null>(null);
@@ -94,6 +96,7 @@ const AppTheme: React.FC<IAppThemeProps> = ({
               i18n={i18n}
               nbNotification={nbNotification}
               showNotification={showNotification}
+              reactHeader={reactHeader}
             />
 
             <div className='flex flex-row' style={{ flex: '1', overflow: 'hidden' }}>

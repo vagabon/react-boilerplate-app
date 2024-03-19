@@ -22,7 +22,7 @@ $maxWidth: 1000px;
   .MuiCardHeader-title { font-size: 1.5rem !important; }
   #infinite-container { 
     flex: 1; 
-    & > .max-width { align-items: normal; justify-content: flex-start; flex: 1; gap: 10px; }
+    & > .max-width { align-items: normal; justify-content: flex-start; flex: 1; }
   }
   .max-width { max-width: $maxWidth; margin: 0 auto; width: 100%; margin-bottom: 5px; display: flex; flex-direction: column; }
   .max-width-800 { max-width: 800; }
@@ -30,11 +30,12 @@ $maxWidth: 1000px;
   .MuiPaper-root { margin: 5px !important; padding: 5px !important;  width: calc(100% - 10px); }
   .search-bar-card { padding: 0; .MuiCardContent-root { padding: 0 0.5rem !important; } }
   .search-bar { 
-    margin: 1rem 0; display: flex; flex-direction: row; gap: 4px;
+    margin: 10px 8px 0px !important; padding: 5px; border-radius: 5px; display: flex; flex-direction: row; gap: 4px;
     & > div { padding: 0px; margin: 0px; } 
     & > div:nth-child(1) { flex: 1; width: auto !important; }
     & > div:nth-child(2) { width: auto !important; & > div { height: 40px !important; } }
   }
+  .MuiPaper-root > .MuiCardContent-root > .search-bar { margin: 0 !important; padding: 0px !important; }
 }
 
 .button-right { flex-direction: row; justify-content: flex-end; margin-bottom: 5px; }
@@ -46,7 +47,6 @@ $maxWidth: 1000px;
 @media screen and (max-width: 900px) {
   .main-container {
     .MuiPaper-root { margin: 5px !important; padding: 5px !important;  width: calc(100% - 10px) !important; }
-    #infinite-container { & > .max-width { gap: 5px; } }
     .modal > .MuiBox-root { width: 100% !important;  }
   }
 }
@@ -208,22 +208,19 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
 
 /**** copyright ****/
 
-.home-page {
-  .copyright {
-    width: 100% !important;
-    .MuiCardContent-root { display: flex; flex-direction: row; gap: 1rem; }
-    .MuiCardMedia-root { justify-content: center; display: flex; }
-    .flex > div { width: 100%; }
-  }
+.copyright {
+  width: 100% !important;
+  .MuiCardContent-root { display: flex; flex-direction: row; gap: 1rem; }
+  .MuiCardMedia-root { justify-content: center; display: flex; }
+  h4 { margin: 20px 0px !important; }
+  .flex > div { width: 100%; }
 }
 
 @media screen and (max-width: 700px) {
-  .home-page {
-    .copyright {
-      width: 100% !important;
-      .MuiCardContent-root { flex-direction: column; }
-      .MuiAvatar-root { width: 150px; height: 150px; }
-    }
+  .copyright {
+    width: 100% !important;
+    .MuiCardContent-root { flex-direction: column; }
+    .MuiAvatar-root { width: 150px; height: 150px; }
   }
 }
 
@@ -278,7 +275,7 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
 
 
 .modal > .MuiBox-root { 
-    width: 45vw !important; min-height: 50vh !important; max-height: 95vh; display: flex; padding: 10px; background-color: unset !important; border: 0 !important;
+    width: 45vw !important; min-height: 50vh !important; max-height: 95vh; display: flex; padding: 0px; background-color: unset !important; border: 0 !important;
     .MuiPaper-root:not(.MuiAlert-root) {
       display: flex; flex-direction: column; overflow: auto; width: 100% !important;
       .MuiCardContent-root { width: 100%; display: flex; flex-direction: column; overflow: auto; }

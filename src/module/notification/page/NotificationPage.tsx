@@ -14,7 +14,7 @@ import { useNotificationFetch } from '../hook/useNotificationFetch';
 
 export interface INotificationPageProps extends IBaseCustomSeoProps {
   handleSelect: (notification: INotificationDto) => void;
-  header: ReactNode;
+  header?: ReactNode;
 }
 
 const NotificationPage: React.FC<INotificationPageProps> = ({ handleSelect, header, ...rest }) => {
@@ -45,7 +45,7 @@ const NotificationPage: React.FC<INotificationPageProps> = ({ handleSelect, head
               <AppButtonRefresh data={search} callback={doSearchNotifications(user?.id)} />
             </>
           }>
-          <div className='flex flex-row align-start width100 gap10'>{header}</div>
+          {header && <div className='flex flex-row align-start width100 gap10'>{header}</div>}
           <MdSearchBar search={search} callBack={doSearchNotifications(user?.id)} />
         </MdCard>
         <NotificationList

@@ -6,7 +6,7 @@ import NotificationPage from './page/NotificationPage';
 
 export interface INotificationRouterProps extends IBaseCustomSeoProps {
   apiUrl: string;
-  header: ReactNode;
+  header?: ReactNode;
   callbackNavigateNotification: (data: INotificationDto) => void;
 }
 

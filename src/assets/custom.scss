@@ -105,12 +105,14 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
 .MuiDrawer-root { ul {padding: 0px !important; } }
 
 @media (max-width: 600px) {
+  .hidden-responsive { display: none !important; }
   .MuiToolbar-root { 
     padding: 0 !important;
     .back-button { width: 25px !important; svg { width: 15px; } }
     .MuiAvatar-root { width: 25px !important; height: 25px !important; }
     a { gap: 0.5rem !important; }
     img { width: 25px !important; height: 25px !important; }
+    .MuiButtonBase-root:last-child { display: none !important; }
   }
   #header {
     button { min-width: 30px !important; }

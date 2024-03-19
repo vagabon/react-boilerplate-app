@@ -104,9 +104,13 @@ const Header: React.FC<IHeaderProps> = ({
               </span>
             </Link>
           </MdTypo>
-          <IconClickable icon={mode === 'dark' ? 'sun' : 'moon'} callback={callbackTheme} />
+          <IconClickable
+            className='hidden-responsive'
+            icon={mode === 'dark' ? 'sun' : 'moon'}
+            callback={callbackTheme}
+          />
           {i18n && (
-            <Select value={language} onChange={handleChangeLanguage} className='select-language'>
+            <Select value={language} onChange={handleChangeLanguage} className='hidden-responsive select-language'>
               <MenuItem value='fr'>fr</MenuItem>
               <MenuItem value='en'>en</MenuItem>
             </Select>
@@ -131,7 +135,9 @@ const Header: React.FC<IHeaderProps> = ({
             />
           )}
           {reactHeader}
-          {user?.user && <CustomModaleConfirm icon='exit' iconColor='error' callback={handleLogout} />}
+          {user?.user && (
+            <CustomModaleConfirm className='hidden-responsive' icon='exit' iconColor='error' callback={handleLogout} />
+          )}
         </MdToolbar>
         {!widthDrawer && (
           <MdToolbar

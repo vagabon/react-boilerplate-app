@@ -12,16 +12,7 @@ const AppButtonRefresh: React.FC<IAppButtonRefreshProps> = ({ data, callback }) 
   }, [data, callback]);
 
   return (
-    <>
-      {callback && (
-        <MdButton
-          icon='refresh'
-          variant='outlined'
-          callback={handleClick}
-          sx={{ minWidth: '27px !important', width: '27px', marginLeft: '0.3rem !important' }}
-        />
-      )}
-    </>
+    <>{callback && <MdButton className='button-icon' icon='refresh' variant='outlined' callback={handleClick} />}</>
   );
 };
 

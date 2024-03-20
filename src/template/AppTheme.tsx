@@ -37,6 +37,7 @@ export interface IAppThemeProps {
   children: ReactNode;
   i18n?: i18nType;
   showNotification?: boolean;
+  widthDrawer?: boolean;
   generateToken: () => Promise<string | undefined>;
   reactHeader?: ReactNode;
 }
@@ -50,6 +51,7 @@ const AppTheme: React.FC<IAppThemeProps> = ({
   children,
   i18n,
   showNotification,
+  widthDrawer = true,
   generateToken,
   reactHeader,
 }) => {
@@ -89,7 +91,7 @@ const AppTheme: React.FC<IAppThemeProps> = ({
               mode={mode}
               conf={conf}
               menu={menu}
-              widthDrawer={true}
+              widthDrawer={widthDrawer}
               showOpenDrawer={showOpenDrawer}
               callbackTheme={switchTheme(mode)}
               callbackDrawer={handleDrawerOpen(openDrawer)}

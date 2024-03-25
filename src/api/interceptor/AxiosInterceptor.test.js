@@ -2,7 +2,17 @@ import axios from 'axios';
 import { StorageUtils } from '../../utils/storage/StorageUtils';
 import { AxiosInterceptor } from './AxiosInterceptor';
 
-const store = { dispatch: jest.fn() };
+const store = {
+  dispatch: jest.fn(),
+  getState: () => ({
+    auth: {
+      user: {
+        jwt: 'jwt',
+        jwtRefresh: 'jwtRefresh',
+      },
+    },
+  }),
+};
 
 console.log = jest.fn();
 
@@ -36,6 +46,7 @@ describe('API INTERCEPTOR', () => {
 
   test('Given axios response When its in error Then error is keeped', () => {
     const error = { response: { status: 401 }, config: { url: '/url', data: [] } };
+    jest.spyOn(axios, 'post').mockReturnValue(Promise.resolve({ data: { jwt: 'jwt' } }));
     const tested = axios.interceptors.response.handlers[0].rejected(error);
     expect(tested).not.toBeNull();
   });

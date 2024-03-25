@@ -1,17 +1,13 @@
 import { EnhancedStore } from '@reduxjs/toolkit/dist/configureStore';
 import { UuidUtils } from '@vagabond-inc/react-boilerplate-md';
 import axios, { AxiosError, AxiosHeaders, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
-import { ICurrentUserDto } from '../../dto/current-user/CurrentUserDto';
 import { LoginAction } from '../../module/auth/reducer/AuthReducers';
 import { CommonAction } from '../../reducer/common/CommonReducer';
 import { StorageUtils } from '../../utils/storage/StorageUtils';
 
-const URL_SIGNIN = 'auth/signin';
-
 export const AxiosInterceptor = <U>(
   store: EnhancedStore,
   apiUrl: string,
-  publicApi: string,
   loginEnpoint: string,
   refreshTokenEndPoint: string,
 ) => {
@@ -20,17 +16,16 @@ export const AxiosInterceptor = <U>(
       store.dispatch(CommonAction.setLoading(true));
       store.dispatch(CommonAction.clearMessage());
 
-      const token = StorageUtils.getJwt();
+      const jwt = store.getState()?.auth?.user?.jwt;
       if (
-        token &&
+        jwt &&
         config.headers &&
         !config.url?.includes('/auth/') &&
         !config.url?.includes(loginEnpoint) &&
         !config.url?.includes(refreshTokenEndPoint) &&
-        !config.url?.includes(publicApi) &&
         !config.url?.includes('/ping')
       ) {
-        config.headers = { ...config.headers, ['Authorization' as string]: 'Bearer ' + token } as AxiosHeaders;
+        config.headers = { ...config.headers, ['Authorization' as string]: 'Bearer ' + jwt } as AxiosHeaders;
       }
       return config;
     },
@@ -70,19 +65,20 @@ export const AxiosInterceptor = <U>(
       ) {
         originalRequest['_retry' as keyof InternalAxiosRequestConfig] = 'true';
 
-        const user = StorageUtils.getCurrentUser<ICurrentUserDto<U>>();
-        if (user) {
+        const jwtRefresh = store.getState()?.auth?.user?.jwtRefresh;
+        if (jwtRefresh) {
           axios.defaults.headers.common['Authorization'] = '';
           const data = await axios.post(apiUrl + refreshTokenEndPoint, {
-            refreshToken: user.jwtRefresh,
+            refreshToken: jwtRefresh,
           });
           axios.defaults.headers.common['Authorization'] = 'Bearer ' + data.data.jwt;
+          store.dispatch(LoginAction.setLoginSuccess(data.data));
           StorageUtils.setCurrentUser(data.data);
           return axios(originalRequest);
         }
       } else if (error.response && error.response.status === 401) {
         store.dispatch(LoginAction.setLoginError());
-        window.location.href = URL_SIGNIN;
+        window.location.href = loginEnpoint;
       } else if (
         message !== 'Error invoking subclass method' &&
         !message.includes('Insufficient downstream requests to emit item')

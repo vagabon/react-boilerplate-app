@@ -22,6 +22,7 @@ export interface IAdminTabDto {
   label: string;
   findByChamps: string;
   sortBy: string;
+  sortByAsc?: 'asc' | 'desc';
   cells: ITableDto[];
   form: { [x: string]: IFormDto };
 }

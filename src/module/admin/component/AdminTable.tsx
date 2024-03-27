@@ -44,6 +44,7 @@ const AdminTable: React.FC<IAdminListPageProps> = ({ activePage, conf, ...rest }
               sortByOrder={state?.table.sortByOrder}
               url={'/admin/update/' + activePage + '/'}
               callBack={handleTableChange}
+              showEmpty
             />
           )}
         </HasRole>

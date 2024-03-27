@@ -5,8 +5,8 @@ import { IAdminTabDto } from '../dto/AdminConfDto';
 import { IAdminReducerDto, IAdminStateDto } from '../dto/AdminReducerDto';
 import { AdminAction } from '../reducer/AdminReducer';
 
-const MAX_DEFAULT: number = 10;
-const ORDER_DEFAULT: 'asc' | 'desc' = 'asc';
+const MAX_DEFAULT = 10;
+const ORDER_DEFAULT = 'asc';
 
 export const useAdminState = (activePage: string, pageConf: IAdminTabDto) => {
   const dispatch = useAppDispatch();
@@ -32,7 +32,7 @@ export const useAdminState = (activePage: string, pageConf: IAdminTabDto) => {
           page: 0,
           rowsPerPage: MAX_DEFAULT,
           sortBy: pageConf?.sortBy,
-          sortByOrder: ORDER_DEFAULT,
+          sortByOrder: pageConf?.sortByAsc ?? ORDER_DEFAULT,
         },
       };
       dispatch(AdminAction.setState({ activePage, newState }));

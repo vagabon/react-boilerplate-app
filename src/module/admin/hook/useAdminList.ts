@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useAppDispatch } from '../../../store/Store';
 import { IAdminTabDto } from '../dto/AdminConfDto';
 import { IAdminStateDto } from '../dto/AdminReducerDto';
@@ -7,6 +7,7 @@ import AdminService from '../service/AdminService';
 
 export const useAdminList = (apiUrl: string, activePage: string, pageConf: IAdminTabDto, state: IAdminStateDto) => {
   const dispatch = useAppDispatch();
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     if (!pageConf || !state?.filter || pageConf.name !== activePage) {
@@ -28,7 +29,8 @@ export const useAdminList = (apiUrl: string, activePage: string, pageConf: IAdmi
   }, [apiUrl, dispatch, activePage, pageConf, state?.filter, state?.table]);
 
   const handleSearch = useCallback(
-    (search: string) => {
+    (search: string = '') => {
+      setSearch(search);
       dispatch(AdminAction.setFilter({ activePage, filter: { search: search } }));
     },
     [dispatch, activePage],
@@ -41,5 +43,5 @@ export const useAdminList = (apiUrl: string, activePage: string, pageConf: IAdmi
     [dispatch, activePage],
   );
 
-  return { handleSearch, handleTableChange };
+  return { search, handleSearch, handleTableChange };
 };

@@ -6,7 +6,7 @@ describe('ProfileShow', () => {
     const mockUser = { id: 1, profiles: [{ id: 1, name: 'ADMIN' }] };
 
     useAppSelectorSpy.mockImplementation((callback) =>
-      callback({ auth: { user: { user: mockUser } }, common: { history: [] } }),
+      callback({ auth: { user: { user: mockUser } }, common: { history: [], language: 'fr', modeTheme: 'dark' } }),
     );
 
     const profileReact = (id) => {

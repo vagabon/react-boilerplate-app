@@ -19,7 +19,6 @@ export default [
         file: packageJson.main,
         format: 'cjs',
         sourcemap: true,
-        name: 'react-ts-lib',
       },
       {
         file: packageJson.module,
@@ -42,12 +41,7 @@ export default [
         babelHelpers: 'bundled',
       }),
       commonjs(),
-      typescript({
-        compilerOptions: {
-          baseUrl: '.',
-        },
-        exclude: ['node_modules', 'coverage', '**/*.Tests*', '**/*.test.js'],
-      }),
+      typescript(),
       postcss(),
       json(),
       scss(),

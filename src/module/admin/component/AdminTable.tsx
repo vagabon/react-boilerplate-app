@@ -1,5 +1,6 @@
 import { JSONObject, MdCard, MdSearchBar, MdTableWithPagination } from '@vagabond-inc/react-boilerplate-md';
 import { useEffect, useState } from 'react';
+import AppButtonRefresh from '../../../app/button/component/refresh/AppButtonRefresh';
 import AppFabAdd from '../../../app/fab/add/AppFabAdd';
 import HasRole from '../../../hook/role/HasRole';
 import { IBaseCustomSeoProps } from '../../custom/seo/component/CustomSeo';
@@ -16,7 +17,7 @@ const AdminTable: React.FC<IAdminListPageProps> = ({ activePage, conf, ...rest }
   const [pageConf, setPageConf] = useState<IAdminTabDto>();
   const { state } = useAdminState(activePage, pageConf as IAdminTabDto);
 
-  const { handleSearch, handleTableChange } = useAdminList(
+  const { search, handleSearch, handleTableChange } = useAdminList(
     rest.apiUrl,
     activePage,
     pageConf as IAdminTabDto,
@@ -32,7 +33,10 @@ const AdminTable: React.FC<IAdminListPageProps> = ({ activePage, conf, ...rest }
     <>
       <MdCard className='flex flex1'>
         <HasRole roles={['ADMIN']}>
-          <MdSearchBar callBack={handleSearch} search={state?.filter?.search} />
+          <div className='flex flex-row align-end'>
+            <MdSearchBar className='flex1' callBack={handleSearch} search={state?.filter?.search} />
+            <AppButtonRefresh data={search} callback={handleSearch} />
+          </div>
           {pageConf && state?.table && (
             <MdTableWithPagination
               count={state?.count}

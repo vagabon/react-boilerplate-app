@@ -10,7 +10,7 @@ describe('ProfilePage', () => {
         auth: {
           user: { user: mockUser },
         },
-        common: { history: [] },
+        common: { history: [], language: 'fr', modeTheme: 'dark' },
       }),
     );
 
@@ -19,7 +19,15 @@ describe('ProfilePage', () => {
     };
 
     jest.spyOn(UserService, 'fetchById').mockReturnValue(Promise.resolve(mockUser));
-    render(<ProfilePage apiUrl='https://example.com' profileReact={profileReact} />);
+    render(
+      <ProfilePage
+        apiUrl='https://example.com'
+        profileReact={profileReact}
+        i18n={{
+          changeLanguage: jest.fn(),
+        }}
+      />,
+    );
     waitFor(() => {
       expect(screen.getAllByTestId('CardContent')).toBeDefined();
     });

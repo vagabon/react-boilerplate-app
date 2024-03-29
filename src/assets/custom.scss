@@ -112,7 +112,7 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
     .MuiAvatar-root { width: 25px !important; height: 25px !important; }
     a { gap: 0.5rem !important; }
     img { width: 25px !important; height: 25px !important; }
-    .MuiButtonBase-root:last-child { display: none !important; }
+    & > .MuiButtonBase-root:last-child { display: none !important; }
   }
   #header {
     button { min-width: 30px !important; }
@@ -328,13 +328,16 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
 /***** TABLE ****/
 
 .MuiTableCell-root { font-size: 1rem !important; }
-thead { 
-  th.MuiTableCell-root { 
-    background-color: var(--mui-palette-primary-main) !important;  
-    & > span, & > span > svg { color: #FFFFFF !important; }  
+table {
+  thead { 
+    th.MuiTableCell-root { 
+      background-color: var(--mui-palette-primary-main) !important;  
+      & > span, & > span > svg { color: #FFFFFF !important; }  
+    }
   }
 }
 .mode-dark thead th.MuiTableCell-root { background-color: var(--mui-palette-primary-main-dark) !important; }
+.admin table { table-layout: fixed; min-width: 837px; }
 
 .MuiTablePagination-toolbar { justify-content: center; & > div:nth-child(1) { flex: 0 !important; } }
 

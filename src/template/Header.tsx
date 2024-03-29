@@ -1,5 +1,4 @@
-import { AppBar, Badge, IconButton, MenuItem, SelectChangeEvent } from '@mui/material';
-import Select from '@mui/material/Select';
+import { AppBar, Badge, IconButton } from '@mui/material';
 import {
   IApiDto,
   IconClickable,
@@ -22,6 +21,7 @@ import { useUserAuth } from '../hook/user/useUserAuth';
 import CustomModaleConfirm from '../module/custom/modale/component/CustomModaleConfirm';
 import { CommonAction } from '../reducer/common/CommonReducer';
 import { useAppDispatch, useAppSelector } from '../store/Store';
+import Language from './Language';
 import { useAppImage } from './hook/useAppImage';
 
 export interface IHeaderProps {
@@ -53,13 +53,12 @@ const Header: React.FC<IHeaderProps> = ({
   reactHeader,
   showNotification,
 }) => {
-  const { location, navigate, Link, handleNavigate } = useAppRouter();
   const dispatch = useAppDispatch();
+  const { location, navigate, Link, handleNavigate } = useAppRouter();
   const { loading, history } = useAppSelector((state) => state.common);
   const { isLoggedIn, user } = useAppSelector((state) => state.auth);
   const { handleLogout } = useUserAuth();
   const [currentLocation, setCurrentLocation] = useState<string>(location.pathname);
-  const [language, setLanguage] = useState<string>(i18n?.language ?? 'fr');
   const { getIcon } = useIcon();
   const { getImage } = useAppImage(apiUrl);
 
@@ -72,15 +71,6 @@ const Header: React.FC<IHeaderProps> = ({
     dispatch(CommonAction.sliceHistory());
     navigate(lastPage.link);
   }, [dispatch, navigate, history]);
-
-  const handleChangeLanguage = useCallback(
-    (event: SelectChangeEvent<string | undefined>) => {
-      const value = event.target.value as string;
-      i18n?.changeLanguage(value);
-      setLanguage(value);
-    },
-    [i18n],
-  );
 
   return (
     <>
@@ -109,12 +99,7 @@ const Header: React.FC<IHeaderProps> = ({
             icon={mode === 'dark' ? 'sun' : 'moon'}
             callback={callbackTheme}
           />
-          {i18n && (
-            <Select value={language} onChange={handleChangeLanguage} className='hidden-responsive select-language'>
-              <MenuItem value='fr'>fr</MenuItem>
-              <MenuItem value='en'>en</MenuItem>
-            </Select>
-          )}
+          {i18n && <Language i18n={i18n} />}
           {showNotification && isLoggedIn && (
             <IconButton
               size='large'
@@ -125,6 +110,7 @@ const Header: React.FC<IHeaderProps> = ({
               </Badge>
             </IconButton>
           )}
+          {reactHeader}
           <MdButton url='/auth/signup' label='AUTH:SIGNUP' variant='outlined' show={!isLoggedIn} />
           <MdButton url='/auth/signin' label='AUTH:SIGNIN' show={!isLoggedIn} />
           {user?.user && (
@@ -134,7 +120,6 @@ const Header: React.FC<IHeaderProps> = ({
               image={getImage(user.user['avatar' as keyof IApiDto])}
             />
           )}
-          {reactHeader}
           {user?.user && (
             <CustomModaleConfirm className='hidden-responsive' icon='exit' iconColor='error' callback={handleLogout} />
           )}

@@ -18,10 +18,13 @@ export interface IApiState {
   history: IPathDto[];
   scrolls: ScrollsType[];
   modeTheme: string;
+  language: string;
 }
 
 const SUCCESS: MessageType = 'success';
 const HOME: string = '/';
+
+const language = navigator?.language?.split('-')?.[0] ?? 'fr';
 
 const initialState: IApiState = {
   message: { id: '', message: '', type: SUCCESS },
@@ -29,6 +32,7 @@ const initialState: IApiState = {
   history: [],
   scrolls: [],
   modeTheme: '',
+  language: language,
 };
 
 export const CommonReducer = createSlice({
@@ -114,6 +118,12 @@ export const CommonReducer = createSlice({
       return {
         ...state,
         modeTheme: action?.payload,
+      };
+    },
+    setLanguage: (state: IApiState, action: PayloadAction<string>) => {
+      return {
+        ...state,
+        language: action?.payload,
       };
     },
   },

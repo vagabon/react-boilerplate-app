@@ -1,4 +1,5 @@
 import { ID, MdBouttonGroup, MdButton, MdCard, MdDivider } from '@vagabond-inc/react-boilerplate-md';
+import { type i18n as i18nType } from 'i18next';
 import React, { useCallback } from 'react';
 import { useApiService } from '../../../../api/hook/useApiService';
 import AppContent from '../../../../app/content/AppContent';
@@ -12,12 +13,13 @@ import ProfileAvatar from './ProfileAvatar';
 import ProfileForm from './form/ProfileForm';
 
 export interface IProfileShowProps extends IBaseCustomSeoProps {
+  i18n: i18nType;
   user: IUserDto;
   disabled?: boolean;
   profileReact: (id: ID) => React.JSX.Element;
 }
 
-const ProfileShow: React.FC<IProfileShowProps> = ({ user, disabled, profileReact, ...rest }) => {
+const ProfileShow: React.FC<IProfileShowProps> = ({ i18n, user, disabled, profileReact, ...rest }) => {
   const { handleLogout } = useUserAuth();
   const { user: currentUser } = useAppSelector((state) => state.auth);
   const { httpPost } = useApiService(rest.apiUrl);
@@ -51,7 +53,8 @@ const ProfileShow: React.FC<IProfileShowProps> = ({ user, disabled, profileReact
         </div>
         <div className='flex flex1'>
           {profileReact(user.id)}
-          <ProfileForm {...rest} user={user} disabled={disabled} />
+
+          <ProfileForm {...rest} i18n={i18n} user={user} disabled={disabled} />
 
           <HasRole roles={['ADMIN']} showError={false}>
             <MdDivider />

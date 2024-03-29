@@ -5,7 +5,7 @@ import { ReactNode, useEffect, useRef } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { IMenuDto } from '../dto/menu/MenuDto';
 import { CommonAction } from '../reducer/common/CommonReducer';
-import { useAppDispatch } from '../store/Store';
+import { useAppDispatch, useAppSelector } from '../store/Store';
 import CookieConsents from './CookieConsents';
 import Footer from './Footer';
 import Header from './Header';
@@ -58,7 +58,8 @@ const AppTheme: React.FC<IAppThemeProps> = ({
   const dispatch = useAppDispatch();
   const mainContainer = useRef<HTMLDivElement | null>(null);
   const { location } = useAppRouter();
-  const { mode, theme, switchTheme } = useTheme(palette);
+  const { modeTheme } = useAppSelector((state) => state.common);
+  const { mode, theme, switchTheme } = useTheme(palette, modeTheme);
   const { drawerWidth, openDrawer, variantDrawer, showOpenDrawer, handleDrawerOpen, handleCloseSnackbar } =
     useAppTheme();
   useAppFirebaseToken(apiUrl, generateToken);
@@ -102,14 +103,16 @@ const AppTheme: React.FC<IAppThemeProps> = ({
             />
 
             <div className='flex flex-row' style={{ flex: '1', overflow: 'hidden' }}>
-              <MenuDrawer
-                apiUrl={apiUrl}
-                menu={menu}
-                drawerWidth={drawerWidth}
-                openDrawer={openDrawer}
-                variantDrawer={variantDrawer}
-                callbackClose={handleDrawerOpen(true)}
-              />
+              {widthDrawer && (
+                <MenuDrawer
+                  apiUrl={apiUrl}
+                  menu={menu}
+                  drawerWidth={drawerWidth}
+                  openDrawer={openDrawer}
+                  variantDrawer={variantDrawer}
+                  callbackClose={handleDrawerOpen(true)}
+                />
+              )}
               <div
                 ref={mainContainer}
                 className='main-container'

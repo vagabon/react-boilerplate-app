@@ -10,4 +10,5 @@ export interface INotificationDto extends IApiDto {
   entityId?: number;
   read?: boolean;
   user?: IUserDto;
+  url?: string;
 }

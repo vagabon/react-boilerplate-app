@@ -9,6 +9,7 @@ export const useAppImage = (apiUri: string) => {
         image !== '' &&
         image.includes('/') &&
         !image?.includes('http://') &&
+        !image?.includes('data:image/') &&
         !image?.startsWith('https://')
       ) {
         return apiUri + '/download?fileName=' + image;

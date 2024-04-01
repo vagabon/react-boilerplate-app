@@ -1,3 +1,4 @@
+import { Badge } from '@mui/material';
 import {
   ButtonColorType,
   ID,
@@ -13,6 +14,7 @@ export interface ICustomModaleChildProps {
   className?: string;
   icon?: string;
   iconColor?: IconColorType;
+  iconBadge?: number;
   button?: string;
   buttonSize?: 'small' | 'medium' | 'large';
   buttonColor?: ButtonColorType;
@@ -36,6 +38,7 @@ const CustomModale: React.FC<ICustomModaleProps> = ({
   className,
   icon,
   iconColor,
+  iconBadge = 0,
   button,
   buttonSize,
   buttonColor,
@@ -65,16 +68,18 @@ const CustomModale: React.FC<ICustomModaleProps> = ({
       </MdCommonModal>
       {icon && iconColor && <IconClickable color={iconColor} icon={icon} callback={openModal} disabled={disabled} />}
       {(button || buttonColor) && (
-        <MdButton
-          className={icon ? 'button-icon' : ''}
-          size={buttonSize}
-          label={button}
-          color={buttonColor}
-          icon={icon}
-          variant={buttonVariant}
-          callback={openModal}
-          disabled={disabled}
-        />
+        <Badge color='secondary' badgeContent={iconBadge}>
+          <MdButton
+            className={icon ? 'button-icon' : ''}
+            size={buttonSize}
+            label={button}
+            color={buttonColor}
+            icon={icon}
+            variant={buttonVariant}
+            callback={openModal}
+            disabled={disabled}
+          />
+        </Badge>
       )}
     </>
   );

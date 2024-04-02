@@ -10,7 +10,7 @@ export const NotificationUtils = {
           ({
             icon: NotificationUtils.getIcon(notification.category as string),
             user: notification?.user,
-            name: notification.message,
+            name: notification.title,
             secondary: DateUtils.format(notification?.creationDate as string, 'Le DD MMM YYYY à hhhmm'),
             checked: notification.read,
             entity: notification,

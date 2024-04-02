@@ -99,6 +99,7 @@ a.MuiTypography-root { font-size: 1rem; }
 .border-error { border-color: var(--mui-palette-error-main) !important; }
 .mode-dark .border-error { border-color: var(--mui-palette-error-main-dark) !important; }
 
+code { width: 100%; display: block; }
 
 @media (max-width: 800px) {
   .width50 { width: 100% !important; }

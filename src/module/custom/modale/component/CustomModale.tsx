@@ -15,6 +15,7 @@ export interface ICustomModaleChildProps {
   icon?: string;
   iconColor?: IconColorType;
   iconBadge?: number;
+  iconBadgeColor?: 'primary' | 'secondary' | 'default' | 'error' | 'info' | 'success' | 'warning';
   button?: string;
   buttonSize?: 'small' | 'medium' | 'large';
   buttonColor?: ButtonColorType;
@@ -39,6 +40,7 @@ const CustomModale: React.FC<ICustomModaleProps> = ({
   icon,
   iconColor,
   iconBadge = 0,
+  iconBadgeColor = 'primary',
   button,
   buttonSize,
   buttonColor,
@@ -68,7 +70,7 @@ const CustomModale: React.FC<ICustomModaleProps> = ({
       </MdCommonModal>
       {icon && iconColor && <IconClickable color={iconColor} icon={icon} callback={openModal} disabled={disabled} />}
       {(button || buttonColor) && (
-        <Badge color='secondary' badgeContent={iconBadge}>
+        <Badge badgeContent={iconBadge} color={iconBadgeColor}>
           <MdButton
             className={icon ? 'button-icon' : ''}
             size={buttonSize}

@@ -12,6 +12,8 @@ a.MuiTypography-root { font-size: 1rem; }
 }
 .pointer { cursor: pointer !important; }
 
+.mui-fixed { padding-right: 0px !important; }
+
 $maxWidth: 1000px;
 
 /**** MAIN CONTENT ****/
@@ -28,6 +30,10 @@ $maxWidth: 1000px;
   .max-width-800 { max-width: 800; }
   .MuiListItemText-root { align-items: flex-start; flex-direction: column; display: flex; p { margin: 0px !important; } }
   .MuiPaper-root { margin: 5px !important; padding: 5px !important;  width: calc(100% - 10px); }
+  .card-tab {
+    display: flex; flex-direction: column; padding: 0px !important;
+    .MuiCardContent-root { padding: 0 !important; min-height: 54px; margin: 0 !important; }
+  }
   .search-bar-card { padding: 0; .MuiCardContent-root { padding: 0 0.5rem !important; } }
   .search-bar { 
     margin: 10px 8px 0px !important; padding: 5px; border-radius: 5px; display: flex; flex-direction: row; gap: 4px;
@@ -95,8 +101,9 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
 .mode-dark .MuiAvatar-root { background-color: var(--mui-palette-secondary-main-dark) !important; }
 
 .MuiCardContent-root:last-child { padding-bottom: 16px !important; }
-.MuiCardHeader-action { margin: 0 !important; padding: 0 !important; margin-top: 7px !important; }
+.MuiCardHeader-action { margin: 0 !important; padding: 0 !important; margin-top: 7px !important; display: flex !important; gap: 5px !important; }
 
+.MuiListItem-root { min-height: 45px; max-height: 80px; }
 .MuiListItem-root.selected-primary {  border-left: 3px solid var(--mui-palette-primary-main) !important; }
 .mode-dark .MuiListItem-root.selected-primary {  border-left: 3px solid var(--mui-palette-primary-main-dark) !important; }
 .MuiListItem-root.selected-secondary {  border-left: 3px solid var(--mui-palette-secondary-main) !important; }
@@ -246,9 +253,7 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
 .MuiCardContent-root p { margin: 0 !important; }
 
 .form, .form-content {
-  gap: 10px;
-  .width100 { width: calc(100% - 10px) !important; }
-  .width50 { width: calc(50% - 10px) !important; }
+  display: flex; flex-direction: column; gap: 10px;
   .switch { 
     & > div {
       display: flex; flex-direction: row !important; align-items: center !important; justify-content: space-between !important; 
@@ -262,7 +267,7 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
 .custom-form {  flex-wrap: wrap; }
 
 @media screen and (max-width: 700px) {
-  .custom-form { gap: 0px; .width100, .width50 { width: calc(100%) !important; } }
+  .custom-form { gap: 0px; }
 }
 
 .markdown-form { 
@@ -335,6 +340,7 @@ table {
       & > span, & > span > svg { color: #FFFFFF !important; }  
     }
   }
+  th { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 }
 .mode-dark thead th.MuiTableCell-root { background-color: var(--mui-palette-primary-main-dark) !important; }
 .admin table { table-layout: fixed; min-width: 837px; }
@@ -342,6 +348,25 @@ table {
 .MuiTablePagination-toolbar { justify-content: center; & > div:nth-child(1) { flex: 0 !important; } }
 
 /*** PROFILE ****/
+
+/*************************************************** PROFILE *******************************************/
+
+.profile-container {
+  display: flex; flex-direction: column; gap: 1rem; background: #3b3e3f; border-radius: 1rem; border-radius: 5px; margin: 8px; padding: 8px;
+  & > div:nth-child(1) { color: var(--mui-palette-secondary-main); font-weight: bold; }
+  .mode-dark & > div:nth-child(1) { color: var(--mui-palette-secondary-main-dark); }
+  & > div:nth-child(2) {
+    display: flex; justify-content: space-between;
+    & > div { 
+      display: flex; flex-direction: column; 
+      & > span:nth-child(1) { font-weight: bold; color: var(--mui-palette-info-main); }
+      .mode-dark & > span:nth-child(1) { color: var(--mui-palette-info-main-dark); }
+      & > span:nth-child(2) { color: var(--mui-palette-info-main); }
+      .mode-dark & > span:nth-child(2) { color: var(--mui-palette-info-main-dark); }
+    }
+  }
+}
+.mode-light .profile-container { background: #e8e8e8; }
 
 .profil-content { 
   flex: 1; 

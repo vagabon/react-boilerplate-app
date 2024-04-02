@@ -8,6 +8,7 @@ import { NotificationUtils } from '../../utils/NotificationUtils';
 export interface INotificationListProps {
   apiUrl: string;
   notifications: INotificationDto[];
+  getNotificationIcon: (category: string) => void;
   doChangePage: (pageToAdd: number) => void;
   callbackClick: (data: IApiDto) => void;
   callbackCheckbox?: (id: ID, checked: boolean) => void;
@@ -17,16 +18,19 @@ export interface INotificationListProps {
 const NotificationList: React.FC<INotificationListProps> = ({
   apiUrl,
   notifications,
+  getNotificationIcon,
   doChangePage,
   callbackClick,
   callbackCheckbox,
   callbackSettings,
 }) => {
-  const [custumList, setCustumList] = useState<ICustomListDto[]>(NotificationUtils.convertToCustomList(notifications));
+  const [custumList, setCustumList] = useState<ICustomListDto[]>(
+    NotificationUtils.convertToCustomList(notifications, getNotificationIcon),
+  );
 
   useEffect(() => {
-    setCustumList(NotificationUtils.convertToCustomList(notifications));
-  }, [notifications]);
+    setCustumList(NotificationUtils.convertToCustomList(notifications, getNotificationIcon));
+  }, [notifications, getNotificationIcon]);
 
   return (
     <InfiniteScrollPage doChangePage={doChangePage}>

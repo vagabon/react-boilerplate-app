@@ -8,12 +8,14 @@ export interface INotificationRouterProps extends IBaseCustomSeoProps {
   apiUrl: string;
   header?: ReactNode;
   callbackNavigateNotification: (data: INotificationDto) => void;
+  getNotificationIcon: (category: string) => void;
 }
 
 const NotificationRouter: React.FC<INotificationRouterProps> = ({
   apiUrl,
   header,
   callbackNavigateNotification,
+  getNotificationIcon,
   ...rest
 }) => {
   return (
@@ -21,7 +23,13 @@ const NotificationRouter: React.FC<INotificationRouterProps> = ({
       <Route
         path='/'
         element={
-          <NotificationPage {...rest} apiUrl={apiUrl} header={header} handleSelect={callbackNavigateNotification} />
+          <NotificationPage
+            {...rest}
+            apiUrl={apiUrl}
+            header={header}
+            handleSelect={callbackNavigateNotification}
+            getNotificationIcon={getNotificationIcon}
+          />
         }
       />
     </Routes>

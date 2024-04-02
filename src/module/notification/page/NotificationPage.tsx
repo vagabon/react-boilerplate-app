@@ -14,10 +14,11 @@ import { useNotificationFetch } from '../hook/useNotificationFetch';
 
 export interface INotificationPageProps extends IBaseCustomSeoProps {
   handleSelect: (notification: INotificationDto) => void;
+  getNotificationIcon: (category: string) => void;
   header?: ReactNode;
 }
 
-const NotificationPage: React.FC<INotificationPageProps> = ({ handleSelect, header, ...rest }) => {
+const NotificationPage: React.FC<INotificationPageProps> = ({ handleSelect, getNotificationIcon, header, ...rest }) => {
   const { user } = useAuth(rest.apiUrl);
   const { handleReadAll, handleCheckbox, handleClick, open, notification, closeModal } = useNotification(rest.apiUrl);
   const { notifications, count, page, search, doFetchNotifications, doSearchNotifications, doChangePageNotifications } =
@@ -51,6 +52,7 @@ const NotificationPage: React.FC<INotificationPageProps> = ({ handleSelect, head
         <NotificationList
           {...rest}
           notifications={notifications}
+          getNotificationIcon={getNotificationIcon}
           callbackClick={handleClick(notifications)}
           callbackCheckbox={handleCheckbox(notifications)}
           callbackSettings={handleSelect}

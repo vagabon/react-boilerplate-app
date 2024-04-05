@@ -65,6 +65,7 @@ export const mockBoilerPlateMd = {
   MdAlert: ({ label }) => <div data-testid='MdAlert'>{label}</div>,
   MdAvatar: ({ callback }) => <div data-testid='MdAvatar' onClick={callback}></div>,
   MdBackdrop: ({ children }) => <div data-testid='MdBackdrop'>{children}</div>,
+  MdBadge: ({ children }) => <div data-testid='MdBadge'>{children}</div>,
   MdCollapse: ({ children }) => <div data-testid='MdCollapse'>{children}</div>,
   MdChip: ({ callbackDelete }) => <button data-testid='MdChip' onClick={callbackDelete}></button>,
   MdBox: (props) => mockWithChildren('MdBox', props),

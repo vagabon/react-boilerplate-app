@@ -105,6 +105,17 @@ const CustomList: React.FC<ICustomListProps> = ({
     [isCheckboxColor],
   );
 
+  const handleClickAvatar = useCallback(
+    (data: IApiDto) => () => {
+      if (callbackAvatar) {
+        callbackAvatar?.(data)();
+      } else {
+        callback?.(data);
+      }
+    },
+    [callbackAvatar, callback],
+  );
+
   return (
     <MdList className={'custom-list overflow overflow-x-none ' + className}>
       {!datas || datas.length === 0 ? (
@@ -126,7 +137,7 @@ const CustomList: React.FC<ICustomListProps> = ({
                   <MdAvatar
                     name={data.avatar}
                     image={getImage(data.avatar)}
-                    callback={callbackAvatar?.(data.user as IApiDto)}
+                    callback={handleClickAvatar(data.user as IApiDto)}
                   />
                 </MdListItemAvatar>
               )}

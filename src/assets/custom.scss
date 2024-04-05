@@ -119,7 +119,7 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
     .MuiAvatar-root { width: 25px !important; height: 25px !important; }
     a { gap: 0.5rem !important; }
     img { width: 25px !important; height: 25px !important; }
-    & > .MuiButtonBase-root:last-child { display: none !important; }
+    & > .MuiIconButton-root:last-child { display: none !important; }
   }
   #header {
     button { min-width: 30px !important; }
@@ -280,11 +280,10 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
 
 /**** MODALE *****/
 
-
 .modal > .MuiBox-root { 
     width: 45vw !important; min-height: 50vh !important; max-height: 95vh; display: flex; padding: 0px; background-color: unset !important; border: 0 !important;
     .MuiPaper-root:not(.MuiAlert-root) {
-      display: flex; flex-direction: column; overflow: auto; width: 100% !important;
+      display: flex; flex-direction: column; overflow: auto; width: 100% !important; min-height: 100% !important;
       .MuiCardContent-root { width: 100%; display: flex; flex-direction: column; overflow: auto; }
     } 
   }
@@ -292,7 +291,7 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
 .modal-small > .MuiBox-root {  min-height: 35vh !important; }
 
 .modal-form { 
-  .MuiPaper-root:not(.MuiAlert-root) { overflow: hidden; box-shadow: unset !important; display: flex; flex-direction: column; height: 100%; } 
+  .MuiPaper-root:not(.MuiAlert-root) { overflow: hidden; box-shadow: unset !important; display: flex; flex-direction: column; min-height: 100%; } 
   & > .MuiBox-root { 
     display: flex; flex-direction: column; min-height: 25% !important;
     .form-content { flex: 1; overflow: auto; justify-content: flex-start; display: flex; flex-direction: column; }
@@ -321,6 +320,10 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
 
 @media screen and (max-width: 700px) {
   .modal > .MuiBox-root {  width: 90vw !important; } 
+  .modal {
+    .MuiCardContent-root { padding: 10px !important; }
+    .MuiCardHeader-root { padding: 10px !important; }
+  }
   .modal-infinite > .MuiBox-root { width: 90vw !important;  } 
   .modal-confirm > .MuiCardContent-root { justify-content: center; margin-left: 13px; width: calc(100% - 15px) !important; }
 }

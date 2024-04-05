@@ -24,7 +24,7 @@ export interface IProfileFormEmailProps extends IBaseCustomSeoProps {
 }
 
 const ProfileFormEmail: React.FC<IProfileFormEmailProps> = ({ user, ...rest }) => {
-  const { handleUpdateEmail, isUserPassword } = useUser(rest.apiUrl);
+  const { handleUpdateEmail } = useUser(rest.apiUrl);
   const { Trans } = useAppTranslate();
 
   const handleSubmit = useCallback(
@@ -36,27 +36,25 @@ const ProfileFormEmail: React.FC<IProfileFormEmailProps> = ({ user, ...rest }) =
 
   return (
     <div className='flex flex-row align-center space-between'>
-      {isUserPassword(user) && (
-        <>
-          <b>
-            <Trans i18nKey='AUTH:FIELDS.EMAIL' />
-          </b>
-          <span>{user?.email}</span>
-          <CustomModaleForm
-            title='AUTH:USER.EMAIL.TITLE'
-            initialValues={{}}
-            validationSchema={SCHEMA}
-            onSubmit={handleSubmit}
-            button='AUTH:USER.EMAIL.BUTTON'>
-            {(props) => (
-              <>
-                <MdInputText {...(props as IMdInputTextProps)} label='AUTH:FIELDS.EMAIL' name='email' />
-                <MdInputText {...(props as IMdInputTextProps)} label='AUTH:FIELDS.EMAIL_CONFIRM' name='emailConfirm' />
-              </>
-            )}
-          </CustomModaleForm>
-        </>
-      )}
+      <>
+        <b>
+          <Trans i18nKey='AUTH:FIELDS.EMAIL' />
+        </b>
+        <span>{user?.email}</span>
+        <CustomModaleForm
+          title='AUTH:USER.EMAIL.TITLE'
+          initialValues={{}}
+          validationSchema={SCHEMA}
+          onSubmit={handleSubmit}
+          button='AUTH:USER.EMAIL.BUTTON'>
+          {(props) => (
+            <>
+              <MdInputText {...(props as IMdInputTextProps)} label='AUTH:FIELDS.EMAIL' name='email' />
+              <MdInputText {...(props as IMdInputTextProps)} label='AUTH:FIELDS.EMAIL_CONFIRM' name='emailConfirm' />
+            </>
+          )}
+        </CustomModaleForm>
+      </>
     </div>
   );
 };

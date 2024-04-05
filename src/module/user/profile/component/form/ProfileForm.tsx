@@ -10,7 +10,7 @@ import ProfileFormParam from './ProfileFormParam';
 import ProfileFormPassword from './ProfileFormPassword';
 
 export interface IProfileFormProps extends IBaseCustomSeoProps {
-  i18n: i18nType;
+  i18n?: i18nType;
   apiUrl: string;
   user: IUserDto;
   disabled?: boolean;
@@ -22,16 +22,16 @@ const ProfileForm: React.FC<IProfileFormProps> = ({ i18n, user, disabled, ...res
 
   return (
     <div className='profile-form'>
-      <ProfileFormParam {...rest} i18n={i18n} />
       {!disabled && (
         <>
+          <ProfileFormParam {...rest} i18n={i18n} />
           <MdDivider />
-          <ProfileFormEmail {...rest} user={user} />
         </>
       )}
 
       {isUserPassword(user) && !disabled && (
         <>
+          <ProfileFormEmail {...rest} user={user} />
           <MdDivider />
           <ProfileFormPassword {...rest} user={user} />
         </>

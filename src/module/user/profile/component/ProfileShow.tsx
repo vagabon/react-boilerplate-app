@@ -13,7 +13,7 @@ import ProfileAvatar from './ProfileAvatar';
 import ProfileForm from './form/ProfileForm';
 
 export interface IProfileShowProps extends IBaseCustomSeoProps {
-  i18n: i18nType;
+  i18n?: i18nType;
   user: IUserDto;
   disabled?: boolean;
   profileReact: (id: ID) => React.JSX.Element;

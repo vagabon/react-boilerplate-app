@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../../../../store/Store';
 import Language from '../../../../../template/Language';
 
 export interface IProfileFormParamProps {
-  i18n: i18nType;
+  i18n?: i18nType;
 }
 
 const ProfileFormParam: React.FC<IProfileFormParamProps> = ({ i18n }) => {
@@ -30,12 +30,14 @@ const ProfileFormParam: React.FC<IProfileFormParamProps> = ({ i18n }) => {
         <IconClickable icon={modeTheme === 'dark' ? 'sun' : 'moon'} callback={handleChangeTheme(modeTheme)} />
       </div>
       <MdDivider />
-      <div className='flex flex-row align-center space-between'>
-        <b>
-          <Trans i18nKey='AUTH:FIELDS.LANGUAGE' />
-        </b>
-        <Language i18n={i18n} hidden={false} />
-      </div>
+      {i18n && (
+        <div className='flex flex-row align-center space-between'>
+          <b>
+            <Trans i18nKey='AUTH:FIELDS.LANGUAGE' />
+          </b>
+          <Language i18n={i18n} hidden={false} />
+        </div>
+      )}
     </>
   );
 };

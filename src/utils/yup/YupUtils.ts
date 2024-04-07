@@ -79,17 +79,6 @@ export const YupUtils = {
     if (value.required === true) {
       yup = yup.required(I18nUtils.translate(t, 'ERRORS:REQUIRED'));
     }
-    if (value.regexp) {
-      yup = yup
-        .trim()
-        .matches(
-          new RegExp(value.regexp),
-          I18nUtils.translate(t, value.regexpError ? value.regexpError : 'ERRORS:REGEXP'),
-        );
-    }
-    if (value.email) {
-      yup = yup.email(I18nUtils.translate(t, 'ERRORS:FORMAT_MAIL'));
-    }
     if (value.min) {
       yup = yup.min(value.min, t('ERRORS:MIN').replace('$1', value.min.toString()));
     }
@@ -101,6 +90,17 @@ export const YupUtils = {
         ? I18nUtils.translate(t, value.sameLabel)
         : I18nUtils.translate(t, 'ERRORS:SAME');
       yup = yup.oneOf([Yup.ref(value.same)], translate);
+    }
+    if (value.email) {
+      yup = yup.email(I18nUtils.translate(t, 'ERRORS:FORMAT_MAIL'));
+    }
+    if (value.regexp) {
+      yup = yup
+        .trim()
+        .matches(
+          new RegExp(value.regexp),
+          I18nUtils.translate(t, value.regexpError ? value.regexpError : 'ERRORS:REGEXP'),
+        );
     }
     return yup;
   },

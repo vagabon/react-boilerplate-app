@@ -183,7 +183,9 @@ export type { AppDispatch, RootState } from './store/Store';
 
 export { SuspenceLoader } from './suspence/SuspenceLoader';
 export { default as AppTheme } from './template/AppTheme';
-export type { IAppThemeProps, IConfDto } from './template/AppTheme';
+export type { IAppThemeProps, IFormThemeDto } from './template/AppTheme';
+export { default as AppThemeWithTemplate } from './template/AppThemeWithTemplate';
+export type { IAppThemeWithTemplateProps, IConfDto } from './template/AppThemeWithTemplate';
 export { default as Footer } from './template/Footer';
 export type { IFoorterProps } from './template/Footer';
 export { default as Header } from './template/Header';

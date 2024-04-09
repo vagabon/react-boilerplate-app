@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import AppTheme from './AppTheme';
 
-const palette = {
+export const palette = {
   primary: '$primary',
   secondary: '$secondary',
   info: '$info',
@@ -16,55 +16,6 @@ const palette = {
   facebook: '$facebook',
 };
 
-const conf = {
-  LOGO: '/images/logo.png',
-  FOOTER: {
-    URL: '/',
-    WEBSITE: 'blog.vagabond.org',
-    TARGET: '',
-  },
-};
-
-const menu = [
-  {
-    title: 'Accueil',
-    link: '/home',
-    roles: [],
-  },
-  {
-    title: 'Blog',
-    link: '/blog',
-    roles: [],
-  },
-  {
-    title: 'Todolist',
-    link: '/todolist',
-    roles: [],
-  },
-  {
-    title: 'Administration',
-    link: '/admin',
-    roles: ['ADMIN'],
-    childrens: [
-      {
-        title: 'Utilisateurs',
-        link: '/admin/tab/user',
-        roles: [],
-      },
-      {
-        title: 'Profiles',
-        link: '/admin/tab/profile',
-        roles: [],
-      },
-      {
-        title: 'News',
-        link: '/admin/tab/news',
-        roles: [],
-      },
-    ],
-  },
-];
-
 describe('AppTheme', () => {
   test('renders AppTheme', () => {
     useAppSelectorSpy.mockImplementation((callback) =>
@@ -75,7 +26,7 @@ describe('AppTheme', () => {
       }),
     );
     Element.prototype.scrollTo = () => {};
-    render(<AppTheme palette={palette} conf={conf} menu={menu} />);
+    render(<AppTheme palette={palette}>{() => <></>}</AppTheme>);
     expect(screen.getByTestId('MdThemeProvider')).toBeDefined();
   });
 });

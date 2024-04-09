@@ -1,4 +1,3 @@
-import { SnackbarKey, closeSnackbar } from 'notistack';
 import { useCallback, useEffect, useState } from 'react';
 import { useAppResize } from '../../app/resize/hook/useAppResize';
 
@@ -29,24 +28,11 @@ export const useAppTheme = () => {
     [],
   );
 
-  const handleClose = useCallback(
-    (snackbarId: SnackbarKey) => () => {
-      closeSnackbar(snackbarId);
-    },
-    [],
-  );
-
-  const handleCloseSnackbar = useCallback(
-    (snackbarId: SnackbarKey) => <button onClick={handleClose(snackbarId)}>X</button>,
-    [handleClose],
-  );
-
   return {
     drawerWidth,
     openDrawer,
     variantDrawer,
     showOpenDrawer,
     handleDrawerOpen,
-    handleCloseSnackbar,
   };
 };

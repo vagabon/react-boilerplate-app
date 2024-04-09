@@ -6,12 +6,11 @@ import {
   useAppRouter,
   useTheme,
 } from '@vagabond-inc/react-boilerplate-md';
-import { SnackbarProvider } from 'notistack';
-import React, { useEffect } from 'react';
+import { SnackbarKey, SnackbarProvider, closeSnackbar } from 'notistack';
+import React, { useCallback, useEffect } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { CommonAction } from '../reducer/common/CommonReducer';
 import { useAppDispatch, useAppSelector } from '../store/Store';
-import { useAppTheme } from './hook/useAppTheme';
 
 export interface IFormThemeDto {
   mode: ModeType;
@@ -29,7 +28,6 @@ const AppTheme: React.FC<IAppThemeProps> = ({ palette, children }) => {
   const { location } = useAppRouter();
   const { modeTheme } = useAppSelector((state) => state.common);
   const { mode, theme, switchTheme } = useTheme(palette, modeTheme);
-  const { handleCloseSnackbar } = useAppTheme();
 
   useEffect(() => {
     document.body.classList.remove('mode-dark');
@@ -42,6 +40,18 @@ const AppTheme: React.FC<IAppThemeProps> = ({ palette, children }) => {
     dispatch(CommonAction.clearMessage());
     dispatch(CommonAction.addHistory({ id: '', title: '', link: location.pathname }));
   }, [location, dispatch]);
+
+  const handleClose = useCallback(
+    (snackbarId: SnackbarKey) => () => {
+      closeSnackbar(snackbarId);
+    },
+    [],
+  );
+
+  const handleCloseSnackbar = useCallback(
+    (snackbarId: SnackbarKey) => <button onClick={handleClose(snackbarId)}>X</button>,
+    [handleClose],
+  );
 
   return (
     <SnackbarProvider maxSnack={5} action={handleCloseSnackbar}>

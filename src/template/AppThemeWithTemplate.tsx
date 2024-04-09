@@ -47,14 +47,13 @@ const AppThemeWithTemplate: React.FC<IAppThemeWithTemplateProps> = ({
   menu,
   i18n,
   showNotification,
-  widthDrawer,
+  widthDrawer = true,
   reactHeader,
   children,
 }) => {
   const mainContainer = useRef<HTMLDivElement | null>(null);
   const { location } = useAppRouter();
-  const { drawerWidth, openDrawer, variantDrawer, showOpenDrawer, handleDrawerOpen, handleCloseSnackbar } =
-    useAppTheme();
+  const { drawerWidth, openDrawer, variantDrawer, showOpenDrawer, handleDrawerOpen } = useAppTheme();
   useAppFirebaseToken(apiUrl, generateToken);
   const { nbNotification } = useAppNotification(apiUrl);
   const { handleScroll, getScrollPage } = useAppScroll();

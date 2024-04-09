@@ -253,7 +253,8 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
 .MuiCardContent-root p { margin: 0 !important; }
 
 .form, .form-content {
-  display: flex; flex-direction: column; gap: 10px;
+  display: flex; flex-direction: row; gap: 10px; flex-wrap: wrap;
+  .width50 { width: calc(50% - 5px) !important; }
   .switch { 
     & > div {
       display: flex; flex-direction: row !important; align-items: center !important; justify-content: space-between !important; 
@@ -267,7 +268,7 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
 .custom-form {  flex-wrap: wrap; }
 
 @media screen and (max-width: 700px) {
-  .custom-form { gap: 0px; }
+  .custom-form { gap: 0px; .width50 { width: calc(100%) !important; } }
 }
 
 .markdown-form { 

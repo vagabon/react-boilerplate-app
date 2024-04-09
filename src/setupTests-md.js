@@ -44,6 +44,7 @@ global.spyOn = (object, method, data) => {
 global.mockedUsedNavigate = jest.fn();
 global.mockParams = { id: 0 };
 global.mockLocation = { pathname: 'home' };
+global.mockNavigate = jest.fn();
 global.currentUser = undefined;
 
 const mockT = (value) => value;
@@ -187,7 +188,6 @@ export const mockBoilerPlateMd = {
     location: global.mockLocation,
     Link: (props) => mockWithChildren('MdLink', props),
     Navigate: jest.fn(),
-    handleNavigate: jest.fn(),
     BrowserRouter: (props) => mockWithChildren('BrowserRouter', props),
     Route: (props) => mockWithChildren('Route', props),
     Routes: (props) => mockWithChildren('Routes', props),

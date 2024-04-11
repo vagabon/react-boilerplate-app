@@ -217,7 +217,7 @@ export const mockBoilerPlateMd = {
     translate: (t, label) => label,
   },
   ObjectUtils: {
-    capitalize: jest.fn(),
+    capitalize: (data) => data,
     getDtoValue: (data, name) => data[name],
     getDtoString: (data, name) => data[name],
     getRecursivValue: (data, name) => data[name],

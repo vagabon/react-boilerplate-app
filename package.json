@@ -1,6 +1,6 @@
 {
   "name": "@vagabond-inc/react-boilerplate-app",
-  "version": "1.0.30",
+  "version": "1.0.31",
   "description": "Boilerplate App for React (Auth / Admin / News)",
   "private": false,
   "type": "module",

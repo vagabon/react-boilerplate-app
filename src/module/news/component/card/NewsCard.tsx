@@ -1,5 +1,5 @@
 import { MdCard, MdChip, MdMarkdown, useId } from '@vagabond-inc/react-boilerplate-md';
-import { useCallback, useState } from 'react';
+import { memo, useCallback, useState } from 'react';
 import AppContent from '../../../../app/content/AppContent';
 import { useRole } from '../../../../hook/role/useRole';
 import { IBaseCustomSeoProps } from '../../../custom/seo/component/CustomSeo';
@@ -11,7 +11,7 @@ export interface INewsCardProps extends IBaseCustomSeoProps {
   endPoint: string;
 }
 
-const NewsCard: React.FC<INewsCardProps> = ({ apiUrl, ...props }) => {
+const NewsCard: React.FC<INewsCardProps> = memo(({ apiUrl, ...props }) => {
   const { id } = useId('title');
   const { hasUserRole } = useRole();
   const [summary, setSummary] = useState<string>('');
@@ -53,6 +53,6 @@ const NewsCard: React.FC<INewsCardProps> = ({ apiUrl, ...props }) => {
       </MdCard>
     </AppContent>
   );
-};
+});
 
 export default NewsCard;

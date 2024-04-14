@@ -1,5 +1,5 @@
 import { MdFab, useAppRouter } from '@vagabond-inc/react-boilerplate-md';
-import { useCallback } from 'react';
+import { memo, useCallback } from 'react';
 import { ICurrentUserDto } from '../../../dto/current-user/CurrentUserDto';
 import { IUserDto } from '../../../module/user/user/dto/UserDto';
 import { useAppSelector } from '../../../store/Store';
@@ -12,7 +12,7 @@ export interface IAppFabAddProps {
   callback?: () => void;
 }
 
-const AppFabAdd: React.FC<IAppFabAddProps> = (props) => {
+const AppFabAdd: React.FC<IAppFabAddProps> = memo((props) => {
   const currentUser = useAppSelector<ICurrentUserDto<IUserDto> | null>((state) => state.auth.user);
   const { navigate } = useAppRouter();
 
@@ -33,6 +33,6 @@ const AppFabAdd: React.FC<IAppFabAddProps> = (props) => {
       )}
     </div>
   );
-};
+});
 
 export default AppFabAdd;

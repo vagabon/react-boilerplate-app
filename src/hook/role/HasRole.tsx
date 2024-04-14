@@ -1,5 +1,5 @@
 import { MdCard } from '@vagabond-inc/react-boilerplate-md';
-import { ReactNode } from 'react';
+import { ReactNode, memo } from 'react';
 import { useRole } from './useRole';
 
 export interface HasRoleProps {
@@ -10,7 +10,7 @@ export interface HasRoleProps {
   childrenIfNotAllowed?: ReactNode;
 }
 
-const HasRole: React.FC<HasRoleProps> = (props: HasRoleProps) => {
+const HasRole: React.FC<HasRoleProps> = memo((props: HasRoleProps) => {
   const { hasUserRole } = useRole();
 
   return (
@@ -24,7 +24,7 @@ const HasRole: React.FC<HasRoleProps> = (props: HasRoleProps) => {
       {!hasUserRole(props.roles, props.notRroles) && props.childrenIfNotAllowed && <>{props.childrenIfNotAllowed}</>}
     </>
   );
-};
+});
 
 HasRole.defaultProps = {
   showError: true,

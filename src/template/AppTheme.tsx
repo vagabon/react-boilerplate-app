@@ -7,7 +7,7 @@ import {
   useTheme,
 } from '@vagabond-inc/react-boilerplate-md';
 import { SnackbarKey, SnackbarProvider, closeSnackbar } from 'notistack';
-import React, { useCallback, useEffect } from 'react';
+import React, { memo, useCallback, useEffect } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { CommonAction } from '../reducer/common/CommonReducer';
 import { useAppDispatch, useAppSelector } from '../store/Store';
@@ -23,7 +23,7 @@ export interface IAppThemeProps {
   children: (props: IFormThemeDto) => React.JSX.Element;
 }
 
-const AppTheme: React.FC<IAppThemeProps> = ({ palette, children }) => {
+const AppTheme: React.FC<IAppThemeProps> = memo(({ palette, children }) => {
   const dispatch = useAppDispatch();
   const { location } = useAppRouter();
   const { modeTheme } = useAppSelector((state) => state.common);
@@ -62,6 +62,6 @@ const AppTheme: React.FC<IAppThemeProps> = ({ palette, children }) => {
       </HelmetProvider>
     </SnackbarProvider>
   );
-};
+});
 
 export default AppTheme;

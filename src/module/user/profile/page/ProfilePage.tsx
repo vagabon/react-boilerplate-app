@@ -1,6 +1,6 @@
 import { ID, useAppRouter } from '@vagabond-inc/react-boilerplate-md';
 import { type i18n as i18nType } from 'i18next';
-import { useEffect } from 'react';
+import { memo, useEffect } from 'react';
 import { useAppSelector } from '../../../../store/Store';
 import { IBaseCustomSeoProps } from '../../../custom/seo/component/CustomSeo';
 import { useUser } from '../../user/hook/useUser';
@@ -12,7 +12,7 @@ interface IProfilePageProps extends IBaseCustomSeoProps {
   profileReact: (id: ID) => React.JSX.Element;
 }
 
-const ProfilePage: React.FC<IProfilePageProps> = ({ i18n, profileReact, ...rest }) => {
+const ProfilePage: React.FC<IProfilePageProps> = memo(({ i18n, profileReact, ...rest }) => {
   const {
     navigate,
     params: { id = -1 },
@@ -32,6 +32,6 @@ const ProfilePage: React.FC<IProfilePageProps> = ({ i18n, profileReact, ...rest 
   }
 
   return <ProfileShow {...rest} i18n={i18n} user={id !== -1 ? user : currentUser.user} profileReact={profileReact} />;
-};
+});
 
 export default ProfilePage;

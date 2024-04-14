@@ -1,6 +1,6 @@
 import { IconClickable, MdDivider, useAppTranslate } from '@vagabond-inc/react-boilerplate-md';
 import { type i18n as i18nType } from 'i18next';
-import { useCallback } from 'react';
+import { memo, useCallback } from 'react';
 import { CommonAction } from '../../../../../reducer/common/CommonReducer';
 import { useAppDispatch, useAppSelector } from '../../../../../store/Store';
 import Language from '../../../../../template/Language';
@@ -9,7 +9,7 @@ export interface IProfileFormParamProps {
   i18n?: i18nType;
 }
 
-const ProfileFormParam: React.FC<IProfileFormParamProps> = ({ i18n }) => {
+const ProfileFormParam: React.FC<IProfileFormParamProps> = memo(({ i18n }) => {
   const { Trans } = useAppTranslate();
   const dispatch = useAppDispatch();
   const { modeTheme } = useAppSelector((state) => state.common);
@@ -40,6 +40,6 @@ const ProfileFormParam: React.FC<IProfileFormParamProps> = ({ i18n }) => {
       )}
     </>
   );
-};
+});
 
 export default ProfileFormParam;

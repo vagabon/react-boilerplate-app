@@ -6,7 +6,7 @@ import {
   MdFormSelect,
   ObjectUtils,
 } from '@vagabond-inc/react-boilerplate-md';
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { ApiService } from '../../../../api/service/ApiService';
 import { IPageableDto } from '../../../../dto/pageable/PageableDto';
 import { IFormDto } from '../../../admin/dto/AdminConfDto';
@@ -19,7 +19,7 @@ export interface ICustomFormSelectProps extends IFormPropsDto {
   listId: boolean;
 }
 
-const CustomFormSelect: React.FC<ICustomFormSelectProps> = ({ apiUrl, conf, label, name, listId, ...rest }) => {
+const CustomFormSelect: React.FC<ICustomFormSelectProps> = memo(({ apiUrl, conf, label, name, listId, ...rest }) => {
   const [datas, setDatas] = useState<IListDto[]>([]);
 
   useEffect(() => {
@@ -37,6 +37,6 @@ const CustomFormSelect: React.FC<ICustomFormSelectProps> = ({ apiUrl, conf, labe
   }, [apiUrl, conf]);
 
   return <MdFormSelect label={label} name={name} list={datas} byId={listId} {...rest} />;
-};
+});
 
 export default CustomFormSelect;

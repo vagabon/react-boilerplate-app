@@ -1,5 +1,6 @@
 import { MdDivider, useAppTranslate } from '@vagabond-inc/react-boilerplate-md';
 import { type i18n as i18nType } from 'i18next';
+import { memo } from 'react';
 import HasRole from '../../../../../hook/role/HasRole';
 import { IBaseCustomSeoProps } from '../../../../custom/seo/component/CustomSeo';
 import { IUserDto } from '../../../user/dto/UserDto';
@@ -16,7 +17,7 @@ export interface IProfileFormProps extends IBaseCustomSeoProps {
   disabled?: boolean;
 }
 
-const ProfileForm: React.FC<IProfileFormProps> = ({ i18n, user, disabled, ...rest }) => {
+const ProfileForm: React.FC<IProfileFormProps> = memo(({ i18n, user, disabled, ...rest }) => {
   const { Trans } = useAppTranslate();
   const { isUserPassword } = useUser(rest.apiUrl);
 
@@ -48,6 +49,6 @@ const ProfileForm: React.FC<IProfileFormProps> = ({ i18n, user, disabled, ...res
       </HasRole>
     </div>
   );
-};
+});
 
 export default ProfileForm;

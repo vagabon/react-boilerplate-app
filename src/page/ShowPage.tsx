@@ -1,5 +1,5 @@
 import { IApiDto, ID } from '@vagabond-inc/react-boilerplate-md';
-import { ReactNode, useEffect, useRef } from 'react';
+import { ReactNode, memo, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch } from '../store/Store';
 
@@ -9,7 +9,7 @@ export interface ShowPageProps {
   children: ReactNode;
 }
 
-const ShowPage: React.FC<ShowPageProps> = (props: ShowPageProps) => {
+const ShowPage: React.FC<ShowPageProps> = memo((props: ShowPageProps) => {
   const dispatch = useAppDispatch();
   const { id } = useParams();
 
@@ -20,6 +20,6 @@ const ShowPage: React.FC<ShowPageProps> = (props: ShowPageProps) => {
   }, [dispatch, id]);
 
   return <>{props.data && props.children}</>;
-};
+});
 
 export default ShowPage;

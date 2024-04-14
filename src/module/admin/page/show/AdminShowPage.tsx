@@ -1,7 +1,7 @@
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { IApiDto, JSONObject, MdCard, useAppRouter, useAppTranslate } from '@vagabond-inc/react-boilerplate-md';
-import { useCallback, useEffect } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import AppContent from '../../../../app/content/AppContent';
 import HasRole from '../../../../hook/role/HasRole';
 import { useAppDispatch } from '../../../../store/Store';
@@ -18,7 +18,7 @@ export interface IAdminShowPageProps extends IBaseCustomSeoProps {
   conf: IAdminTabConfDto;
 }
 
-const AdminShowPage: React.FC<IAdminShowPageProps> = ({ conf, ...rest }) => {
+const AdminShowPage: React.FC<IAdminShowPageProps> = memo(({ conf, ...rest }) => {
   const { t } = useAppTranslate();
   const dispatch = useAppDispatch();
   const {
@@ -96,6 +96,6 @@ const AdminShowPage: React.FC<IAdminShowPageProps> = ({ conf, ...rest }) => {
       </AppContent>
     </LocalizationProvider>
   );
-};
+});
 
 export default AdminShowPage;

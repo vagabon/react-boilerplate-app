@@ -1,6 +1,6 @@
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { MdCard, MdInputText } from '@vagabond-inc/react-boilerplate-md';
-import { useEffect } from 'react';
+import { memo, useEffect } from 'react';
 import AppContent from '../../../../app/content/AppContent';
 import AppFormik from '../../../../app/formik/AppFormik';
 import { IBaseCustomSeoProps } from '../../../custom/seo/component/CustomSeo';
@@ -19,7 +19,7 @@ export interface ILoginPageProps extends IBaseCustomSeoProps {
 }
 export interface ILoginPageProps extends IBaseCustomSeoProps {}
 
-const LoginPage: React.FC<ILoginPageProps> = ({ googleClientId, facebookClientId, ...rest }) => {
+const LoginPage: React.FC<ILoginPageProps> = memo(({ googleClientId, facebookClientId, ...rest }) => {
   const { handleLogin, redirectIfLogged } = useAuth(rest.apiUrl);
 
   useEffect(() => {
@@ -52,6 +52,6 @@ const LoginPage: React.FC<ILoginPageProps> = ({ googleClientId, facebookClientId
       </GoogleOAuthProvider>
     </AppContent>
   );
-};
+});
 
 export default LoginPage;

@@ -8,7 +8,7 @@ import {
   MdSearchBar,
   useAppTranslate,
 } from '@vagabond-inc/react-boilerplate-md';
-import { useCallback, useEffect, useState } from 'react';
+import { memo, useCallback, useEffect, useState } from 'react';
 import { IManyToManyDto } from '../../../admin/dto/AdminConfDto';
 import AdminService from '../../../admin/service/AdminService';
 
@@ -20,7 +20,7 @@ interface ICustomFormModaleProps {
   handleSelect: (data: IApiDto) => () => void;
 }
 
-const CustomFormModale: React.FC<ICustomFormModaleProps> = ({ apiUrl, conf, open, ...rest }) => {
+const CustomFormModale: React.FC<ICustomFormModaleProps> = memo(({ apiUrl, conf, open, ...rest }) => {
   const { t } = useAppTranslate();
   const [search, setSearch] = useState<string>('');
   const [datas, setDatas] = useState<IApiDto[]>([]);
@@ -68,6 +68,6 @@ const CustomFormModale: React.FC<ICustomFormModaleProps> = ({ apiUrl, conf, open
       </MdList>
     </MdCommonModal>
   );
-};
+});
 
 export default CustomFormModale;

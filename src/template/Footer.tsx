@@ -1,4 +1,5 @@
 import { MdBox, MdContainer, MdLink, MdTypo } from '@vagabond-inc/react-boilerplate-md';
+import { memo } from 'react';
 import { IConfDto } from './AppThemeWithTemplate';
 
 export interface IFoorterProps {
@@ -6,7 +7,7 @@ export interface IFoorterProps {
   email: string;
 }
 
-const Footer: React.FC<IFoorterProps> = ({ conf, email }) => {
+const Footer: React.FC<IFoorterProps> = memo(({ conf, email }) => {
   return (
     <MdBox id='footer' component='footer' sx={{ borderBottom: 1, borderColor: 'divider' }}>
       <MdContainer maxWidth='lg'>
@@ -24,6 +25,6 @@ const Footer: React.FC<IFoorterProps> = ({ conf, email }) => {
       </MdContainer>
     </MdBox>
   );
-};
+});
 
 export default Footer;

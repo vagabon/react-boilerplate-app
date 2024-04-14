@@ -6,7 +6,7 @@ import {
   MdFormSwitch,
   MdInputText,
 } from '@vagabond-inc/react-boilerplate-md';
-import { ChangeEvent, useCallback, useEffect, useState } from 'react';
+import { ChangeEvent, memo, useCallback, useEffect, useState } from 'react';
 import AppContent from '../../../../app/content/AppContent';
 import AppFormik from '../../../../app/formik/AppFormik';
 import { useCreateNews } from '../../../../module/news/hook/useCreateNews';
@@ -21,7 +21,7 @@ export interface INewsFormProps extends INewsRouterProps, IBaseCustomSeoProps {
   news: INewsDto;
 }
 
-const NewsForm: React.FC<INewsFormProps> = ({ endPoint, newsAction, news, ...rest }) => {
+const NewsForm: React.FC<INewsFormProps> = memo(({ endPoint, newsAction, news, ...rest }) => {
   const { createOrUpdateNews } = useCreateNews(rest.apiUrl, endPoint, newsAction, news.id as number);
   const [newsForm, setNewsForm] = useState<INewsDto>({});
   const { handleChangeFile } = useCustomFormUpload(rest.apiUrl, endPoint);
@@ -103,6 +103,6 @@ const NewsForm: React.FC<INewsFormProps> = ({ endPoint, newsAction, news, ...res
       <NewsCard {...rest} news={newsForm} endPoint={endPoint} />
     </AppContent>
   );
-};
+});
 
 export default NewsForm;

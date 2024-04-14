@@ -1,5 +1,5 @@
 import { IMdInputTextProps, MdInputText, useAppTranslate } from '@vagabond-inc/react-boilerplate-md';
-import { useCallback } from 'react';
+import { memo, useCallback } from 'react';
 import { IYupValidators } from '../../../../../utils/yup/YupUtils';
 import CustomModaleForm from '../../../../custom/modale/component/CustomModaleForm';
 import { IBaseCustomSeoProps } from '../../../../custom/seo/component/CustomSeo';
@@ -23,7 +23,7 @@ export interface IProfileFormEmailProps extends IBaseCustomSeoProps {
   user: IUserDto;
 }
 
-const ProfileFormEmail: React.FC<IProfileFormEmailProps> = ({ user, ...rest }) => {
+const ProfileFormEmail: React.FC<IProfileFormEmailProps> = memo(({ user, ...rest }) => {
   const { handleUpdateEmail } = useUser(rest.apiUrl);
   const { Trans } = useAppTranslate();
 
@@ -57,6 +57,6 @@ const ProfileFormEmail: React.FC<IProfileFormEmailProps> = ({ user, ...rest }) =
       </>
     </div>
   );
-};
+});
 
 export default ProfileFormEmail;

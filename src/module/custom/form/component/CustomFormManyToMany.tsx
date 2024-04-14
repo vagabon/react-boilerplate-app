@@ -12,7 +12,7 @@ import {
   useAppTranslate,
   useFormError,
 } from '@vagabond-inc/react-boilerplate-md';
-import { useCallback, useEffect, useState } from 'react';
+import { memo, useCallback, useEffect, useState } from 'react';
 import { useMessage } from '../../../../hook/message/useMessage';
 import { IFormDto } from '../../../admin/dto/AdminConfDto';
 import CustomFormModale from './CustomFormModale';
@@ -24,7 +24,7 @@ export interface ICustomFormManyToManyProps extends IFormPropsDto {
   name: string;
 }
 
-const CustomFormManyToMany: React.FC<ICustomFormManyToManyProps> = ({ conf, label, name, apiUrl, ...rest }) => {
+const CustomFormManyToMany: React.FC<ICustomFormManyToManyProps> = memo(({ conf, label, name, apiUrl, ...rest }) => {
   const { t } = useAppTranslate();
   const { message } = useMessage();
   const [open, setOpen] = useState(false);
@@ -102,6 +102,6 @@ const CustomFormManyToMany: React.FC<ICustomFormManyToManyProps> = ({ conf, labe
       />
     </>
   );
-};
+});
 
 export default CustomFormManyToMany;

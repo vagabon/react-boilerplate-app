@@ -1,5 +1,5 @@
 import { MdTabs, useAppRouter } from '@vagabond-inc/react-boilerplate-md';
-import { useCallback, useEffect, useState } from 'react';
+import { memo, useCallback, useEffect, useState } from 'react';
 import AppContent from '../../../../app/content/AppContent';
 import HasRole from '../../../../hook/role/HasRole';
 import { IBaseCustomSeoProps } from '../../../custom/seo/component/CustomSeo';
@@ -10,7 +10,7 @@ interface IAdminTabsPageProps extends IBaseCustomSeoProps {
   conf: IAdminTabConfDto;
 }
 
-const AdminTabsPage: React.FC<IAdminTabsPageProps> = ({ conf, ...rest }) => {
+const AdminTabsPage: React.FC<IAdminTabsPageProps> = memo(({ conf, ...rest }) => {
   const {
     navigate,
     params: { tab },
@@ -37,6 +37,6 @@ const AdminTabsPage: React.FC<IAdminTabsPageProps> = ({ conf, ...rest }) => {
       </HasRole>
     </AppContent>
   );
-};
+});
 
 export default AdminTabsPage;

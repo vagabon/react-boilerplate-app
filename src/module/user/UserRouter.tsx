@@ -1,5 +1,6 @@
 import { ID } from '@vagabond-inc/react-boilerplate-md';
 import { type i18n as i18nType } from 'i18next';
+import { memo } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { IBaseCustomSeoProps } from '../custom/seo/component/CustomSeo';
 import NotFoundPage from '../not-found/page/NotFoundPage';
@@ -10,7 +11,7 @@ interface IUserRouterProps extends IBaseCustomSeoProps {
   profile: (id: ID) => React.JSX.Element;
 }
 
-const UserRouter: React.FC<IUserRouterProps> = ({ profile, ...rest }) => {
+const UserRouter: React.FC<IUserRouterProps> = memo(({ profile, ...rest }) => {
   return (
     <Routes>
       <Route>
@@ -20,6 +21,6 @@ const UserRouter: React.FC<IUserRouterProps> = ({ profile, ...rest }) => {
       </Route>
     </Routes>
   );
-};
+});
 
 export default UserRouter;

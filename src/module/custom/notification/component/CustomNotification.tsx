@@ -1,5 +1,5 @@
 import { ID, MdCard } from '@vagabond-inc/react-boilerplate-md';
-import { useEffect } from 'react';
+import { memo, useEffect } from 'react';
 import InfiniteScrollPage from '../../../../page/InfiniteScrollPage';
 import CustomList from '../../list/component/CustomList';
 import { useCustomNotification } from '../hook/useCustomNotification';
@@ -10,7 +10,7 @@ export interface ICustomNotificationProps {
   type: string;
 }
 
-const CustomNotification: React.FC<ICustomNotificationProps> = ({ apiUrl, entityId, type }) => {
+const CustomNotification: React.FC<ICustomNotificationProps> = memo(({ apiUrl, entityId, type }) => {
   const { notifications, custumList, search, page, doSearch, doChangePage } = useCustomNotification(
     apiUrl,
     entityId,
@@ -33,6 +33,6 @@ const CustomNotification: React.FC<ICustomNotificationProps> = ({ apiUrl, entity
       </InfiniteScrollPage>
     </MdCard>
   );
-};
+});
 
 export default CustomNotification;

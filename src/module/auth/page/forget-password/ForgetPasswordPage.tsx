@@ -2,7 +2,7 @@ import { IUserDto } from '../../../user/user/dto/UserDto';
 import AuthService from '../../service/AuthService';
 
 import { MdCard, MdInputText, useAppRouter } from '@vagabond-inc/react-boilerplate-md';
-import { useCallback, useEffect } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import AppContent from '../../../../app/content/AppContent';
 import AppFormik from '../../../../app/formik/AppFormik';
 import { IBaseCustomSeoProps } from '../../../custom/seo/component/CustomSeo';
@@ -15,7 +15,7 @@ const DEFAULT_VALUES = { email: '' };
 
 export interface IForgetPasswordPageProps extends IBaseCustomSeoProps {}
 
-const ForgetPasswordPage: React.FC<IForgetPasswordPageProps> = ({ ...rest }) => {
+const ForgetPasswordPage: React.FC<IForgetPasswordPageProps> = memo(({ ...rest }) => {
   const { navigate } = useAppRouter();
   const { redirectIfLogged } = useAuth(rest.apiUrl);
 
@@ -47,6 +47,6 @@ const ForgetPasswordPage: React.FC<IForgetPasswordPageProps> = ({ ...rest }) => 
       </MdCard>
     </AppContent>
   );
-};
+});
 
 export default ForgetPasswordPage;

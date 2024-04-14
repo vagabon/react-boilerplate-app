@@ -1,5 +1,5 @@
 import { MdButton, MdCard, useAppTranslate } from '@vagabond-inc/react-boilerplate-md';
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import AppContent from '../../../../app/content/AppContent';
 import { useAppSelector } from '../../../../store/Store';
@@ -9,7 +9,7 @@ import AuthService from '../../service/AuthService';
 
 export interface IActivationPageProps extends IBaseCustomSeoProps {}
 
-const ActivationPage: React.FC<IActivationPageProps> = ({ ...rest }) => {
+const ActivationPage: React.FC<IActivationPageProps> = memo(({ ...rest }) => {
   const { Trans } = useAppTranslate();
   const params = useParams();
   const [isActivated, setIsActivated] = useState<boolean | undefined>(undefined);
@@ -53,6 +53,6 @@ const ActivationPage: React.FC<IActivationPageProps> = ({ ...rest }) => {
       </MdCard>
     </AppContent>
   );
-};
+});
 
 export default ActivationPage;

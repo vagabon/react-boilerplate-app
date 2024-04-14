@@ -9,7 +9,7 @@ import {
   useAppTranslate,
 } from '@vagabond-inc/react-boilerplate-md';
 import { Formik, FormikErrors } from 'formik';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
 import { IPathDto } from '../../dto/path/PathDto';
 import { useMessage } from '../../hook/message/useMessage';
 import CustomModaleConfirm from '../../module/custom/modale/component/CustomModaleConfirm';
@@ -29,7 +29,7 @@ export interface IAppFormikProps {
   modalConfirm?: string;
 }
 
-const AppFormik: React.FC<IAppFormikProps> = ({ className = '', ...props }) => {
+const AppFormik: React.FC<IAppFormikProps> = memo(({ className = '', ...props }) => {
   const dispatch = useAppDispatch();
   const { navigate } = useAppRouter();
   const { history } = useAppSelector((state) => state.common);
@@ -123,7 +123,7 @@ const AppFormik: React.FC<IAppFormikProps> = ({ className = '', ...props }) => {
       )}
     </Formik>
   );
-};
+});
 
 AppFormik.defaultProps = {
   backButton: true,

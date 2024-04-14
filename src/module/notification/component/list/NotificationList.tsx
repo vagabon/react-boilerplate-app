@@ -1,5 +1,5 @@
 import { IApiDto, ID, MdCard } from '@vagabond-inc/react-boilerplate-md';
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import InfiniteScrollPage from '../../../../page/InfiniteScrollPage';
 import CustomList, { ICustomListDto } from '../../../custom/list/component/CustomList';
 import { INotificationDto } from '../../dto/NotificationDto';
@@ -15,38 +15,32 @@ export interface INotificationListProps {
   callbackSettings?: (data: IApiDto) => void;
 }
 
-const NotificationList: React.FC<INotificationListProps> = ({
-  apiUrl,
-  notifications,
-  getNotificationIcon,
-  doChangePage,
-  callbackClick,
-  callbackCheckbox,
-  callbackSettings,
-}) => {
-  const [custumList, setCustumList] = useState<ICustomListDto[]>(
-    NotificationUtils.convertToCustomList(notifications, getNotificationIcon),
-  );
+const NotificationList: React.FC<INotificationListProps> = memo(
+  ({ apiUrl, notifications, getNotificationIcon, doChangePage, callbackClick, callbackCheckbox, callbackSettings }) => {
+    const [custumList, setCustumList] = useState<ICustomListDto[]>(
+      NotificationUtils.convertToCustomList(notifications, getNotificationIcon),
+    );
 
-  useEffect(() => {
-    setCustumList(NotificationUtils.convertToCustomList(notifications, getNotificationIcon));
-  }, [notifications, getNotificationIcon]);
+    useEffect(() => {
+      setCustumList(NotificationUtils.convertToCustomList(notifications, getNotificationIcon));
+    }, [notifications, getNotificationIcon]);
 
-  return (
-    <InfiniteScrollPage doChangePage={doChangePage}>
-      <MdCard>
-        <CustomList
-          apiUrl={apiUrl}
-          className='notification-list'
-          callback={callbackClick}
-          callbackCheckbox={callbackCheckbox}
-          iconSettings='right'
-          callbackSettings={callbackSettings}
-          datas={custumList}
-        />
-      </MdCard>
-    </InfiniteScrollPage>
-  );
-};
+    return (
+      <InfiniteScrollPage doChangePage={doChangePage}>
+        <MdCard>
+          <CustomList
+            apiUrl={apiUrl}
+            className='notification-list'
+            callback={callbackClick}
+            callbackCheckbox={callbackCheckbox}
+            iconSettings='right'
+            callbackSettings={callbackSettings}
+            datas={custumList}
+          />
+        </MdCard>
+      </InfiniteScrollPage>
+    );
+  },
+);
 
 export default NotificationList;

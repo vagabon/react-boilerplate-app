@@ -6,7 +6,7 @@ import {
   MdFormFile,
   ObjectUtils,
 } from '@vagabond-inc/react-boilerplate-md';
-import { ChangeEvent, useCallback } from 'react';
+import { ChangeEvent, memo, useCallback } from 'react';
 import { useAppImage } from '../../../../template/hook/useAppImage';
 import { useCustomFormUpload } from '../../../custom/form/hook/useCustomFormUpload';
 import CustomModaleForm from '../../../custom/modale/component/CustomModaleForm';
@@ -19,7 +19,7 @@ export interface IProfileAvatarProps {
   disabled?: boolean;
 }
 
-const ProfileAvatar: React.FC<IProfileAvatarProps> = ({ apiUrl, user, disabled }) => {
+const ProfileAvatar: React.FC<IProfileAvatarProps> = memo(({ apiUrl, user, disabled }) => {
   const { handleUpdateAvatar, isUserPassword } = useUser(apiUrl);
   const { getImage } = useAppImage(apiUrl);
 
@@ -66,6 +66,6 @@ const ProfileAvatar: React.FC<IProfileAvatarProps> = ({ apiUrl, user, disabled }
       )}
     </>
   );
-};
+});
 
 export default ProfileAvatar;

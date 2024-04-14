@@ -1,5 +1,5 @@
 import { JSONObject, useAppRouter } from '@vagabond-inc/react-boilerplate-md';
-import { ReactNode, useEffect, useRef } from 'react';
+import { ReactNode, memo, useEffect, useRef } from 'react';
 import { IMenuDto, i18nType } from '..';
 import AppTheme from './AppTheme';
 import CookieConsents from './CookieConsents';
@@ -38,73 +38,75 @@ export interface IAppThemeWithTemplateProps {
   children: ReactNode;
 }
 
-const AppThemeWithTemplate: React.FC<IAppThemeWithTemplateProps> = ({
-  apiUrl,
-  conf,
-  palette,
-  email,
-  generateToken,
-  menu,
-  i18n,
-  showNotification,
-  widthDrawer = true,
-  reactHeader,
-  children,
-}) => {
-  const mainContainer = useRef<HTMLDivElement | null>(null);
-  const { location } = useAppRouter();
-  const { drawerWidth, openDrawer, variantDrawer, showOpenDrawer, handleDrawerOpen } = useAppTheme();
-  useAppFirebaseToken(apiUrl, generateToken);
-  const { nbNotification } = useAppNotification(apiUrl);
-  const { handleScroll, getScrollPage } = useAppScroll();
+const AppThemeWithTemplate = memo<IAppThemeWithTemplateProps>(
+  ({
+    apiUrl,
+    conf,
+    palette,
+    email,
+    generateToken,
+    menu,
+    i18n,
+    showNotification,
+    widthDrawer = true,
+    reactHeader,
+    children,
+  }) => {
+    const mainContainer = useRef<HTMLDivElement | null>(null);
+    const { location } = useAppRouter();
+    const { drawerWidth, openDrawer, variantDrawer, showOpenDrawer, handleDrawerOpen } = useAppTheme();
+    useAppFirebaseToken(apiUrl, generateToken);
+    const { nbNotification } = useAppNotification(apiUrl);
+    const { handleScroll, getScrollPage } = useAppScroll();
 
-  useEffect(() => {
-    getScrollPage(location.pathname);
-  }, [getScrollPage, location.pathname]);
+    useEffect(() => {
+      getScrollPage(location.pathname);
+    }, [getScrollPage, location.pathname]);
 
-  return (
-    <AppTheme palette={palette}>
-      {({ mode, switchTheme }) => (
-        <>
-          <Header
-            apiUrl={apiUrl}
-            mode={mode}
-            conf={conf}
-            menu={menu}
-            widthDrawer={widthDrawer}
-            showOpenDrawer={showOpenDrawer}
-            callbackTheme={switchTheme(mode)}
-            callbackDrawer={handleDrawerOpen(openDrawer)}
-            i18n={i18n}
-            nbNotification={nbNotification}
-            showNotification={showNotification}
-            reactHeader={reactHeader}
-          />
-          <div className='flex flex-row' style={{ flex: '1', overflow: 'hidden' }}>
-            {widthDrawer && (
-              <MenuDrawer
-                apiUrl={apiUrl}
-                menu={menu}
-                drawerWidth={drawerWidth}
-                openDrawer={openDrawer}
-                variantDrawer={variantDrawer}
-                callbackClose={handleDrawerOpen(true)}
-              />
-            )}
-            <div
-              ref={mainContainer}
-              className='main-container'
-              onScroll={handleScroll(mainContainer, location.pathname)}>
-              {children}
+    return (
+      <AppTheme palette={palette}>
+        {({ mode, switchTheme }) => (
+          <>
+            <Header
+              apiUrl={apiUrl}
+              mode={mode}
+              conf={conf}
+              menu={menu}
+              widthDrawer={widthDrawer}
+              showOpenDrawer={showOpenDrawer}
+              callbackTheme={switchTheme(mode)}
+              callbackDrawer={handleDrawerOpen(openDrawer)}
+              i18n={i18n}
+              nbNotification={nbNotification}
+              showNotification={showNotification}
+              reactHeader={reactHeader}
+            />
+            <div className='flex flex-row' style={{ flex: '1', overflow: 'hidden' }}>
+              {widthDrawer && (
+                <MenuDrawer
+                  apiUrl={apiUrl}
+                  menu={menu}
+                  drawerWidth={drawerWidth}
+                  openDrawer={openDrawer}
+                  variantDrawer={variantDrawer}
+                  callbackClose={handleDrawerOpen(true)}
+                />
+              )}
+              <div
+                ref={mainContainer}
+                className='main-container'
+                onScroll={handleScroll(mainContainer, location.pathname)}>
+                {children}
+              </div>
             </div>
-          </div>
-          <ShowMessage />
-          <CookieConsents />
-          <Footer conf={conf} email={email} />
-        </>
-      )}
-    </AppTheme>
-  );
-};
+            <ShowMessage />
+            <CookieConsents />
+            <Footer conf={conf} email={email} />
+          </>
+        )}
+      </AppTheme>
+    );
+  },
+);
 
 export default AppThemeWithTemplate;

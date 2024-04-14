@@ -1,5 +1,5 @@
 import { MdCard } from '@vagabond-inc/react-boilerplate-md';
-import { ReactNode } from 'react';
+import { ReactNode, memo } from 'react';
 import CustomModale, { ICustomModalChildrenType, ICustomModaleChildProps } from './CustomModale';
 
 export interface ICustomModaleCardProps extends ICustomModaleChildProps {
@@ -8,7 +8,7 @@ export interface ICustomModaleCardProps extends ICustomModaleChildProps {
   children: ICustomModalChildrenType;
 }
 
-const CustomModaleCard: React.FC<ICustomModaleCardProps> = ({ title, buttonChildren, children, ...rest }) => {
+const CustomModaleCard: React.FC<ICustomModaleCardProps> = memo(({ title, buttonChildren, children, ...rest }) => {
   return (
     <CustomModale {...rest} className={'modal-card ' + rest.className}>
       {(props) => (
@@ -18,6 +18,6 @@ const CustomModaleCard: React.FC<ICustomModaleCardProps> = ({ title, buttonChild
       )}
     </CustomModale>
   );
-};
+});
 
 export default CustomModaleCard;

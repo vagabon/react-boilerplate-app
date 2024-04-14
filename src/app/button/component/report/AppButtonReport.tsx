@@ -1,4 +1,5 @@
 import { I18nUtils, JSONObject, MdButton, useAppTranslate } from '@vagabond-inc/react-boilerplate-md';
+import { memo } from 'react';
 
 export interface IAppButtonReportProps {
   emailContact: string;
@@ -7,7 +8,7 @@ export interface IAppButtonReportProps {
   data: JSONObject;
 }
 
-const AppButtonReport: React.FC<IAppButtonReportProps> = ({ emailContact, subject, body, data }) => {
+const AppButtonReport: React.FC<IAppButtonReportProps> = memo(({ emailContact, subject, body, data }) => {
   const { t } = useAppTranslate();
 
   const handleReport = () => {
@@ -19,5 +20,6 @@ const AppButtonReport: React.FC<IAppButtonReportProps> = ({ emailContact, subjec
   };
 
   return <MdButton color='error' label='SIGNALER' callback={handleReport} />;
-};
+});
+
 export default AppButtonReport;

@@ -1,5 +1,5 @@
 import { MdCard, MdInputText, useAppTranslate } from '@vagabond-inc/react-boilerplate-md';
-import { useCallback, useEffect, useState } from 'react';
+import { memo, useCallback, useEffect, useState } from 'react';
 import AppContent from '../../../../app/content/AppContent';
 import AppFormik from '../../../../app/formik/AppFormik';
 import { IBaseCustomSeoProps } from '../../../custom/seo/component/CustomSeo';
@@ -14,7 +14,7 @@ const DEFAULT_VALUES = { token: '' };
 
 export interface ICheckIdentityPageProps extends IBaseCustomSeoProps {}
 
-const CheckIdentityPage: React.FC<ICheckIdentityPageProps> = ({ ...rest }) => {
+const CheckIdentityPage: React.FC<ICheckIdentityPageProps> = memo(({ ...rest }) => {
   const { Trans } = useAppTranslate();
   const [state, setState] = useState<boolean>(false);
   const { redirectIfLogged } = useAuth(rest.apiUrl);
@@ -61,6 +61,6 @@ const CheckIdentityPage: React.FC<ICheckIdentityPageProps> = ({ ...rest }) => {
       </MdCard>
     </AppContent>
   );
-};
+});
 
 export default CheckIdentityPage;

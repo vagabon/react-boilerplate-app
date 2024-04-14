@@ -1,6 +1,6 @@
 import { FormControl, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import { type i18n as i18nType } from 'i18next';
-import { useCallback } from 'react';
+import { memo, useCallback } from 'react';
 import { CommonAction } from '../reducer/common/CommonReducer';
 import { useAppDispatch, useAppSelector } from '../store/Store';
 
@@ -9,7 +9,7 @@ export interface ILanguageProps {
   hidden?: boolean;
 }
 
-const Language: React.FC<ILanguageProps> = ({ i18n, hidden = true }) => {
+const Language: React.FC<ILanguageProps> = memo(({ i18n, hidden = true }) => {
   const dispatch = useAppDispatch();
   const { language } = useAppSelector((state) => state.common);
 
@@ -32,5 +32,5 @@ const Language: React.FC<ILanguageProps> = ({ i18n, hidden = true }) => {
       </Select>
     </FormControl>
   );
-};
+});
 export default Language;

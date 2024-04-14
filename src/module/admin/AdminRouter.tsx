@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { IBaseCustomSeoProps } from '../custom/seo/component/CustomSeo';
 import NotFoundPage from '../not-found/page/NotFoundPage';
@@ -12,7 +13,7 @@ interface IAdminRouterProps extends IBaseCustomSeoProps {
   conf: IAdminTabConfDto;
 }
 
-const AdminRouter: React.FC<IAdminRouterProps> = ({ ...rest }) => {
+const AdminRouter: React.FC<IAdminRouterProps> = memo(({ ...rest }) => {
   return (
     <Routes>
       <Route>
@@ -23,6 +24,6 @@ const AdminRouter: React.FC<IAdminRouterProps> = ({ ...rest }) => {
       </Route>
     </Routes>
   );
-};
+});
 
 export default AdminRouter;

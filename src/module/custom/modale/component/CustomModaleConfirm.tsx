@@ -1,4 +1,5 @@
 import { ID, MdButton, MdCard, useAppTranslate } from '@vagabond-inc/react-boilerplate-md';
+import { memo } from 'react';
 import CustomModale, { ICustomModalChildrenType, ICustomModaleChildProps } from './CustomModale';
 
 export interface ICustomModaleConfirmProps extends ICustomModaleChildProps {
@@ -9,7 +10,7 @@ export interface ICustomModaleConfirmProps extends ICustomModaleChildProps {
   children?: ICustomModalChildrenType;
 }
 
-const CustomModaleConfirm: React.FC<ICustomModaleConfirmProps> = ({ id, label, callback, children, ...rest }) => {
+const CustomModaleConfirm: React.FC<ICustomModaleConfirmProps> = memo(({ id, label, callback, children, ...rest }) => {
   const { Trans } = useAppTranslate();
 
   return (
@@ -31,6 +32,6 @@ const CustomModaleConfirm: React.FC<ICustomModaleConfirmProps> = ({ id, label, c
       )}
     </CustomModale>
   );
-};
+});
 
 export default CustomModaleConfirm;

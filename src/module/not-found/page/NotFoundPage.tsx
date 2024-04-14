@@ -1,4 +1,5 @@
 import { MdAlert, MdBouttonGroup, MdButton, MdCard, MdTypo, useAppTranslate } from '@vagabond-inc/react-boilerplate-md';
+import { memo } from 'react';
 import AppContent from '../../../app/content/AppContent';
 
 export interface INotFoundPageProps {
@@ -7,7 +8,7 @@ export interface INotFoundPageProps {
   emailContact?: string;
 }
 
-const NotFoundPage: React.FC<INotFoundPageProps> = ({ apiUrl, website, emailContact }) => {
+const NotFoundPage: React.FC<INotFoundPageProps> = memo(({ apiUrl, website, emailContact }) => {
   const { Trans } = useAppTranslate();
 
   return (
@@ -40,6 +41,6 @@ const NotFoundPage: React.FC<INotFoundPageProps> = ({ apiUrl, website, emailCont
       </MdCard>
     </AppContent>
   );
-};
+});
 
 export default NotFoundPage;

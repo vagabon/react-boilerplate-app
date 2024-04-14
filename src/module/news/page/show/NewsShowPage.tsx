@@ -1,5 +1,5 @@
 import { useAppRouter } from '@vagabond-inc/react-boilerplate-md';
-import { useEffect } from 'react';
+import { memo, useEffect } from 'react';
 import HasRole from '../../../../hook/role/HasRole';
 import CustomSeo, { IBaseCustomSeoProps } from '../../../custom/seo/component/CustomSeo';
 import { INewsRouterProps } from '../../NewsRouter';
@@ -8,7 +8,7 @@ import { useCreateNews } from '../../hook/useCreateNews';
 
 export interface INewsShowPageProps extends INewsRouterProps, IBaseCustomSeoProps {}
 
-const NewsShowPage: React.FC<INewsShowPageProps> = ({ endPoint, newsAction, ...rest }) => {
+const NewsShowPage: React.FC<INewsShowPageProps> = memo(({ endPoint, newsAction, ...rest }) => {
   const {
     params: { id },
   } = useAppRouter();
@@ -24,6 +24,6 @@ const NewsShowPage: React.FC<INewsShowPageProps> = ({ endPoint, newsAction, ...r
       {id && <NewsCard {...rest} news={news ?? {}} endPoint={endPoint} />}
     </HasRole>
   );
-};
+});
 
 export default NewsShowPage;

@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import {
   EmailIcon,
   EmailShareButton,
@@ -17,7 +18,7 @@ export interface ICustomShareButtonsProps {
   size?: number;
 }
 
-const CustomShareButtons: React.FC<ICustomShareButtonsProps> = ({ url, hashtag = '', size = 32 }) => {
+const CustomShareButtons: React.FC<ICustomShareButtonsProps> = memo(({ url, hashtag = '', size = 32 }) => {
   return (
     <div className='share-buttons'>
       <EmailShareButton url={url}>
@@ -37,6 +38,6 @@ const CustomShareButtons: React.FC<ICustomShareButtonsProps> = ({ url, hashtag =
       </RedditShareButton>
     </div>
   );
-};
+});
 
 export default CustomShareButtons;

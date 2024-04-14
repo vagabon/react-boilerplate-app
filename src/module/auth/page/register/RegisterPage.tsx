@@ -1,5 +1,5 @@
 import { JSONObject, MdCard, MdInputText, useAppTranslate } from '@vagabond-inc/react-boilerplate-md';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { useApiService } from '../../../../api/hook/useApiService';
 import AppContent from '../../../../app/content/AppContent';
@@ -19,7 +19,7 @@ export interface IRegisterPageProps extends IBaseCustomSeoProps {
   googleCaptchaId: string;
 }
 
-const RegisterPage: React.FC<IRegisterPageProps> = ({ googleCaptchaId, ...rest }) => {
+const RegisterPage: React.FC<IRegisterPageProps> = memo(({ googleCaptchaId, ...rest }) => {
   const { Trans } = useAppTranslate();
   const { redirectIfLogged } = useAuth(rest.apiUrl);
   const { httpPost } = useApiService(rest.apiUrl);
@@ -78,6 +78,6 @@ const RegisterPage: React.FC<IRegisterPageProps> = ({ googleCaptchaId, ...rest }
       </MdCard>
     </AppContent>
   );
-};
+});
 
 export default RegisterPage;

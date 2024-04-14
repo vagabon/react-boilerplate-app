@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { IReducersActionsProps } from '../../reducer/BaseReducer';
 import { IBaseCustomSeoProps } from '../custom/seo/component/CustomSeo';
@@ -11,7 +12,7 @@ export interface INewsRouterProps extends IBaseCustomSeoProps {
   newsAction: IReducersActionsProps;
 }
 
-const NewsRouter: React.FC<INewsRouterProps> = ({ ...props }) => {
+const NewsRouter: React.FC<INewsRouterProps> = memo(({ ...props }) => {
   return (
     <Routes>
       <Route>
@@ -24,6 +25,6 @@ const NewsRouter: React.FC<INewsRouterProps> = ({ ...props }) => {
       </Route>
     </Routes>
   );
-};
+});
 
 export default NewsRouter;

@@ -1,5 +1,5 @@
 import { JSONObject, MdCard, MdSearchBar, MdTableWithPagination } from '@vagabond-inc/react-boilerplate-md';
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import AppButtonRefresh from '../../../app/button/component/refresh/AppButtonRefresh';
 import AppFabAdd from '../../../app/fab/add/AppFabAdd';
 import HasRole from '../../../hook/role/HasRole';
@@ -13,7 +13,7 @@ export interface IAdminListPageProps extends IBaseCustomSeoProps {
   activePage: string;
   conf: IAdminTabConfDto;
 }
-const AdminTable: React.FC<IAdminListPageProps> = ({ activePage, conf, ...rest }) => {
+const AdminTable: React.FC<IAdminListPageProps> = memo(({ activePage, conf, ...rest }) => {
   const [pageConf, setPageConf] = useState<IAdminTabDto>();
   const { state } = useAdminState(activePage, pageConf as IAdminTabDto);
 
@@ -56,6 +56,6 @@ const AdminTable: React.FC<IAdminListPageProps> = ({ activePage, conf, ...rest }
       <AppFabAdd urlAdd={'/admin/update/' + activePage + '/-1'} urlAddRole={['ADMIN']} />
     </>
   );
-};
+});
 
 export default AdminTable;

@@ -1,0 +1,72 @@
+import { MdMenu } from '@vagabond-inc/react-boilerplate-md';
+import { memo } from 'react';
+import {
+  EmailIcon,
+  EmailShareButton,
+  FacebookIcon,
+  FacebookShareButton,
+  LinkedinIcon,
+  LinkedinShareButton,
+  RedditIcon,
+  RedditShareButton,
+  TwitterIcon,
+  TwitterShareButton,
+} from 'react-share';
+
+export interface ICustomShareButtonsMenuProps {
+  url: string;
+  hashtag?: string;
+  size?: number;
+}
+
+const CustomShareButtonsMenu: React.FC<ICustomShareButtonsMenuProps> = memo(({ url, hashtag = '', size = 32 }) => {
+  return (
+    <MdMenu
+      title={<>Share</>}
+      elements={[
+        {
+          name: 'email',
+          element: (
+            <EmailShareButton url={url}>
+              <EmailIcon size={size} style={{ borderRadius: '5px' }} />
+            </EmailShareButton>
+          ),
+        },
+        {
+          name: 'facebook',
+          element: (
+            <FacebookShareButton url={url} hashtag={hashtag}>
+              <FacebookIcon size={size} style={{ borderRadius: '5px' }} />
+            </FacebookShareButton>
+          ),
+        },
+        {
+          name: 'facebook',
+          element: (
+            <TwitterShareButton url={url} hashtags={[hashtag]}>
+              <TwitterIcon size={size} style={{ borderRadius: '5px' }} />
+            </TwitterShareButton>
+          ),
+        },
+        {
+          name: 'facebook',
+          element: (
+            <LinkedinShareButton url={url}>
+              <LinkedinIcon size={size} style={{ borderRadius: '5px' }} />
+            </LinkedinShareButton>
+          ),
+        },
+        {
+          name: 'facebook',
+          element: (
+            <RedditShareButton url={url}>
+              <RedditIcon size={size} style={{ borderRadius: '5px' }} />
+            </RedditShareButton>
+          ),
+        },
+      ]}
+    />
+  );
+});
+
+export default CustomShareButtonsMenu;

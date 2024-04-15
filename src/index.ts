@@ -120,6 +120,8 @@ export type { ICustomSeoProps } from './module/custom/seo/component/CustomSeo';
 export { CustomSeoUtils } from './module/custom/seo/utils/CustomSeoUtils';
 export { default as CustomShareButtons } from './module/custom/share/component/CustomShareButtons';
 export type { ICustomShareButtonsProps } from './module/custom/share/component/CustomShareButtons';
+export { default as CustomShareButtonsMenu } from './module/custom/share/component/CustomShareButtonsMenu';
+export type { ICustomShareButtonsMenuProps } from './module/custom/share/component/CustomShareButtonsMenu';
 
 export { default as CustomNotification } from './module/custom/notification/component/CustomNotification';
 export type { ICustomNotificationProps } from './module/custom/notification/component/CustomNotification';

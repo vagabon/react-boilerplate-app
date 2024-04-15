@@ -1,4 +1,4 @@
-import { MdMenu } from '@vagabond-inc/react-boilerplate-md';
+import { MdMenu, useIcon } from '@vagabond-inc/react-boilerplate-md';
 import { memo } from 'react';
 import {
   EmailIcon,
@@ -20,9 +20,13 @@ export interface ICustomShareButtonsMenuProps {
 }
 
 const CustomShareButtonsMenu: React.FC<ICustomShareButtonsMenuProps> = memo(({ url, hashtag = '', size = 32 }) => {
+  const { getIcon } = useIcon();
+
   return (
     <MdMenu
-      title={<>Share</>}
+      className='button-icon'
+      variant='contained'
+      title={<>{getIcon('share', 'inherit')}</>}
       elements={[
         {
           name: 'email',

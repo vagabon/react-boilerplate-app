@@ -271,7 +271,7 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
 
 .custom-form {  flex-wrap: wrap; }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
   .form-content, .custom-form { gap: 0px; .width50 { width: calc(100%) !important; } }
 }
 

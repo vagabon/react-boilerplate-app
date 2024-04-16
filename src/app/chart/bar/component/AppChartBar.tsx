@@ -4,6 +4,7 @@ import { memo, useEffect } from 'react';
 import { useAppChartBar } from '../hook/useAppChartBar';
 
 export interface IAppChartBarProps {
+  id?: string;
   title?: string;
   charts: IApiDto[];
   colors?: string[];
@@ -13,7 +14,7 @@ export interface IAppChartBarProps {
 }
 
 const AppChartBar: React.FC<IAppChartBarProps> = memo(
-  ({ title, charts, colors, titleField = 'day', nbField = 'nb', generateCallback }) => {
+  ({ id, title, charts, colors, titleField = 'day', nbField = 'nb', generateCallback }) => {
     const { axis, series, convertToChartBar } = useAppChartBar(title);
 
     useEffect(() => {
@@ -23,7 +24,7 @@ const AppChartBar: React.FC<IAppChartBarProps> = memo(
     }, [convertToChartBar, charts, titleField, nbField, colors]);
 
     return (
-      <MdCard>
+      <MdCard id={id}>
         <MdBouttonGroup className='button-right'>
           {generateCallback && <MdButton label='GENERATE' callback={generateCallback} />}
         </MdBouttonGroup>

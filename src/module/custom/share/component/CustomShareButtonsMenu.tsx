@@ -45,7 +45,7 @@ const CustomShareButtonsMenu: React.FC<ICustomShareButtonsMenuProps> = memo(({ u
           ),
         },
         {
-          name: 'facebook',
+          name: 'twitter',
           element: (
             <TwitterShareButton url={url} hashtags={[hashtag]}>
               <TwitterIcon size={size} style={{ borderRadius: '5px' }} />
@@ -53,7 +53,7 @@ const CustomShareButtonsMenu: React.FC<ICustomShareButtonsMenuProps> = memo(({ u
           ),
         },
         {
-          name: 'facebook',
+          name: 'linkedin',
           element: (
             <LinkedinShareButton url={url}>
               <LinkedinIcon size={size} style={{ borderRadius: '5px' }} />
@@ -61,7 +61,7 @@ const CustomShareButtonsMenu: React.FC<ICustomShareButtonsMenuProps> = memo(({ u
           ),
         },
         {
-          name: 'facebook',
+          name: 'reddit',
           element: (
             <RedditShareButton url={url}>
               <RedditIcon size={size} style={{ borderRadius: '5px' }} />

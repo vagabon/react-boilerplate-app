@@ -1,6 +1,7 @@
 import { MdCard, MdChip, MdMarkdown, useId } from '@vagabond-inc/react-boilerplate-md';
 import { memo, useCallback, useState } from 'react';
 import AppContent from '../../../../app/content/AppContent';
+import { useMessage } from '../../../../hook/message/useMessage';
 import { useRole } from '../../../../hook/role/useRole';
 import { IBaseCustomSeoProps } from '../../../custom/seo/component/CustomSeo';
 import { INewsDto } from '../../dto/NewsDto';
@@ -14,6 +15,7 @@ export interface INewsCardProps extends IBaseCustomSeoProps {
 const NewsCard: React.FC<INewsCardProps> = memo(({ apiUrl, ...props }) => {
   const { id } = useId('title');
   const { hasUserRole } = useRole();
+  const { setMessage } = useMessage();
   const [summary, setSummary] = useState<string>('');
 
   const summaryCallback = useCallback(
@@ -42,7 +44,10 @@ const NewsCard: React.FC<INewsCardProps> = memo(({ apiUrl, ...props }) => {
         image={apiUrl + '/download?fileName=' + props.news.image}
         date={props.news.creationDate}
         urlUpdate={hasUserRole(['ADMIN']) ? '/' + props.endPoint + '/update/' + props.news.id : undefined}>
-        <MdMarkdown content={props.news.description} summaryCallback={summaryCallback(props.news.title)}></MdMarkdown>
+        <MdMarkdown
+          content={props.news.description}
+          summaryCallback={summaryCallback(props.news.title)}
+          callbackCopy={setMessage}></MdMarkdown>
       </MdCard>
       <MdCard className='md-summary'>
         <MdMarkdown content={summary}></MdMarkdown>

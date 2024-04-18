@@ -14,8 +14,9 @@ a.MuiTypography-root { font-size: 1rem; }
 
 .mui-fixed { padding-right: 0px !important; }
 
-pre { position: relative; background-color: rgba(20, 20, 20, 0.9) !important; }
-.button-copy { position: absolute; right: 4px;  svg { color: unset; } }
+pre { position: relative; background-color: inherit; }
+code { position: relative; padding: 5px 38px 5px 5px !important; min-height: 32px; white-space: normal !important; word-wrap:break-word !important; word-break: keep-all !important; }
+.button-copy { position: absolute; top: 2px; right: 2px; svg { color: unset; } }
 
 $maxWidth: 1000px;
 
@@ -75,7 +76,7 @@ $maxWidth: 1000px;
 .MuiChip-label { font-weight: bold; }
 .MuiCardHeader-root {
   padding-bottom: 0 !important; 
-   .MuiCardHeader-content, .MuiTypography-root { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+   .MuiCardHeader-content, .MuiTypography-root { overflow: hidden; text-overflow: ellipsis; display: -webkit-box !important; -webkit-line-clamp: 2 !important; -webkit-box-orient: vertical; }
 }
 tspan { font-weight: bold; }
 
@@ -189,7 +190,19 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
   display: flex !important; flex-direction: row !important; align-items: flex-start !important;
   & > .MuiPaper-root:nth-child(1) { width: 69% !important; }
   & > .MuiPaper-root:nth-child(2) {  width: 20% !important; position: fixed !important; right: 10px !important; }
+  .MuiPaper-root:nth-child(1) .MuiCardContent-root {
+    .MuiTypography-h1 { padding: 20px 0px 10px; }
+    .MuiTypography-h2 { padding: 20px 0px 10px; }
+    .MuiTypography-h3 { padding: 10px 0px 10px; }
+    ul {
+      li { padding: 5px 0px; }
+    }
+    img { max-width: 100%; }
+    p { text-align: justify; padding: 5px 0px; }
+  }
 }
+
+#news-form > div { height: calc(100vh - 80px); overflow: auto !important; }
 
 @media screen and (min-width: 1400px) {
   .mardown-with-summary {
@@ -289,7 +302,8 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
     width: 45vw !important; min-height: 50vh !important; max-height: 95vh; display: flex; padding: 0px; background-color: unset !important; border: 0 !important;
     .MuiPaper-root:not(.MuiAlert-root) {
       display: flex; flex-direction: column; overflow: auto; width: 100% !important; min-height: 100% !important;
-      .MuiCardContent-root { width: 100%; display: flex; flex-direction: column; overflow: auto; }
+      .MuiCardContent-root { width: 100%; display: flex; flex-direction: column; overflow: auto; margin-top: 15px; }
+      #infinite-container { margin-top: 10px; }
     } 
   }
 

@@ -93,6 +93,8 @@ export { AuthReducer, default as AuthReducers, LoginAction } from './module/auth
 export type { AuthReducerState } from './module/auth/reducer/AuthReducers';
 export { default as AuthService } from './module/auth/service/AuthService';
 
+export { default as CustomChatbot } from './module/custom/chatbot/component/CustomChatbot';
+export type { ICustomChatbotProps } from './module/custom/chatbot/component/CustomChatbot';
 export { default as CustomForm } from './module/custom/form/component/CustomForm';
 export type { ICustomFormProps } from './module/custom/form/component/CustomForm';
 export { default as CustomFormManyToMany } from './module/custom/form/component/CustomFormManyToMany';

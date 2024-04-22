@@ -14,8 +14,8 @@ a.MuiTypography-root { font-size: 1rem; }
 
 .mui-fixed { padding-right: 0px !important; }
 
-pre { position: relative; background-color: inherit; }
-code { position: relative; padding: 5px 38px 5px 5px !important; min-height: 32px; white-space: normal !important; word-wrap:break-word !important; word-break: keep-all !important; }
+pre { position: relative; background-color: inherit; white-space: pre-wrap; word-wrap: break-word; word-break: break-all; background-color: rgb(16, 16, 16) !important; padding: 5px 38px 5px 5px !important;  }
+code { position: relative; background-color: inherit; min-height: 32px; white-space: pre-wrap; word-wrap: break-word; word-break: break-all; background-color: rgb(16, 16, 16) !important; color: rgb(156, 220, 254) !important; padding: 5px 38px 5px 5px !important; }
 .button-copy { position: absolute; top: 2px; right: 2px; svg { color: unset; } }
 
 $maxWidth: 1000px;
@@ -411,7 +411,8 @@ table {
 
 .chatbot-fab { position: fixed !important; top: 52px; right: 5px; }
 .chatbot-modale {
-  position: fixed; z-index: 5; width: 400px; height: 500px; top: 95px; right: 10px; border-radius: 10px; border: 2px solid grey;
+  position: fixed; z-index: 5; width: 400px; height: 500px; top: 95px; right: 10px;
+  iframe { border: 2px solid grey; border-radius: 10px; }
 }
 @media (max-width: 600px) {
   .chatbot-fab { width: 25px !important; height: 25px !important; min-height: 20px !important; right: 7px; }

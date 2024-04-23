@@ -409,12 +409,12 @@ table {
 
 /*************************************************** CHATBOT *******************************************/
 
-.chatbot-fab { position: fixed !important; top: 52px; right: 5px; }
+.chatbot-fab { position: fixed !important; bottom: 1px; right: 5px; }
 .chatbot-modale {
-  position: fixed; z-index: 5; width: 400px; height: 500px; top: 95px; right: 10px;
-  iframe { border: 2px solid grey; border-radius: 10px; }
+  position: fixed; z-index: 5; width: 400px; height: 500px; bottom: 45px; right: 10px;
+  iframe { border: 2px solid grey; box-shadow: 3px 0px 10px black; border-radius: 10px; }
 }
 @media (max-width: 600px) {
-  .chatbot-fab { width: 25px !important; height: 25px !important; min-height: 20px !important; right: 7px; }
-  .chatbot-modale { width: 98%; height: calc(100% - 82px); top: 80px; right: 5px; }
+  .chatbot-fab { width: 35px !important; height: 35px !important; min-height: 35px !important; right: 7px; }
+  .chatbot-modale { width: 98%; height: calc(100% - 90px); top: 55px; bottom: 35px; right: 5px; }
 }

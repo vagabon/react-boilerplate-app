@@ -9,10 +9,11 @@ import ProfileShow from '../component/ProfileShow';
 interface IProfilePageProps extends IBaseCustomSeoProps {
   i18n: i18nType;
   apiUrl: string;
-  profileReact: (id: ID) => React.JSX.Element;
+  profileReact: (id: ID) => JSX.Element;
+  profileReactChildren?: (id: ID) => JSX.Element;
 }
 
-const ProfilePage: React.FC<IProfilePageProps> = memo(({ i18n, profileReact, ...rest }) => {
+const ProfilePage: React.FC<IProfilePageProps> = memo(({ i18n, ...rest }) => {
   const {
     navigate,
     params: { id = -1 },
@@ -31,7 +32,7 @@ const ProfilePage: React.FC<IProfilePageProps> = memo(({ i18n, profileReact, ...
     return <></>;
   }
 
-  return <ProfileShow {...rest} i18n={i18n} user={id !== -1 ? user : currentUser.user} profileReact={profileReact} />;
+  return <ProfileShow {...rest} i18n={i18n} user={id !== -1 ? user : currentUser.user} />;
 });
 
 export default ProfilePage;

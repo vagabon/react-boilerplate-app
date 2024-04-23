@@ -3,7 +3,6 @@ import { memo, useCallback, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 
 export interface IBaseCustomSeoProps {
-  website: string;
   apiUrl: string;
   emailContact?: string;
 }
@@ -17,7 +16,7 @@ export interface ICustomSeoProps extends IBaseCustomSeoProps {
 }
 
 const CustomSeo: React.FC<ICustomSeoProps> = memo(
-  ({ website, apiUrl, title, description, image = '', type = 'webapp', date = new Date() }) => {
+  ({ apiUrl, title, description, image = '', type = 'webapp', date = new Date() }) => {
     const { t } = useAppTranslate();
     const { location } = useAppRouter();
     const [url, setUrl] = useState<string>();
@@ -41,11 +40,11 @@ const CustomSeo: React.FC<ICustomSeoProps> = memo(
 
     return (
       <Helmet data-rh='true' ata-react-helmet='true'>
-        <title data-rh='true'>{website + ' | ' + I18nUtils.translate(t, title as string)}</title>
+        <title data-rh='true'>{I18nUtils.translate(t, title as string)}</title>
         <link rel='canonical' href={url} />
         <meta name='description' content={I18nUtils.translate(t, description as string)} data-rh='true' />
         <meta property='og:type' content={type} />
-        <meta property='og:title' content={website + ' | ' + I18nUtils.translate(t, title as string)} />
+        <meta property='og:title' content={I18nUtils.translate(t, title as string)} />
         {image && <meta property='og:image' content={getImage(image)} />}
         <meta property='og:description' content={I18nUtils.translate(t, description as string)} />
         <meta name='twitter:creator' content={'@VagabondDev'} />

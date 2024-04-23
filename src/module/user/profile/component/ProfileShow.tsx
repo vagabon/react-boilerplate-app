@@ -16,10 +16,18 @@ export interface IProfileShowProps extends IBaseCustomSeoProps {
   i18n?: i18nType;
   user: IUserDto;
   disabled?: boolean;
-  profileReact: (id: ID) => React.JSX.Element;
+  profileReact: (id: ID) => JSX.Element;
+  profileReactChildren?: (id: ID) => JSX.Element;
 }
 
-const ProfileShow: React.FC<IProfileShowProps> = ({ i18n, user, disabled, profileReact, ...rest }) => {
+const ProfileShow: React.FC<IProfileShowProps> = ({
+  i18n,
+  user,
+  disabled,
+  profileReact,
+  profileReactChildren,
+  ...rest
+}) => {
   const { handleLogout } = useUserAuth();
   const { user: currentUser } = useAppSelector((state) => state.auth);
   const { httpPost } = useApiService(rest.apiUrl);
@@ -65,6 +73,7 @@ const ProfileShow: React.FC<IProfileShowProps> = ({ i18n, user, disabled, profil
           </HasRole>
         </div>
       </MdCard>
+      {profileReactChildren?.(user.id)}
     </AppContent>
   );
 };

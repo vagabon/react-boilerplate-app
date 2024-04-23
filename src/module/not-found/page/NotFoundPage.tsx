@@ -4,17 +4,15 @@ import AppContent from '../../../app/content/AppContent';
 
 export interface INotFoundPageProps {
   apiUrl: string;
-  website: string;
   emailContact?: string;
 }
 
-const NotFoundPage: React.FC<INotFoundPageProps> = memo(({ apiUrl, website, emailContact }) => {
+const NotFoundPage: React.FC<INotFoundPageProps> = memo(({ apiUrl, emailContact }) => {
   const { Trans } = useAppTranslate();
 
   return (
     <AppContent
       apiUrl={apiUrl}
-      website={website}
       className='page-404'
       seoTitle='SEO:NOT_FOUND.TITLE'
       seoDescription='SEO:NOT_FOUND.DESCRIPTION'>

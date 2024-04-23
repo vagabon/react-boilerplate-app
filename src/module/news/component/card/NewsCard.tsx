@@ -33,7 +33,6 @@ const NewsCard: React.FC<INewsCardProps> = memo(({ apiUrl, ...props }) => {
   return (
     <AppContent
       apiUrl={apiUrl}
-      website={props.website}
       id={id}
       className='mardown-with-summary'
       seoTitle='SEO:NEWS.TITLE'

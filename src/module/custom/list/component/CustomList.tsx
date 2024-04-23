@@ -120,8 +120,8 @@ const CustomList: React.FC<ICustomListProps> = memo(
     return (
       <MdList className={'custom-list overflow overflow-x-none ' + className}>
         {!datas || datas.length === 0 ? (
-          <MdListItem component='div' disablePadding>
-            <MdListItem>
+          <MdListItem className='no-animate' component='div' disablePadding>
+            <MdListItem className='no-animate'>
               <MdListItemText color='flex align-center' label={t('NO_RESULT')} />
             </MdListItem>
           </MdListItem>

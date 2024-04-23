@@ -4,7 +4,6 @@ import CustomSeo from '../../module/custom/seo/component/CustomSeo';
 
 export interface IAppContentProps {
   apiUrl: string;
-  website: string;
   id?: string;
   className?: string;
   image?: string;
@@ -15,19 +14,12 @@ export interface IAppContentProps {
 }
 
 const AppContent: React.FC<IAppContentProps> = memo(
-  ({ apiUrl, website, className = '', image, date, seoTitle, seoDescription, ...props }) => {
+  ({ apiUrl, className = '', image, date, seoTitle, seoDescription, ...props }) => {
     const { id } = useId(props.id);
 
     return (
       <>
-        <CustomSeo
-          apiUrl={apiUrl}
-          website={website}
-          title={seoTitle}
-          description={seoDescription}
-          image={image}
-          date={date}
-        />
+        <CustomSeo apiUrl={apiUrl} title={seoTitle} description={seoDescription} image={image} date={date} />
         <div id={id} className={'max-width ' + className}>
           {props.children}
         </div>

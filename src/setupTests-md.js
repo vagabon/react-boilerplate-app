@@ -117,7 +117,7 @@ export const mockBoilerPlateMd = {
     <input
       data-testid='MdInputTextSimple'
       name={name}
-      value={value}
+      defaultValue={value}
       onChange={handleChange ? handleChange : () => {}}
       onBlur={handleBlur}
       onKeyUp={() => handleKeyEnter({ value: value })}

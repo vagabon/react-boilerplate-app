@@ -218,9 +218,9 @@ export const mockBoilerPlateMd = {
   },
   ObjectUtils: {
     capitalize: (data) => data,
-    getDtoValue: (data, name) => data[name],
-    getDtoString: (data, name) => data[name],
-    getRecursivValue: (data, name) => data[name],
+    getDtoValue: (data, name) => data?.[name],
+    getDtoString: (data, name) => data?.[name],
+    getRecursivValue: (data, name) => data?.[name],
     compareId: () => true,
     addOrReplace: () => [{ id: 1 }],
   },

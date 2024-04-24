@@ -28,8 +28,7 @@ const UserService = {
       filter.search + ',' + filter.search,
       first,
       max,
-      orderField,
-      order,
+      { order: orderField, orderAsc: order === 'asc' },
     );
   },
 

@@ -8,8 +8,8 @@ import ProfilePage from '../user/profile/page/ProfilePage';
 
 interface IUserRouterProps extends IBaseCustomSeoProps {
   i18n: i18nType;
-  profile: (id: ID) => JSX.Element;
-  profileChildren?: (id?: ID) => JSX.Element;
+  profile: (id: ID) => React.JSX.Element;
+  profileChildren?: (id?: ID) => React.JSX.Element;
 }
 
 const UserRouter: React.FC<IUserRouterProps> = memo(({ profile, profileChildren, ...rest }) => {

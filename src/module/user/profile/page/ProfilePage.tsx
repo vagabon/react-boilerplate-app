@@ -9,8 +9,8 @@ import ProfileShow from '../component/ProfileShow';
 interface IProfilePageProps extends IBaseCustomSeoProps {
   i18n: i18nType;
   apiUrl: string;
-  profileReact: (id: ID) => JSX.Element;
-  profileReactChildren?: (id: ID) => JSX.Element;
+  profileReact: (id: ID) => React.JSX.Element;
+  profileReactChildren?: (id: ID) => React.JSX.Element;
 }
 
 const ProfilePage: React.FC<IProfilePageProps> = memo(({ i18n, ...rest }) => {

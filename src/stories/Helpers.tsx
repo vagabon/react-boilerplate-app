@@ -22,7 +22,7 @@ interface IRadioWithFormProps {
   initialValues: JSONObject;
   validationSchema: IYupValidators;
   onSubmit: () => void;
-  children: JSX.Element;
+  children: React.JSX.Element;
 }
 
 export const FormWrapper = (props: IRadioWithFormProps) => {

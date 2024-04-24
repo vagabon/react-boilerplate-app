@@ -158,6 +158,13 @@ export const mockBoilerPlateMd = {
       {content}
     </div>
   ),
+  MdMenu: ({ elements }) => (
+    <div data-testid='MdMenu'>
+      {elements.map((element) => (
+        <div>{element.element}</div>
+      ))}
+    </div>
+  ),
   MdMenuItem: (props) => mockWithChildren('MdMenuItem', props),
   MdSearchBar: ({ callback }) => <div data-testid='MdSearchBar' onClick={callback}></div>,
   MdSnackbar: (props) => mockWithChildren('MdSnackbar', props),

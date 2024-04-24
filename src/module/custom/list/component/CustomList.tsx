@@ -13,10 +13,11 @@ import {
   MdListItemText,
   useAppTranslate,
 } from '@vagabond-inc/react-boilerplate-md';
-import React, { Fragment, memo, useCallback, useEffect, useState } from 'react';
+import React, { Fragment, memo } from 'react';
 import { useMessage } from '../../../../hook/message/useMessage';
 import { useAppImage } from '../../../../template/hook/useAppImage';
 import CustomModaleConfirm from '../../modale/component/CustomModaleConfirm';
+import { useCustomList } from '../hook/useCustomList';
 
 export interface ICustomListDto {
   avatar?: string;
@@ -36,7 +37,7 @@ export interface ICustomListProps {
   icon?: string;
   chipClassName?: string;
   datas: ICustomListDto[];
-  buttonChildren?: (data: IApiDto) => JSX.Element;
+  buttonChildren?: (data: IApiDto) => React.JSX.Element;
   callback?: (data: IApiDto) => void;
   isCheckboxColor?: boolean;
   callbackCheckbox?: (id: ID, checked: boolean) => void;
@@ -63,48 +64,14 @@ const CustomList: React.FC<ICustomListProps> = memo(
     callbackSettings,
   }) => {
     const { t } = useAppTranslate();
-    const [disabled, setDisabled] = useState<boolean>();
     const { message } = useMessage();
+    const { disabled, handleClick, handleClickChecbox, getIconColor, getTextColor } = useCustomList(
+      message,
+      callback,
+      callbackCheckbox,
+      isCheckboxColor,
+    );
     const { getImage } = useAppImage(apiUrl);
-
-    useEffect(() => {
-      if (message !== '') {
-        setDisabled(false);
-      }
-    }, [message]);
-
-    const handleClick = useCallback(
-      (data: IApiDto) => () => {
-        callback?.(data);
-      },
-      [callback],
-    );
-
-    const handleClickChecbox = useCallback(
-      (id: ID, checked: boolean, callback?: (id: ID, checked: boolean) => void) => () => {
-        setDisabled(true);
-        callback?.(id, checked);
-      },
-      [],
-    );
-
-    const getIconColor = useCallback(
-      (checked?: boolean) => {
-        if (!callbackCheckbox) {
-          return 'info';
-        } else {
-          return checked ? 'success' : 'error';
-        }
-      },
-      [callbackCheckbox],
-    );
-
-    const getTextColor = useCallback(
-      (checked?: boolean) => {
-        return checked && isCheckboxColor ? 'success' : '';
-      },
-      [isCheckboxColor],
-    );
 
     return (
       <MdList className={'custom-list overflow overflow-x-none ' + className}>

@@ -28,7 +28,7 @@ export type ICustomModalChildrenType = (props: {
   openModal?: () => void;
   closeModal?: () => void;
   handleYes?: (id: ID, callback?: (id: ID) => void) => () => void;
-}) => JSX.Element;
+}) => React.JSX.Element;
 
 export interface ICustomModaleProps extends ICustomModaleChildProps {
   disabled?: boolean;

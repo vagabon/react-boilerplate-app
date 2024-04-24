@@ -18,16 +18,10 @@ const NewsService = {
     const champs = '(title%And|Description%)AndActive';
     const value = filter.search ?? '';
     const values = value + ',' + value + ',true';
-    return ApiService.findBy<IPageableDto<INewsDto[]>>(
-      apiUrl,
-      '/' + endPoint + '/findBy',
-      champs,
-      values,
-      first,
-      max,
-      orderField,
-      order,
-    );
+    return ApiService.findBy<IPageableDto<INewsDto[]>>(apiUrl, '/' + endPoint + '/findBy', champs, values, first, max, {
+      order: orderField,
+      orderAsc: order === 'asc',
+    });
   },
 
   fetchById: (apiUrl: string, endPoint: string, id: ID): Promise<INewsDto> => {

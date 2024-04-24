@@ -2,6 +2,7 @@ import { IApiDto, UuidUtils } from '@vagabond-inc/react-boilerplate-md';
 import { Dispatch } from 'redux';
 import { ApiService } from '../../../api/service/ApiService';
 import { IPageableDto } from '../../../dto/pageable/PageableDto';
+import { IOrderState } from '../../../reducer/BaseReducer';
 import { CommonAction } from '../../../reducer/common/CommonReducer';
 
 const ENDPOINT_FINDBY = '/findBy';
@@ -17,11 +18,10 @@ const AdminService = {
     value: string,
     first: number,
     max: number,
-    orderField: string,
-    order: string,
+    order: IOrderState,
   ): Promise<IPageableDto<IApiDto[]>> => {
-    const orderString = order === 'asc' ? '' : 'Desc';
-    const orderConst = orderField ? '>>' + orderField + orderString : '';
+    const orderString = order.orderAsc ? '' : 'Desc';
+    const orderConst = order.order ? '>>' + order.order + orderString : '';
     const values = value + ',' + value + ',' + value + ',' + value + ',' + value;
     return ApiService.get<IPageableDto<IApiDto[]>>(
       apiUrl,

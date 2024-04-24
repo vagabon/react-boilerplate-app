@@ -28,11 +28,12 @@ const CustomFormModale: React.FC<ICustomFormModaleProps> = memo(({ apiUrl, conf,
   const loadDatas = useCallback(
     (search: string): void => {
       conf &&
-        AdminService.findBy(apiUrl, conf.endPoint, conf.fields, search, 0, 500, conf.order, conf.orderBy).then(
-          (datas) => {
-            setDatas(datas.content);
-          },
-        );
+        AdminService.findBy(apiUrl, conf.endPoint, conf.fields, search, 0, 500, {
+          order: conf.order,
+          orderAsc: conf.orderBy === 'asc',
+        }).then((datas) => {
+          setDatas(datas.content);
+        });
     },
     [apiUrl, conf],
   );

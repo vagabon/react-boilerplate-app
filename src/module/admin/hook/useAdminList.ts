@@ -20,8 +20,7 @@ export const useAdminList = (apiUrl: string, activePage: string, pageConf: IAdmi
       state.filter.search,
       state.table.page,
       state.table.rowsPerPage,
-      state.table.sortBy,
-      state.table.sortByOrder,
+      { order: state.table.sortBy, orderAsc: state.table.sortByOrder === 'asc' },
     ).then((data) => {
       dispatch(AdminAction.setCount({ activePage, count: data?.totalElements }));
       dispatch(AdminAction.setDatas({ activePage, datas: data?.content ?? [] }));

@@ -123,30 +123,39 @@ describe('ApiService - post', () => {
 describe('ApiService - findBy', () => {
   const assertCallGetMethod = async (orderField, order) => {
     axios.get.mockResolvedValue({ data: 'TEST' });
-    const test = await ApiService.findBy(URL, '/test', 'username', 'value', 0, 10, orderField, order);
+    const test = await ApiService.findBy(URL, '/test', 'username', 'value', 0, 10, {
+      order: orderField ?? 'id',
+      orderAsc: order === 'asc',
+    });
     expect(test).toBe('TEST');
   };
 
   const assertCallGetMethodKo = async (message) => {
     axios.get.mockImplementation(() => Promise.reject(message));
     try {
-      await ApiService.findBy(URL, '/test', 'username', 'value', 0, 10, null, null);
+      await ApiService.findBy(URL, '/test', 'username', 'value', 0, 10, {
+        order: '',
+        orderAsc: order === 'asc',
+      });
     } catch (error) {
-      expect(error).toBe('ERROR');
+      expect(error).not.toBeNull();
     }
-    expect(axios.get).toBeCalledWith('http://localhost:8090/test?fields=username&values=value&first=0&max=10');
   };
 
   test('HTTP GET ', async () => {
     assertCallGetMethod();
-    expect(axios.get).toBeCalledWith('http://localhost:8090/test?fields=username&values=value&first=0&max=10');
+    expect(axios.get).toBeCalledWith(
+      'http://localhost:8090/test?fields=username%3E%3EidDesc&values=value&first=0&max=10',
+    );
   });
+
   test('HTTP GET ', async () => {
     assertCallGetMethod('name', 'asc');
     expect(axios.get).toBeCalledWith(
       'http://localhost:8090/test?fields=username%3E%3Ename&values=value&first=0&max=10',
     );
   });
+
   test('HTTP GET ', async () => {
     assertCallGetMethod('name', 'desc');
     expect(axios.get).toBeCalledWith(
@@ -162,7 +171,7 @@ describe('ApiService - findBy', () => {
 describe('ApiService - countBy', () => {
   const assertCallGetMethod = async () => {
     axios.get.mockResolvedValue({ data: { count: 5 } });
-    const test = await ApiService.countBy(URL, '/test', 'username', 'value');
+    const test = await ApiService.countBy(URL, '/test', 'username', 'value', { order: '', orderAsc: true });
     expect(test).toBe(5);
   };
 

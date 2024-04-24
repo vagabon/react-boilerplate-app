@@ -16,8 +16,8 @@ export interface IProfileShowProps extends IBaseCustomSeoProps {
   i18n?: i18nType;
   user: IUserDto;
   disabled?: boolean;
-  profileReact: (id: ID) => JSX.Element;
-  profileReactChildren?: (id: ID) => JSX.Element;
+  profileReact: (id: ID) => React.JSX.Element;
+  profileReactChildren?: (id: ID) => React.JSX.Element;
 }
 
 const ProfileShow: React.FC<IProfileShowProps> = ({

@@ -13,16 +13,10 @@ const ProfileService = {
     orderField: string,
     order: string,
   ): Promise<IProfileDto[]> => {
-    return ApiService.findBy<IProfileDto[]>(
-      apiUrl,
-      '/profiles/findBy',
-      'name%',
-      filter.search + '',
-      first,
-      max,
-      orderField,
-      order,
-    );
+    return ApiService.findBy<IProfileDto[]>(apiUrl, '/profiles/findBy', 'name%', filter.search + '', first, max, {
+      order: orderField,
+      orderAsc: order === 'asc',
+    });
   },
 
   countRoles: (apiUrl: string, search: string): Promise<number> => {

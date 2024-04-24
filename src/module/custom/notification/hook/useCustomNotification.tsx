@@ -46,16 +46,10 @@ export const useCustomNotification = (apiUrl: string, entityId: ID, type: string
       const champs = '(message%And|user.username%)AndEntityIdAndCategory';
       const value = filter.search ?? '';
       const values = value + ',' + value + ',' + entityId + ',' + type;
-      ApiService.findBy<IPageableDto<INotificationDto[]>>(
-        apiUrl,
-        '/notification/findBy',
-        champs,
-        values,
-        page,
-        50,
-        'id',
-        'desc',
-      ).then((data) => {
+      ApiService.findBy<IPageableDto<INotificationDto[]>>(apiUrl, '/notification/findBy', champs, values, page, 50, {
+        order: 'id',
+        orderAsc: false,
+      }).then((data) => {
         if (data?.content?.length === 0 && page > 0) {
           setStopLoad(true);
         } else {

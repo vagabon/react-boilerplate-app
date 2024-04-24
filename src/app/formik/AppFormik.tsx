@@ -23,7 +23,7 @@ export interface IAppFormikProps {
   validationSchema: IYupValidators;
   onSubmit?: (values: IApiDto) => void;
   onGoBack?: () => void;
-  children: (props: IFormPropsDto) => JSX.Element;
+  children: (props: IFormPropsDto) => React.JSX.Element;
   backButton?: boolean;
   submitButton?: boolean;
   modalConfirm?: string;

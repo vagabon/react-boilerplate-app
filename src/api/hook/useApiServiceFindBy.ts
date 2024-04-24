@@ -19,16 +19,10 @@ export const useApiServiceFindBy = <T>(apiUrl: string, url: string, champs?: str
       if (!isLoad.current) {
         isLoad.current = true;
         !stopLoad.current &&
-          ApiService.findBy<IPageableDto<T[]>>(
-            apiUrl,
-            url,
-            champs as string,
-            values,
-            page,
-            max as number,
-            orderBy,
-            orderByAsc,
-          )
+          ApiService.findBy<IPageableDto<T[]>>(apiUrl, url, champs as string, values, page, max as number, {
+            order: orderBy,
+            orderAsc: orderByAsc === 'asc',
+          })
             .then((data) => {
               isLoad.current = false;
               if (data?.content?.length === 0 && page > 0) {

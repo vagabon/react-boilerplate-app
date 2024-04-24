@@ -1,5 +1,6 @@
 import { ID, JSON } from '@vagabond-inc/react-boilerplate-md';
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
+import { IOrderState } from '../../reducer/BaseReducer';
 
 export const ApiService = {
   get: <T>(baseUrl: string, endPoint: string): Promise<T> => {
@@ -86,16 +87,15 @@ export const ApiService = {
   findBy: <T>(
     baseUrl: string,
     endPoint: string,
-    champs: string,
+    fields: string,
     values: string,
     first: number,
     max: number,
-    orderField: string,
-    order: string,
+    order: IOrderState,
   ) => {
-    const orderType: string = order === 'asc' ? '' : 'Desc';
-    const orderConst: string = orderField ? '>>' + orderField + orderType : '';
-    const champsComplete = champs + orderConst;
+    const orderType: string = order.orderAsc ? '' : 'Desc';
+    const orderConst: string = order.order ? '>>' + order.order + orderType : '';
+    const champsComplete = fields + orderConst;
     return ApiService.get<T>(
       baseUrl,
       endPoint + '?fields=' + champsComplete + '&values=' + values + '&first=' + first + '&max=' + max,

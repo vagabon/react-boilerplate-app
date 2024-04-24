@@ -21,6 +21,7 @@ const Language: React.FC<ILanguageProps> = memo(({ i18n, hidden = true }) => {
     },
     [i18n, dispatch],
   );
+
   return (
     <FormControl size='small' sx={{ margin: '0 !important', padding: '0 !important' }}>
       <Select

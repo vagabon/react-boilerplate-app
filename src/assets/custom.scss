@@ -184,6 +184,7 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
     a { font-size: 2rem !important; text-decoration: none; }
     & > div { width: calc(100% - 5px); flex: 1; }
   }
+  .MuiCardContent-root { min-height: 135px; }
   .MuiList-root { 
     margin-left: 30px;
     .MuiListItemText-root { padding-left: 20px; }

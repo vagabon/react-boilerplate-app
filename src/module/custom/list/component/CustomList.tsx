@@ -38,9 +38,9 @@ export interface ICustomListProps {
   datas: ICustomListDto[];
   buttonChildren?: (data: IApiDto) => JSX.Element;
   callback?: (data: IApiDto) => void;
-  callbackAvatar?: (data: IApiDto) => () => void;
   isCheckboxColor?: boolean;
   callbackCheckbox?: (id: ID, checked: boolean) => void;
+  labelDelete?: string;
   callbackDelete?: (id: ID) => void;
   iconSettings?: string;
   callbackSettings?: (data: IApiDto) => void;
@@ -55,9 +55,9 @@ const CustomList: React.FC<ICustomListProps> = memo(
     chipClassName,
     buttonChildren,
     callback,
-    callbackAvatar,
     isCheckboxColor,
     callbackCheckbox,
+    labelDelete,
     callbackDelete,
     iconSettings = 'settings',
     callbackSettings,
@@ -106,17 +106,6 @@ const CustomList: React.FC<ICustomListProps> = memo(
       [isCheckboxColor],
     );
 
-    const handleClickAvatar = useCallback(
-      (data: IApiDto) => () => {
-        if (callbackAvatar) {
-          callbackAvatar?.(data)();
-        } else {
-          callback?.(data);
-        }
-      },
-      [callbackAvatar, callback],
-    );
-
     return (
       <MdList className={'custom-list overflow overflow-x-none ' + className}>
         {!datas || datas.length === 0 ? (
@@ -135,11 +124,7 @@ const CustomList: React.FC<ICustomListProps> = memo(
                 isCursor={callback !== undefined}>
                 {data.avatar && (
                   <MdListItemAvatar>
-                    <MdAvatar
-                      name={data.avatar}
-                      image={getImage(data.avatar)}
-                      callback={handleClickAvatar(data.user as IApiDto)}
-                    />
+                    <MdAvatar name={data.avatar} image={getImage(data.avatar)} />
                   </MdListItemAvatar>
                 )}
                 {callbackCheckbox && (
@@ -182,6 +167,7 @@ const CustomList: React.FC<ICustomListProps> = memo(
                       id={data.entity.id}
                       icon='delete'
                       iconColor='error'
+                      label={labelDelete}
                       callback={callbackDelete}
                       disabled={data.disabled}
                     />

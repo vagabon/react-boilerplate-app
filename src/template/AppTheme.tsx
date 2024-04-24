@@ -11,6 +11,7 @@ import React, { memo, useCallback, useEffect } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { CommonAction } from '../reducer/common/CommonReducer';
 import { useAppDispatch, useAppSelector } from '../store/Store';
+import ShowMessage from './message/ShowMessage';
 
 export interface IFormThemeDto {
   mode: ModeType;
@@ -58,6 +59,7 @@ const AppTheme: React.FC<IAppThemeProps> = memo(({ palette, children }) => {
       <HelmetProvider data-rh='true' ata-react-helmet='true'>
         <MdThemeProvider theme={theme}>
           <div className={'flex heigth100 mode-' + mode}>{children({ mode, theme, switchTheme })}</div>
+          <ShowMessage />
         </MdThemeProvider>
       </HelmetProvider>
     </SnackbarProvider>

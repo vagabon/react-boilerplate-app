@@ -10,7 +10,6 @@ import { useAppFirebaseToken } from './hook/useAppFirebaseToken';
 import { useAppNotification } from './hook/useAppNotification';
 import { useAppScroll } from './hook/useAppScroll';
 import { useAppTheme } from './hook/useAppTheme';
-import ShowMessage from './message/ShowMessage';
 
 export interface IConfDto {
   TITLE: string;
@@ -99,7 +98,6 @@ const AppThemeWithTemplate = memo<IAppThemeWithTemplateProps>(
                 {children}
               </div>
             </div>
-            <ShowMessage />
             <CookieConsents />
             <Footer conf={conf} email={email} />
           </>

@@ -117,11 +117,9 @@ const Header: React.FC<IHeaderProps> = memo(
             <MdButton url='/auth/signup' label='AUTH:SIGNUP' variant='outlined' show={!isLoggedIn} />
             <MdButton url='/auth/signin' label='AUTH:SIGNIN' show={!isLoggedIn} />
             {user?.user && (
-              <MdAvatar
-                url='/profile'
-                name={user.user?.username as string}
-                image={getImage(user.user['avatar' as keyof IApiDto])}
-              />
+              <IconClickable callback={handleNavigate('/profile')}>
+                <MdAvatar name={user.user?.username as string} image={getImage(user.user['avatar' as keyof IApiDto])} />
+              </IconClickable>
             )}
             {user?.user && (
               <CustomModaleConfirm

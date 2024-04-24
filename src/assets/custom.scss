@@ -262,20 +262,24 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
 
 
 /************** FORM ***********/
-.MuiFormControl-root { margin: 16px 0px 0px 0px !important; }
+.MuiFormControl-root { margin: 10px 0px 0px 0px !important; }
 .MuiInputLabel-root { line-height: 1em !important; top: -3px !important; }
 .MuiOutlinedInput-root { min-height: 40px !important; }
 .MuiSelect-select { display: flex !important; align-items: center !important; height: 19px !important; }
 .MuiCardContent-root p { margin: 0 !important; }
+.MuiFormLabel-root { top: -2px !important; }
+.MuiFormLabel-root.MuiInputLabel-shrink { top: 0px !important; }
+input, .MuiSelect-select { padding: 5px 13px !important; }
+textarea { max-height: 250px !important; overflow: auto !important; }
 
 .form, .form-content {
   display: flex; flex-direction: row; gap: 10px; flex-wrap: wrap;
   & > div { width: 100%; }
   .width50 { width: calc(50% - 5px) !important; }
   .switch { 
+    justify-content: end;
     & > div {
       display: flex; flex-direction: row !important; align-items: center !important; justify-content: space-between !important; 
-      min-height: 4rem; margin-top: 1rem;
       & > p { padding-left: 10px; flex: 1; }
       & > p, & > span { align-self: center !important; margin: 0 !important; } 
     }

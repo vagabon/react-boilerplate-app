@@ -20,7 +20,7 @@ export interface IFormThemeDto {
 
 export interface IAppThemeProps {
   palette: JSONObject;
-  children: (props: IFormThemeDto) => React.JSX.Element;
+  children: (props: IFormThemeDto) => JSX.Element;
 }
 
 const AppTheme: React.FC<IAppThemeProps> = memo(({ palette, children }) => {

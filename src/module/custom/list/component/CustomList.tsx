@@ -36,7 +36,7 @@ export interface ICustomListProps {
   icon?: string;
   chipClassName?: string;
   datas: ICustomListDto[];
-  buttonChildren?: (data: IApiDto) => React.JSX.Element;
+  buttonChildren?: (data: IApiDto) => JSX.Element;
   callback?: (data: IApiDto) => void;
   callbackAvatar?: (data: IApiDto) => () => void;
   isCheckboxColor?: boolean;

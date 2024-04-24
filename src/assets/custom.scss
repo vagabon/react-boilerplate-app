@@ -269,7 +269,7 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
 .MuiCardContent-root p { margin: 0 !important; }
 .MuiFormLabel-root { top: -2px !important; }
 .MuiFormLabel-root.MuiInputLabel-shrink { top: 0px !important; }
-input, .MuiSelect-select { padding: 5px 13px !important; }
+input, .MuiSelect-select { padding: 5px 25px 5px 10px !important; }
 textarea { max-height: 250px !important; overflow: auto !important; }
 
 .form, .form-content {

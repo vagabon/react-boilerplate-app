@@ -17,6 +17,7 @@ a.MuiTypography-root { font-size: 1rem; }
 pre { position: relative; min-height: 32px; white-space: pre-wrap; word-wrap: break-word; word-break: break-all; background-color: rgb(16, 16, 16) !important; padding: 5px 38px 5px 5px !important;  }
 code { position: relative; display: block; width: 100%; min-height: 32px; white-space: pre-wrap; word-wrap: break-word; word-break: break-all; background-color: rgb(16, 16, 16) !important; color: rgb(156, 220, 254) !important; padding: 5px 38px 5px 5px !important; }
 .button-copy { position: absolute; top: 2px; right: 2px; svg { color: unset; } }
+pre:has(code) { padding: 0px !important;  }
 
 $maxWidth: 1000px;
 

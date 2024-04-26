@@ -1,8 +1,8 @@
 import { FormControl, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import { type i18n as i18nType } from 'i18next';
 import { memo, useCallback } from 'react';
-import { CommonAction } from '../reducer/common/CommonReducer';
-import { useAppDispatch, useAppSelector } from '../store/Store';
+import { CommonAction } from '../../../reducer/common/CommonReducer';
+import { useAppDispatch, useAppSelector } from '../../../store/Store';
 
 export interface ILanguageProps {
   i18n?: i18nType;

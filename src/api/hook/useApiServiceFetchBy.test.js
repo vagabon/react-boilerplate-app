@@ -13,14 +13,17 @@ describe('useApiServiceFetchBy', () => {
   });
 
   test('Given useApiServiceFetchBy When fetchBy Then service is called', async () => {
-    const mockService = jest.spyOn(ApiService, 'findBy').mockReturnValue(Promise.resolve({ content: [{}] }));
+    const mockService = jest
+      .spyOn(ApiService, 'findBy')
+      .mockReturnValue(Promise.resolve({ content: [{ data: 'TEST' }] }));
     const action = {
       setSearchAndPage: jest.fn(),
+      setCount: jest.fn(),
       setPage: jest.fn(),
       setOrder: jest.fn(),
     };
     const { result } = renderHook(() => useApiServiceFetchBy('http://', 'test', '/uri', 'query', action));
-    await result.current.doFetchByFields('values', 0);
+    await result.current.doFetchByFields('values', 0, { order: 'order', orderAsc: true });
     expect(mockService).toHaveBeenCalledTimes(1);
 
     const callback = jest.fn();

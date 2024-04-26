@@ -1,7 +1,7 @@
 import { I18nUtils, useAppTranslate } from '@vagabond-inc/react-boilerplate-md';
 import { closeSnackbar, useSnackbar } from 'notistack';
 import { useEffect, useRef } from 'react';
-import { useAppSelector } from '../../store/Store';
+import { useAppSelector } from '../../../store/Store';
 
 const ShowMessage: React.FC = () => {
   const { t } = useAppTranslate();

@@ -186,16 +186,16 @@ export type { IApiState as ApiState, MessageType } from './reducer/common/Common
 export type { AppDispatch, RootState } from './store/Store';
 
 export { SuspenceLoader } from './suspence/SuspenceLoader';
-export { default as AppTheme } from './template/AppTheme';
-export type { IAppThemeProps, IFormThemeDto } from './template/AppTheme';
-export { default as AppThemeWithTemplate } from './template/AppThemeWithTemplate';
-export type { IAppThemeWithTemplateProps, IConfDto } from './template/AppThemeWithTemplate';
 export { default as Footer } from './template/Footer';
 export type { IFoorterProps } from './template/Footer';
 export { default as Header } from './template/Header';
 export type { IHeaderProps } from './template/Header';
+export { default as ShowMessage } from './template/component/message/ShowMessage';
+export { default as AppTheme } from './template/component/theme/AppTheme';
+export type { IAppThemeProps, IFormThemeDto } from './template/component/theme/AppTheme';
+export { default as AppThemeWithTemplate } from './template/component/theme/AppThemeWithTemplate';
+export type { IAppThemeWithTemplateProps, IConfDto } from './template/component/theme/AppThemeWithTemplate';
 export { useAppImage } from './template/hook/useAppImage';
-export { default as ShowMessage } from './template/message/ShowMessage';
 export { default as RoleUtils } from './utils/role/RoleUtils';
 export { StorageUtils } from './utils/storage/StorageUtils';
 export { YupUtils } from './utils/yup/YupUtils';

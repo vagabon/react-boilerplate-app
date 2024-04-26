@@ -1,0 +1,12 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "sonarqube",
+      "type": "npm",
+      "script": "sonar",
+      "problemMatcher": [],
+      "detail": "npm run ci && npx sonar-scanner -Dsonar.login=$SONAR_TOKEN"
+    }
+  ]
+}

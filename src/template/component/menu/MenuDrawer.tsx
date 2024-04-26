@@ -3,9 +3,9 @@ import { Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 import { I18nUtils, MdDivider, useAppRouter, useAppTranslate, useIcon } from '@vagabond-inc/react-boilerplate-md';
 import { memo, useCallback, useEffect, useState } from 'react';
-import { IMenuDto } from '../dto/menu/MenuDto';
-import HasRole from '../hook/role/HasRole';
-import { useAuth } from '../module/auth/hook/useAuth';
+import { IMenuDto } from '../../../dto/menu/MenuDto';
+import HasRole from '../../../hook/role/HasRole';
+import { useAuth } from '../../../module/auth/hook/useAuth';
 
 export interface IDrawerProps {
   apiUrl: string;

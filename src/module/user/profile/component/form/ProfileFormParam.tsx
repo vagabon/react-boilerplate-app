@@ -3,7 +3,7 @@ import { type i18n as i18nType } from 'i18next';
 import { memo, useCallback } from 'react';
 import { CommonAction } from '../../../../../reducer/common/CommonReducer';
 import { useAppDispatch, useAppSelector } from '../../../../../store/Store';
-import Language from '../../../../../template/Language';
+import Language from '../../../../../template/component/language/Language';
 
 export interface IProfileFormParamProps {
   i18n?: i18nType;

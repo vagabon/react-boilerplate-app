@@ -9,9 +9,10 @@ import {
 import { SnackbarKey, SnackbarProvider, closeSnackbar } from 'notistack';
 import React, { memo, useCallback, useEffect } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
-import { CommonAction } from '../reducer/common/CommonReducer';
-import { useAppDispatch, useAppSelector } from '../store/Store';
-import ShowMessage from './message/ShowMessage';
+import AppScrollToAnchor from '../../../app/scrool/AppScrollToAnchor';
+import { CommonAction } from '../../../reducer/common/CommonReducer';
+import { useAppDispatch, useAppSelector } from '../../../store/Store';
+import ShowMessage from '../message/ShowMessage';
 
 export interface IFormThemeDto {
   mode: ModeType;
@@ -39,7 +40,8 @@ const AppTheme: React.FC<IAppThemeProps> = memo(({ palette, children }) => {
 
   useEffect(() => {
     dispatch(CommonAction.clearMessage());
-    dispatch(CommonAction.addHistory({ id: '', title: '', link: location.pathname }));
+    !location.pathname.includes('#') &&
+      dispatch(CommonAction.addHistory({ id: '', title: '', link: location.pathname }));
   }, [location, dispatch]);
 
   const handleClose = useCallback(
@@ -57,6 +59,7 @@ const AppTheme: React.FC<IAppThemeProps> = memo(({ palette, children }) => {
   return (
     <SnackbarProvider maxSnack={5} action={handleCloseSnackbar}>
       <HelmetProvider data-rh='true' ata-react-helmet='true'>
+        <AppScrollToAnchor />
         <MdThemeProvider theme={theme}>
           <div className={'flex heigth100 mode-' + mode}>{children({ mode, theme, switchTheme })}</div>
           <ShowMessage />

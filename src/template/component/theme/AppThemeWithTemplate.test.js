@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import { BrowserRouter } from 'react-router-dom';
 import { palette } from './AppTheme.test';
 import AppThemeWithTemplate from './AppThemeWithTemplate';
 
@@ -61,7 +62,11 @@ describe('AppThemeWithTemplate', () => {
       }),
     );
     Element.prototype.scrollTo = () => {};
-    render(<AppThemeWithTemplate palette={palette} conf={conf} menu={menu} />);
+    render(
+      <BrowserRouter>
+        <AppThemeWithTemplate palette={palette} conf={conf} menu={menu} />
+      </BrowserRouter>,
+    );
     expect(screen.getByTestId('MdThemeProvider')).toBeDefined();
   });
 });

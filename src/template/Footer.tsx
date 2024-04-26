@@ -1,6 +1,6 @@
 import { MdBox, MdContainer, MdLink, MdTypo } from '@vagabond-inc/react-boilerplate-md';
 import { memo } from 'react';
-import { IConfDto } from './AppThemeWithTemplate';
+import { IConfDto } from './component/theme/AppThemeWithTemplate';
 
 export interface IFoorterProps {
   conf: IConfDto;

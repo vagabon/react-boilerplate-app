@@ -1,15 +1,15 @@
 import { JSONObject, useAppRouter } from '@vagabond-inc/react-boilerplate-md';
 import { ReactNode, memo, useEffect, useRef } from 'react';
-import { IMenuDto, i18nType } from '..';
+import { IMenuDto, i18nType } from '../../..';
+import Footer from '../../Footer';
+import Header from '../../Header';
+import { useAppFirebaseToken } from '../../hook/useAppFirebaseToken';
+import { useAppNotification } from '../../hook/useAppNotification';
+import { useAppScroll } from '../../hook/useAppScroll';
+import { useAppTheme } from '../../hook/useAppTheme';
+import CookieConsents from '../cookie/CookieConsents';
+import MenuDrawer from '../menu/MenuDrawer';
 import AppTheme from './AppTheme';
-import CookieConsents from './CookieConsents';
-import Footer from './Footer';
-import Header from './Header';
-import MenuDrawer from './MenuDrawer';
-import { useAppFirebaseToken } from './hook/useAppFirebaseToken';
-import { useAppNotification } from './hook/useAppNotification';
-import { useAppScroll } from './hook/useAppScroll';
-import { useAppTheme } from './hook/useAppTheme';
 
 export interface IConfDto {
   TITLE: string;

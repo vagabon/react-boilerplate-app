@@ -2,7 +2,7 @@ import { Fade, Paper } from '@mui/material';
 import TrapFocus from '@mui/material/Unstable_TrapFocus';
 import { MdButton, useAppTranslate } from '@vagabond-inc/react-boilerplate-md';
 import { useCallback, useState } from 'react';
-import { StorageUtils } from '../utils/storage/StorageUtils';
+import { StorageUtils } from '../../../utils/storage/StorageUtils';
 
 const CookieConsents: React.FC = () => {
   const { Trans } = useAppTranslate();

@@ -14,14 +14,14 @@ import {
   useIcon,
 } from '@vagabond-inc/react-boilerplate-md';
 import { type i18n as i18nType } from 'i18next';
-import { ReactNode, memo, useCallback, useEffect, useState } from 'react';
+import { ReactNode, memo, useEffect, useState } from 'react';
 import { IMenuDto } from '../dto/menu/MenuDto';
+import { useAppLocation } from '../hook/location/useAppLocation';
 import HasRole from '../hook/role/HasRole';
 import { useUserAuth } from '../hook/user/useUserAuth';
 import CustomModaleConfirm from '../module/custom/modale/component/CustomModaleConfirm';
-import { CommonAction } from '../reducer/common/CommonReducer';
-import { useAppDispatch, useAppSelector } from '../store/Store';
-import Language from './Language';
+import { useAppSelector } from '../store/Store';
+import Language from './component/language/Language';
 import { useAppImage } from './hook/useAppImage';
 
 export interface IHeaderProps {
@@ -54,11 +54,10 @@ const Header: React.FC<IHeaderProps> = memo(
     reactHeader,
     showNotification,
   }) => {
-    const dispatch = useAppDispatch();
-    const { location, navigate, Link, handleNavigate } = useAppRouter();
-    const { loading, history } = useAppSelector((state) => state.common);
+    const { location, Link, handleNavigate } = useAppRouter();
     const { isLoggedIn, user } = useAppSelector((state) => state.auth);
     const { handleLogout } = useUserAuth();
+    const { loading, history, goBack } = useAppLocation();
     const [currentLocation, setCurrentLocation] = useState<string>(location.pathname);
     const { getIcon } = useIcon();
     const { getImage } = useAppImage(apiUrl);
@@ -66,12 +65,6 @@ const Header: React.FC<IHeaderProps> = memo(
     useEffect(() => {
       setCurrentLocation(location.pathname);
     }, [location]);
-
-    const goBack = useCallback((): void => {
-      const lastPage = history[history.length - 2];
-      dispatch(CommonAction.sliceHistory());
-      navigate(lastPage.link);
-    }, [dispatch, navigate, history]);
 
     return (
       <>

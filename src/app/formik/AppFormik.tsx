@@ -48,6 +48,7 @@ const AppFormik: React.FC<IAppFormikProps> = memo(({ className = '', ...props })
       validateForm(values).then((errors: FormikErrors<IApiDto>) => {
         console.debug('form errors', values, errors);
         if (Object.keys(errors).length > 0) {
+          console.log(errors);
           dispatch(
             CommonAction.setMessage({ id: UuidUtils.createUUID(), message: 'COMMON:FORM.ERROR', type: 'error' }),
           );

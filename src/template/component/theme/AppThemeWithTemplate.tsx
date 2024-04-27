@@ -1,8 +1,9 @@
 import { JSONObject, useAppRouter } from '@vagabond-inc/react-boilerplate-md';
+import { type i18n as i18nType } from 'i18next';
 import { ReactNode, memo, useEffect, useRef } from 'react';
-import { IMenuDto, i18nType } from '../../..';
-import Footer from '../../Footer';
-import Header from '../../Header';
+import { IMenuDto } from '../../../dto/menu/MenuDto';
+import Footer, { IFoorterProps } from '../../Footer';
+import Header, { IHeaderProp } from '../../Header';
 import { useAppFirebaseToken } from '../../hook/useAppFirebaseToken';
 import { useAppNotification } from '../../hook/useAppNotification';
 import { useAppScroll } from '../../hook/useAppScroll';
@@ -11,23 +12,8 @@ import CookieConsents from '../cookie/CookieConsents';
 import MenuDrawer from '../menu/MenuDrawer';
 import AppTheme from './AppTheme';
 
-export interface IConfDto {
-  TITLE: string;
-  LOGO: string;
-  FOOTER: {
-    WEBSITE: string;
-    URL: string;
-    TARGET: string;
-    MENTION_URL?: string;
-    CGV_URL?: string;
-  };
-}
-
-export interface IAppThemeWithTemplateProps {
-  apiUrl: string;
-  conf: IConfDto;
+export interface IAppThemeWithTemplateProps extends IHeaderProp, IFoorterProps {
   palette: JSONObject;
-  email: string;
   generateToken: () => Promise<string | undefined>;
   menu: IMenuDto[];
   i18n?: i18nType;
@@ -38,24 +24,12 @@ export interface IAppThemeWithTemplateProps {
 }
 
 const AppThemeWithTemplate = memo<IAppThemeWithTemplateProps>(
-  ({
-    apiUrl,
-    conf,
-    palette,
-    email,
-    generateToken,
-    menu,
-    i18n,
-    showNotification,
-    widthDrawer = true,
-    reactHeader,
-    children,
-  }) => {
+  ({ palette, generateToken, menu, i18n, showNotification, widthDrawer = true, reactHeader, children, ...rest }) => {
     const mainContainer = useRef<HTMLDivElement | null>(null);
     const { location } = useAppRouter();
     const { drawerWidth, openDrawer, variantDrawer, showOpenDrawer, handleDrawerOpen } = useAppTheme();
-    useAppFirebaseToken(apiUrl, generateToken);
-    const { nbNotification } = useAppNotification(apiUrl);
+    useAppFirebaseToken(rest.apiUrl, generateToken);
+    const { nbNotification } = useAppNotification(rest.apiUrl);
     const { handleScroll, getScrollPage } = useAppScroll();
 
     useEffect(() => {
@@ -67,9 +41,7 @@ const AppThemeWithTemplate = memo<IAppThemeWithTemplateProps>(
         {({ mode, switchTheme }) => (
           <>
             <Header
-              apiUrl={apiUrl}
               mode={mode}
-              conf={conf}
               menu={menu}
               widthDrawer={widthDrawer}
               showOpenDrawer={showOpenDrawer}
@@ -79,11 +51,12 @@ const AppThemeWithTemplate = memo<IAppThemeWithTemplateProps>(
               nbNotification={nbNotification}
               showNotification={showNotification}
               reactHeader={reactHeader}
+              {...rest}
             />
             <div className='flex flex-row' style={{ flex: '1', overflow: 'hidden' }}>
               {widthDrawer && (
                 <MenuDrawer
-                  apiUrl={apiUrl}
+                  apiUrl={rest.apiUrl}
                   menu={menu}
                   drawerWidth={drawerWidth}
                   openDrawer={openDrawer}
@@ -99,7 +72,7 @@ const AppThemeWithTemplate = memo<IAppThemeWithTemplateProps>(
               </div>
             </div>
             <CookieConsents />
-            <Footer conf={conf} email={email} />
+            <Footer {...rest} />
           </>
         )}
       </AppTheme>

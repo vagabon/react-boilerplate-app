@@ -9,7 +9,7 @@ export interface INewsListPageProps extends INewsRouterProps, IBaseCustomSeoProp
 
 const NewsListPage: React.FC<INewsListPageProps> = memo(({ endPoint, newsAction, ...rest }) => {
   return (
-    <AppContent {...rest} className='no-overflow' seoTitle='SEO:NEWS.TITLE' seoDescription='SEO:NEWS.DESCRIPTION'>
+    <AppContent {...rest} className='no-overflow' seo='SEO:NEWS'>
       <HasRole roles={[]}>
         <NewsList {...rest} endPoint={endPoint} newsAction={newsAction} />
       </HasRole>

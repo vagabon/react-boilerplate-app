@@ -1,12 +1,12 @@
 import { useAppRouter } from '@vagabond-inc/react-boilerplate-md';
 import { memo, useEffect } from 'react';
+import AppContent from '../../../../app/content/AppContent';
 import HasRole from '../../../../hook/role/HasRole';
-import CustomSeo, { IBaseCustomSeoProps } from '../../../custom/seo/component/CustomSeo';
 import { INewsRouterProps } from '../../NewsRouter';
 import NewsForm from '../../component/form/NewsForm';
 import { useCreateNews } from '../../hook/useCreateNews';
 
-export interface INewsShowPageProps extends INewsRouterProps, IBaseCustomSeoProps {}
+export interface INewsShowPageProps extends INewsRouterProps {}
 
 const NewsUpdatePage: React.FC<INewsShowPageProps> = memo(({ endPoint, newsAction, ...rest }) => {
   const {
@@ -19,12 +19,11 @@ const NewsUpdatePage: React.FC<INewsShowPageProps> = memo(({ endPoint, newsActio
   }, [id, fetchById]);
 
   return (
-    <>
-      <CustomSeo {...rest} title={news.title} description={news.resume} image={news.image} />
+    <AppContent {...rest} id='news-form' className='markdown-form' seo='SEO:NEWS'>
       <HasRole roles={['ADMIN']}>
         {<NewsForm {...rest} endPoint={endPoint} newsAction={newsAction} news={news ?? {}} />}
       </HasRole>
-    </>
+    </AppContent>
   );
 });
 

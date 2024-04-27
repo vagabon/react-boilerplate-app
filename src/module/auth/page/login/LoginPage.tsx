@@ -3,7 +3,7 @@ import { MdCard, MdInputText } from '@vagabond-inc/react-boilerplate-md';
 import { memo, useEffect } from 'react';
 import AppContent from '../../../../app/content/AppContent';
 import AppFormik from '../../../../app/formik/AppFormik';
-import { IBaseCustomSeoProps } from '../../../custom/seo/component/CustomSeo';
+import { IHeaderProp } from '../../../../template/Header';
 import AuthFooter from '../../component/auth.footer/AuthFooter';
 import { AuthFooterEnum } from '../../component/auth.footer/enum/AuthFooterEnum';
 import { useAuth } from '../../hook/useAuth';
@@ -13,11 +13,11 @@ import LOGIN_SCHEMA from './schema/login.schema.json';
 
 const DEFAULT_VALUES = { username: '', password: '' };
 
-export interface ILoginPageProps extends IBaseCustomSeoProps {
+export interface ILoginPageProps {
   googleClientId: string;
   facebookClientId: string;
 }
-export interface ILoginPageProps extends IBaseCustomSeoProps {}
+export interface ILoginPageProps extends IHeaderProp {}
 
 const LoginPage: React.FC<ILoginPageProps> = memo(({ googleClientId, facebookClientId, ...rest }) => {
   const { handleLogin, redirectIfLogged } = useAuth(rest.apiUrl);
@@ -27,7 +27,7 @@ const LoginPage: React.FC<ILoginPageProps> = memo(({ googleClientId, facebookCli
   }, [redirectIfLogged]);
 
   return (
-    <AppContent {...rest} className='max-width-800' seoTitle='SEO:LOGIN.TITLE' seoDescription='SEO:LOGIN.DESCRIPTION'>
+    <AppContent {...rest} className='max-width-800' seo='SEO:LOGIN'>
       <GoogleOAuthProvider clientId={googleClientId}>
         <MdCard title='AUTH:LOGIN.TITLE'>
           <AppFormik

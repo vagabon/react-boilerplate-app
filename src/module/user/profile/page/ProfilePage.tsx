@@ -1,14 +1,14 @@
 import { ID, useAppRouter } from '@vagabond-inc/react-boilerplate-md';
 import { type i18n as i18nType } from 'i18next';
 import { memo, useEffect } from 'react';
+import AppContent from '../../../../app/content/AppContent';
 import { useAppSelector } from '../../../../store/Store';
-import { IBaseCustomSeoProps } from '../../../custom/seo/component/CustomSeo';
+import { IHeaderProp } from '../../../../template/Header';
 import { useUser } from '../../user/hook/useUser';
 import ProfileShow from '../component/ProfileShow';
 
-interface IProfilePageProps extends IBaseCustomSeoProps {
+export interface IProfilePageProps extends IHeaderProp {
   i18n: i18nType;
-  apiUrl: string;
   profileReact: (id: ID) => React.JSX.Element;
   profileReactChildren?: (id: ID) => React.JSX.Element;
 }
@@ -32,7 +32,11 @@ const ProfilePage: React.FC<IProfilePageProps> = memo(({ i18n, ...rest }) => {
     return <></>;
   }
 
-  return <ProfileShow {...rest} i18n={i18n} user={id !== -1 ? user : currentUser.user} />;
+  return (
+    <AppContent {...rest} className='flex1 profil-content' seo='SEO:PROFIL'>
+      <ProfileShow {...rest} i18n={i18n} user={id !== -1 ? user : currentUser.user} />
+    </AppContent>
+  );
 });
 
 export default ProfilePage;

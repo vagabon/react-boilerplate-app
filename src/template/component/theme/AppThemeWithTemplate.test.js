@@ -3,15 +3,6 @@ import { BrowserRouter } from 'react-router-dom';
 import { palette } from './AppTheme.test';
 import AppThemeWithTemplate from './AppThemeWithTemplate';
 
-const conf = {
-  LOGO: '/images/logo.png',
-  FOOTER: {
-    URL: '/',
-    WEBSITE: 'blog.vagabond.org',
-    TARGET: '',
-  },
-};
-
 const menu = [
   {
     title: 'Accueil',
@@ -64,7 +55,15 @@ describe('AppThemeWithTemplate', () => {
     Element.prototype.scrollTo = () => {};
     render(
       <BrowserRouter>
-        <AppThemeWithTemplate palette={palette} conf={conf} menu={menu} />
+        <AppThemeWithTemplate
+          palette={palette}
+          menu={menu}
+          apiUrl='apiUrl'
+          title='title'
+          image='image'
+          email='email'
+          links={[{ label: 'label', url: 'url' }]}
+        />
       </BrowserRouter>,
     );
     expect(screen.getByTestId('MdThemeProvider')).toBeDefined();

@@ -1,21 +1,15 @@
 import { MdAlert, MdBouttonGroup, MdButton, MdCard, MdTypo, useAppTranslate } from '@vagabond-inc/react-boilerplate-md';
 import { memo } from 'react';
 import AppContent from '../../../app/content/AppContent';
+import { IHeaderProp } from '../../../template/Header';
 
-export interface INotFoundPageProps {
-  apiUrl: string;
-  emailContact?: string;
-}
+export interface INotFoundPageProps extends IHeaderProp {}
 
-const NotFoundPage: React.FC<INotFoundPageProps> = memo(({ apiUrl, emailContact }) => {
+const NotFoundPage: React.FC<INotFoundPageProps> = memo(({ ...rest }) => {
   const { Trans } = useAppTranslate();
 
   return (
-    <AppContent
-      apiUrl={apiUrl}
-      className='page-404'
-      seoTitle='SEO:NOT_FOUND.TITLE'
-      seoDescription='SEO:NOT_FOUND.DESCRIPTION'>
+    <AppContent className='page-404' seo='SEO:NOT_FOUND' {...rest}>
       <MdCard title='NOT_FOUND_PAGE'>
         <br />
         <MdAlert severity='error' label='NOT_FOUND_PAGE_DESCRIPTION' />
@@ -26,8 +20,8 @@ const NotFoundPage: React.FC<INotFoundPageProps> = memo(({ apiUrl, emailContact 
             <br />
           </h5>
           <MdTypo color='secondary' sx={{ display: 'flex', justifyContent: 'center' }}>
-            <a href={'mailto:' + emailContact} style={{ fontSize: '1.2rem' }}>
-              {emailContact}
+            <a href={'mailto:' + rest.email} style={{ fontSize: '1.2rem' }}>
+              {rest.email}
             </a>
           </MdTypo>
         </div>

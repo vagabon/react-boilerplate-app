@@ -250,7 +250,6 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
 /**** copyright ****/
 
 .copyright {
-  width: 100% !important;
   .MuiCardContent-root { display: flex; flex-direction: row; gap: 1rem; }
   .MuiCardMedia-root { justify-content: center; display: flex; }
   h4 { margin: 20px 0px !important; }
@@ -259,7 +258,6 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
 
 @media screen and (max-width: 700px) {
   .copyright {
-    width: 100% !important;
     .MuiCardContent-root { flex-direction: column; }
     .MuiAvatar-root { width: 150px; height: 150px; }
   }

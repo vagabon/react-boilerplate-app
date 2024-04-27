@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { IBaseCustomSeoProps } from '../custom/seo/component/CustomSeo';
+import { IHeaderProp } from '../../template/Header';
 import NotFoundPage from '../not-found/page/NotFoundPage';
 import ActivationPage from './page/activation/ActivationPage';
 import CheckIdentityPage from './page/check-identity/CheckIdentityPage';
@@ -7,7 +7,7 @@ import ForgetPasswordPage from './page/forget-password/ForgetPasswordPage';
 import LoginPage, { ILoginPageProps } from './page/login/LoginPage';
 import RegisterPage, { IRegisterPageProps } from './page/register/RegisterPage';
 
-export interface IAuthRouterProps extends ILoginPageProps, IRegisterPageProps, IBaseCustomSeoProps {}
+export interface IAuthRouterProps extends ILoginPageProps, IRegisterPageProps, IHeaderProp {}
 
 const AuthRouter: React.FC<IAuthRouterProps> = ({ googleClientId, facebookClientId, googleCaptchaId, ...rest }) => {
   return (

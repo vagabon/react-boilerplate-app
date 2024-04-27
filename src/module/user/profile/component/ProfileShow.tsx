@@ -2,17 +2,16 @@ import { ID, MdBouttonGroup, MdButton, MdCard, MdDivider } from '@vagabond-inc/r
 import { type i18n as i18nType } from 'i18next';
 import React, { useCallback } from 'react';
 import { useApiService } from '../../../../api/hook/useApiService';
-import AppContent from '../../../../app/content/AppContent';
 import HasRole from '../../../../hook/role/HasRole';
 import { useUserAuth } from '../../../../hook/user/useUserAuth';
 import { useAppSelector } from '../../../../store/Store';
 import CustomModaleConfirm from '../../../custom/modale/component/CustomModaleConfirm';
-import { IBaseCustomSeoProps } from '../../../custom/seo/component/CustomSeo';
 import { IUserDto } from '../../user/dto/UserDto';
 import ProfileAvatar from './ProfileAvatar';
 import ProfileForm from './form/ProfileForm';
 
-export interface IProfileShowProps extends IBaseCustomSeoProps {
+export interface IProfileShowProps {
+  apiUrl: string;
   i18n?: i18nType;
   user: IUserDto;
   disabled?: boolean;
@@ -41,11 +40,7 @@ const ProfileShow: React.FC<IProfileShowProps> = ({
   }, [httpPost]);
 
   return (
-    <AppContent
-      {...rest}
-      className='flex1 profil-content'
-      seoTitle='SEO:PROFIL.TITLE'
-      seoDescription='SEO:PROFIL.DESCRIPTION'>
+    <>
       <MdCard
         icon='profile'
         title={user?.username}
@@ -74,7 +69,7 @@ const ProfileShow: React.FC<IProfileShowProps> = ({
         </div>
       </MdCard>
       {profileReactChildren?.(user.id)}
-    </AppContent>
+    </>
   );
 };
 

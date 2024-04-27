@@ -2,7 +2,7 @@ import { MdCard, MdInputText, useAppTranslate } from '@vagabond-inc/react-boiler
 import { memo, useCallback, useEffect, useState } from 'react';
 import AppContent from '../../../../app/content/AppContent';
 import AppFormik from '../../../../app/formik/AppFormik';
-import { IBaseCustomSeoProps } from '../../../custom/seo/component/CustomSeo';
+import { IHeaderProp } from '../../../../template/Header';
 import AuthFooter from '../../component/auth.footer/AuthFooter';
 import { AuthFooterEnum } from '../../component/auth.footer/enum/AuthFooterEnum';
 import { useAuth } from '../../hook/useAuth';
@@ -12,7 +12,7 @@ import CHECK_IDENTITY_SCHEMA from './schema/check.identity.schema.json';
 
 const DEFAULT_VALUES = { token: '' };
 
-export interface ICheckIdentityPageProps extends IBaseCustomSeoProps {}
+export interface ICheckIdentityPageProps extends IHeaderProp {}
 
 const CheckIdentityPage: React.FC<ICheckIdentityPageProps> = memo(({ ...rest }) => {
   const { Trans } = useAppTranslate();
@@ -39,7 +39,7 @@ const CheckIdentityPage: React.FC<ICheckIdentityPageProps> = memo(({ ...rest }) 
   );
 
   return (
-    <AppContent {...rest} seoTitle='SEO:IDENTITY.TITLE' seoDescription='SEO:IDENTITY.DESCRIPTION'>
+    <AppContent {...rest} seo='SEO:IDENTITY.TITLE'>
       <MdCard title='AUTH:CHECK_IDENTITY.TITLE'>
         {state === false && (
           <AppFormik

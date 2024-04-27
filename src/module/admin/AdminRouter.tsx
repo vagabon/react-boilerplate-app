@@ -1,15 +1,13 @@
 import { memo } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { IBaseCustomSeoProps } from '../custom/seo/component/CustomSeo';
+import { IHeaderProp } from '../../template/Header';
 import NotFoundPage from '../not-found/page/NotFoundPage';
 import { IAdminTabConfDto } from './dto/AdminConfDto';
 import AdminShowPage from './page/show/AdminShowPage';
 import AdminTabsPage from './page/tab/AdminTabPage';
 
-interface IAdminRouterProps extends IBaseCustomSeoProps {
-  apiUrl: string;
+interface IAdminRouterProps extends IHeaderProp {
   website: string;
-  emailContact: string;
   conf: IAdminTabConfDto;
 }
 

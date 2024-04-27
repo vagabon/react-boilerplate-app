@@ -1,22 +1,29 @@
 import { MdBox, MdContainer, MdLink, MdTypo } from '@vagabond-inc/react-boilerplate-md';
 import { memo } from 'react';
-import { IConfDto } from './component/theme/AppThemeWithTemplate';
+import { IHeaderProp } from './Header';
 
-export interface IFoorterProps {
-  conf: IConfDto;
-  email: string;
+export interface IFooterLinkDto {
+  label: string;
+  url: string;
+  target?: string;
 }
 
-const Footer: React.FC<IFoorterProps> = memo(({ conf, email }) => {
+export interface IFoorterProps extends IHeaderProp {
+  links: IFooterLinkDto[];
+}
+
+const Footer: React.FC<IFoorterProps> = memo(({ email, links, ...rest }) => {
   return (
-    <MdBox id='footer' component='footer' sx={{ borderBottom: 1, borderColor: 'divider' }}>
+    <MdBox id='footer' sx={{ borderBottom: 1, borderColor: 'divider' }}>
       <MdContainer maxWidth='lg'>
         <MdTypo variant='body2' color='secondary' align='center'>
-          {new Date().getFullYear()} {'©links4rewards '}
-          {'  '}
-          <MdLink label={conf.FOOTER.WEBSITE} href={conf.FOOTER.URL} target={conf.FOOTER.TARGET} />
-          {'  '}
-          {conf.FOOTER.CGV_URL && <MdLink label={'CGV'} href={conf.FOOTER.CGV_URL} />}
+          {new Date().getFullYear()} {'©' + rest.title + ' '}
+          {links?.map((link) => (
+            <>
+              {'  '}
+              <MdLink label={link.label} href={link.url} target={link.target} />
+            </>
+          ))}
           {'  '}
           <a href={'mailto:' + email} style={{ fontSize: '1rem' }}>
             Contact

@@ -3,16 +3,16 @@ import { ReactNode, memo, useEffect } from 'react';
 import AppButtonRefresh from '../../../app/button/component/refresh/AppButtonRefresh';
 import AppContent from '../../../app/content/AppContent';
 import HasRole from '../../../hook/role/HasRole';
+import { IHeaderProp } from '../../../template/Header';
 import { useAuth } from '../../auth/hook/useAuth';
 import CustomModale from '../../custom/modale/component/CustomModale';
 import CustomModaleConfirm from '../../custom/modale/component/CustomModaleConfirm';
-import { IBaseCustomSeoProps } from '../../custom/seo/component/CustomSeo';
 import NotificationList from '../component/list/NotificationList';
 import { INotificationDto } from '../dto/NotificationDto';
 import { useNotification } from '../hook/useNotification';
 import { useNotificationFetch } from '../hook/useNotificationFetch';
 
-export interface INotificationPageProps extends IBaseCustomSeoProps {
+export interface INotificationPageProps extends IHeaderProp {
   handleSelect: (notification: INotificationDto) => void;
   getNotificationIcon: (category: string) => void;
   header?: ReactNode;
@@ -38,11 +38,7 @@ const NotificationPage: React.FC<INotificationPageProps> = memo(
 
     return (
       <HasRole roles={['USER']} showError={true}>
-        <AppContent
-          {...rest}
-          className='no-overflow'
-          seoTitle='SEO:NOTIFICATION.TITLE'
-          seoDescription='SEO:NOTIFICATION.DESCRIPTION'>
+        <AppContent {...rest} className='no-overflow' seo='SEO:NOTIFICATION'>
           <MdCard
             className='creator-card border border-secondary'
             icon='notification'

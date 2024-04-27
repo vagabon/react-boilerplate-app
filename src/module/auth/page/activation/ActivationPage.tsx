@@ -3,11 +3,11 @@ import { memo, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import AppContent from '../../../../app/content/AppContent';
 import { useAppSelector } from '../../../../store/Store';
-import { IBaseCustomSeoProps } from '../../../custom/seo/component/CustomSeo';
+import { IHeaderProp } from '../../../../template/Header';
 import { useAuth } from '../../hook/useAuth';
 import AuthService from '../../service/AuthService';
 
-export interface IActivationPageProps extends IBaseCustomSeoProps {}
+export interface IActivationPageProps extends IHeaderProp {}
 
 const ActivationPage: React.FC<IActivationPageProps> = memo(({ ...rest }) => {
   const { Trans } = useAppTranslate();
@@ -38,7 +38,7 @@ const ActivationPage: React.FC<IActivationPageProps> = memo(({ ...rest }) => {
   }, [message]);
 
   return (
-    <AppContent {...rest} seoTitle='SEO:ACTIVATION.TITLE' seoDescription='SEO:ACTIVATION.DESCRIPTION'>
+    <AppContent {...rest} seo='SEO:ACTIVATION'>
       <MdCard title='AUTH:ACTIVATION.TITLE'>
         {isActivated === undefined && <Trans i18nKey='AUTH:ACTIVATION.CURRENT' />}
         {isActivated === false && <Trans i18nKey='AUTH:ACTIVATION.FAIL' />}

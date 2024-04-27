@@ -7,7 +7,6 @@ import {
   MdInputText,
 } from '@vagabond-inc/react-boilerplate-md';
 import { ChangeEvent, memo, useCallback, useEffect, useState } from 'react';
-import AppContent from '../../../../app/content/AppContent';
 import AppFormik from '../../../../app/formik/AppFormik';
 import { useCreateNews } from '../../../../module/news/hook/useCreateNews';
 import { useCustomFormUpload } from '../../../custom/form/hook/useCustomFormUpload';
@@ -49,12 +48,7 @@ const NewsForm: React.FC<INewsFormProps> = memo(({ endPoint, newsAction, news, .
   );
 
   return (
-    <AppContent
-      {...rest}
-      id='news-form'
-      className='markdown-form'
-      seoTitle='SEO:NEWS.TITLE'
-      seoDescription='SEO:NEWS.DESCRIPTION'>
+    <>
       <MdCard title={news.id ? getLocale('UPDATE') : getLocale('CREATE')}>
         <AppFormik initialValues={news} validationSchema={NEWS_SCHEMA} onSubmit={createOrUpdateNews}>
           {(props) => (
@@ -101,7 +95,7 @@ const NewsForm: React.FC<INewsFormProps> = memo(({ endPoint, newsAction, news, .
         </AppFormik>
       </MdCard>
       <NewsCard {...rest} news={newsForm} endPoint={endPoint} />
-    </AppContent>
+    </>
   );
 });
 

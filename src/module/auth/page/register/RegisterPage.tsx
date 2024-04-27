@@ -5,7 +5,7 @@ import { useApiService } from '../../../../api/hook/useApiService';
 import AppContent from '../../../../app/content/AppContent';
 import AppFormik from '../../../../app/formik/AppFormik';
 import { useMessage } from '../../../../hook/message/useMessage';
-import { IBaseCustomSeoProps } from '../../../custom/seo/component/CustomSeo';
+import { IHeaderProp } from '../../../../template/Header';
 import AuthFooter from '../../component/auth.footer/AuthFooter';
 import { AuthFooterEnum } from '../../component/auth.footer/enum/AuthFooterEnum';
 import { useAuth } from '../../hook/useAuth';
@@ -15,7 +15,7 @@ import REGISTER_SCHEMA from './schema/register.schema.json';
 
 const DEFAULT_VALUES: JSONObject = new RegisterDto() as JSONObject;
 
-export interface IRegisterPageProps extends IBaseCustomSeoProps {
+export interface IRegisterPageProps extends IHeaderProp {
   googleCaptchaId: string;
 }
 
@@ -52,7 +52,7 @@ const RegisterPage: React.FC<IRegisterPageProps> = memo(({ googleCaptchaId, ...r
   );
 
   return (
-    <AppContent {...rest} seoTitle='SEO:REGISTER.TITLE' seoDescription='SEO:REGISTER.DESCRIPTION'>
+    <AppContent {...rest} seo='SEO:REGISTER'>
       <MdCard title='AUTH:REGISTER.TITLE'>
         {!isRegister && (
           <AppFormik

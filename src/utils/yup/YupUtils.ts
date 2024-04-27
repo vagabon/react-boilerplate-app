@@ -102,6 +102,6 @@ export const YupUtils = {
           I18nUtils.translate(t, value.regexpError ? value.regexpError : 'ERRORS:REGEXP'),
         );
     }
-    return yup;
+    return yup.nullable();
   },
 };

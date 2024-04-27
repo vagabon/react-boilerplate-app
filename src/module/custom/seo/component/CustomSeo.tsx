@@ -4,7 +4,6 @@ import { Helmet } from 'react-helmet-async';
 
 export interface IBaseCustomSeoProps {
   apiUrl: string;
-  emailContact?: string;
 }
 
 export interface ICustomSeoProps extends IBaseCustomSeoProps {

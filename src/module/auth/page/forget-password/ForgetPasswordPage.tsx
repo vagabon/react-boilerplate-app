@@ -5,7 +5,7 @@ import { MdCard, MdInputText, useAppRouter } from '@vagabond-inc/react-boilerpla
 import { memo, useCallback, useEffect } from 'react';
 import AppContent from '../../../../app/content/AppContent';
 import AppFormik from '../../../../app/formik/AppFormik';
-import { IBaseCustomSeoProps } from '../../../custom/seo/component/CustomSeo';
+import { IHeaderProp } from '../../../../template/Header';
 import AuthFooter from '../../component/auth.footer/AuthFooter';
 import { AuthFooterEnum } from '../../component/auth.footer/enum/AuthFooterEnum';
 import { useAuth } from '../../hook/useAuth';
@@ -13,7 +13,7 @@ import FORGET_PASSWORD_SCHEMA from './schema/forget.password.schema.json';
 
 const DEFAULT_VALUES = { email: '' };
 
-export interface IForgetPasswordPageProps extends IBaseCustomSeoProps {}
+export interface IForgetPasswordPageProps extends IHeaderProp {}
 
 const ForgetPasswordPage: React.FC<IForgetPasswordPageProps> = memo(({ ...rest }) => {
   const { navigate } = useAppRouter();
@@ -33,7 +33,7 @@ const ForgetPasswordPage: React.FC<IForgetPasswordPageProps> = memo(({ ...rest }
   );
 
   return (
-    <AppContent {...rest} seoTitle='SEO:FORGET_PASSWORD.TITLE' seoDescription='SEO:FORGET_PASSWORD.DESCRIPTION'>
+    <AppContent {...rest} seo='SEO:FORGET_PASSWORD'>
       <MdCard title='AUTH:FORGET_PASSWORD.TITLE'>
         <AppFormik
           initialValues={DEFAULT_VALUES}

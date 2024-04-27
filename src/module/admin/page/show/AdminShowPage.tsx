@@ -5,16 +5,16 @@ import { memo, useCallback, useEffect } from 'react';
 import AppContent from '../../../../app/content/AppContent';
 import HasRole from '../../../../hook/role/HasRole';
 import { useAppDispatch } from '../../../../store/Store';
+import { IHeaderProp } from '../../../../template/Header';
 import { IYupValidators } from '../../../../utils/yup/YupUtils';
 import CustomForm from '../../../custom/form/component/CustomForm';
-import { IBaseCustomSeoProps } from '../../../custom/seo/component/CustomSeo';
 import { IAdminTabConfDto, IAdminTabDto } from '../../dto/AdminConfDto';
 import { useAdminConf } from '../../hook/useAdminConf';
 import { useAdminState } from '../../hook/useAdminState';
 import { AdminAction } from '../../reducer/AdminReducer';
 import AdminService from '../../service/AdminService';
 
-export interface IAdminShowPageProps extends IBaseCustomSeoProps {
+export interface IAdminShowPageProps extends IHeaderProp {
   conf: IAdminTabConfDto;
 }
 
@@ -77,7 +77,7 @@ const AdminShowPage: React.FC<IAdminShowPageProps> = memo(({ conf, ...rest }) =>
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <AppContent {...rest} seoTitle='SEO:ADMIN.TITLE' seoDescription='SEO:ADMIN.DESCRIPTION'>
+      <AppContent {...rest} seo='SEO:ADMIN'>
         <HasRole roles={['ADMIN']}>
           <MdCard title={getTitle()}>
             {state && (

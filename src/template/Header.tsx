@@ -24,43 +24,35 @@ import { useAppSelector } from '../store/Store';
 import Language from './component/language/Language';
 import { useAppImage } from './hook/useAppImage';
 
-export interface IHeaderProps {
+export interface IHeaderProp {
   apiUrl: string;
+  title: string;
+  image: string;
+  email: string;
+}
+
+export interface IHeaderProps extends IHeaderProp {
   mode: ModeType;
-  conf: { TITLE: string; LOGO: string };
   menu: IMenuDto[];
   callbackTheme?: () => void;
-  widthDrawer?: boolean;
-  showOpenDrawer?: boolean;
   callbackDrawer?: () => void;
   i18n?: i18nType;
   nbNotification?: number;
   showNotification?: boolean;
   reactHeader?: ReactNode;
+  widthDrawer?: boolean;
+  showOpenDrawer?: boolean;
 }
 
 const Header: React.FC<IHeaderProps> = memo(
-  ({
-    apiUrl,
-    mode,
-    conf,
-    menu,
-    callbackTheme,
-    widthDrawer,
-    showOpenDrawer,
-    callbackDrawer,
-    i18n,
-    nbNotification,
-    reactHeader,
-    showNotification,
-  }) => {
+  ({ mode, menu, widthDrawer, showNotification, nbNotification, ...rest }) => {
     const { location, Link, handleNavigate } = useAppRouter();
     const { isLoggedIn, user } = useAppSelector((state) => state.auth);
     const { handleLogout } = useUserAuth();
     const { loading, history, goBack } = useAppLocation();
     const [currentLocation, setCurrentLocation] = useState<string>(location.pathname);
     const { getIcon } = useIcon();
-    const { getImage } = useAppImage(apiUrl);
+    const { getImage } = useAppImage(rest.apiUrl);
 
     useEffect(() => {
       setCurrentLocation(location.pathname);
@@ -70,8 +62,8 @@ const Header: React.FC<IHeaderProps> = memo(
       <>
         <AppBar sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
           <MdToolbar id='header' sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            {widthDrawer && showOpenDrawer && (
-              <IconClickable color='inherit' icon='menu' aria-label='open drawer' callback={callbackDrawer} />
+            {widthDrawer && rest.showOpenDrawer && (
+              <IconClickable color='inherit' icon='menu' aria-label='open drawer' callback={rest.callbackDrawer} />
             )}
             {!widthDrawer && (
               <div className='back-button' style={{ width: '30px' }}>
@@ -80,12 +72,12 @@ const Header: React.FC<IHeaderProps> = memo(
             )}
             <MdTypo variant='body2' align='left' color='secondary' noWrap={true} sx={{ flex: 1, display: 'flex' }}>
               <Link to='/' style={{ display: 'contents' }}>
-                <img src={conf.LOGO} width={40} alt={'Logo de ' + conf.TITLE} />
+                <img src={rest.image} width={40} alt={'Logo de ' + rest.title} />
                 <span
                   className='flex justify-center'
                   style={{ marginLeft: '1rem', fontSize: '1.2rem', overflow: 'hidden' }}>
                   <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                    {conf.TITLE}
+                    {rest.title}
                   </span>
                 </span>
               </Link>
@@ -93,9 +85,9 @@ const Header: React.FC<IHeaderProps> = memo(
             <IconClickable
               className='hidden-responsive'
               icon={mode === 'dark' ? 'sun' : 'moon'}
-              callback={callbackTheme}
+              callback={rest.callbackTheme}
             />
-            {i18n && <Language i18n={i18n} />}
+            {rest.i18n && <Language i18n={rest.i18n} />}
             {showNotification && isLoggedIn && (
               <IconButton
                 size='large'
@@ -106,7 +98,7 @@ const Header: React.FC<IHeaderProps> = memo(
                 </Badge>
               </IconButton>
             )}
-            {reactHeader}
+            {rest.reactHeader}
             <MdButton url='/auth/signup' label='AUTH:SIGNUP' variant='outlined' show={!isLoggedIn} />
             <MdButton url='/auth/signin' label='AUTH:SIGNIN' show={!isLoggedIn} />
             {user?.user && (
@@ -146,7 +138,7 @@ const Header: React.FC<IHeaderProps> = memo(
             </MdToolbar>
           )}
         </AppBar>
-        <div style={{ height: '50px' }}></div>
+        {widthDrawer && <div style={{ height: '50px' }}></div>}
         {loading ? <MdLinearProgress /> : <div style={{ minHeight: '4px' }}></div>}
       </>
     );

@@ -194,7 +194,7 @@ export { default as ShowMessage } from './template/component/message/ShowMessage
 export { default as AppTheme } from './template/component/theme/AppTheme';
 export type { IAppThemeProps, IFormThemeDto } from './template/component/theme/AppTheme';
 export { default as AppThemeWithTemplate } from './template/component/theme/AppThemeWithTemplate';
-export type { IAppThemeWithTemplateProps, IConfDto } from './template/component/theme/AppThemeWithTemplate';
+export type { IAppThemeWithTemplateProps } from './template/component/theme/AppThemeWithTemplate';
 export { useAppImage } from './template/hook/useAppImage';
 export { default as RoleUtils } from './utils/role/RoleUtils';
 export { StorageUtils } from './utils/storage/StorageUtils';

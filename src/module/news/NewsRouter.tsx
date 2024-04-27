@@ -1,13 +1,13 @@
 import { memo } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { IReducersActionsProps } from '../../reducer/BaseReducer';
-import { IBaseCustomSeoProps } from '../custom/seo/component/CustomSeo';
+import { IHeaderProp } from '../../template/Header';
 import NotFoundPage from '../not-found/page/NotFoundPage';
 import NewsListPage from './page/list/NewsListPage';
 import NewsShowPage from './page/show/NewsShowPage';
 import NewsUpdatePage from './page/update/NewsUpdatePage';
 
-export interface INewsRouterProps extends IBaseCustomSeoProps {
+export interface INewsRouterProps extends IHeaderProp {
   endPoint: string;
   newsAction: IReducersActionsProps;
 }

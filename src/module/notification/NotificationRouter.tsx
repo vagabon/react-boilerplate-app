@@ -1,10 +1,10 @@
 import { ReactNode, memo } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { IBaseCustomSeoProps } from '../custom/seo/component/CustomSeo';
+import { IHeaderProp } from '../../template/Header';
 import { INotificationDto } from './dto/NotificationDto';
 import NotificationPage from './page/NotificationPage';
 
-export interface INotificationRouterProps extends IBaseCustomSeoProps {
+export interface INotificationRouterProps extends IHeaderProp {
   apiUrl: string;
   header?: ReactNode;
   callbackNavigateNotification: (data: INotificationDto) => void;

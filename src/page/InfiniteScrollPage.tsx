@@ -16,7 +16,7 @@ export interface InfiniteScroolPageProps extends IAppFabAddProps {
 }
 
 const InfiniteScrollPage: React.FC<InfiniteScroolPageProps> = memo(
-  ({ icon, title, titleCount, className, isCard, ...rest }) => {
+  ({ icon, title, titleCount, className, isCard = true, ...rest }) => {
     const handleSearch = useCallback(
       (callback?: (search: string) => void) => (search: string) => {
         callback?.(search);
@@ -52,9 +52,5 @@ const InfiniteScrollPage: React.FC<InfiniteScroolPageProps> = memo(
     );
   },
 );
-
-InfiniteScrollPage.defaultProps = {
-  isCard: true,
-};
 
 export default InfiniteScrollPage;

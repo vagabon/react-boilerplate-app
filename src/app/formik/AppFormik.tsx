@@ -29,106 +29,103 @@ export interface IAppFormikProps {
   modalConfirm?: string;
 }
 
-const AppFormik: React.FC<IAppFormikProps> = memo(({ className, ...rest }) => {
-  const dispatch = useAppDispatch();
-  const { navigate } = useAppRouter();
-  const { history } = useAppSelector((state) => state.common);
-  const { t } = useAppTranslate();
-  const { message } = useMessage();
+const AppFormik: React.FC<IAppFormikProps> = memo(
+  ({ className = '', backButton = true, submitButton = true, ...rest }) => {
+    const dispatch = useAppDispatch();
+    const { navigate } = useAppRouter();
+    const { history } = useAppSelector((state) => state.common);
+    const { t } = useAppTranslate();
+    const { message } = useMessage();
 
-  const [state, setState] = useState<JSONObject>(rest.initialValues);
+    const [state, setState] = useState<JSONObject>(rest.initialValues);
 
-  useEffect(() => {
-    setState(rest.initialValues);
-  }, [rest.initialValues]);
+    useEffect(() => {
+      setState(rest.initialValues);
+    }, [rest.initialValues]);
 
-  const doSubmit = useCallback(
-    (values: IApiDto, validateForm: (values?: IApiDto) => Promise<FormikErrors<IApiDto>>) => () => {
-      dispatch(CommonAction.clearMessage());
-      validateForm(values).then((errors: FormikErrors<IApiDto>) => {
-        console.debug('form errors', values, errors);
-        if (Object.keys(errors).length > 0) {
-          console.log(errors);
-          dispatch(
-            CommonAction.setMessage({ id: UuidUtils.createUUID(), message: 'COMMON:FORM.ERROR', type: 'error' }),
-          );
-        } else {
-          dispatch(CommonAction.clearMessage());
-          rest.onSubmit?.(values);
-        }
-      });
-    },
-    [rest, dispatch],
-  );
+    const doSubmit = useCallback(
+      (values: IApiDto, validateForm: (values?: IApiDto) => Promise<FormikErrors<IApiDto>>) => () => {
+        dispatch(CommonAction.clearMessage());
+        validateForm(values).then((errors: FormikErrors<IApiDto>) => {
+          console.debug('form errors', values, errors);
+          if (Object.keys(errors).length > 0) {
+            console.log(errors);
+            dispatch(
+              CommonAction.setMessage({ id: UuidUtils.createUUID(), message: 'COMMON:FORM.ERROR', type: 'error' }),
+            );
+          } else {
+            dispatch(CommonAction.clearMessage());
+            rest.onSubmit?.(values);
+          }
+        });
+      },
+      [rest, dispatch],
+    );
 
-  const onSubmit = useCallback(
-    (values: IApiDto): void => {
-      rest.onSubmit?.(values);
-    },
-    [rest],
-  );
+    const onSubmit = useCallback(
+      (values: IApiDto): void => {
+        rest.onSubmit?.(values);
+      },
+      [rest],
+    );
 
-  const goBack = useCallback((): void => {
-    if (rest.onGoBack) {
-      rest.onGoBack();
-    } else {
-      const lastPage: IPathDto = history[history.length - 2];
-      dispatch(CommonAction.sliceHistory());
-      navigate(lastPage.link);
-    }
-  }, [dispatch, history, navigate, rest]);
+    const goBack = useCallback((): void => {
+      if (rest.onGoBack) {
+        rest.onGoBack();
+      } else {
+        const lastPage: IPathDto = history[history.length - 2];
+        dispatch(CommonAction.sliceHistory());
+        navigate(lastPage.link);
+      }
+    }, [dispatch, history, navigate, rest]);
 
-  return (
-    <Formik
-      initialValues={state}
-      validationSchema={YupUtils.convertToYup(rest.validationSchema, t)}
-      onSubmit={onSubmit}
-      autoComplete='off'
-      enableReinitialize>
-      {({ values, errors, touched, handleChange, handleBlur, validateForm, setFieldValue }) => (
-        <>
-          <div className={'form-content ' + (className ?? '')}>
-            {rest.children({
-              values,
-              state,
-              errors,
-              touched,
-              validationSchema: rest.validationSchema,
-              handleChange,
-              handleBlur,
-              handleSubmit: (values: IApiDto) => doSubmit(values, validateForm)(),
-              validateForm,
-              setFieldValue: setFieldValue as SetFieldValueType,
-              errorMessage: message?.message,
-            })}
-          </div>
-          {(rest.backButton || rest.submitButton || rest.modalConfirm) && (
-            <>
-              <div style={{ height: '30px' }}>&nbsp;</div>
-              <div className='width100 flex-row justify-end'>
-                {rest.backButton && history.length > 1 && <MdButton label='Retour' variant='text' callback={goBack} />}
-                {rest.submitButton && rest.onSubmit && (
-                  <MdButton label='COMMON:SUBMIT' callback={doSubmit(values, validateForm)} />
-                )}
-                {rest.modalConfirm && (
-                  <CustomModaleConfirm
-                    label={rest.modalConfirm}
-                    button='COMMON:SUBMIT'
-                    callback={doSubmit(values, validateForm)}
-                  />
-                )}
-              </div>
-            </>
-          )}
-        </>
-      )}
-    </Formik>
-  );
-});
-
-AppFormik.defaultProps = {
-  backButton: true,
-  submitButton: true,
-};
+    return (
+      <Formik
+        initialValues={state}
+        validationSchema={YupUtils.convertToYup(rest.validationSchema, t)}
+        onSubmit={onSubmit}
+        autoComplete='off'
+        enableReinitialize>
+        {({ values, errors, touched, handleChange, handleBlur, validateForm, setFieldValue }) => (
+          <>
+            <div className={'form-content ' + className}>
+              {rest.children({
+                values,
+                state,
+                errors,
+                touched,
+                validationSchema: rest.validationSchema,
+                handleChange,
+                handleBlur,
+                handleSubmit: (values: IApiDto) => doSubmit(values, validateForm)(),
+                validateForm,
+                setFieldValue: setFieldValue as SetFieldValueType,
+                errorMessage: message?.message,
+              })}
+            </div>
+            {(backButton || submitButton || rest.modalConfirm) && (
+              <>
+                <div style={{ height: '30px' }}>&nbsp;</div>
+                <div className='width100 flex-row justify-end'>
+                  {backButton && history.length > 1 && <MdButton label='Retour' variant='text' callback={goBack} />}
+                  {submitButton && rest.onSubmit && (
+                    <MdButton label='COMMON:SUBMIT' callback={doSubmit(values, validateForm)} />
+                  )}
+                  {rest.modalConfirm && (
+                    <CustomModaleConfirm
+                      label={rest.modalConfirm}
+                      button='COMMON:SUBMIT'
+                      callback={doSubmit(values, validateForm)}
+                    />
+                  )}
+                </div>
+              </>
+            )}
+          </>
+        )}
+      </Formik>
+    );
+  },
+);
 
 export default AppFormik;

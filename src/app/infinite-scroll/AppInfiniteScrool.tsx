@@ -10,7 +10,7 @@ export interface IAppInfiniteScroolProps {
   callBack?: () => void;
 }
 
-const AppInfiniteScrool: React.FC<IAppInfiniteScroolProps> = memo(({ className, ...rest }) => {
+const AppInfiniteScrool: React.FC<IAppInfiniteScroolProps> = memo(({ className = '', callBack, ...rest }) => {
   const dispatch = useAppDispatch();
   const { location } = useAppRouter();
   const stopScroll = useRef(false);
@@ -40,18 +40,10 @@ const AppInfiniteScrool: React.FC<IAppInfiniteScroolProps> = memo(({ className, 
   );
 
   return (
-    <div
-      id={rest.id}
-      className={'container infinite-container ' + (className ?? '')}
-      onScroll={handleNavigation(rest.callBack)}>
+    <div id={rest.id} className={'container infinite-container ' + className} onScroll={handleNavigation(callBack)}>
       <div className='max-width'>{rest.children}</div>
     </div>
   );
 });
-
-AppInfiniteScrool.defaultProps = {
-  callBack: () => {},
-  className: '',
-};
 
 export default AppInfiniteScrool;

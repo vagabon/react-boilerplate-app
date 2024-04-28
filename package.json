@@ -1,11 +1,11 @@
 {
   "name": "@vagabond-inc/react-boilerplate-app",
-  "version": "1.0.86",
+  "version": "1.0.90",
   "description": "Boilerplate App for React (Auth / Admin / News)",
   "private": false,
   "type": "module",
   "scripts": {
-    "lint": "eslint \"{src/**/*,*}.{js,ts,jsx,tsx}\"",
+    "lint": "eslint  \"{src/**/*,*}.{js,ts,jsx,tsx}\"",
     "tsc": "tsc",
     "test": "jest  ",
     "test:json": "npm run test -- --json --outputFile=src/jest-test-results.json --coverage",
@@ -38,7 +38,7 @@
     "yup": "~1.4.0"
   },
   "devDependencies": {
-    "@vagabond-inc/react-boilerplate-md": "1.0.51",
+    "@vagabond-inc/react-boilerplate-md": "1.0.53",
     "@babel/preset-env": "~7.24.4",
     "@babel/preset-react": "~7.24.1",
     "@babel/preset-typescript": "~7.24.1",
@@ -80,6 +80,7 @@
     "vite-tsconfig-paths": "~4.3.2"
   },
   "peerDependencies": {
+    "@vagabond-inc/react-boilerplate-md": "~1.0.53",
     "@emotion/react": "~11.11.4",
     "@greatsumini/react-facebook-login": "~3.3.3",
     "@mui/icons-material": "~5.15.15",
@@ -118,65 +119,6 @@
       "import": "./dist/esm/index.js",
       "types": "./dist/types/index.d.ts"
     }
-  },
-  "eslintConfig": {
-    "settings": {
-      "react": {
-        "version": "18"
-      }
-    },
-    "extends": [
-      "eslint:recommended",
-      "plugin:react/recommended",
-      "plugin:react-hooks/recommended",
-      "plugin:@typescript-eslint/recommended"
-    ],
-    "parser": "@typescript-eslint/parser",
-    "plugins": [
-      "react",
-      "react-hooks",
-      "@typescript-eslint"
-    ],
-    "rules": {
-      "@typescript-eslint/no-unused-vars": "warn",
-      "react/display-name": "off",
-      "react/prop-types": "off",
-      "@typescript-eslint/triple-slash-reference": "off",
-      "jsx-a11y/anchor-is-valid": "off",
-      "jsx-a11y/anchor-has-content": "off",
-      "react/react-in-jsx-scope": "off",
-      "@typescript-eslint/no-restricted-imports": [
-        "warn",
-        {
-          "name": "react-redux",
-          "importNames": [
-            "useSelector",
-            "useDispatch"
-          ],
-          "message": "Use typed hooks `useAppDispatch` and `useAppSelector` instead."
-        }
-      ]
-    },
-    "ignorePatterns": [
-      "src/index.ts",
-      "dist/**",
-      "**/*babel*",
-      "**/*.stories.*",
-      "**/*Store.*",
-      "**/*.test.*",
-      "**/setupTests*.*",
-      "node_modules/**/*.ts?(x)"
-    ],
-    "overrides": [
-      {
-        "files": [
-          "**/*.stories.*"
-        ],
-        "rules": {
-          "import/no-anonymous-default-export": "off"
-        }
-      }
-    ]
   },
   "jestSonar": {
     "reportPath": "coverage",

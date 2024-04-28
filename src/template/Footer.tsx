@@ -13,7 +13,7 @@ export interface IFoorterProps extends IHeaderProp {
   links: IFooterLinkDto[];
 }
 
-const Footer: React.FC<IFoorterProps> = memo(({ isContact, email, links, ...rest }) => {
+const Footer: React.FC<IFoorterProps> = memo(({ isContact = true, email, links, ...rest }) => {
   return (
     <MdBox id='footer' sx={{ borderBottom: 1, borderColor: 'divider' }}>
       <MdContainer maxWidth='lg'>
@@ -32,9 +32,5 @@ const Footer: React.FC<IFoorterProps> = memo(({ isContact, email, links, ...rest
     </MdBox>
   );
 });
-
-Footer.defaultProps = {
-  isContact: true,
-};
 
 export default Footer;

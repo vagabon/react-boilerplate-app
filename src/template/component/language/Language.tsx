@@ -9,7 +9,7 @@ export interface ILanguageProps {
   hidden?: boolean;
 }
 
-const Language: React.FC<ILanguageProps> = memo(({ i18n, hidden }) => {
+const Language: React.FC<ILanguageProps> = memo(({ i18n, hidden = true }) => {
   const dispatch = useAppDispatch();
   const { language } = useAppSelector((state) => state.common);
 
@@ -34,9 +34,5 @@ const Language: React.FC<ILanguageProps> = memo(({ i18n, hidden }) => {
     </FormControl>
   );
 });
-
-Language.defaultProps = {
-  hidden: true,
-};
 
 export default Language;

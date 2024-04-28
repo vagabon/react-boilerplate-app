@@ -50,7 +50,7 @@ export interface ICustomListProps {
 const CustomList: React.FC<ICustomListProps> = memo(
   ({
     apiUrl,
-    className,
+    className = '',
     datas,
     icon,
     chipClassName,
@@ -74,7 +74,7 @@ const CustomList: React.FC<ICustomListProps> = memo(
     const { getImage } = useAppImage(apiUrl);
 
     return (
-      <MdList className={'custom-list overflow overflow-x-none ' + (className ?? '')}>
+      <MdList className={'custom-list overflow overflow-x-none ' + className}>
         {!datas || datas.length === 0 ? (
           <MdListItem className='no-animate' component='div' disablePadding>
             <MdListItem className='no-animate'>

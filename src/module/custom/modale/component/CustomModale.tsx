@@ -73,7 +73,7 @@ const CustomModale: React.FC<ICustomModaleProps> = memo(
         {(button || buttonColor) && (
           <Badge badgeContent={iconBadge ?? 0} color={iconBadgeColor ?? 'primary'}>
             <MdButton
-              className={icon ?? 'button-icon'}
+              className={icon ? 'button-icon' : ''}
               size={buttonSize}
               label={button}
               color={buttonColor}

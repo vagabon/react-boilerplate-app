@@ -14,7 +14,7 @@ export interface IAppContentProps extends IHeaderDto {
 }
 
 const AppContent: React.FC<IAppContentProps> = memo(
-  ({ id, className, date, seo, seoTitle, seoDescription, ...rest }) => {
+  ({ id, className = '', date, seo, seoTitle, seoDescription, ...rest }) => {
     const { id: divId } = useId(id);
 
     return (
@@ -26,7 +26,7 @@ const AppContent: React.FC<IAppContentProps> = memo(
           image={rest.image}
           date={date}
         />
-        <div id={divId} className={'max-width ' + (className ?? '')}>
+        <div id={divId} className={'max-width ' + className}>
           {rest.children}
         </div>
       </>

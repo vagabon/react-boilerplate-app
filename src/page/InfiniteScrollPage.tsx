@@ -16,7 +16,7 @@ export interface InfiniteScroolPageProps extends IAppFabAddProps {
 }
 
 const InfiniteScrollPage: React.FC<InfiniteScroolPageProps> = memo(
-  ({ icon, title, titleCount, className = '', isCard = true, ...props }) => {
+  ({ icon, title, titleCount, className, isCard, ...rest }) => {
     const handleSearch = useCallback(
       (callback?: (search: string) => void) => (search: string) => {
         callback?.(search);
@@ -33,24 +33,28 @@ const InfiniteScrollPage: React.FC<InfiniteScroolPageProps> = memo(
 
     return (
       <>
-        {props.search !== undefined && (
+        {rest.search !== undefined && (
           <>
             {isCard ? (
               <MdCard className='search-bar-card' icon={icon} title={title} titleCount={titleCount}>
-                <MdSearchBar callBack={handleSearch(props.doSearch)} search={props.search} />
+                <MdSearchBar callBack={handleSearch(rest.doSearch)} search={rest.search} />
               </MdCard>
             ) : (
-              <MdSearchBar callBack={handleSearch(props.doSearch)} search={props.search} />
+              <MdSearchBar callBack={handleSearch(rest.doSearch)} search={rest.search} />
             )}
           </>
         )}
-        <AppInfiniteScrool id='infinite-container' callBack={onScroll(props.doChangePage)} className={className}>
-          {props.children}
+        <AppInfiniteScrool id='infinite-container' callBack={onScroll(rest.doChangePage)} className={className}>
+          {rest.children}
         </AppInfiniteScrool>
-        <AppFabAdd {...props} />
+        <AppFabAdd {...rest} />
       </>
     );
   },
 );
+
+InfiniteScrollPage.defaultProps = {
+  isCard: true,
+};
 
 export default InfiniteScrollPage;

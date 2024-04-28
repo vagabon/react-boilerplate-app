@@ -7,7 +7,7 @@ interface IAuthFooter {
   rigth: AuthFooterEnum;
 }
 
-const AuthFooter: React.FC<IAuthFooter> = memo((props: IAuthFooter) => {
+const AuthFooter: React.FC<IAuthFooter> = memo(({ ...rest }) => {
   const getLink = useCallback((type: AuthFooterEnum) => {
     switch (type) {
       case AuthFooterEnum.SIGNIN:
@@ -22,9 +22,9 @@ const AuthFooter: React.FC<IAuthFooter> = memo((props: IAuthFooter) => {
   return (
     <MdGrid container style={{ marginTop: '15px' }}>
       <MdGrid item xs>
-        {getLink(props.left)}
+        {getLink(rest.left)}
       </MdGrid>
-      <MdGrid item>{getLink(props.rigth)}</MdGrid>
+      <MdGrid item>{getLink(rest.rigth)}</MdGrid>
     </MdGrid>
   );
 });

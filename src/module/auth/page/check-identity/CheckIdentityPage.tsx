@@ -47,7 +47,7 @@ const CheckIdentityPage: React.FC<ICheckIdentityPageProps> = memo(({ ...rest }) 
             validationSchema={CHECK_IDENTITY_SCHEMA}
             onSubmit={handleCheckIdentity}
             backButton={false}>
-            {(props) => <MdInputText label='AUTH:FIELDS.CODE' name='token' {...props} />}
+            {(formikProps) => <MdInputText label='AUTH:FIELDS.CODE' name='token' {...formikProps} />}
           </AppFormik>
         )}
         {state === true && (

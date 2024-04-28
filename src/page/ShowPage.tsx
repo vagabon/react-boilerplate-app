@@ -9,17 +9,17 @@ export interface ShowPageProps {
   children: ReactNode;
 }
 
-const ShowPage: React.FC<ShowPageProps> = memo((props: ShowPageProps) => {
+const ShowPage: React.FC<ShowPageProps> = memo(({ ...rest }) => {
   const dispatch = useAppDispatch();
   const { id } = useParams();
 
-  const fetchData = useRef(props.fetchData);
+  const fetchData = useRef(rest.fetchData);
 
   useEffect(() => {
     id && fetchData.current(id);
   }, [dispatch, id]);
 
-  return <>{props.data && props.children}</>;
+  return <>{rest.data && rest.children}</>;
 });
 
 export default ShowPage;

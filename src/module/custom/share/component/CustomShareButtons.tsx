@@ -18,23 +18,25 @@ export interface ICustomShareButtonsProps {
   size?: number;
 }
 
-const CustomShareButtons: React.FC<ICustomShareButtonsProps> = memo(({ url, hashtag = '', size = 32 }) => {
+const CustomShareButtons: React.FC<ICustomShareButtonsProps> = memo(({ url, hashtag, size }) => {
+  const buttonSize = size ?? 32;
+
   return (
     <div className='share-buttons'>
       <EmailShareButton url={url}>
-        <EmailIcon size={size} style={{ borderRadius: '5px' }} />
+        <EmailIcon size={buttonSize} style={{ borderRadius: '5px' }} />
       </EmailShareButton>
       <FacebookShareButton url={url} hashtag={hashtag}>
-        <FacebookIcon size={size} style={{ borderRadius: '5px' }} />
+        <FacebookIcon size={buttonSize} style={{ borderRadius: '5px' }} />
       </FacebookShareButton>
-      <TwitterShareButton url={url} hashtags={[hashtag]}>
-        <TwitterIcon size={size} style={{ borderRadius: '5px' }} />
+      <TwitterShareButton url={url} hashtags={[hashtag ?? '']}>
+        <TwitterIcon size={buttonSize} style={{ borderRadius: '5px' }} />
       </TwitterShareButton>
       <LinkedinShareButton url={url}>
-        <LinkedinIcon size={size} style={{ borderRadius: '5px' }} />
+        <LinkedinIcon size={buttonSize} style={{ borderRadius: '5px' }} />
       </LinkedinShareButton>
       <RedditShareButton url={url}>
-        <RedditIcon size={size} style={{ borderRadius: '5px' }} />
+        <RedditIcon size={buttonSize} style={{ borderRadius: '5px' }} />
       </RedditShareButton>
     </div>
   );

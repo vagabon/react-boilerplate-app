@@ -14,12 +14,12 @@ export interface IAppChartBarProps {
 }
 
 const AppChartBar: React.FC<IAppChartBarProps> = memo(
-  ({ id, title, charts, colors, titleField = 'day', nbField = 'nb', generateCallback }) => {
+  ({ id, title, charts, colors, titleField, nbField, generateCallback }) => {
     const { axis, series, convertToChartBar } = useAppChartBar(title);
 
     useEffect(() => {
       if (charts.length > 0) {
-        convertToChartBar(charts, titleField, nbField, colors);
+        convertToChartBar(charts, String(titleField), String(nbField), colors);
       }
     }, [convertToChartBar, charts, titleField, nbField, colors]);
 
@@ -39,5 +39,10 @@ const AppChartBar: React.FC<IAppChartBarProps> = memo(
     );
   },
 );
+
+AppChartBar.defaultProps = {
+  titleField: 'day',
+  nbField: 'nb',
+};
 
 export default AppChartBar;

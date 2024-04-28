@@ -10,14 +10,14 @@ export interface IAppInfiniteScroolProps {
   callBack?: () => void;
 }
 
-const AppInfiniteScrool: React.FC<IAppInfiniteScroolProps> = memo(({ className = '', ...props }) => {
+const AppInfiniteScrool: React.FC<IAppInfiniteScroolProps> = memo(({ className, ...rest }) => {
   const dispatch = useAppDispatch();
   const { location } = useAppRouter();
   const stopScroll = useRef(false);
 
   const handleNavigation = useCallback(
     (callBack?: () => void) => () => {
-      const wrappedElement = document.getElementById(props.id);
+      const wrappedElement = document.getElementById(rest.id);
       const scrollTop = wrappedElement?.scrollTop ?? 0;
 
       dispatch(CommonAction.setScrools({ pathname: location.pathname, position: scrollTop }));
@@ -36,15 +36,15 @@ const AppInfiniteScrool: React.FC<IAppInfiniteScroolProps> = memo(({ className =
         }
       }
     },
-    [props.id, location, dispatch],
+    [rest.id, location, dispatch],
   );
 
   return (
     <div
-      id={props.id}
-      className={'container infinite-container ' + className}
-      onScroll={handleNavigation(props.callBack)}>
-      <div className='max-width'>{props.children}</div>
+      id={rest.id}
+      className={'container infinite-container ' + (className ?? '')}
+      onScroll={handleNavigation(rest.callBack)}>
+      <div className='max-width'>{rest.children}</div>
     </div>
   );
 });

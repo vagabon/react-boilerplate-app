@@ -60,12 +60,12 @@ const RegisterPage: React.FC<IRegisterPageProps> = memo(({ googleCaptchaId, ...r
             validationSchema={REGISTER_SCHEMA}
             onSubmit={handleRegister}
             backButton={false}>
-            {(props) => (
+            {(formikProps) => (
               <>
-                <MdInputText label='AUTH:FIELDS.LOGIN' name='username' {...props} />
-                <MdInputText label='AUTH:FIELDS.EMAIL' name='email' {...props} />
-                <MdInputText label='AUTH:FIELDS.PASSWORD' name='password' type='password' {...props} />
-                <MdInputText label='AUTH:FIELDS.PASSWORD_CONFIRM' name='password2' type='password' {...props} />
+                <MdInputText label='AUTH:FIELDS.LOGIN' name='username' {...formikProps} />
+                <MdInputText label='AUTH:FIELDS.EMAIL' name='email' {...formikProps} />
+                <MdInputText label='AUTH:FIELDS.PASSWORD' name='password' type='password' {...formikProps} />
+                <MdInputText label='AUTH:FIELDS.PASSWORD_CONFIRM' name='password2' type='password' {...formikProps} />
                 <div className='flex' style={{ marginTop: '15px', alignItems: 'flex-end' }}>
                   <ReCAPTCHA sitekey={googleCaptchaId} ref={captchaRef} />
                 </div>

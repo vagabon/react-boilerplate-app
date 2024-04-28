@@ -25,7 +25,7 @@ const CustomModaleForm: React.FC<ICustomModaleFormProps> = memo(
             validationSchema={validationSchema}
             onSubmit={onSubmit?.(closeModal)}
             onGoBack={closeModal}>
-            {(props) => <>{children({ ...props, closeModal: closeModal })}</>}
+            {(formikProps) => <>{children({ ...formikProps, closeModal: closeModal })}</>}
           </AppFormik>
         )}
       </CustomModaleCard>

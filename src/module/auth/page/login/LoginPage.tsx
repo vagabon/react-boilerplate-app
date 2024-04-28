@@ -35,14 +35,14 @@ const LoginPage: React.FC<ILoginPageProps> = memo(({ googleClientId, facebookCli
             validationSchema={LOGIN_SCHEMA}
             onSubmit={handleLogin}
             backButton={false}>
-            {(props) => (
+            {(formikProps) => (
               <>
                 <div className='flex-row-responsive gap10 align-center justify-center' style={{ marginBottom: '10px' }}>
                   <LoginGoogle {...rest} />
                   <LoginFacebook {...rest} facebookClientId={facebookClientId} />
                 </div>
-                <MdInputText label='AUTH:FIELDS.LOGIN' name='username' {...props} />
-                <MdInputText label='AUTH:FIELDS.PASSWORD' name='password' type='password' {...props} />
+                <MdInputText label='AUTH:FIELDS.LOGIN' name='username' {...formikProps} />
+                <MdInputText label='AUTH:FIELDS.PASSWORD' name='password' type='password' {...formikProps} />
               </>
             )}
           </AppFormik>

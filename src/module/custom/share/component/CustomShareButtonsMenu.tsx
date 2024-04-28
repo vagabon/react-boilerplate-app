@@ -19,8 +19,10 @@ export interface ICustomShareButtonsMenuProps {
   size?: number;
 }
 
-const CustomShareButtonsMenu: React.FC<ICustomShareButtonsMenuProps> = memo(({ url, hashtag = '', size = 32 }) => {
+const CustomShareButtonsMenu: React.FC<ICustomShareButtonsMenuProps> = memo(({ url, hashtag, size }) => {
   const { getIcon } = useIcon();
+
+  const buttonSize = size ?? 32;
 
   return (
     <MdMenu
@@ -32,23 +34,23 @@ const CustomShareButtonsMenu: React.FC<ICustomShareButtonsMenuProps> = memo(({ u
           name: 'email',
           element: (
             <EmailShareButton url={url}>
-              <EmailIcon size={size} style={{ borderRadius: '5px' }} />
+              <EmailIcon size={buttonSize} style={{ borderRadius: '5px' }} />
             </EmailShareButton>
           ),
         },
         {
           name: 'facebook',
           element: (
-            <FacebookShareButton url={url} hashtag={hashtag}>
-              <FacebookIcon size={size} style={{ borderRadius: '5px' }} />
+            <FacebookShareButton url={url} hashtag={hashtag ?? '#'}>
+              <FacebookIcon size={buttonSize} style={{ borderRadius: '5px' }} />
             </FacebookShareButton>
           ),
         },
         {
           name: 'twitter',
           element: (
-            <TwitterShareButton url={url} hashtags={[hashtag]}>
-              <TwitterIcon size={size} style={{ borderRadius: '5px' }} />
+            <TwitterShareButton url={url} hashtags={[hashtag ?? '#']}>
+              <TwitterIcon size={buttonSize} style={{ borderRadius: '5px' }} />
             </TwitterShareButton>
           ),
         },
@@ -56,7 +58,7 @@ const CustomShareButtonsMenu: React.FC<ICustomShareButtonsMenuProps> = memo(({ u
           name: 'linkedin',
           element: (
             <LinkedinShareButton url={url}>
-              <LinkedinIcon size={size} style={{ borderRadius: '5px' }} />
+              <LinkedinIcon size={buttonSize} style={{ borderRadius: '5px' }} />
             </LinkedinShareButton>
           ),
         },
@@ -64,7 +66,7 @@ const CustomShareButtonsMenu: React.FC<ICustomShareButtonsMenuProps> = memo(({ u
           name: 'reddit',
           element: (
             <RedditShareButton url={url}>
-              <RedditIcon size={size} style={{ borderRadius: '5px' }} />
+              <RedditIcon size={buttonSize} style={{ borderRadius: '5px' }} />
             </RedditShareButton>
           ),
         },

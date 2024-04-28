@@ -9,29 +9,32 @@ export interface IFooterLinkDto {
 }
 
 export interface IFoorterProps extends IHeaderProp {
+  isContact?: boolean;
   links: IFooterLinkDto[];
 }
 
-const Footer: React.FC<IFoorterProps> = memo(({ email, links, ...rest }) => {
+const Footer: React.FC<IFoorterProps> = memo(({ isContact, email, links, ...rest }) => {
   return (
     <MdBox id='footer' sx={{ borderBottom: 1, borderColor: 'divider' }}>
       <MdContainer maxWidth='lg'>
         <MdTypo variant='body2' color='secondary' align='center'>
           {new Date().getFullYear()} {'©' + rest.title + ' '}
           {links?.map((link) => (
-            <>
-              {'  '}
-              <MdLink label={link.label} href={link.url} target={link.target} />
-            </>
+            <MdLink className='footer-link' key={link.label} label={link.label} href={link.url} target={link.target} />
           ))}
-          {'  '}
-          <a href={'mailto:' + email} style={{ fontSize: '1rem' }}>
-            Contact
-          </a>
+          {isContact && (
+            <a href={'mailto:' + email} style={{ fontSize: '1rem' }}>
+              Contact
+            </a>
+          )}
         </MdTypo>
       </MdContainer>
     </MdBox>
   );
 });
+
+Footer.defaultProps = {
+  isContact: true,
+};
 
 export default Footer;

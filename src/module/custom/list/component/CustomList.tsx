@@ -50,7 +50,7 @@ export interface ICustomListProps {
 const CustomList: React.FC<ICustomListProps> = memo(
   ({
     apiUrl,
-    className = '',
+    className,
     datas,
     icon,
     chipClassName,
@@ -60,7 +60,7 @@ const CustomList: React.FC<ICustomListProps> = memo(
     callbackCheckbox,
     labelDelete,
     callbackDelete,
-    iconSettings = 'settings',
+    iconSettings,
     callbackSettings,
   }) => {
     const { t } = useAppTranslate();
@@ -74,7 +74,7 @@ const CustomList: React.FC<ICustomListProps> = memo(
     const { getImage } = useAppImage(apiUrl);
 
     return (
-      <MdList className={'custom-list overflow overflow-x-none ' + className}>
+      <MdList className={'custom-list overflow overflow-x-none ' + (className ?? '')}>
         {!datas || datas.length === 0 ? (
           <MdListItem className='no-animate' component='div' disablePadding>
             <MdListItem className='no-animate'>
@@ -121,7 +121,7 @@ const CustomList: React.FC<ICustomListProps> = memo(
                 {callbackSettings && (
                   <MdListItemIcon>
                     <IconClickable
-                      icon={iconSettings}
+                      icon={iconSettings ?? 'settings'}
                       color='primary'
                       callback={() => callbackSettings(data.entity)}
                       disabled={data.disabled}

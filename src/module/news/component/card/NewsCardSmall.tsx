@@ -10,23 +10,23 @@ export interface INewsCardSmallProps extends INewsCardProps {
   endPoint: string;
 }
 
-const NewsCardSmall: React.FC<INewsCardSmallProps> = memo(({ apiUrl, ...props }) => {
+const NewsCardSmall: React.FC<INewsCardSmallProps> = memo(({ apiUrl, ...rest }) => {
   const { hasUserRole } = useRole();
 
   return (
     <MdCard
-      title={props.news.title}
-      avatar={apiUrl + '/download?fileName=' + props.news.avatar}
-      image={apiUrl + '/download?fileName=' + props.news.image}
-      date={props.news.creationDate}
-      url={'/' + props.endPoint + '/show/' + props.news.id + '/' + CustomSeoUtils.convertTitle(props.news.title)}
-      urlUpdate={hasUserRole(['ADMIN']) ? '/' + props.endPoint + '/update/' + props.news.id : undefined}>
-      <MdMarkdown content={props.news.resume}></MdMarkdown>
+      title={rest.news.title}
+      avatar={apiUrl + '/download?fileName=' + rest.news.avatar}
+      image={apiUrl + '/download?fileName=' + rest.news.image}
+      date={rest.news.creationDate}
+      url={'/' + rest.endPoint + '/show/' + rest.news.id + '/' + CustomSeoUtils.convertTitle(rest.news.title)}
+      urlUpdate={hasUserRole(['ADMIN']) ? '/' + rest.endPoint + '/update/' + rest.news.id : undefined}>
+      <MdMarkdown content={rest.news.resume}></MdMarkdown>
       <MdLink
-        href={'/' + props.endPoint + '/show/' + props.news.id + '/' + CustomSeoUtils.convertTitle(props.news.title)}
+        href={'/' + rest.endPoint + '/show/' + rest.news.id + '/' + CustomSeoUtils.convertTitle(rest.news.title)}
         label='Lire la suite...'
       />
-      <NewsShare {...props} />
+      <NewsShare {...rest} />
     </MdCard>
   );
 });

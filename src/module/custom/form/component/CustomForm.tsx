@@ -53,7 +53,7 @@ const CustomForm: React.FC<ICustomFormProps> = memo(
           validationSchema={schema}
           onSubmit={handleUpdate}
           onGoBack={urlGoBack ? handleGoBack : undefined}>
-          {(props) => (
+          {(formikProps) => (
             <>
               {conf?.map(([key, form]: [string, IFormDto]) => (
                 <Fragment key={key}>
@@ -67,7 +67,7 @@ const CustomForm: React.FC<ICustomFormProps> = memo(
                       className={form.className ?? 'width100'}
                       name={key}
                       textarea={getTextareaLength(form.type)}
-                      {...props}
+                      {...formikProps}
                       type={form.type as FormInputType}
                     />
                   )}
@@ -76,7 +76,7 @@ const CustomForm: React.FC<ICustomFormProps> = memo(
                       label={form.label}
                       className={form.className}
                       name={key}
-                      {...props}
+                      {...formikProps}
                       disabled={form.disabled}
                     />
                   )}
@@ -86,14 +86,14 @@ const CustomForm: React.FC<ICustomFormProps> = memo(
                         label={form.label}
                         className={form.className ?? 'width100'}
                         name={key}
-                        {...props}
+                        {...formikProps}
                         type={form.type as FormInputType}
                       />
                       <MdFormFile
                         label={form.label}
                         name={key}
-                        values={props.values}
-                        handleChangeFile={handleChangeFile(values.id, props.handleChange)}
+                        values={formikProps.values}
+                        handleChangeFile={handleChangeFile(values.id, formikProps.handleChange)}
                       />
                     </>
                   )}
@@ -104,14 +104,14 @@ const CustomForm: React.FC<ICustomFormProps> = memo(
                       label={form.label}
                       name={key}
                       listId={true}
-                      {...props}
+                      {...formikProps}
                     />
                   )}
                   {form.type === 'm2m' && (
-                    <CustomFormManyToMany apiUrl={apiUrl} conf={form} label={form.label} name={key} {...props} />
+                    <CustomFormManyToMany apiUrl={apiUrl} conf={form} label={form.label} name={key} {...formikProps} />
                   )}
                   {form.type === 'switch' && (
-                    <MdFormSwitch className={form.className} label={form.label} name={key} {...props} />
+                    <MdFormSwitch className={form.className} label={form.label} name={key} {...formikProps} />
                   )}
                 </Fragment>
               ))}

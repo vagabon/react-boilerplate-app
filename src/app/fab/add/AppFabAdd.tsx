@@ -12,23 +12,23 @@ export interface IAppFabAddProps {
   callback?: () => void;
 }
 
-const AppFabAdd: React.FC<IAppFabAddProps> = memo((props) => {
+const AppFabAdd: React.FC<IAppFabAddProps> = memo(({ ...rest }) => {
   const currentUser = useAppSelector<ICurrentUserDto<IUserDto> | null>((state) => state.auth.user);
   const { navigate } = useAppRouter();
 
   const doCreate = useCallback(
     (callback?: () => void) => () => {
-      props.urlAdd && navigate(props.urlAdd);
+      rest.urlAdd && navigate(rest.urlAdd);
       callback?.();
     },
-    [props.urlAdd, navigate],
+    [rest.urlAdd, navigate],
   );
 
   return (
     <div className='max-width relative'>
-      {props.urlAddRole && RoleUtils.hasProfile(currentUser, props.urlAddRole) && (
+      {rest.urlAddRole && RoleUtils.hasProfile(currentUser, rest.urlAddRole) && (
         <div style={{ position: 'absolute', bottom: '-5px', right: '1px' }}>
-          <MdFab size='medium' color='primary' callback={doCreate(props.callback)}></MdFab>
+          <MdFab size='medium' color='primary' callback={doCreate(rest.callback)}></MdFab>
         </div>
       )}
     </div>

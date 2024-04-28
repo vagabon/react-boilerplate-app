@@ -54,12 +54,12 @@ const ProfileAvatar: React.FC<IProfileAvatarProps> = memo(({ apiUrl, user, disab
           initialValues={{}}
           validationSchema={{}}
           button='AUTH:USER.AVATAR.BUTTON'>
-          {(props) => (
+          {(formikProps) => (
             <MdFormFile
               label='Avatar'
               name='avatar'
-              handleChangeFile={handleChangeFile(user.id, callbackFile(props.closeModal))}
-              {...props}
+              handleChangeFile={handleChangeFile(user.id, callbackFile(formikProps.closeModal))}
+              {...formikProps}
             />
           )}
         </CustomModaleForm>

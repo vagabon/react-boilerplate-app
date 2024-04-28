@@ -40,7 +40,7 @@ const ForgetPasswordPage: React.FC<IForgetPasswordPageProps> = memo(({ ...rest }
           validationSchema={FORGET_PASSWORD_SCHEMA}
           onSubmit={handleForgetPassword}
           backButton={false}>
-          {(props) => <MdInputText label='AUTH:FIELDS.EMAIL' name='email' {...props} />}
+          {(formikProps) => <MdInputText label='AUTH:FIELDS.EMAIL' name='email' {...formikProps} />}
         </AppFormik>
 
         <AuthFooter left={AuthFooterEnum.SIGNIN} rigth={AuthFooterEnum.SIGNUP} />

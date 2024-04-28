@@ -10,18 +10,18 @@ export interface HasRoleProps {
   childrenIfNotAllowed?: ReactNode;
 }
 
-const HasRole: React.FC<HasRoleProps> = memo((props: HasRoleProps) => {
+const HasRole: React.FC<HasRoleProps> = memo(({ ...rest }) => {
   const { hasUserRole } = useRole();
 
   return (
     <>
-      {hasUserRole(props.roles, props.notRroles) && props.children}
-      {!hasUserRole(props.roles, props.notRroles) && props.showError && !props.childrenIfNotAllowed && (
+      {hasUserRole(rest.roles, rest.notRroles) && rest.children}
+      {!hasUserRole(rest.roles, rest.notRroles) && rest.showError && !rest.childrenIfNotAllowed && (
         <MdCard style={{ marginTop: '20px', textAlign: 'center' }}>
           Vous n&apos;êtes pas habilité à voir ce contenu.
         </MdCard>
       )}
-      {!hasUserRole(props.roles, props.notRroles) && props.childrenIfNotAllowed && <>{props.childrenIfNotAllowed}</>}
+      {!hasUserRole(rest.roles, rest.notRroles) && rest.childrenIfNotAllowed && <>{rest.childrenIfNotAllowed}</>}
     </>
   );
 });

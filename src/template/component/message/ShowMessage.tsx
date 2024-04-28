@@ -1,9 +1,9 @@
 import { I18nUtils, useAppTranslate } from '@vagabond-inc/react-boilerplate-md';
 import { closeSnackbar, useSnackbar } from 'notistack';
-import { useEffect, useRef } from 'react';
+import { memo, useEffect, useRef } from 'react';
 import { useAppSelector } from '../../../store/Store';
 
-const ShowMessage: React.FC = () => {
+const ShowMessage: React.FC = memo(() => {
   const { t } = useAppTranslate();
   const { message } = useAppSelector((state) => state.common);
   const { enqueueSnackbar } = useSnackbar();
@@ -28,6 +28,6 @@ const ShowMessage: React.FC = () => {
   }, [t, message, enqueueSnackbar]);
 
   return <></>;
-};
+});
 
 export default ShowMessage;

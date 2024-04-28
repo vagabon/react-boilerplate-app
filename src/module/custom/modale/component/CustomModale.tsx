@@ -40,13 +40,13 @@ const CustomModale: React.FC<ICustomModaleProps> = memo(
     className,
     icon,
     iconColor,
-    iconBadge = 0,
-    iconBadgeColor = 'primary',
+    iconBadge,
+    iconBadgeColor,
     button,
     buttonSize,
     buttonColor,
     disabled,
-    buttonVariant = 'contained',
+    buttonVariant,
     children,
     ...rest
   }) => {
@@ -71,14 +71,14 @@ const CustomModale: React.FC<ICustomModaleProps> = memo(
         </MdCommonModal>
         {icon && iconColor && <IconClickable color={iconColor} icon={icon} callback={openModal} disabled={disabled} />}
         {(button || buttonColor) && (
-          <Badge badgeContent={iconBadge} color={iconBadgeColor}>
+          <Badge badgeContent={iconBadge ?? 0} color={iconBadgeColor ?? 'primary'}>
             <MdButton
-              className={icon ? 'button-icon' : ''}
+              className={icon ?? 'button-icon'}
               size={buttonSize}
               label={button}
               color={buttonColor}
               icon={icon}
-              variant={buttonVariant}
+              variant={buttonVariant ?? 'contained'}
               callback={openModal}
               disabled={disabled}
             />

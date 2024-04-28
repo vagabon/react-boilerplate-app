@@ -51,45 +51,45 @@ const NewsForm: React.FC<INewsFormProps> = memo(({ endPoint, newsAction, news, .
     <>
       <MdCard title={news.id ? getLocale('UPDATE') : getLocale('CREATE')}>
         <AppFormik initialValues={news} validationSchema={NEWS_SCHEMA} onSubmit={createOrUpdateNews}>
-          {(props) => (
+          {(formikProps) => (
             <>
               <MdInputText
                 label={getLocale('FIELDS.TITLE')}
                 name='title'
-                {...props}
-                handleChange={handleChange(newsForm, props.handleChange)}
+                {...formikProps}
+                handleChange={handleChange(newsForm, formikProps.handleChange)}
               />
               <MdInputText
                 label={getLocale('FIELDS.RESUME')}
                 name='resume'
                 textarea={3}
-                {...props}
-                handleChange={handleChange(newsForm, props.handleChange)}
+                {...formikProps}
+                handleChange={handleChange(newsForm, formikProps.handleChange)}
               />
               <MdInputText
                 label={getLocale('FIELDS.DESCRIPTION')}
                 name='description'
                 textarea={10}
-                {...props}
-                handleChange={handleChange(newsForm, props.handleChange)}
+                {...formikProps}
+                handleChange={handleChange(newsForm, formikProps.handleChange)}
               />
               <MdFormFile
                 label={getLocale('FIELDS.AVATAR')}
                 name='avatar'
-                handleChangeFile={handleChangeFile(newsForm.id, handleChange(newsForm, props.handleChange))}
+                handleChangeFile={handleChangeFile(newsForm.id, handleChange(newsForm, formikProps.handleChange))}
               />
               <MdFormFile
                 label={getLocale('FIELDS.IMAGE')}
                 name='image'
-                handleChangeFile={handleChangeFile(newsForm.id, handleChange(newsForm, props.handleChange))}
+                handleChangeFile={handleChangeFile(newsForm.id, handleChange(newsForm, formikProps.handleChange))}
               />
               <MdInputText
                 label={getLocale('FIELDS.TAGS')}
                 name='tags'
-                {...props}
-                handleChange={handleChange(newsForm, props.handleChange)}
+                {...formikProps}
+                handleChange={handleChange(newsForm, formikProps.handleChange)}
               />
-              <MdFormSwitch label={'ACTIVE'} name='active' {...props} />
+              <MdFormSwitch label={'ACTIVE'} name='active' {...formikProps} />
             </>
           )}
         </AppFormik>

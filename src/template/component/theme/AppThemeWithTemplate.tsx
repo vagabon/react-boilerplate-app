@@ -23,8 +23,8 @@ export interface IAppThemeWithTemplateProps extends IHeaderProp, IFoorterProps {
   children: ReactNode;
 }
 
-const AppThemeWithTemplate = memo<IAppThemeWithTemplateProps>(
-  ({ palette, generateToken, menu, i18n, showNotification, widthDrawer = true, reactHeader, children, ...rest }) => {
+const AppThemeWithTemplate: React.FC<IAppThemeWithTemplateProps> = memo(
+  ({ palette, generateToken, menu, i18n, showNotification, widthDrawer, reactHeader, children, ...rest }) => {
     const mainContainer = useRef<HTMLDivElement | null>(null);
     const { location } = useAppRouter();
     const { drawerWidth, openDrawer, variantDrawer, showOpenDrawer, handleDrawerOpen } = useAppTheme();
@@ -79,5 +79,9 @@ const AppThemeWithTemplate = memo<IAppThemeWithTemplateProps>(
     );
   },
 );
+
+AppThemeWithTemplate.defaultProps = {
+  widthDrawer: true,
+};
 
 export default AppThemeWithTemplate;

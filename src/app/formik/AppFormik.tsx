@@ -29,18 +29,18 @@ export interface IAppFormikProps {
   modalConfirm?: string;
 }
 
-const AppFormik: React.FC<IAppFormikProps> = memo(({ className = '', ...props }) => {
+const AppFormik: React.FC<IAppFormikProps> = memo(({ className, ...rest }) => {
   const dispatch = useAppDispatch();
   const { navigate } = useAppRouter();
   const { history } = useAppSelector((state) => state.common);
   const { t } = useAppTranslate();
   const { message } = useMessage();
 
-  const [state, setState] = useState<JSONObject>(props.initialValues);
+  const [state, setState] = useState<JSONObject>(rest.initialValues);
 
   useEffect(() => {
-    setState(props.initialValues);
-  }, [props.initialValues]);
+    setState(rest.initialValues);
+  }, [rest.initialValues]);
 
   const doSubmit = useCallback(
     (values: IApiDto, validateForm: (values?: IApiDto) => Promise<FormikErrors<IApiDto>>) => () => {
@@ -54,46 +54,46 @@ const AppFormik: React.FC<IAppFormikProps> = memo(({ className = '', ...props })
           );
         } else {
           dispatch(CommonAction.clearMessage());
-          props.onSubmit?.(values);
+          rest.onSubmit?.(values);
         }
       });
     },
-    [props, dispatch],
+    [rest, dispatch],
   );
 
   const onSubmit = useCallback(
     (values: IApiDto): void => {
-      props.onSubmit?.(values);
+      rest.onSubmit?.(values);
     },
-    [props],
+    [rest],
   );
 
   const goBack = useCallback((): void => {
-    if (props.onGoBack) {
-      props.onGoBack();
+    if (rest.onGoBack) {
+      rest.onGoBack();
     } else {
       const lastPage: IPathDto = history[history.length - 2];
       dispatch(CommonAction.sliceHistory());
       navigate(lastPage.link);
     }
-  }, [dispatch, history, navigate, props]);
+  }, [dispatch, history, navigate, rest]);
 
   return (
     <Formik
       initialValues={state}
-      validationSchema={YupUtils.convertToYup(props.validationSchema, t)}
+      validationSchema={YupUtils.convertToYup(rest.validationSchema, t)}
       onSubmit={onSubmit}
       autoComplete='off'
       enableReinitialize>
       {({ values, errors, touched, handleChange, handleBlur, validateForm, setFieldValue }) => (
         <>
-          <div className={'form-content ' + className}>
-            {props.children({
+          <div className={'form-content ' + (className ?? '')}>
+            {rest.children({
               values,
               state,
               errors,
               touched,
-              validationSchema: props.validationSchema,
+              validationSchema: rest.validationSchema,
               handleChange,
               handleBlur,
               handleSubmit: (values: IApiDto) => doSubmit(values, validateForm)(),
@@ -102,17 +102,17 @@ const AppFormik: React.FC<IAppFormikProps> = memo(({ className = '', ...props })
               errorMessage: message?.message,
             })}
           </div>
-          {(props.backButton || props.submitButton || props.modalConfirm) && (
+          {(rest.backButton || rest.submitButton || rest.modalConfirm) && (
             <>
               <div style={{ height: '30px' }}>&nbsp;</div>
               <div className='width100 flex-row justify-end'>
-                {props.backButton && history.length > 1 && <MdButton label='Retour' variant='text' callback={goBack} />}
-                {props.submitButton && props.onSubmit && (
+                {rest.backButton && history.length > 1 && <MdButton label='Retour' variant='text' callback={goBack} />}
+                {rest.submitButton && rest.onSubmit && (
                   <MdButton label='COMMON:SUBMIT' callback={doSubmit(values, validateForm)} />
                 )}
-                {props.modalConfirm && (
+                {rest.modalConfirm && (
                   <CustomModaleConfirm
-                    label={props.modalConfirm}
+                    label={rest.modalConfirm}
                     button='COMMON:SUBMIT'
                     callback={doSubmit(values, validateForm)}
                   />

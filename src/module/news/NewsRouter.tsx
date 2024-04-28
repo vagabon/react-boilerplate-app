@@ -12,16 +12,16 @@ export interface INewsRouterProps extends IHeaderProp {
   newsAction: IReducersActionsProps;
 }
 
-const NewsRouter: React.FC<INewsRouterProps> = memo(({ ...props }) => {
+const NewsRouter: React.FC<INewsRouterProps> = memo(({ ...rest }) => {
   return (
     <Routes>
       <Route>
-        <Route path='/' element={<NewsListPage {...props} />} />
-        <Route path='/show/:id' element={<NewsShowPage {...props} />} />
-        <Route path='/show/:id/:page' element={<NewsShowPage {...props} />} />
-        <Route path='/add' element={<NewsUpdatePage {...props} />} />
-        <Route path='/update/:id' element={<NewsUpdatePage {...props} />} />
-        <Route path='*' element={<NotFoundPage {...props} />}></Route>
+        <Route path='/' element={<NewsListPage {...rest} />} />
+        <Route path='/show/:id' element={<NewsShowPage {...rest} />} />
+        <Route path='/show/:id/:page' element={<NewsShowPage {...rest} />} />
+        <Route path='/add' element={<NewsUpdatePage {...rest} />} />
+        <Route path='/update/:id' element={<NewsUpdatePage {...rest} />} />
+        <Route path='*' element={<NotFoundPage {...rest} />}></Route>
       </Route>
     </Routes>
   );

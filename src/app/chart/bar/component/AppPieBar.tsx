@@ -6,11 +6,10 @@ import { ICustomListDto } from '../../../../module/custom/list/component/CustomL
 
 export interface IAppPieBarProps {
   custumList: ICustomListDto[];
-  width?: number;
   height?: number;
 }
 
-const AppPieBar: React.FC<IAppPieBarProps> = memo(({ custumList, width, height }) => {
+const AppPieBar: React.FC<IAppPieBarProps> = memo(({ custumList, height }) => {
   const [series, setSeries] = useState<{ id: number; value: number; label: string }[]>(
     custumList.map((item) => {
       return { id: item.entity.id as number, value: parseInt(item.chip ?? '0'), label: item.name };
@@ -39,8 +38,7 @@ const AppPieBar: React.FC<IAppPieBarProps> = memo(({ custumList, width, height }
             data: series,
           },
         ]}
-        width={width ?? 550}
-        height={height ?? 350}
+        height={height ?? 320}
       />
     </MdCard>
   );

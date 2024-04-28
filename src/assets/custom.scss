@@ -452,8 +452,8 @@ table {
 .dashboard-row, .dahsboard-row-pie {
   display: flex; flex-direction: row;
   & .MuiCardContent-root:nth-child(1) > .MuiTypography-root:nth-child(1) { height: 45px; font-size: 1.1rem !important; padding: 10px; }
-  & > div:nth-child(1) { width: 40%; height: 330px; display: flex; }
-  & > div:nth-child(2) { width: 60%; height: 330px; }
+  & > div:nth-child(1) { width: 40%; height: 340px; display: flex; }
+  & > div:nth-child(2) { width: 60%; height: 340px; }
 }
 
 .dashboard-row {

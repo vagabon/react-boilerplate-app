@@ -6,9 +6,11 @@ import { ICustomListDto } from '../../../../module/custom/list/component/CustomL
 
 export interface IAppPieBarProps {
   custumList: ICustomListDto[];
+  width?: number;
+  height?: number;
 }
 
-const AppPieBar: React.FC<IAppPieBarProps> = memo(({ custumList }) => {
+const AppPieBar: React.FC<IAppPieBarProps> = memo(({ custumList, width, height }) => {
   const [series, setSeries] = useState<{ id: number; value: number; label: string }[]>(
     custumList.map((item) => {
       return { id: item.entity.id as number, value: parseInt(item.chip ?? '0'), label: item.name };
@@ -19,7 +21,11 @@ const AppPieBar: React.FC<IAppPieBarProps> = memo(({ custumList }) => {
     custumList.length > 0 &&
       setSeries(
         custumList.map((item) => {
-          return { id: item.entity.id as number, value: parseInt(item.chip ?? '0'), label: item.name };
+          return {
+            id: item.entity.id as number,
+            value: parseInt(item.chip ?? '0'),
+            label: item.name?.length > 12 ? item.name.substring(0, 12) + '..' : item.name,
+          };
         }),
       );
     custumList.length === 0 && setSeries([{ id: 0, value: 0, label: I18nUtils.translate(t, 'NO_CLICK') }]);
@@ -33,7 +39,8 @@ const AppPieBar: React.FC<IAppPieBarProps> = memo(({ custumList }) => {
             data: series,
           },
         ]}
-        height={200}
+        width={width ?? 550}
+        height={height ?? 350}
       />
     </MdCard>
   );

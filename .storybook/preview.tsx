@@ -14,7 +14,27 @@ declare module '@mui/material/styles' {
   interface Palette extends CustomPalette {}
   interface PaletteOptions extends CustomPalette {}
 }
-const theme = createTheme();
+
+const theme = createTheme({
+  palette: {
+    mode: 'light',
+    primary: {
+      main: '#45AD1C',
+    },
+    secondary: {
+      main: '#0D3296',
+    },
+    google: {
+      main: '#ff6060',
+    },
+    facebook: {
+      main: '#009dff',
+    },
+  },
+  typography: {
+    htmlFontSize: 17,
+  },
+});
 
 export const withMuiTheme = (Story, context) => (
   <SnackbarProvider maxSnack={5}>

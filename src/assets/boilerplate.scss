@@ -9,6 +9,11 @@ button { cursor: pointer; &:focus { outline: none; } }
 .animate:hover { transform: scale(1.03); }
 .no-animate .animate:hover { transform: scale(1.00) !important; }
 
+pre { position: relative; min-height: 32px; white-space: pre-wrap; word-wrap: break-word; word-break: break-all; padding: 5px 38px 5px 5px !important;  }
+code { position: relative; display: block; width: 100%; min-height: 32px; white-space: pre-wrap; word-wrap: break-word; word-break: break-all; background-color: rgb(16, 16, 16) !important; color: rgb(156, 220, 254) !important; padding: 5px 38px 5px 5px !important; }
+.button-copy { position: absolute; top: 2px; right: 2px; svg { color: unset; } }
+pre:has(code) { padding: 0px !important;  }
+
 body, span.MuiTypography-root, p.MuiTypography-root { font-size: 1.0rem !important; }
 h1 { font-size: 2.5rem !important; margin: 0 0 5px !important; }
 h2 { font-size: 2.1rem !important; margin: 0 0 5px !important; }

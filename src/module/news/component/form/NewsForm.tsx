@@ -8,7 +8,9 @@ import {
 } from '@vagabond-inc/react-boilerplate-md';
 import { ChangeEvent, memo, useCallback, useEffect, useState } from 'react';
 import AppFormik from '../../../../app/formik/AppFormik';
+import { useMessage } from '../../../../hook/message/useMessage';
 import { useCreateNews } from '../../../../module/news/hook/useCreateNews';
+import CustomChatbotButton, { IAppChatbotButtonProps } from '../../../custom/chatbot/component/CustomChatbotButton';
 import { useCustomFormUpload } from '../../../custom/form/hook/useCustomFormUpload';
 import { IBaseCustomSeoProps } from '../../../custom/seo/component/CustomSeo';
 import { INewsRouterProps } from '../../NewsRouter';
@@ -16,11 +18,12 @@ import { INewsDto } from '../../dto/NewsDto';
 import NEWS_SCHEMA from '../../schema/news.schema.json';
 import NewsCard from '../card/NewsCard';
 
-export interface INewsFormProps extends INewsRouterProps, IBaseCustomSeoProps {
+export interface INewsFormProps extends INewsRouterProps, IBaseCustomSeoProps, IAppChatbotButtonProps {
   news: INewsDto;
 }
 
 const NewsForm: React.FC<INewsFormProps> = memo(({ endPoint, newsAction, news, ...rest }) => {
+  const { setMessage } = useMessage();
   const { createOrUpdateNews } = useCreateNews(rest.apiUrl, endPoint, newsAction, news.id as number);
   const [newsForm, setNewsForm] = useState<INewsDto>({});
   const { handleChangeFile } = useCustomFormUpload(rest.apiUrl, endPoint);
@@ -49,7 +52,9 @@ const NewsForm: React.FC<INewsFormProps> = memo(({ endPoint, newsAction, news, .
 
   return (
     <>
-      <MdCard title={news.id ? getLocale('UPDATE') : getLocale('CREATE')}>
+      <MdCard
+        title={news.id ? getLocale('UPDATE') : getLocale('CREATE')}
+        actions={<CustomChatbotButton integrations={rest.integrations} />}>
         <AppFormik initialValues={news} validationSchema={NEWS_SCHEMA} onSubmit={createOrUpdateNews}>
           {(formikProps) => (
             <>
@@ -65,6 +70,7 @@ const NewsForm: React.FC<INewsFormProps> = memo(({ endPoint, newsAction, news, .
                 textarea={3}
                 {...formikProps}
                 handleChange={handleChange(newsForm, formikProps.handleChange)}
+                callbackCopy={setMessage}
               />
               <MdInputText
                 label={getLocale('FIELDS.DESCRIPTION')}
@@ -72,6 +78,7 @@ const NewsForm: React.FC<INewsFormProps> = memo(({ endPoint, newsAction, news, .
                 textarea={10}
                 {...formikProps}
                 handleChange={handleChange(newsForm, formikProps.handleChange)}
+                callbackCopy={setMessage}
               />
               <MdFormFile
                 label={getLocale('FIELDS.AVATAR')}
@@ -94,7 +101,7 @@ const NewsForm: React.FC<INewsFormProps> = memo(({ endPoint, newsAction, news, .
           )}
         </AppFormik>
       </MdCard>
-      <NewsCard {...rest} news={newsForm} endPoint={endPoint} />
+      <NewsCard {...rest} news={newsForm} endPoint={endPoint} withSummary={false} />
     </>
   );
 });

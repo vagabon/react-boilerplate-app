@@ -65,6 +65,7 @@ $maxWidth: 1000px;
 
 /********************************************** MUI *************************************/
  
+.MuiMenu-list { justify-content: center; align-items: center; display: flex; flex-direction: column; }
 .MuiPaper-root > .MuiCardMedia-root { margin: -10px; }
 .MuiAccordionSummary-content { font-weight: bold; }
 
@@ -332,6 +333,8 @@ textarea { max-height: 250px !important; overflow: auto !important; }
   .mardown-with-summary > .MuiPaper-root:nth-child(1) { width: 100% !important; }
   .mardown-with-summary > .MuiPaper-root:nth-child(2) { width: 15% !important; position: fixed !important; right: 20px !important; }
 }
+
+.input-copy-button { position: absolute !important; right: -1px; padding: 0 !important; margin: 0 !important; top: 17px; z-index: 3; }
 
 /**** MODALE *****/
 
@@ -646,6 +649,8 @@ table {
   position: fixed; z-index: 5; width: 400px; height: 500px; bottom: 45px; right: 10px;
   iframe { border: 2px solid grey; box-shadow: 3px 0px 10px black; border-radius: 10px; }
 }
+.chatbot-frame-close { position: absolute !important; z-index: 300; top: 9px; right: 5px; }
+
 @media (max-width: 600px) {
   .chatbot-fab { width: 35px !important; height: 35px !important; min-height: 35px !important; right: 7px; }
   .chatbot-modale { width: 98%; height: calc(100% - 90px); top: 55px; bottom: 35px; right: 5px; }

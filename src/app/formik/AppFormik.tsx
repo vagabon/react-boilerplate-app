@@ -49,7 +49,7 @@ const AppFormik: React.FC<IAppFormikProps> = memo(
         validateForm(values).then((errors: FormikErrors<IApiDto>) => {
           console.debug('form errors', values, errors);
           if (Object.keys(errors).length > 0) {
-            console.log(errors);
+            console.error(errors);
             dispatch(
               CommonAction.setMessage({ id: UuidUtils.createUUID(), message: 'COMMON:FORM.ERROR', type: 'error' }),
             );

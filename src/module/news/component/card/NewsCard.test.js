@@ -12,7 +12,7 @@ describe('NewsCard', () => {
       date: '2023-12-28T15:30:22',
       tags: 'tags1,tags2',
     };
-    render(<NewsCard news={news} endPoint='news' />);
+    render(<NewsCard news={news} endPoint='news' integrations={[]} />);
     expect(screen.getAllByTestId('MdCard')).toBeDefined();
   });
 });

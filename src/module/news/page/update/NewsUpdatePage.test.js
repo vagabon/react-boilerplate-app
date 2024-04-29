@@ -16,7 +16,9 @@ describe('NewsUpdatePage', () => {
       }),
     );
     jest.spyOn(NewsService, 'fetchById').mockReturnValue(Promise.resolve({ id: 1 }));
-    const { container } = render(<NewsUpdatePage endPoint='news' newsAction={NewsAction} />);
+    const { container } = render(
+      <NewsUpdatePage endPoint='news' newsAction={NewsAction} integrations={[{ url: '' }]} />,
+    );
     expect(container.getElementsByClassName('markdown-form')[0]).toBeDefined();
   });
 });

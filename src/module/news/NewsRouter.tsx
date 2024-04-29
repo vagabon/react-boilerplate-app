@@ -2,12 +2,13 @@ import { memo } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { IReducersActionsProps } from '../../reducer/BaseReducer';
 import { IHeaderProp } from '../../template/Header';
+import { IAppChatbotButtonProps } from '../custom/chatbot/component/CustomChatbotButton';
 import NotFoundPage from '../not-found/page/NotFoundPage';
 import NewsListPage from './page/list/NewsListPage';
 import NewsShowPage from './page/show/NewsShowPage';
 import NewsUpdatePage from './page/update/NewsUpdatePage';
 
-export interface INewsRouterProps extends IHeaderProp {
+export interface INewsRouterProps extends IHeaderProp, IAppChatbotButtonProps {
   endPoint: string;
   newsAction: IReducersActionsProps;
 }

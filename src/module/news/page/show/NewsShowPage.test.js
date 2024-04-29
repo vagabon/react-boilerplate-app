@@ -14,7 +14,7 @@ describe('NewsShowPage', () => {
       }),
     );
     jest.spyOn(NewsService, 'fetchById').mockReturnValue(Promise.resolve({ id: 1 }));
-    const { container } = render(<NewsShowPage endPoint='news' newsAction={NewsAction} />);
+    const { container } = render(<NewsShowPage endPoint='news' newsAction={NewsAction} integrations={[]} />);
     expect(container.getElementsByClassName('mardown-with-summary')[0]).toBeDefined();
   });
 });

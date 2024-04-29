@@ -2,11 +2,12 @@ import { useAppRouter } from '@vagabond-inc/react-boilerplate-md';
 import { memo, useEffect } from 'react';
 import AppContent from '../../../../app/content/AppContent';
 import HasRole from '../../../../hook/role/HasRole';
+import { IAppChatbotButtonProps } from '../../../custom/chatbot/component/CustomChatbotButton';
 import { INewsRouterProps } from '../../NewsRouter';
 import NewsCard from '../../component/card/NewsCard';
 import { useCreateNews } from '../../hook/useCreateNews';
 
-export interface INewsShowPageProps extends INewsRouterProps {}
+export interface INewsShowPageProps extends INewsRouterProps, IAppChatbotButtonProps {}
 
 const NewsShowPage: React.FC<INewsShowPageProps> = memo(({ endPoint, newsAction, ...rest }) => {
   const {

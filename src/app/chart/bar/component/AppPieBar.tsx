@@ -1,6 +1,5 @@
 import { PieChart } from '@mui/x-charts';
-import { I18nUtils, MdCard } from '@vagabond-inc/react-boilerplate-md';
-import { t } from 'i18next';
+import { I18nUtils, MdCard, useAppTranslate } from '@vagabond-inc/react-boilerplate-md';
 import { memo, useEffect, useState } from 'react';
 import { ICustomListDto } from '../../../../module/custom/list/component/CustomList';
 
@@ -10,6 +9,7 @@ export interface IAppPieBarProps {
 }
 
 const AppPieBar: React.FC<IAppPieBarProps> = memo(({ custumList, height }) => {
+  const { t } = useAppTranslate();
   const [series, setSeries] = useState<{ id: number; value: number; label: string }[]>(
     custumList.map((item) => {
       return { id: item.entity.id as number, value: parseInt(item.chip ?? '0'), label: item.name };
@@ -28,7 +28,7 @@ const AppPieBar: React.FC<IAppPieBarProps> = memo(({ custumList, height }) => {
         }),
       );
     custumList.length === 0 && setSeries([{ id: 0, value: 0, label: I18nUtils.translate(t, 'NO_CLICK') }]);
-  }, [custumList]);
+  }, [custumList, t]);
 
   return (
     <MdCard>

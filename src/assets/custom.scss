@@ -249,7 +249,7 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
     .MuiPaper-root:nth-child(2) { display: none !important; }
   }
   .news-list {
-    .flex { flex-direction: column !important; }
+    /**.flex { flex-direction: column !important; }**/
     .bento { 
       flex-direction: column; gap: 5px; width: 100% !important; 
     }

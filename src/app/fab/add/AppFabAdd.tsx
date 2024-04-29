@@ -27,7 +27,7 @@ const AppFabAdd: React.FC<IAppFabAddProps> = memo(({ ...rest }) => {
   return (
     <div className='max-width relative'>
       {rest.urlAddRole && RoleUtils.hasProfile(currentUser, rest.urlAddRole) && (
-        <div style={{ position: 'absolute', bottom: '-5px', right: '1px' }}>
+        <div style={{ position: 'absolute', bottom: '1px', right: '1px' }}>
           <MdFab size='medium' color='primary' callback={doCreate(rest.callback)}></MdFab>
         </div>
       )}

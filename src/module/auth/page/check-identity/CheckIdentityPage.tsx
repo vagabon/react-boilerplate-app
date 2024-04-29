@@ -40,7 +40,7 @@ const CheckIdentityPage: React.FC<ICheckIdentityPageProps> = memo(({ ...rest }) 
 
   return (
     <AppContent {...rest} seo='SEO:IDENTITY.TITLE'>
-      <MdCard title='AUTH:CHECK_IDENTITY.TITLE'>
+      <MdCard icon='profile' title='AUTH:CHECK_IDENTITY.TITLE'>
         {state === false && (
           <AppFormik
             initialValues={DEFAULT_VALUES}

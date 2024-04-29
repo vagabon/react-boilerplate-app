@@ -5,6 +5,7 @@ export interface IRegisterDto extends IApiDto {
   email?: string;
   password?: string;
   password2?: string;
+  accept?: boolean;
 }
 
 export class RegisterDto implements IRegisterDto {

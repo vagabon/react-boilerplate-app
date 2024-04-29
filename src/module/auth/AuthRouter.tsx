@@ -18,7 +18,17 @@ const AuthRouter: React.FC<IAuthRouterProps> = ({ googleClientId, facebookClient
           path='/signin'
           element={<LoginPage googleClientId={googleClientId} facebookClientId={facebookClientId} {...rest} />}
         />
-        <Route path='/signup' element={<RegisterPage googleCaptchaId={googleCaptchaId} {...rest} />} />
+        <Route
+          path='/signup'
+          element={
+            <RegisterPage
+              googleClientId={googleClientId}
+              facebookClientId={facebookClientId}
+              googleCaptchaId={googleCaptchaId}
+              {...rest}
+            />
+          }
+        />
         <Route path='/activation/:token' element={<ActivationPage {...rest} />} />
         <Route path='/forget/password' element={<ForgetPasswordPage {...rest} />} />
         <Route path='/check/identity' element={<CheckIdentityPage {...rest} />} />

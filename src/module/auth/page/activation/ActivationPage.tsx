@@ -39,7 +39,7 @@ const ActivationPage: React.FC<IActivationPageProps> = memo(({ ...rest }) => {
 
   return (
     <AppContent {...rest} seo='SEO:ACTIVATION'>
-      <MdCard title='AUTH:ACTIVATION.TITLE'>
+      <MdCard icon='account' title='AUTH:ACTIVATION.TITLE'>
         {isActivated === undefined && <Trans i18nKey='AUTH:ACTIVATION.CURRENT' />}
         {isActivated === false && <Trans i18nKey='AUTH:ACTIVATION.FAIL' />}
         {isActivated === true && (

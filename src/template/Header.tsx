@@ -1,8 +1,9 @@
-import { AppBar, Badge, IconButton } from '@mui/material';
+import { AppBar } from '@mui/material';
 import {
   IApiDto,
   IconClickable,
   MdAvatar,
+  MdBadge,
   MdBouttonGroup,
   MdButton,
   MdLinearProgress,
@@ -89,14 +90,11 @@ const Header: React.FC<IHeaderProps> = memo(
             />
             {rest.i18n && <Language i18n={rest.i18n} />}
             {showNotification && isLoggedIn && (
-              <IconButton
-                size='large'
+              <IconClickable
                 aria-label={'show ' + nbNotification + ' new notifications'}
-                onClick={handleNavigate('/notification')}>
-                <Badge badgeContent={nbNotification} color='error'>
-                  {getIcon('notification')}
-                </Badge>
-              </IconButton>
+                callback={handleNavigate('/notification')}>
+                <MdBadge content={nbNotification}>{getIcon('notification')}</MdBadge>
+              </IconClickable>
             )}
             {rest.reactHeader}
             <MdButton url='/auth/signup' label='AUTH:SIGNUP' variant='outlined' show={!isLoggedIn} />

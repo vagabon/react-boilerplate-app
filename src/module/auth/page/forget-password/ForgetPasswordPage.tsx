@@ -34,7 +34,7 @@ const ForgetPasswordPage: React.FC<IForgetPasswordPageProps> = memo(({ ...rest }
 
   return (
     <AppContent {...rest} seo='SEO:FORGET_PASSWORD'>
-      <MdCard title='AUTH:FORGET_PASSWORD.TITLE'>
+      <MdCard icon='password' title='AUTH:FORGET_PASSWORD.TITLE'>
         <AppFormik
           initialValues={DEFAULT_VALUES}
           validationSchema={FORGET_PASSWORD_SCHEMA}

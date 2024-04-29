@@ -47,11 +47,17 @@ const ProfileShow: React.FC<IProfileShowProps> = ({
         buttonchildren={
           <>
             {currentUser?.user?.id === user.id && !disabled && (
-              <CustomModaleConfirm button='COMMON:LOGOUT' buttonColor='error' callback={handleLogout} />
+              <CustomModaleConfirm
+                button='COMMON:LOGOUT'
+                label='COMMON:LOGOUT_LABEL'
+                buttonColor='error'
+                callback={handleLogout}
+              />
             )}
           </>
         }>
-        <div className='flex align-center' style={{ flex: '0.4' }}>
+        <div className='flex align-center' style={{ flex: '0.3' }}>
+          {profileReactChildren?.(user.id)}
           <ProfileAvatar {...rest} user={user} disabled={disabled} />
         </div>
         <div className='flex flex1'>
@@ -68,7 +74,6 @@ const ProfileShow: React.FC<IProfileShowProps> = ({
           </HasRole>
         </div>
       </MdCard>
-      {profileReactChildren?.(user.id)}
     </>
   );
 };

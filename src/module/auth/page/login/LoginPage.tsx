@@ -28,28 +28,30 @@ const LoginPage: React.FC<ILoginPageProps> = memo(({ googleClientId, facebookCli
 
   return (
     <AppContent {...rest} className='max-width-800' seo='SEO:LOGIN'>
-      <GoogleOAuthProvider clientId={googleClientId}>
-        <MdCard title='AUTH:LOGIN.TITLE'>
-          <AppFormik
-            initialValues={DEFAULT_VALUES}
-            validationSchema={LOGIN_SCHEMA}
-            onSubmit={handleLogin}
-            backButton={false}>
-            {(formikProps) => (
-              <>
-                <div className='flex-row-responsive gap10 align-center justify-center' style={{ marginBottom: '10px' }}>
+      <MdCard icon='exit' title='AUTH:LOGIN.TITLE'>
+        <AppFormik
+          initialValues={DEFAULT_VALUES}
+          validationSchema={LOGIN_SCHEMA}
+          onSubmit={handleLogin}
+          backButton={false}>
+          {(formikProps) => (
+            <>
+              <div
+                className='flex-row-responsive gap10 align-center justify-center divider-margin'
+                style={{ marginBottom: '10px' }}>
+                <GoogleOAuthProvider clientId={googleClientId}>
                   <LoginGoogle {...rest} />
-                  <LoginFacebook {...rest} facebookClientId={facebookClientId} />
-                </div>
-                <MdInputText label='AUTH:FIELDS.LOGIN' name='username' {...formikProps} />
-                <MdInputText label='AUTH:FIELDS.PASSWORD' name='password' type='password' {...formikProps} />
-              </>
-            )}
-          </AppFormik>
+                </GoogleOAuthProvider>
+                <LoginFacebook {...rest} facebookClientId={facebookClientId} />
+              </div>
+              <MdInputText label='AUTH:FIELDS.LOGIN' name='username' {...formikProps} />
+              <MdInputText label='AUTH:FIELDS.PASSWORD' name='password' type='password' {...formikProps} />
+            </>
+          )}
+        </AppFormik>
 
-          <AuthFooter left={AuthFooterEnum.FORGETED_PASSWORD} rigth={AuthFooterEnum.SIGNUP} />
-        </MdCard>
-      </GoogleOAuthProvider>
+        <AuthFooter left={AuthFooterEnum.FORGETED_PASSWORD} rigth={AuthFooterEnum.SIGNUP} />
+      </MdCard>
     </AppContent>
   );
 });

@@ -3,6 +3,7 @@ export const CustomSeoUtils = {
     const titleSplit = title?.split(' ') ?? [''];
     return titleSplit.reduce(
       (value, currentValue) => value.toLocaleLowerCase() + '-' + currentValue.toLocaleLowerCase(),
+      '',
     );
   },
 };

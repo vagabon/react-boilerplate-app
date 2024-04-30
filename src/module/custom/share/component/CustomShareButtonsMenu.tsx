@@ -1,17 +1,6 @@
 import { MdMenu, useIcon } from '@vagabond-inc/react-boilerplate-md';
-import { memo } from 'react';
-import {
-  EmailIcon,
-  EmailShareButton,
-  FacebookIcon,
-  FacebookShareButton,
-  LinkedinIcon,
-  LinkedinShareButton,
-  RedditIcon,
-  RedditShareButton,
-  TwitterIcon,
-  TwitterShareButton,
-} from 'react-share';
+import React, { memo, useCallback } from 'react';
+import CustomShareButtonsMenuButton from './CustomShareButtonsMenuButton';
 
 export interface ICustomShareButtonsMenuProps {
   url: string;
@@ -19,10 +8,21 @@ export interface ICustomShareButtonsMenuProps {
   size?: number;
 }
 
-const CustomShareButtonsMenu: React.FC<ICustomShareButtonsMenuProps> = memo(({ url, hashtag, size }) => {
+const CustomShareButtonsMenu: React.FC<ICustomShareButtonsMenuProps> = memo(({ url, hashtag, size = 32 }) => {
   const { getIcon } = useIcon();
 
-  const buttonSize = size ?? 32;
+  const getElement = useCallback(
+    (type: string, handleClose: () => void) => (
+      <CustomShareButtonsMenuButton
+        type={type}
+        url={url}
+        hashtag={hashtag}
+        buttonSize={size}
+        handleClose={handleClose}
+      />
+    ),
+    [url, hashtag, size],
+  );
 
   return (
     <MdMenu
@@ -32,43 +32,23 @@ const CustomShareButtonsMenu: React.FC<ICustomShareButtonsMenuProps> = memo(({ u
       elements={[
         {
           name: 'email',
-          element: (handleClose) => (
-            <EmailShareButton url={url} onClick={handleClose}>
-              <EmailIcon size={buttonSize} style={{ borderRadius: '5px' }} />
-            </EmailShareButton>
-          ),
+          element: (handleClose) => getElement('email', handleClose),
         },
         {
           name: 'facebook',
-          element: (handleClose) => (
-            <FacebookShareButton url={url} hashtag={hashtag ?? '#'} onClick={handleClose}>
-              <FacebookIcon size={buttonSize} style={{ borderRadius: '5px' }} />
-            </FacebookShareButton>
-          ),
+          element: (handleClose) => getElement('facebook', handleClose),
         },
         {
           name: 'twitter',
-          element: (handleClose) => (
-            <TwitterShareButton url={url} hashtags={[hashtag ?? '#']} onClick={handleClose}>
-              <TwitterIcon size={buttonSize} style={{ borderRadius: '5px' }} />
-            </TwitterShareButton>
-          ),
+          element: (handleClose) => getElement('twitter', handleClose),
         },
         {
           name: 'linkedin',
-          element: (handleClose) => (
-            <LinkedinShareButton url={url} onClick={handleClose}>
-              <LinkedinIcon size={buttonSize} style={{ borderRadius: '5px' }} />
-            </LinkedinShareButton>
-          ),
+          element: (handleClose) => getElement('linkedin', handleClose),
         },
         {
           name: 'reddit',
-          element: (handleClose) => (
-            <RedditShareButton url={url} onClick={handleClose}>
-              <RedditIcon size={buttonSize} style={{ borderRadius: '5px' }} />
-            </RedditShareButton>
-          ),
+          element: (handleClose) => getElement('reddit', handleClose),
         },
       ]}
     />

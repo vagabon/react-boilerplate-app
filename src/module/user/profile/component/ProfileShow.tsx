@@ -40,41 +40,39 @@ const ProfileShow: React.FC<IProfileShowProps> = ({
   }, [httpPost]);
 
   return (
-    <>
-      <MdCard
-        icon='profile'
-        title={user?.username}
-        buttonchildren={
-          <>
-            {currentUser?.user?.id === user.id && !disabled && (
-              <CustomModaleConfirm
-                button='COMMON:LOGOUT'
-                label='COMMON:LOGOUT_LABEL'
-                buttonColor='error'
-                callback={handleLogout}
-              />
-            )}
-          </>
-        }>
-        <div className='flex align-center' style={{ flex: '0.3' }}>
-          {profileReactChildren?.(user.id)}
-          <ProfileAvatar {...rest} user={user} disabled={disabled} />
-        </div>
-        <div className='flex flex1'>
-          {profileReact(user.id)}
+    <MdCard
+      icon='profile'
+      title={user?.username}
+      buttonchildren={
+        <>
+          {currentUser?.user?.id === user.id && !disabled && (
+            <CustomModaleConfirm
+              button='COMMON:LOGOUT'
+              label='COMMON:LOGOUT_LABEL'
+              buttonColor='error'
+              callback={handleLogout}
+            />
+          )}
+        </>
+      }>
+      <div className='flex align-center' style={{ flex: '0.3' }}>
+        {profileReactChildren?.(user.id)}
+        <ProfileAvatar {...rest} user={user} disabled={disabled} />
+      </div>
+      <div className='flex flex1'>
+        {profileReact(user.id)}
 
-          <ProfileForm {...rest} i18n={i18n} user={user} disabled={disabled} />
+        <ProfileForm {...rest} i18n={i18n} user={user} disabled={disabled} />
 
-          <HasRole roles={['ADMIN']} showError={false}>
-            <MdDivider />
-            <MdBouttonGroup sx={{ gap: '10px', justifyContent: 'flex-end', margin: '10px 5px' }}>
-              <MdButton label='SEND_NOTIFICATION' callback={handleSendNotification} />
-              <MdButton label='SEND_MAIL' callback={handleSendEmail} />
-            </MdBouttonGroup>
-          </HasRole>
-        </div>
-      </MdCard>
-    </>
+        <HasRole roles={['ADMIN']} showError={false}>
+          <MdDivider />
+          <MdBouttonGroup sx={{ gap: '10px', justifyContent: 'flex-end', margin: '10px 5px' }}>
+            <MdButton label='SEND_NOTIFICATION' callback={handleSendNotification} />
+            <MdButton label='SEND_MAIL' callback={handleSendEmail} />
+          </MdBouttonGroup>
+        </HasRole>
+      </div>
+    </MdCard>
   );
 };
 

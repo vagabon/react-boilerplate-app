@@ -69,7 +69,7 @@ export const ApiService = {
     if (response.data) {
       return Promise.resolve(response.data);
     } else {
-      return Promise.reject(response);
+      return Promise.reject(new Error('NO DATA PRESENT INTO RESPONSE'));
     }
   },
 

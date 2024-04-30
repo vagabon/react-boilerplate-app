@@ -15,32 +15,35 @@ const AppChatbotButton: React.FC<IAppChatbotButtonProps> = ({ integrations }) =>
   const { getIcon } = useIcon();
   const { handleClick } = useChatbot();
 
+  const getElement = useCallback(
+    (integration: IChatbotIntegrationDto, handleClose: () => void) => (
+      <MdButton label={integration.name} callback={handleClick(integration.url, true, handleClose)} fullWidth />
+    ),
+    [handleClick],
+  );
+
   const getIntegrations = useCallback(
     (integrations: IChatbotIntegrationDto[]) => {
       const newIntegrations = integrations.map((integration) => {
         return {
           name: integration.name,
-          element: (handleClose: () => void) => (
-            <MdButton label={integration.name} callback={handleClick(integration.url, true, handleClose)} fullWidth />
-          ),
+          element: (handleClose: () => void) => getElement(integration, handleClose),
         };
       });
       return newIntegrations;
     },
-    [handleClick],
+    [getElement],
   );
 
   return (
     <>
       {integrations.length > 0 && (
-        <>
-          <MdMenu
-            className='button-icon'
-            variant='text'
-            title={<>{getIcon('toy', 'inherit')}</>}
-            elements={getIntegrations(integrations)}
-          />
-        </>
+        <MdMenu
+          className='button-icon'
+          variant='text'
+          title={<>{getIcon('toy', 'inherit')}</>}
+          elements={getIntegrations(integrations)}
+        />
       )}
     </>
   );

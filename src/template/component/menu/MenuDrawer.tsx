@@ -20,9 +20,10 @@ const MenuDrawer: React.FC<IDrawerProps> = memo(
   ({ apiUrl, drawerWidth, openDrawer, variantDrawer, menu, callbackClose }) => {
     const { t } = useAppTranslate();
     const { getIcon } = useIcon();
-    const { location, handleNavigate } = useAppRouter();
+    const { location } = useAppRouter();
     const { isLoggedIn } = useAuth(apiUrl);
     const [currentLocation, setCurrentLocation] = useState<string>(location.pathname);
+    const { Link } = useAppRouter();
 
     useEffect(() => {
       setCurrentLocation(location.pathname);
@@ -67,8 +68,10 @@ const MenuDrawer: React.FC<IDrawerProps> = memo(
                       <ListItem
                         key={menu.link}
                         disablePadding
-                        className={isCurrentLocation(menu.link) ? 'selected-secondary' : ''}>
-                        <ListItemButton onClick={handleNavigate(menu.link, callbackClose)}>
+                        className={isCurrentLocation(menu.link) ? 'selected-secondary' : ''}
+                        component={Link}
+                        to={menu.link}>
+                        <ListItemButton onClick={callbackClose}>
                           {menu.icon && <ListItemIcon>{getIcon(menu.icon, 'secondary')}</ListItemIcon>}
                           <ListItemText primary={I18nUtils.translate(t, menu.title)} />
                         </ListItemButton>
@@ -83,8 +86,10 @@ const MenuDrawer: React.FC<IDrawerProps> = memo(
                               showError={false}>
                               <ListItem
                                 disablePadding
-                                className={isCurrentLocation(child.link) ? 'selected-primary' : ''}>
-                                <ListItemButton onClick={handleNavigate(child.link, callbackClose)}>
+                                className={isCurrentLocation(child.link) ? 'selected-primary' : ''}
+                                component={Link}
+                                to={child.link}>
+                                <ListItemButton onClick={callbackClose}>
                                   {menu.icon && <ListItemIcon>{getIcon(child.icon, 'primary')}</ListItemIcon>}
                                   <ListItemText primary={I18nUtils.translate(t, child.title)} />
                                 </ListItemButton>

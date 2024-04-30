@@ -8,7 +8,7 @@ export interface IChatbotIntegrationDto extends IApiDto {
 }
 
 export interface IAppChatbotButtonProps {
-  integrations: IChatbotIntegrationDto[];
+  integrations?: IChatbotIntegrationDto[];
 }
 
 const AppChatbotButton: React.FC<IAppChatbotButtonProps> = ({ integrations }) => {
@@ -23,13 +23,14 @@ const AppChatbotButton: React.FC<IAppChatbotButtonProps> = ({ integrations }) =>
   );
 
   const getIntegrations = useCallback(
-    (integrations: IChatbotIntegrationDto[]) => {
-      const newIntegrations = integrations.map((integration) => {
-        return {
-          name: integration.name,
-          element: (handleClose: () => void) => getElement(integration, handleClose),
-        };
-      });
+    (integrations?: IChatbotIntegrationDto[]) => {
+      const newIntegrations =
+        integrations?.map((integration) => {
+          return {
+            name: integration.name,
+            element: (handleClose: () => void) => getElement(integration, handleClose),
+          };
+        }) ?? [];
       return newIntegrations;
     },
     [getElement],
@@ -37,7 +38,7 @@ const AppChatbotButton: React.FC<IAppChatbotButtonProps> = ({ integrations }) =>
 
   return (
     <>
-      {integrations.length > 0 && (
+      {(integrations?.length ?? 0) > 0 && (
         <MdMenu
           className='button-icon'
           variant='text'

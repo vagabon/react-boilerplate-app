@@ -47,7 +47,12 @@ describe('AppThemeWithTemplate', () => {
   test('renders AppThemeWithTemplate', () => {
     useAppSelectorSpy.mockImplementation((callback) =>
       callback({
-        common: { loading: false, history: [], message: { id: '', message: '', type: 'success' } },
+        common: {
+          loading: false,
+          history: [],
+          message: { id: '', message: '', type: 'success' },
+          chatbot: { selected: '', show: true },
+        },
         auth: { isLoggedIn: false },
         notification: { nbNotification: 0, datas: [] },
       }),

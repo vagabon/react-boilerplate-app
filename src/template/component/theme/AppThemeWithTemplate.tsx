@@ -2,6 +2,7 @@ import { JSONObject, useAppRouter } from '@vagabond-inc/react-boilerplate-md';
 import { type i18n as i18nType } from 'i18next';
 import { ReactNode, memo, useEffect, useRef } from 'react';
 import { IMenuDto } from '../../../dto/menu/MenuDto';
+import CustomChatbotIntegration from '../../../module/custom/chatbot/component/CustomChatbotIntegration';
 import Footer, { IFoorterProps } from '../../Footer';
 import Header, { IHeaderProp } from '../../Header';
 import { useAppFirebaseToken } from '../../hook/useAppFirebaseToken';
@@ -72,6 +73,7 @@ const AppThemeWithTemplate: React.FC<IAppThemeWithTemplateProps> = memo(
               </div>
             </div>
             <CookieConsents />
+            <CustomChatbotIntegration />
             <Footer {...rest} />
           </>
         )}

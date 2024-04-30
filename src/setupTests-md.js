@@ -161,7 +161,7 @@ export const mockBoilerPlateMd = {
   MdMenu: ({ elements }) => (
     <div data-testid='MdMenu'>
       {elements.map((element) => (
-        <div>{element.element}</div>
+        <div>{element.element()}</div>
       ))}
     </div>
   ),

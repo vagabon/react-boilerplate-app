@@ -12,6 +12,11 @@ export interface IMessageState {
 
 export type ScrollsType = { pathname: string; position: number };
 
+export type ChatbotType = {
+  show: boolean;
+  selected: string;
+};
+
 export interface IApiState {
   message: IMessageState;
   loading: boolean;
@@ -19,6 +24,7 @@ export interface IApiState {
   scrolls: ScrollsType[];
   modeTheme: string;
   language: string;
+  chatbot: ChatbotType;
 }
 
 const SUCCESS: MessageType = 'success';
@@ -33,6 +39,7 @@ const initialState: IApiState = {
   scrolls: [],
   modeTheme: '',
   language: language,
+  chatbot: { show: false, selected: '' },
 };
 
 export const CommonReducer = createSlice({
@@ -124,6 +131,12 @@ export const CommonReducer = createSlice({
       return {
         ...state,
         language: action?.payload,
+      };
+    },
+    setChatbot: (state: IApiState, action: PayloadAction<ChatbotType>) => {
+      return {
+        ...state,
+        chatbot: action?.payload,
       };
     },
   },

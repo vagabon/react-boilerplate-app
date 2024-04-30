@@ -4,12 +4,19 @@ import { useRef, useState } from 'react';
 export interface ICustomChatboIframeProps {
   showChatbot: boolean;
   iframeUrl: string;
+  acceptCopy?: boolean;
   callbackClose?: () => void;
 }
 
-const CustomChatboIframe: React.FC<ICustomChatboIframeProps> = ({ showChatbot, iframeUrl, callbackClose }) => {
+const CustomChatboIframe: React.FC<ICustomChatboIframeProps> = ({
+  showChatbot,
+  acceptCopy,
+  iframeUrl,
+  callbackClose,
+}) => {
   const ref = useRef<HTMLIFrameElement>(null);
   const [lastText, setLastText] = useState('');
+  const [big, setBig] = useState(false);
 
   const onLoad = (lastText: string) => async () => {
     try {
@@ -26,17 +33,22 @@ const CustomChatboIframe: React.FC<ICustomChatboIframeProps> = ({ showChatbot, i
   return (
     <>
       {iframeUrl && (
-        <div className={'chatbot-modale ' + (showChatbot ? '' : 'hidden')}>
-          {callbackClose && <IconClickable className='chatbot-frame-close' icon='close' callback={callbackClose} />}
+        <div className={'chatbot-modale ' + (big ? 'chatbot-modale-big' : '') + ' ' + (showChatbot ? '' : 'hidden')}>
+          {callbackClose && (
+            <div className='chatbot-frame-close'>
+              <IconClickable icon={big ? 'reducer' : 'expand'} callback={() => setBig(!big)} />
+              <IconClickable icon='close' callback={callbackClose} />
+            </div>
+          )}
           <iframe
             ref={ref}
             id='iframe-chatbot'
             title='chatbot'
-            src={iframeUrl}
+            src={iframeUrl + '/' + localStorage.getItem('mode_theme')}
             width='100%'
             height='100%'
-            onLoad={onLoad(lastText)}
-            onMouseEnter={onLoad(lastText)}
+            onLoad={acceptCopy ? onLoad(lastText) : undefined}
+            onMouseEnter={acceptCopy ? onLoad(lastText) : undefined}
             allow='clipboard-read; clipboard-write'
             aria-hidden></iframe>
         </div>

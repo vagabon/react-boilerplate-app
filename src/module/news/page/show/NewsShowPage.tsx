@@ -21,7 +21,13 @@ const NewsShowPage: React.FC<INewsShowPageProps> = memo(({ endPoint, newsAction,
 
   return (
     <HasRole roles={[]}>
-      <AppContent id={id} className='mardown-with-summary' seo='SEO:NEWS.TITLE' {...rest}>
+      <AppContent
+        id={id}
+        className='mardown-with-summary'
+        seo='SEO:NEWS'
+        seoTitle={news?.title}
+        seoDescription={news?.description}
+        {...rest}>
         {id && <NewsCard {...rest} news={news ?? {}} endPoint={endPoint} />}
       </AppContent>
     </HasRole>

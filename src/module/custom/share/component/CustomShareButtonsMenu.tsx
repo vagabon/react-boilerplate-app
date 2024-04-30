@@ -32,40 +32,40 @@ const CustomShareButtonsMenu: React.FC<ICustomShareButtonsMenuProps> = memo(({ u
       elements={[
         {
           name: 'email',
-          element: (
-            <EmailShareButton url={url}>
+          element: (handleClose) => (
+            <EmailShareButton url={url} onClick={handleClose}>
               <EmailIcon size={buttonSize} style={{ borderRadius: '5px' }} />
             </EmailShareButton>
           ),
         },
         {
           name: 'facebook',
-          element: (
-            <FacebookShareButton url={url} hashtag={hashtag ?? '#'}>
+          element: (handleClose) => (
+            <FacebookShareButton url={url} hashtag={hashtag ?? '#'} onClick={handleClose}>
               <FacebookIcon size={buttonSize} style={{ borderRadius: '5px' }} />
             </FacebookShareButton>
           ),
         },
         {
           name: 'twitter',
-          element: (
-            <TwitterShareButton url={url} hashtags={[hashtag ?? '#']}>
+          element: (handleClose) => (
+            <TwitterShareButton url={url} hashtags={[hashtag ?? '#']} onClick={handleClose}>
               <TwitterIcon size={buttonSize} style={{ borderRadius: '5px' }} />
             </TwitterShareButton>
           ),
         },
         {
           name: 'linkedin',
-          element: (
-            <LinkedinShareButton url={url}>
+          element: (handleClose) => (
+            <LinkedinShareButton url={url} onClick={handleClose}>
               <LinkedinIcon size={buttonSize} style={{ borderRadius: '5px' }} />
             </LinkedinShareButton>
           ),
         },
         {
           name: 'reddit',
-          element: (
-            <RedditShareButton url={url}>
+          element: (handleClose) => (
+            <RedditShareButton url={url} onClick={handleClose}>
               <RedditIcon size={buttonSize} style={{ borderRadius: '5px' }} />
             </RedditShareButton>
           ),

@@ -63,6 +63,7 @@ const NewsForm: React.FC<INewsFormProps> = memo(({ endPoint, newsAction, news, .
                 name='title'
                 {...formikProps}
                 handleChange={handleChange(newsForm, formikProps.handleChange)}
+                callbackCopy={setMessage}
               />
               <MdInputText
                 label={getLocale('FIELDS.RESUME')}
@@ -95,6 +96,7 @@ const NewsForm: React.FC<INewsFormProps> = memo(({ endPoint, newsAction, news, .
                 name='tags'
                 {...formikProps}
                 handleChange={handleChange(newsForm, formikProps.handleChange)}
+                callbackCopy={setMessage}
               />
               <MdFormSwitch label={'ACTIVE'} name='active' {...formikProps} />
             </>

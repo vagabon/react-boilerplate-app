@@ -2,6 +2,7 @@ import { JSONObject, useAppRouter } from '@vagabond-inc/react-boilerplate-md';
 import { type i18n as i18nType } from 'i18next';
 import { ReactNode, memo, useEffect, useRef } from 'react';
 import { IMenuDto } from '../../../dto/menu/MenuDto';
+import CustomChatbot from '../../../module/custom/chatbot/component/CustomChatbot';
 import CustomChatbotIntegration from '../../../module/custom/chatbot/component/CustomChatbotIntegration';
 import Footer, { IFoorterProps } from '../../Footer';
 import Header, { IHeaderProp } from '../../Header';
@@ -21,6 +22,7 @@ export interface IAppThemeWithTemplateProps extends IHeaderProp, IFoorterProps {
   showNotification?: boolean;
   widthDrawer?: boolean;
   reactHeader?: ReactNode;
+  iframeChatbotUrl?: string;
   children: ReactNode;
 }
 
@@ -73,6 +75,7 @@ const AppThemeWithTemplate: React.FC<IAppThemeWithTemplateProps> = memo(
               </div>
             </div>
             <CookieConsents />
+            <CustomChatbot iframeUrl={rest.iframeChatbotUrl} />
             <CustomChatbotIntegration />
             <Footer {...rest} />
           </>

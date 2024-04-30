@@ -3,7 +3,7 @@ import { useState } from 'react';
 import CustomChatboIframe from './CustomChatboIframe';
 
 export interface ICustomChatbotProps {
-  iframeUrl: string;
+  iframeUrl?: string;
 }
 
 const CustomChatbot: React.FC<ICustomChatbotProps> = ({ iframeUrl }) => {
@@ -11,19 +11,23 @@ const CustomChatbot: React.FC<ICustomChatbotProps> = ({ iframeUrl }) => {
 
   return (
     <>
-      <MdFab
-        className='chatbot-fab'
-        icon='toy'
-        size='small'
-        color='primary'
-        callback={() => setShowChatbot(!showChatbot)}
-      />
-      <CustomChatboIframe
-        showChatbot={showChatbot}
-        iframeUrl={iframeUrl}
-        callbackClose={() => setShowChatbot(false)}
-        acceptCopy={false}
-      />
+      {iframeUrl && (
+        <>
+          <MdFab
+            className='chatbot-fab'
+            icon='toy'
+            size='small'
+            color='primary'
+            callback={() => setShowChatbot(!showChatbot)}
+          />
+          <CustomChatboIframe
+            showChatbot={showChatbot}
+            iframeUrl={iframeUrl}
+            callbackClose={() => setShowChatbot(false)}
+            acceptCopy={false}
+          />
+        </>
+      )}
     </>
   );
 };

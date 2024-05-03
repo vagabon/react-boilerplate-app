@@ -1,5 +1,12 @@
 import { GoogleOAuthProvider } from '@react-oauth/google';
-import { JSONObject, MdCard, MdFormSwitch, MdInputText, useAppTranslate } from '@vagabond-inc/react-boilerplate-md';
+import {
+  JSONObject,
+  MdCard,
+  MdFormSwitch,
+  MdInputText,
+  ObjectUtils,
+  useAppTranslate,
+} from '@vagabond-inc/react-boilerplate-md';
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { useApiService } from '../../../../api/hook/useApiService';
@@ -76,7 +83,12 @@ const RegisterPage: React.FC<IRegisterPageProps> = memo(
                     </GoogleOAuthProvider>
                     <LoginFacebook {...rest} facebookClientId={facebookClientId} />
                   </div>
-                  <MdInputText label='AUTH:FIELDS.LOGIN' name='username' {...formikProps} />
+                  <MdInputText
+                    label='AUTH:FIELDS.LOGIN'
+                    name='username'
+                    {...formikProps}
+                    changeValue={ObjectUtils.toLowerCase}
+                  />
                   <MdInputText label='AUTH:FIELDS.EMAIL' name='email' {...formikProps} />
                   <MdInputText label='AUTH:FIELDS.PASSWORD' name='password' type='password' {...formikProps} />
                   <MdInputText label='AUTH:FIELDS.PASSWORD_CONFIRM' name='password2' type='password' {...formikProps} />

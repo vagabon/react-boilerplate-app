@@ -285,10 +285,13 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
 /**** MANY TOO MANY ****/
 
 .m2m {
-  flex-direction: column;
+  flex-direction: column; margin: 10px 1px 0px;
   & > div {
     display: flex; justify-content: space-between; flex-direction: row; align-items: baseline;
-    & > div .MuiChip-root { margin: 5px; }
+    & > div:nth-child(2) { gap: 10px; display: flex; }
+    & > div {
+      .MuiChip-root { margin: 5px; }
+    } 
     & button { min-width: 25px !important;}
   }
 }

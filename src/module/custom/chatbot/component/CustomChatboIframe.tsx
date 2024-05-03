@@ -1,5 +1,5 @@
 import { IconClickable } from '@vagabond-inc/react-boilerplate-md';
-import { useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 
 export interface ICustomChatboIframeProps {
   showChatbot: boolean;
@@ -30,6 +30,14 @@ const CustomChatboIframe: React.FC<ICustomChatboIframeProps> = ({
     }
   };
 
+  const getTheme = useCallback(() => {
+    const theme = localStorage.getItem('mode_theme');
+    if (theme !== 'light' && theme !== 'dark') {
+      return 'light';
+    }
+    return theme;
+  }, []);
+
   return (
     <>
       {iframeUrl && (
@@ -44,7 +52,7 @@ const CustomChatboIframe: React.FC<ICustomChatboIframeProps> = ({
             ref={ref}
             id='iframe-chatbot'
             title='chatbot'
-            src={iframeUrl + '/' + localStorage.getItem('mode_theme')}
+            src={iframeUrl + '/' + getTheme()}
             width='100%'
             height='100%'
             onLoad={acceptCopy ? onLoad(lastText) : undefined}

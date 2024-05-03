@@ -2,8 +2,9 @@
   "username": {
     "required": true,
     "min": 5,
-    "max": 50,
-    "regexp": "^[a-zA-Z0-9_-]{5,50}(?! )+"
+    "max": 20,
+    "regexp": "^[a-zA-Z0-9_-]*$",
+    "regexpError": "ERRORS:FORMAT_USERNAME"
   },
   "email": {
     "required": true,

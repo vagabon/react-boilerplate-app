@@ -12,7 +12,7 @@ const AppPieBar: React.FC<IAppPieBarProps> = memo(({ custumList, height }) => {
   const { t } = useAppTranslate();
   const [series, setSeries] = useState<{ id: number; value: number; label: string }[]>(
     custumList.map((item) => {
-      return { id: item.entity.id as number, value: parseInt(item.chip ?? '0'), label: item.name };
+      return { id: item.entity.id as number, value: parseInt(item.chip?.toString() ?? '0'), label: item.name };
     }),
   );
 
@@ -22,7 +22,7 @@ const AppPieBar: React.FC<IAppPieBarProps> = memo(({ custumList, height }) => {
         custumList.map((item) => {
           return {
             id: item.entity.id as number,
-            value: parseInt(item.chip ?? '0'),
+            value: parseInt(item.chip?.toString() ?? '0'),
             label: item.name?.length > 12 ? item.name.substring(0, 12) + '..' : item.name,
           };
         }),

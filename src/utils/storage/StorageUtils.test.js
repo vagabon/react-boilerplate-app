@@ -44,7 +44,7 @@ describe('storage getCurrentUser', () => {
     const localstorageSpy = jest.spyOn(window.localStorage, 'getItem').mockReturnValue('{"name": "name"}');
     const tested = StorageUtils.getCurrentUser();
     expect(tested).not.toBeNull();
-    expect(localstorageSpy).toHaveBeenLastCalledWith('cookie-consent');
+    expect(localstorageSpy).toHaveBeenLastCalledWith('storage_name');
   });
 
   test('Given StorageUtils When current user is get with wrong data Then localstorage is in error', () => {
@@ -52,7 +52,7 @@ describe('storage getCurrentUser', () => {
     const localstorageSpy = jest.spyOn(window.localStorage, 'getItem').mockReturnValue('{{"name": "name"}');
     const tested = StorageUtils.getCurrentUser();
     expect(tested).toBe(undefined);
-    expect(localstorageSpy).toHaveBeenLastCalledWith('cookie-consent');
+    expect(localstorageSpy).toHaveBeenLastCalledWith('storage_name');
   });
 });
 

@@ -225,6 +225,10 @@ export const mockBoilerPlateMd = {
   },
   ObjectUtils: {
     capitalize: (data) => data,
+    toLowerCase: (data) => data.toLowerCase(),
+    toUpperCase: (data) => data.toUpperCase(),
+    toNumberFormat: (data) => data,
+    toNumberShot: (data) => data,
     getDtoValue: (data, name) => data?.[name],
     getDtoString: (data, name) => data?.[name],
     getRecursivValue: (data, name) => data?.[name],

@@ -1,5 +1,5 @@
 import { GoogleOAuthProvider } from '@react-oauth/google';
-import { MdCard, MdInputText } from '@vagabond-inc/react-boilerplate-md';
+import { MdCard, MdInputText, ObjectUtils } from '@vagabond-inc/react-boilerplate-md';
 import { memo, useEffect } from 'react';
 import AppContent from '../../../../app/content/AppContent';
 import AppFormik from '../../../../app/formik/AppFormik';
@@ -44,7 +44,12 @@ const LoginPage: React.FC<ILoginPageProps> = memo(({ googleClientId, facebookCli
                 </GoogleOAuthProvider>
                 <LoginFacebook {...rest} facebookClientId={facebookClientId} />
               </div>
-              <MdInputText label='AUTH:FIELDS.LOGIN' name='username' {...formikProps} />
+              <MdInputText
+                label='AUTH:FIELDS.LOGIN'
+                name='username'
+                {...formikProps}
+                changeValue={ObjectUtils.toLowerCase}
+              />
               <MdInputText label='AUTH:FIELDS.PASSWORD' name='password' type='password' {...formikProps} />
             </>
           )}

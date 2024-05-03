@@ -23,7 +23,7 @@ export interface ICustomListDto {
   avatar?: string;
   user?: IApiDto;
   icon?: string;
-  chip?: string;
+  chip?: string | number;
   name: string;
   secondary?: string;
   checked?: boolean;
@@ -116,7 +116,9 @@ const CustomList: React.FC<ICustomListProps> = memo(
                   label={data.name}
                   secondary={<>{data.secondary}</>}
                 />
-                {data.chip && <MdChip className={chipClassName} label={data.chip} icon={icon} />}
+                {(data.chip || data.chip === 0) && (
+                  <MdChip className={chipClassName} label={String(data.chip)} icon={icon} />
+                )}
                 {buttonChildren && <>{buttonChildren(data.entity)}</>}
                 {callbackSettings && (
                   <MdListItemIcon>

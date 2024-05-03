@@ -91,7 +91,6 @@ const AppFormik: React.FC<IAppFormikProps> = memo(
             <div className={'form-content ' + className}>
               {rest.children({
                 values,
-                state,
                 errors,
                 touched,
                 validationSchema: rest.validationSchema,
@@ -105,7 +104,7 @@ const AppFormik: React.FC<IAppFormikProps> = memo(
             </div>
             {(backButton || submitButton || rest.modalConfirm) && (
               <>
-                <div style={{ height: '30px' }}>&nbsp;</div>
+                <div style={{ height: '20px' }}>&nbsp;</div>
                 <div className='width100 flex-row justify-end'>
                   {backButton && history.length > 1 && <MdButton label='Retour' variant='text' callback={goBack} />}
                   {submitButton && rest.onSubmit && (

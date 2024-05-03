@@ -17,9 +17,6 @@ export const StorageUtils = {
   },
 
   set: (name: string, data: JSONObject) => {
-    if (!StorageUtils.validateConsent()) {
-      return;
-    }
     localStorage.setItem(name, JSON.stringify(data));
   },
 
@@ -28,9 +25,6 @@ export const StorageUtils = {
   },
 
   get: <T>(name: string) => {
-    if (!StorageUtils.validateConsent()) {
-      return;
-    }
     try {
       return JSON.parse(localStorage.getItem(name) ?? '') as T;
     } catch (e) {
@@ -39,11 +33,7 @@ export const StorageUtils = {
   },
 
   setCurrentUser: <U>(data: ICurrentUserDto<U>): void => {
-    if (StorageUtils.validateConsent()) {
-      StorageUtils.set('storage_name', data as JSONObject);
-    } else {
-      StorageUtils.removeCurrentUser();
-    }
+    StorageUtils.set('storage_name', data as JSONObject);
   },
 
   removeCurrentUser: (): void => {

@@ -1,6 +1,6 @@
 {
   "name": "@vagabond-inc/react-boilerplate-app",
-  "version": "1.0.104",
+  "version": "1.0.108",
   "description": "Boilerplate App for React (Auth / Admin / News)",
   "private": false,
   "type": "module",
@@ -31,6 +31,7 @@
     "notistack": "~3.0.1",
     "react": "~18.3.1",
     "react-dom": "~18.3.1",
+    "react-ga4": "~2.1.0",
     "react-google-recaptcha": "~3.1.0",
     "react-helmet-async": "~2.0.4",
     "react-redux": "~9.1.1",
@@ -38,7 +39,7 @@
     "yup": "~1.4.0"
   },
   "devDependencies": {
-    "@vagabond-inc/react-boilerplate-md": "1.0.58",
+    "@vagabond-inc/react-boilerplate-md": "1.0.60",
     "@babel/preset-env": "~7.24.4",
     "@babel/preset-react": "~7.24.1",
     "@babel/preset-typescript": "~7.24.1",
@@ -80,7 +81,7 @@
     "vite-tsconfig-paths": "~4.3.2"
   },
   "peerDependencies": {
-    "@vagabond-inc/react-boilerplate-md": "~1.0.58",
+    "@vagabond-inc/react-boilerplate-md": "~1.0.60",
     "@emotion/react": "~11.11.4",
     "@greatsumini/react-facebook-login": "~3.3.3",
     "@mui/icons-material": "~5.15.15",
@@ -99,6 +100,7 @@
     "notistack": "~3.0.1",
     "react": "~18.3.1",
     "react-dom": "~18.3.1",
+    "react-ga4": "~2.1.0",
     "react-helmet-async": "~2.0.4",
     "react-i18next": "~14.1.1",
     "react-redux": "~9.1.1",

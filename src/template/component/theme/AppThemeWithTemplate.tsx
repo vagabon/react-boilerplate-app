@@ -1,9 +1,13 @@
 import { JSONObject, useAppRouter } from '@vagabond-inc/react-boilerplate-md';
 import { type i18n as i18nType } from 'i18next';
 import { ReactNode, memo, useEffect, useRef } from 'react';
+import ReactGA from 'react-ga4';
 import { IMenuDto } from '../../../dto/menu/MenuDto';
 import CustomChatbot from '../../../module/custom/chatbot/component/CustomChatbot';
 import CustomChatbotIntegration from '../../../module/custom/chatbot/component/CustomChatbotIntegration';
+import { CommonAction } from '../../../reducer/common/CommonReducer';
+import { useAppDispatch } from '../../../store/Store';
+import { StorageUtils } from '../../../utils/storage/StorageUtils';
 import Footer, { IFoorterProps } from '../../Footer';
 import Header, { IHeaderProp } from '../../Header';
 import { useAppFirebaseToken } from '../../hook/useAppFirebaseToken';
@@ -28,6 +32,7 @@ export interface IAppThemeWithTemplateProps extends IHeaderProp, IFoorterProps {
 
 const AppThemeWithTemplate: React.FC<IAppThemeWithTemplateProps> = memo(
   ({ palette, generateToken, menu, i18n, showNotification, widthDrawer = true, reactHeader, children, ...rest }) => {
+    const dispatch = useAppDispatch();
     const mainContainer = useRef<HTMLDivElement | null>(null);
     const { location } = useAppRouter();
     const { drawerWidth, openDrawer, variantDrawer, showOpenDrawer, handleDrawerOpen } = useAppTheme();
@@ -38,6 +43,17 @@ const AppThemeWithTemplate: React.FC<IAppThemeWithTemplateProps> = memo(
     useEffect(() => {
       getScrollPage(location.pathname);
     }, [getScrollPage, location.pathname]);
+
+    useEffect(() => {
+      StorageUtils.validateConsent() &&
+        ReactGA.send({ hitType: 'pageview', page: location.pathname + location.search });
+    }, [location?.pathname, location?.search]);
+
+    useEffect(() => {
+      const language = localStorage.getItem('i18nextLng') ?? 'fr';
+      i18n?.changeLanguage(language);
+      dispatch(CommonAction.setLanguage(language));
+    }, [i18n, dispatch]);
 
     return (
       <AppTheme palette={palette}>

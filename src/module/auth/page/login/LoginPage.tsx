@@ -49,6 +49,7 @@ const LoginPage: React.FC<ILoginPageProps> = memo(({ googleClientId, facebookCli
                 name='username'
                 {...formikProps}
                 changeValue={ObjectUtils.toLowerCase}
+                isFocus={true}
               />
               <MdInputText label='AUTH:FIELDS.PASSWORD' name='password' type='password' {...formikProps} />
             </>

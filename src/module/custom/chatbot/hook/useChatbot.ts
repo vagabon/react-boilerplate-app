@@ -8,7 +8,6 @@ export const useChatbot = () => {
 
   const handleClick = useCallback(
     (url: string, show: boolean, handleClose?: () => void) => () => {
-      console.log(url, show);
       dispatch(CommonAction.setChatbot({ selected: url, show }));
       handleClose?.();
     },

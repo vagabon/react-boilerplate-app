@@ -9,9 +9,9 @@ export interface IUserDto extends IApiDto {
   profiles?: IProfileDto[];
   googleId?: string;
   facebookId?: string;
-  search?: '';
 
   // Transcient
+  search?: string;
   googleToken?: string;
   accessToken?: string;
   newPassword?: string;

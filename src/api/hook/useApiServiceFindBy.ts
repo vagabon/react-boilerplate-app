@@ -6,8 +6,6 @@ import { ApiService } from '../service/ApiService';
 export const useApiServiceFindBy = <T>(apiUrl: string, url: string, champs?: string, max?: number) => {
   const isLoad = useRef(false);
   const stopLoad = useRef(false);
-  const lastValue = useRef<string | undefined>(undefined);
-  const lastPage = useRef<number | undefined>(undefined);
 
   const fetchBy = useCallback(
     (
@@ -19,13 +17,8 @@ export const useApiServiceFindBy = <T>(apiUrl: string, url: string, champs?: str
       callbackError?: (data: AxiosError) => void,
     ) => {
       if (!isLoad.current) {
-        if (lastValue.current === values && lastPage.current === page) {
-          return;
-        }
         if (!stopLoad.current) {
           isLoad.current = true;
-          lastValue.current = values;
-          lastPage.current = page;
           ApiService.findBy<IPageableDto<T[]>>(apiUrl, url, champs as string, values, page, max as number, {
             order: orderBy,
             orderAsc: orderByAsc === 'asc',

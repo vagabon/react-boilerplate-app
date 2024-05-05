@@ -40,7 +40,7 @@ $maxWidth: 1000px;
   }
   .search-bar-card { padding: 0; .MuiCardContent-root { padding: 0 0.5rem !important; } }
   .search-bar { 
-    margin: 10px 8px 0px !important; padding: 5px; border-radius: 5px; display: flex; flex-direction: row; gap: 4px;
+    margin: 0px !important; padding: 5px; border-radius: 5px; display: flex; flex-direction: row; gap: 4px;
     & > div { padding: 0px; margin: 0px; } 
     & > div:nth-child(1) { flex: 1; width: auto !important; }
     & > div:nth-child(2) { width: auto !important; & > div { height: 40px !important; } }

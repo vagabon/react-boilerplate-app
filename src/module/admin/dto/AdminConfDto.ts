@@ -15,6 +15,7 @@ export interface IFormDto extends IYupValidator {
   listEndPoint?: string;
   listName?: string;
   m2m?: IManyToManyDto;
+  value?: string;
 }
 
 export interface IAdminTabDto {

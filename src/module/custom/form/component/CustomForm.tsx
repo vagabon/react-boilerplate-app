@@ -7,6 +7,8 @@ import {
   MdFormSwitch,
   MdInputDatepicker,
   MdInputText,
+  MdInputTextSimple,
+  ObjectUtils,
   useAppRouter,
 } from '@vagabond-inc/react-boilerplate-md';
 import { Fragment, memo, useCallback } from 'react';
@@ -57,6 +59,17 @@ const CustomForm: React.FC<ICustomFormProps> = memo(
             <>
               {conf?.map(([key, form]: [string, IFormDto]) => (
                 <Fragment key={key}>
+                  {form.type === 'disable' && (
+                    <div className={form.className ?? 'width100'}>
+                      <MdInputTextSimple
+                        label={form.label}
+                        name={key}
+                        type='text'
+                        value={ObjectUtils.getRecursivValue(values, form?.value as string, false)}
+                        disabled={true}
+                      />
+                    </div>
+                  )}
                   {(form.type === 'text' ||
                     form.type === 'textarea5' ||
                     form.type === 'textarea' ||

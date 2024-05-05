@@ -1,5 +1,6 @@
 import {
   IApiDto,
+  MdCard,
   MdCommonModal,
   MdList,
   MdListItem,
@@ -49,24 +50,26 @@ const CustomFormModale: React.FC<ICustomFormModaleProps> = memo(({ apiUrl, conf,
   }, [open, search, loadDatas]);
 
   return (
-    <MdCommonModal open={open} handleClose={rest.handleClose}>
-      <MdSearchBar callBack={handleSearch} search={search} />
-      <MdList className='modal-list'>
-        {(!datas || datas.length === 0) && (
-          <MdListItem component='div' disablePadding>
-            <MdListItem>
-              <MdListItemText color='flex justify-center' label={t('NO_RESULT')} />
+    <MdCommonModal className='flex' open={open} handleClose={rest.handleClose}>
+      <MdCard icon='add' title='Ajouter'>
+        <MdSearchBar callBack={handleSearch} search={search} />
+        <MdList className='modal-list overflow overflow-x-none'>
+          {(!datas || datas.length === 0) && (
+            <MdListItem component='div' disablePadding>
+              <MdListItem>
+                <MdListItemText color='flex justify-center' label={t('NO_RESULT')} />
+              </MdListItem>
             </MdListItem>
-          </MdListItem>
-        )}
-        {datas?.map((data) => (
-          <MdListItem key={data.id} component='div' disablePadding>
-            <MdListItemButton callback={rest.handleSelect(data)}>
-              <MdListItemText label={(data['name' as keyof IApiDto] as string) ?? ''} />
-            </MdListItemButton>
-          </MdListItem>
-        ))}
-      </MdList>
+          )}
+          {datas?.map((data) => (
+            <MdListItem key={data.id} component='div' disablePadding>
+              <MdListItemButton callback={rest.handleSelect(data)}>
+                <MdListItemText label={(data['name' as keyof IApiDto] as string) ?? ''} />
+              </MdListItemButton>
+            </MdListItem>
+          ))}
+        </MdList>
+      </MdCard>
     </MdCommonModal>
   );
 });

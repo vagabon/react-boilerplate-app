@@ -1,6 +1,6 @@
 {
   "name": "@vagabond-inc/react-boilerplate-app",
-  "version": "1.0.110",
+  "version": "1.0.111",
   "description": "Boilerplate App for React (Auth / Admin / News)",
   "private": false,
   "type": "module",
@@ -39,7 +39,7 @@
     "yup": "~1.4.0"
   },
   "devDependencies": {
-    "@vagabond-inc/react-boilerplate-md": "1.0.60",
+    "@vagabond-inc/react-boilerplate-md": "1.0.61",
     "@babel/preset-env": "~7.24.4",
     "@babel/preset-react": "~7.24.1",
     "@babel/preset-typescript": "~7.24.1",
@@ -81,7 +81,7 @@
     "vite-tsconfig-paths": "~4.3.2"
   },
   "peerDependencies": {
-    "@vagabond-inc/react-boilerplate-md": "~1.0.60",
+    "@vagabond-inc/react-boilerplate-md": "~1.0.61",
     "@emotion/react": "~11.11.4",
     "@greatsumini/react-facebook-login": "~3.3.3",
     "@mui/icons-material": "~5.15.15",

@@ -1,5 +1,6 @@
   
 #header a:-webkit-any-link { color: inherit !important; }
+#header .MuiTypography-root { font-weight: bold; }
 a.MuiTypography-root { font-size: 1rem; }
 
 #header {
@@ -13,6 +14,7 @@ a.MuiTypography-root { font-size: 1rem; }
 .mode-light .MuiToolbar-root { background: white; }
 .mode-dark .MuiToolbar-root { background: #121212; }
 .footer-link { margin: 5px; }
+.notification-list .not-checked span { font-weight: bold; }
 
 .mui-fixed { padding-right: 0px !important; }
 
@@ -78,11 +80,14 @@ $maxWidth: 1000px;
 
 .MuiCardContent-root { overflow: auto; padding: 5px !important; }
 .MuiTab-root { min-width: 110px !important; padding: 0 10px !important; &.MuiButtonBase-root { align-items: baseline; max-width: max-content !important; } }
-.MuiTabs-scroller, .MuiTabs-flexContainer { overflow: auto; }
+.MuiTabs-scroller, .MuiTabs-flexContainer { 
+  overflow: auto; 
+  .MuiButtonBase-root  { font-weight: bold; }
+}
 
 .MuiChip-label { font-weight: bold; }
 .MuiCardHeader-root {
-  padding: 10px !important; padding-bottom: 0 !important; 
+  padding: 10px !important; 
    .MuiCardHeader-content, .MuiTypography-root { overflow: hidden; text-overflow: ellipsis; display: -webkit-box !important; -webkit-line-clamp: 2 !important; -webkit-box-orient: vertical; }
 }
 a.MuiCardHeader-root { text-decoration: none; }
@@ -137,7 +142,7 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
     button { min-width: 30px !important; }
   }
   .MuiCardContent-root { padding: 5px !important; }
-  .MuiCardHeader-root { padding: 5px !important; }
+  .MuiCardHeader-root { padding: 5px !important; padding-bottom: 0px !important; }
   .MuiListItemText-root span, .MuiListItemText-secondary { -webkit-line-clamp: 1 !important; }
   .news-list .MuiList-root { margin-left: 0 !important; }
 }
@@ -261,7 +266,7 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
   .MuiChip-label { font-weight: bold; font-size: 0.9rem; }
 }
 .share-buttons { 
-  display: flex; flex-direction: row; gap: 4px; align-items: center; justify-content: center; flex-wrap: wrap; margin: 5px 0px 5px; 
+  display: flex; flex-direction: row; gap: 4px; align-items: center; justify-content: center; flex-wrap: wrap; margin: 0 !important; 
   button { width: 27px !important; height: 27px !important; } 
   svg { width: 27px !important; height: 27px !important; box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12); }  
 }
@@ -341,15 +346,16 @@ textarea { max-height: 250px !important; overflow: auto !important; }
 /**** MODALE *****/
 
 .modal {
-  .MuiPaper-root { flex: 1; }
-  & > .MuiBox-root { 
+  .MuiPaper-root { flex: 1; overflow: hidden; }
+  & > .MuiBox-root {  min-height: min-content;
     width: 45vw !important; min-height: 45vh !important; max-height: 95vh; display: flex; padding: 0px; background-color: unset !important; border: 0 !important;
     .MuiPaper-root:not(.MuiAlert-root) {
-      display: flex; flex-direction: column; overflow: auto; width: 100% !important; min-height: 100% !important;
-      .MuiCardContent-root { width: 100%; display: flex; flex-direction: column; overflow: auto; padding: 10px !important; gap: 5px; }
+      display: flex; flex-direction: column; width: 100% !important; min-height: 100% !important;
+      .MuiCardContent-root { width: 100%; display: flex; flex-direction: column; padding: 10px !important; gap: 5px; }
       #infinite-container { margin-top: 10px; }
     } 
   }
+  .MuiCardHeader-root .MuiCardHeader-content, .MuiCardHeader-root .MuiTypography-root { padding-right: 35px; }
 } 
 
 .modal-small > .MuiBox-root {  min-height: 35vh !important; }
@@ -618,7 +624,7 @@ table {
   p { font-size: 1.2rem !important; }
   .screen { width: 70% }
   .screen-text { font-size: 1.6rem; text-align: center }
-  .MuiButtonBase-root:not(.MuiButton-sizeSmall,.MuiAccordionSummary-root) { font-size: 1.5rem !important; }
+  .MuiButtonBase-root:not(.MuiButton-sizeSmall,.MuiAccordionSummary-root) { font-size: 1.1rem !important; }
   .MuiButtonBase-root.MuiAccordionSummary-root { font-size: 1.1rem !important; }
   h1:not(.MuiTypography-root), h2:not(.MuiTypography-root){ margin: 50px 10px !important; }
   .offer {
@@ -627,6 +633,7 @@ table {
     .button-sub { margin: 40px 20px 15px !important; }
     svg { width: 1.7em !important; height: 1.7em !important; }
   }
+  .MuiCardHeader-root .MuiCardHeader-content, .MuiCardHeader-root .MuiTypography-root { font-weight: bold; -webkit-line-clamp: 2 !important; }
 }
 
 @media screen and (max-width: 800px) {

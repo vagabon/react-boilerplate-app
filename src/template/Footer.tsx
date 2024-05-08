@@ -13,20 +13,18 @@ export interface IFoorterProps extends IHeaderProp {
   links: IFooterLinkDto[];
 }
 
-const Footer: React.FC<IFoorterProps> = memo(({ isContact = true, email, links, ...rest }) => {
+const Footer: React.FC<IFoorterProps> = memo(({ isContact = true, links, ...rest }) => {
   return (
     <MdBox id='footer' sx={{ borderBottom: 1, borderColor: 'divider' }}>
       <MdContainer maxWidth='lg'>
         <MdTypo variant='body2' color='secondary' align='center'>
-          {new Date().getFullYear()} {'©' + rest.title + ' '}
+          <span className='copyright'>
+            {new Date().getFullYear()} {'©' + rest.title + ' '}
+          </span>
           {links?.map((link) => (
             <MdLink className='footer-link' key={link.label} label={link.label} href={link.url} target={link.target} />
           ))}
-          {isContact && (
-            <a href={'mailto:' + email} style={{ fontSize: '1rem' }}>
-              Contact
-            </a>
-          )}
+          {isContact && <MdLink href='/contact' label='Contact' />}
         </MdTypo>
       </MdContainer>
     </MdBox>

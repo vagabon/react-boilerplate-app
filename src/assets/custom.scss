@@ -15,8 +15,6 @@ a.MuiTypography-root { font-size: 1rem; }
 .footer-link { margin: 5px; }
 .notification-list .not-checked span { font-weight: bold; }
 
-.mui-fixed { padding-right: 0px !important; }
-
 $maxWidth: 1000px;
 
 /**** MAIN CONTENT ****/
@@ -60,7 +58,12 @@ $maxWidth: 1000px;
   }
 }
 
-.page-404 a:-webkit-any-link { color: inherit !important; }
+#footer { a { margin: 0px 5px; } }
+
+@media screen and (max-width: 400px) {
+  #footer span.copyright { display: none; }
+}
+
 #menu { a { font-size: 1.1rem; } .MuiButtonBase-root { padding: 8px 11px !important; &.selected { border-width: 0px; border-bottom-width: 2px; border-radius: 0px; } } }
 #fade-menu { .Mui-selected { border-left: 2px solid rgba(234, 117, 0, 0.5) !important; } }
 
@@ -110,7 +113,7 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
   .MuiButtonBase-root { margin: 0px !important; padding: 6px !important; } 
 }
 .MuiToolbar-root {  
-  overflow: auto;  min-height: 48px !important; padding-left: 4px !important; padding-right: 4px !important;
+  overflow: auto;  min-height: 40px !important; padding-left: 4px !important; padding-right: 4px !important;
   .MuiAvatar-root { width: 30px; height: 30px; }
 }
 .MuiAvatar-root { background-color: var(--mui-palette-secondary-main) !important; margin: 0px !important; margin-top: 0px !important; }
@@ -119,13 +122,15 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
 .MuiCardContent-root:last-child { padding-bottom: 5px !important; }
 .MuiCardHeader-action { margin: 0 !important; padding: 0 !important; margin-top: 7px !important; display: flex !important; gap: 5px !important; }
 
-.MuiListItem-root { min-height: 45px; max-height: 80px; }
+.MuiListItem-root { min-height: 40px; max-height: 80px; }
 .MuiListItem-root.selected-primary {  border-left: 3px solid var(--mui-palette-primary-main) !important; }
 .mode-dark .MuiListItem-root.selected-primary {  border-left: 3px solid var(--mui-palette-primary-main-dark) !important; }
 .MuiListItem-root.selected-secondary {  border-left: 3px solid var(--mui-palette-secondary-main) !important; }
 .mode-dark .MuiListItem-root.selected-secondary {  border-left: 3px solid var(--mui-palette-secondary-main-dark) !important; }
 
-.MuiDrawer-root { ul { padding: 0px !important; overflow-x: hidden; } }
+.MuiDrawer-root { 
+  ul { padding: 0px !important; overflow: hidden; }
+}
 
 @media (max-width: 600px) {
   .hidden-responsive { display: none !important; }
@@ -420,7 +425,60 @@ table {
 
 .MuiTablePagination-toolbar { justify-content: center; & > div:nth-child(1) { flex: 0 !important; } }
 
-/*************************************************** PROFILE *******************************************/
+/**************************************************** CONTACT **********************************************/
+
+.contact-page { 
+  width: 100%; padding: 0px !important;
+  display: flex; flex-direction: column; align-items: center;
+  .MuiCardContent-root { flex-direction: column !important; margin-bottom: 20px !important; }
+  h3 { font-weight: bold !important; margin: 5px 0px !important; }
+  p { margin: 20px 5px 20px; text-align: center; }
+  img.vagabond { width: 200px; border-radius: 50%; border: 3px solid; padding: 5px;}
+
+  .flex-row-responsive {
+    & > div:nth-child(1) {
+      width: 50%;
+    }
+    & > div:nth-child(2) {
+      width: 50%; text-align: center;
+      & > div { margin: 0px; margin-bottom: 10px; }
+      h3 { text-align: left; margin-bottom: 20px !important; }
+      p { text-align: left; margin: 5px 0 !important; }
+    }
+  }
+}
+
+.profil-content .contact-projects {
+  display: flex; flex-direction: row;
+  h3 { font-size: 1.5rem !important; font-weight: bold; }
+  .MuiPaper-root {
+    display: flex; flex-direction: column;
+    .MuiCardContent-root { 
+      flex-direction: column !important; 
+      .flex-row { margin: 0px 0px 5px; }
+      p { text-align: justify; }
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .contact-page { 
+    img.vagabond { width: 150px; }
+    .flex-row-responsive {
+      & > div:nth-child(2) {
+        width: 50%; margin-top: 20px; align-items: center; text-align: center;
+        & > div { margin-bottom: 10px; width: 100%; }
+        h3 { text-align: center !important; margin-bottom: 20px !important; }
+        p { text-align: center !important; }
+      }
+    }
+  }
+  .contact-projects {
+    flex-direction: column !important;
+  }
+}
+
+/*************************************************** PROFILE ***********************************************/
 
 .profile-container {
   margin: 10px 0px 10px !important; display: flex; flex-direction: column; gap: 1rem; background: #3b3e3f; border-radius: 1rem; border-radius: 5px; margin: 8px; padding: 8px;

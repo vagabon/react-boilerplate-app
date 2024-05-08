@@ -68,12 +68,10 @@ const MenuDrawer: React.FC<IDrawerProps> = memo(
                       <ListItem
                         key={menu.link}
                         disablePadding
-                        className={isCurrentLocation(menu.link) ? 'selected-secondary' : ''}
-                        component={Link}
-                        to={menu.link}>
-                        <ListItemButton onClick={callbackClose}>
+                        className={isCurrentLocation(menu.link) ? 'selected-secondary' : ''}>
+                        <ListItemButton onClick={callbackClose} component={Link} to={menu.link}>
                           {menu.icon && <ListItemIcon>{getIcon(menu.icon, 'secondary')}</ListItemIcon>}
-                          <ListItemText primary={I18nUtils.translate(t, menu.title)} />
+                          <ListItemText primary={I18nUtils.translate(t, menu.title)} className='text-secondary' />
                         </ListItemButton>
                       </ListItem>
                       {menu.childrens && (
@@ -86,12 +84,13 @@ const MenuDrawer: React.FC<IDrawerProps> = memo(
                               showError={false}>
                               <ListItem
                                 disablePadding
-                                className={isCurrentLocation(child.link) ? 'selected-primary' : ''}
-                                component={Link}
-                                to={child.link}>
-                                <ListItemButton onClick={callbackClose}>
+                                className={isCurrentLocation(child.link) ? 'selected-primary' : ''}>
+                                <ListItemButton onClick={callbackClose} component={Link} to={child.link}>
                                   {menu.icon && <ListItemIcon>{getIcon(child.icon, 'primary')}</ListItemIcon>}
-                                  <ListItemText primary={I18nUtils.translate(t, child.title)} />
+                                  <ListItemText
+                                    primary={I18nUtils.translate(t, child.title)}
+                                    className='text-primary'
+                                  />
                                 </ListItemButton>
                               </ListItem>
                             </HasRole>

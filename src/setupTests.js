@@ -51,6 +51,22 @@ jest.mock('@mui/x-charts', () => ({
   PieChart: ({ children }) => <div data-testid='PieChart'>{children}</div>,
 }));
 
+jest.mock('@mui/material', () => ({
+  ...jest.requireActual('@mui/material'),
+  AppBar: ({ children }) => <div data-testid='AppBar'>{children}</div>,
+  FormControl: ({ children }) => <div data-testid='FormControl'>{children}</div>,
+  MenuItem: ({ value, onClick, children }) => (
+    <option data-testid='MenuItem' value={value} onClick={onClick}>
+      {children}
+    </option>
+  ),
+  Select: ({ name, onChange, value, children }) => (
+    <select name={name} data-testid='Select' onChange={onChange} value={value}>
+      {children}
+    </select>
+  ),
+}));
+
 /******************* AFTER EACH RESET MOCK *****************************/
 
 global.mockStore = {};

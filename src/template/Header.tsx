@@ -72,8 +72,8 @@ const Header: React.FC<IHeaderProps> = memo(
               </div>
             )}
             <MdTypo variant='body2' align='left' color='secondary' noWrap={true} sx={{ flex: 1, display: 'flex' }}>
-              <Link to='/' style={{ display: 'contents' }}>
-                <img src={rest.image} width={40} alt={'Logo de ' + rest.title} />
+              <Link to='/' className='text-secondary' style={{ display: 'contents' }}>
+                <img src={rest.image} width={40} title={rest.title} alt={'Logo de ' + rest.title} />
                 <span
                   className='flex justify-center'
                   style={{ marginLeft: '1rem', fontSize: '1.2rem', overflow: 'hidden' }}>
@@ -137,7 +137,11 @@ const Header: React.FC<IHeaderProps> = memo(
           )}
         </AppBar>
         {widthDrawer && <div style={{ height: '50px' }}></div>}
-        {loading ? <MdLinearProgress /> : <div style={{ minHeight: '4px' }}></div>}
+        {loading ? (
+          <MdLinearProgress />
+        ) : (
+          <div style={{ minHeight: '4px', position: 'absolute', zIndex: '8000' }}></div>
+        )}
       </>
     );
   },

@@ -1,9 +1,9 @@
-import { Badge } from '@mui/material';
 import {
   ButtonColorType,
   ID,
   IconClickable,
   IconColorType,
+  MdBadge,
   MdButton,
   MdCommonModal,
 } from '@vagabond-inc/react-boilerplate-md';
@@ -71,7 +71,7 @@ const CustomModale: React.FC<ICustomModaleProps> = memo(
         </MdCommonModal>
         {icon && iconColor && <IconClickable color={iconColor} icon={icon} callback={openModal} disabled={disabled} />}
         {(button || buttonColor) && (
-          <Badge badgeContent={iconBadge ?? 0} color={iconBadgeColor ?? 'primary'}>
+          <MdBadge content={iconBadge ?? 0} color={iconBadgeColor ?? 'primary'}>
             <MdButton
               className={icon ? 'button-icon' : ''}
               size={buttonSize}
@@ -82,7 +82,7 @@ const CustomModale: React.FC<ICustomModaleProps> = memo(
               callback={openModal}
               disabled={disabled}
             />
-          </Badge>
+          </MdBadge>
         )}
       </>
     );

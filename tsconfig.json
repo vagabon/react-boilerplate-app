@@ -20,5 +20,5 @@
     "emitDeclarationOnly": true
   },
   "exclude": ["node_modules", "coverage", "**/setupTests*.js", "**/*.test.js"],
-  "include": ["src", "src/mui/component/fab/.tsx"]
+  "include": ["src"]
 }

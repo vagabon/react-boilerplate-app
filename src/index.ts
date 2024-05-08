@@ -58,6 +58,7 @@ export { default as HasRole } from './hook/role/HasRole';
 export type { HasRoleProps } from './hook/role/HasRole';
 export { useRole } from './hook/role/useRole';
 export { useUserAuth } from './hook/user/useUserAuth';
+
 export { default as AdminRouter } from './module/admin/AdminRouter';
 export { default as AdminTable } from './module/admin/component/AdminTable';
 export type { IAdminListPageProps } from './module/admin/component/AdminTable';
@@ -92,6 +93,8 @@ export type { IRegisterDto } from './module/auth/page/register/dto/RegisterDto';
 export { AuthReducer, default as AuthReducers, LoginAction } from './module/auth/reducer/AuthReducers';
 export type { AuthReducerState } from './module/auth/reducer/AuthReducers';
 export { default as AuthService } from './module/auth/service/AuthService';
+
+export { default as ContactPage } from './module/contact/page/ContactPage';
 
 export { default as CustomChatbot } from './module/custom/chatbot/component/CustomChatbot';
 export type { ICustomChatbotProps } from './module/custom/chatbot/component/CustomChatbot';

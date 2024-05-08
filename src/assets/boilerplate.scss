@@ -1,6 +1,7 @@
 html { font-size: 13px; }
 html, body, #root { height: 100%; }
 
+a { text-decoration: none !important; }
 button { cursor: pointer; &:focus { outline: none; } }
 .button-icon { min-width: 27px !important; width: 27px !important; }
 .align-end .button-icon { height: 40px; margin-bottom: 5px !important; }
@@ -64,6 +65,7 @@ h5 { font-size: 1.3rem !important; font-weight: 400 !important; }
 .hidden { display: none; }
 .pointer { cursor: pointer !important; }
 .text-center { text-align: center; .MuiTypography-root { text-align: center; } }
+.margin-top { margin-top: 10px; }
 
 .width50 { width: 50%; }
 .width100 { width: 100%; }
@@ -84,16 +86,6 @@ h5 { font-size: 1.3rem !important; font-weight: 400 !important; }
 .mode-dark .icon-error .MuiChip-deleteIcon { color: var(--mui-palette-error-main-dark) !important; }
 
 a.MuiTypography-root { font-size: 1rem; }
-a.MuiButton-outlined { color: var(--mui-palette-primary-main) !important;; }
-.mode-dark a.MuiButton-outlined { color: var(--mui-palette-primary-main-dark) !important; }
-.main-container a:-webkit-any-link { color: var(--mui-palette-primary-main) !important; }
-.mode-dark .main-container a:-webkit-any-link { color: var(--mui-palette-primary-main-dark) !important; }
-.main-container a.MuiButtonBase-root:not(.MuiButton-outlined) { color: white !important; }
-.mode-dark .main-container a.MuiButtonBase-root:not(.MuiButton-outlined) { color: white !important; }
-.main-container a.MuiButton-outlinedGoogle { color: var(--mui-palette-google-main) !important; }
-.mode-dark .main-container a.MuiButton-outlinedGoogle { color: var(--mui-palette-google-main) !important; }
-.main-container a.MuiButton-outlinedFacebook { color: var(--mui-palette-facebook-main) !important; }
-.mode-dark .main-container a.MuiButton-outlinedFacebook { color: var(--mui-palette-facebook-main) !important; }
 
 .info { color: var(--mui-palette-info-main) !important; }
 .mode-dark .info { color: var(--mui-palette-info-main-dark) !important; }

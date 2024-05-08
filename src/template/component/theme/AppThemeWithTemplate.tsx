@@ -20,7 +20,7 @@ import AppTheme from './AppTheme';
 
 export interface IAppThemeWithTemplateProps extends IHeaderProp, IFoorterProps {
   palette: JSONObject;
-  generateToken: () => Promise<string | undefined>;
+  generateToken?: () => Promise<string | undefined>;
   menu: IMenuDto[];
   i18n?: i18nType;
   showNotification?: boolean;

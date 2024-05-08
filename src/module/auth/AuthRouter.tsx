@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { IHeaderProp } from '../../template/Header';
 import NotFoundPage from '../not-found/page/NotFoundPage';
 import ActivationPage from './page/activation/ActivationPage';
@@ -13,7 +13,6 @@ const AuthRouter: React.FC<IAuthRouterProps> = ({ googleClientId, facebookClient
   return (
     <Routes>
       <Route>
-        <Route path='/' element={<Navigate to='/auth/signin' />} />
         <Route
           path='/signin'
           element={<LoginPage googleClientId={googleClientId} facebookClientId={facebookClientId} {...rest} />}

@@ -37,7 +37,7 @@ const MenuDrawer: React.FC<IDrawerProps> = memo(
     );
 
     const isCurrentLocation = useCallback(
-      (url: string) => {
+      (url: string = '/') => {
         if (url === '/') {
           return currentLocation === '/';
         }
@@ -68,7 +68,7 @@ const MenuDrawer: React.FC<IDrawerProps> = memo(
                       <ListItem
                         key={menu.link}
                         disablePadding
-                        className={isCurrentLocation(menu.link) ? 'selected-secondary' : ''}>
+                        className={isCurrentLocation(menu.base) ? 'selected-secondary' : ''}>
                         <ListItemButton onClick={callbackClose} component={Link} to={menu.link}>
                           {menu.icon && <ListItemIcon>{getIcon(menu.icon, 'secondary')}</ListItemIcon>}
                           <ListItemText primary={I18nUtils.translate(t, menu.title)} className='text-secondary' />

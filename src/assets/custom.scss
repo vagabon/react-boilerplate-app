@@ -1,5 +1,4 @@
   
-#header a:-webkit-any-link { color: inherit !important; }
 #header .MuiTypography-root { font-weight: bold; }
 a.MuiTypography-root { font-size: 1rem; }
 
@@ -605,50 +604,6 @@ table {
   .subscription-form {
     flex-direction: column-reverse !important;
     & > div { margin-right: 0 !important; width: 100%; }
-  }
-}
-
-/********************************************** LANDING PAGE *******************************************/
-
-.landing-page {
-  width: 100%; display: flex; flex-direction: column;
-  .landing-curve { background: url('/images/landing-curve.png'); background-size: cover; color: white; } 
-  .welcome {
-    padding: 12% 10px; flex: 1; font-size: 3.5rem; text-align: center; text-shadow: 7px 2px 8px black;
-    letter-spacing: 0.035em; line-height: initial; 
-  }
-  .welcome-subtitle {
-    margin: 40px 0px; flex: 1; font-size: 2rem; text-align: center;
-    letter-spacing: 0.035em; line-height: initial;
-  }
-  p { font-size: 1.2rem !important; }
-  .screen { width: 70% }
-  .screen-text { font-size: 1.6rem; text-align: center }
-  .MuiButtonBase-root:not(.MuiButton-sizeSmall,.MuiAccordionSummary-root) { font-size: 1.1rem !important; }
-  .MuiButtonBase-root.MuiAccordionSummary-root { font-size: 1.1rem !important; }
-  h1:not(.MuiTypography-root), h2:not(.MuiTypography-root){ margin: 50px 10px !important; }
-  .offer {
-    h1 { font-size: 2.5rem !important; margin: 0 0 5px !important; }
-    .subtitle { margin-top: 10px; font-size: 2.5rem; }
-    .button-sub { margin: 40px 20px 15px !important; }
-    svg { width: 1.7em !important; height: 1.7em !important; }
-  }
-  .MuiCardHeader-root .MuiCardHeader-content, .MuiCardHeader-root .MuiTypography-root { font-weight: bold; -webkit-line-clamp: 2 !important; }
-}
-
-@media screen and (max-width: 800px) {
-  .landing-page {
-    .welcome { padding: 40px 5px; font-size: 2.5rem; }
-    .welcome-subtitle { font-size: 1.5rem; }
-    .screen { width: 95% }
-    .screen-text { margin-top: 50px; }
-  }
-}
-
-@media screen and (max-width: 800px) {
-  .landing-page {
-    .welcome { padding: 60px 5px; font-size: 2rem; }
-    .welcome-subtitle { font-size: 1.2rem; }
   }
 }
 

@@ -84,11 +84,16 @@ h5 { font-size: 1.3rem !important; font-weight: 400 !important; }
 .mode-dark .icon-error .MuiChip-deleteIcon { color: var(--mui-palette-error-main-dark) !important; }
 
 a.MuiTypography-root { font-size: 1rem; }
+a.MuiButton-outlined { color: var(--mui-palette-primary-main) !important;; }
+.mode-dark a.MuiButton-outlined { color: var(--mui-palette-primary-main-dark) !important; }
 .main-container a:-webkit-any-link { color: var(--mui-palette-primary-main) !important; }
 .mode-dark .main-container a:-webkit-any-link { color: var(--mui-palette-primary-main-dark) !important; }
-#header, #footer, #fade-menu, #menu, .bento { a:-webkit-any-link { color: var(--mui-palette-secondary-main) !important; } }
-.mode-dark { #header, #footer, #fade-menu, #menu, .bento { a:-webkit-any-link { color: var(--mui-palette-secondary-main-dark) !important; } } }
-.mode-light { #header, #menu, .MuiTab-root, .search-bar { background-color: white; } }
+.main-container a.MuiButtonBase-root:not(.MuiButton-outlined) { color: white !important; }
+.mode-dark .main-container a.MuiButtonBase-root:not(.MuiButton-outlined) { color: white !important; }
+.main-container a.MuiButton-outlinedGoogle { color: var(--mui-palette-google-main) !important; }
+.mode-dark .main-container a.MuiButton-outlinedGoogle { color: var(--mui-palette-google-main) !important; }
+.main-container a.MuiButton-outlinedFacebook { color: var(--mui-palette-facebook-main) !important; }
+.mode-dark .main-container a.MuiButton-outlinedFacebook { color: var(--mui-palette-facebook-main) !important; }
 
 .info { color: var(--mui-palette-info-main) !important; }
 .mode-dark .info { color: var(--mui-palette-info-main-dark) !important; }

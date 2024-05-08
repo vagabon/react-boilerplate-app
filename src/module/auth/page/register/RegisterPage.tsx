@@ -13,6 +13,7 @@ import { useApiService } from '../../../../api/hook/useApiService';
 import AppContent from '../../../../app/content/AppContent';
 import AppFormik from '../../../../app/formik/AppFormik';
 import { useMessage } from '../../../../hook/message/useMessage';
+import { useAppSelector } from '../../../../store/Store';
 import AuthFooter from '../../component/auth.footer/AuthFooter';
 import { AuthFooterEnum } from '../../component/auth.footer/enum/AuthFooterEnum';
 import { useAuth } from '../../hook/useAuth';
@@ -32,6 +33,7 @@ export interface IRegisterPageProps extends ILoginPageProps {
 const RegisterPage: React.FC<IRegisterPageProps> = memo(
   ({ googleClientId, facebookClientId, googleCaptchaId, ...rest }) => {
     const { Trans } = useAppTranslate();
+    const { modeTheme } = useAppSelector((state) => state.common);
     const { redirectIfLogged } = useAuth(rest.apiUrl);
     const { httpPost } = useApiService(rest.apiUrl);
     const { setMessage } = useMessage();
@@ -95,7 +97,11 @@ const RegisterPage: React.FC<IRegisterPageProps> = memo(
                   <MdInputText label='AUTH:FIELDS.PASSWORD_CONFIRM' name='password2' type='password' {...formikProps} />
                   <MdFormSwitch label='AUTH:FIELDS.ACCEPT_TERMS' name='accept' {...formikProps} />
                   <div className='flex' style={{ marginTop: '15px', alignItems: 'flex-end' }}>
-                    <ReCAPTCHA sitekey={googleCaptchaId} ref={captchaRef} />
+                    <ReCAPTCHA
+                      sitekey={googleCaptchaId}
+                      ref={captchaRef}
+                      theme={modeTheme === 'dark' ? 'dark' : 'light'}
+                    />
                   </div>
                 </>
               )}

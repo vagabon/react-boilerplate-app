@@ -50,7 +50,11 @@ const AppThemeWithTemplate: React.FC<IAppThemeWithTemplateProps> = memo(
     }, [location?.pathname, location?.search]);
 
     useEffect(() => {
-      const language = localStorage.getItem('i18nextLng') ?? 'fr';
+      let navigatorLanguage = navigator?.language?.split('-')?.[0] ?? 'en';
+      if (navigatorLanguage !== 'fr' && navigatorLanguage !== 'en') {
+        navigatorLanguage = 'en';
+      }
+      const language = localStorage.getItem('i18nextLng') ?? navigatorLanguage;
       i18n?.changeLanguage(language);
       dispatch(CommonAction.setLanguage(language));
     }, [i18n, dispatch]);

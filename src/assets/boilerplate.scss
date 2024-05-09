@@ -1,7 +1,7 @@
 html { font-size: 13px; }
 html, body, #root { height: 100%; }
 
-a { text-decoration: none !important; }
+a { text-decoration: none !important; font-weight: bold !important; }
 button { cursor: pointer; &:focus { outline: none; } }
 .button-icon { min-width: 27px !important; width: 27px !important; }
 .align-end .button-icon { height: 40px; margin-bottom: 5px !important; }
@@ -79,7 +79,7 @@ h5 { font-size: 1.3rem !important; font-weight: 400 !important; }
 .mode-dark .text-error { color: var(--mui-palette-error-main-dark) !important; }
 
 .icon-primary .MuiChip-deleteIcon { color: var(--mui-palette-primary-main) !important; }
-.mode-dark .icon-primary .MuiChip-deleteIcon { color: var(--mui-palette-primary-dark) !important; }
+.mode-dark .icon-primary .MuiChip-deleteIcon { color: var(--mui-palette-primary-main-dark) !important; }
 .icon-secondary .MuiChip-deleteIcon { color: var(--mui-palette-secondary-main) !important; }
 .mode-dark .icon-secondary .MuiChip-deleteIcon { color: var(--mui-palette-secondary-main-dark) !important; }
 .icon-error .MuiChip-deleteIcon { color: var(--mui-palette-error-main) !important; }

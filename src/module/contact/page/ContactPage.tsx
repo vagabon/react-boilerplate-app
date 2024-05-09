@@ -37,7 +37,7 @@ const ContactPage: React.FC<IContactPageProps> = ({ ...rest }) => {
                 <p>
                   <Trans i18nKey='CONTACT.WRITE_TO_ME' />
                 </p>
-                <a className='link-email text-secondary' href={'mailto:' + rest.email}>
+                <a className='link-email text-primary' href={'mailto:' + rest.email}>
                   {rest.email}
                 </a>
               </div>

@@ -105,7 +105,7 @@ export const mockBoilerPlateMd = {
   ),
   MdFormFile: () => <input data-testid='MdFormFile' />,
   MdFormSwitch: ({ name, onChange }) => (
-    <input data-testid='MdFormSwitch' name={name} value={true} onChange={onChange} />
+    <input data-testid='MdFormSwitch' name={name} defaultValue={true} onChange={onChange} />
   ),
   MdFormCheckbox: ({ name, value, handleChange }) => (
     <input data-testid='MdFormCheckbox' type='checkbox' name={name} value={value} onChange={handleChange} />

@@ -137,11 +137,7 @@ const Header: React.FC<IHeaderProps> = memo(
           )}
         </AppBar>
         {widthDrawer && <div style={{ height: '50px' }}></div>}
-        {loading ? (
-          <MdLinearProgress />
-        ) : (
-          <div style={{ minHeight: '4px', position: 'absolute', zIndex: '8000' }}></div>
-        )}
+        {loading && <MdLinearProgress className='linear-progress' />}
       </>
     );
   },

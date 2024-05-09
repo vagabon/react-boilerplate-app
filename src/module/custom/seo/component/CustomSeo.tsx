@@ -29,7 +29,7 @@ const CustomSeo: React.FC<ICustomSeoProps> = memo(({ apiUrl, title, description,
         return window.location.origin + 'images/logo.png';
       }
       if (image && !image.includes('http://') && !image.startsWith('https://')) {
-        return apiUrl + '/download?fileName=' + image;
+        return apiUrl + '/file/download?fileName=' + image;
       }
       return image;
     },

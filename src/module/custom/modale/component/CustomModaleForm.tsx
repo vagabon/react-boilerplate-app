@@ -6,18 +6,19 @@ import { ICustomModalChildrenType, ICustomModaleChildProps } from './CustomModal
 import CustomModaleCard from './CustomModaleCard';
 
 export interface ICustomModaleFormProps extends ICustomModaleChildProps {
+  icon?: string;
   title: string;
-  initialValues: JSONObject;
-  validationSchema: IYupValidators;
+  initialValues?: JSONObject;
+  validationSchema?: IYupValidators;
   small?: boolean;
   onSubmit?: (callback?: () => void) => (values: IApiDto) => void;
   children: ICustomModalChildrenType;
 }
 
 const CustomModaleForm: React.FC<ICustomModaleFormProps> = memo(
-  ({ title, initialValues, validationSchema, onSubmit, children, ...rest }) => {
+  ({ icon, title, initialValues = {}, validationSchema = {}, onSubmit, children, ...rest }) => {
     return (
-      <CustomModaleCard {...rest} title={title} className={'modal-form'}>
+      <CustomModaleCard {...rest} icon={icon} title={title} className={'modal-form'}>
         {({ closeModal }) => (
           <AppFormik
             className='flex justify-center'

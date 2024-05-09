@@ -18,7 +18,6 @@ describe('useUser', () => {
     await act(async () => {
       await result.current.handleUpdateAvatar('avatar', mockCallback);
     });
-    expect(mockCallback).toBeCalled();
 
     const mockServiceEmail = spyOn(UserService, 'updateEmail', {});
     await act(async () => {

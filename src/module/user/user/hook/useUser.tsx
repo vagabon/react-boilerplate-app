@@ -1,5 +1,6 @@
 import { ID } from '@vagabond-inc/react-boilerplate-md';
 import { useCallback, useState } from 'react';
+import { useApiService } from '../../../../api/hook/useApiService';
 import { ICurrentUserDto } from '../../../../dto/current-user/CurrentUserDto';
 import { useMessage } from '../../../../hook/message/useMessage';
 import { useAppSelector } from '../../../../store/Store';
@@ -13,6 +14,7 @@ export const useUser = (apiUrl: string) => {
   const { setMessage } = useMessage();
   const [user, setUser] = useState<IUserDto>({});
   const { user: currentUser } = useAppSelector((state) => state.auth);
+  const { httpPost } = useApiService<IUserDto>(apiUrl);
 
   const fetchById = useCallback(
     (id: ID) => {
@@ -43,13 +45,15 @@ export const useUser = (apiUrl: string) => {
 
   const handleUpdateAvatar = useCallback(
     (avatar: string, callback?: () => void) => {
-      updateLocalUser({
-        avatar: avatar,
+      httpPost('/user/avatar', { avatar: avatar }, () => {
+        updateLocalUser({
+          avatar: avatar,
+        });
+        setMessage('AUTH:USER.AVATAR.SUCCESS', 'success');
+        callback?.();
       });
-      setMessage('AUTH:USER.AVATAR.SUCCESS', 'success');
-      callback?.();
     },
-    [updateLocalUser, setMessage],
+    [httpPost, updateLocalUser, setMessage],
   );
 
   const handleUpdateEmail = useCallback(

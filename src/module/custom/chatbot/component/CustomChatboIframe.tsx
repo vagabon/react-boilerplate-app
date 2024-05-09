@@ -44,7 +44,11 @@ const CustomChatboIframe: React.FC<ICustomChatboIframeProps> = ({
         <div className={'chatbot-modale ' + (big ? 'chatbot-modale-big' : '') + ' ' + (showChatbot ? '' : 'hidden')}>
           {callbackClose && (
             <div className='chatbot-frame-close'>
-              <IconClickable icon={big ? 'reducer' : 'expand'} callback={() => setBig(!big)} />
+              <IconClickable
+                icon={big ? 'reducer' : 'expand'}
+                className='hidden-responsive'
+                callback={() => setBig(!big)}
+              />
               <IconClickable icon='close' callback={callbackClose} />
             </div>
           )}

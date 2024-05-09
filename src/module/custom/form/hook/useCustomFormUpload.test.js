@@ -10,7 +10,7 @@ describe('useCustomFormUpload', () => {
     const ReactTested = () => {
       const { handleChangeFile } = useCustomFormUpload('endpoint');
       useEffect(() => {
-        handleChangeFile(1, mockCallback)('name', {});
+        handleChangeFile(mockCallback)('name', {});
       }, [handleChangeFile]);
       return <></>;
     };

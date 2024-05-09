@@ -59,6 +59,16 @@ export type { HasRoleProps } from './hook/role/HasRole';
 export { useRole } from './hook/role/useRole';
 export { useUserAuth } from './hook/user/useUserAuth';
 
+export {
+  ADMIN_COL,
+  ADMIN_FILE,
+  ADMIN_INPUT,
+  ADMIN_NEWS,
+  ADMIN_PROFILE,
+  ADMIN_PROFILE_M2M,
+  ADMIN_USER,
+} from './module/admin/conf/AppAdminConf';
+
 export { default as AdminRouter } from './module/admin/AdminRouter';
 export { default as AdminTable } from './module/admin/component/AdminTable';
 export type { IAdminListPageProps } from './module/admin/component/AdminTable';
@@ -98,6 +108,7 @@ export { default as ContactPage } from './module/contact/page/ContactPage';
 
 export { default as CustomChatbot } from './module/custom/chatbot/component/CustomChatbot';
 export type { ICustomChatbotProps } from './module/custom/chatbot/component/CustomChatbot';
+export { default as CustomFile } from './module/custom/file/component/CustomFile';
 export { default as CustomForm } from './module/custom/form/component/CustomForm';
 export type { ICustomFormProps } from './module/custom/form/component/CustomForm';
 export { default as CustomFormManyToMany } from './module/custom/form/component/CustomFormManyToMany';
@@ -172,6 +183,7 @@ export type { IProfileFormPasswordProps } from './module/user/profile/component/
 export type { IProfileDto } from './module/user/profile/dto/ProfileDto';
 export { default as ProfilePage } from './module/user/profile/page/ProfilePage';
 export { default as ProfileService } from './module/user/profile/service/ProfileService';
+export type { IFileDto } from './module/user/user/dto/FileDto';
 export type { IUserDto } from './module/user/user/dto/UserDto';
 export { useUser } from './module/user/user/hook/useUser';
 export { default as UserService } from './module/user/user/service/UserService';

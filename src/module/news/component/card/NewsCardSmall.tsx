@@ -16,8 +16,8 @@ const NewsCardSmall: React.FC<INewsCardSmallProps> = memo(({ apiUrl, ...rest }) 
   return (
     <MdCard
       title={rest.news.title}
-      avatar={apiUrl + '/download?fileName=' + rest.news.avatar}
-      image={apiUrl + '/download?fileName=' + rest.news.image}
+      avatar={apiUrl + '/file/download?fileName=' + rest.news.avatar}
+      image={apiUrl + '/file/download?fileName=' + rest.news.image}
       date={rest.news.creationDate}
       url={'/' + rest.endPoint + '/show/' + rest.news.id + '/' + CustomSeoUtils.convertTitle(rest.news.title)}
       urlUpdate={hasUserRole(['ADMIN']) ? '/' + rest.endPoint + '/update/' + rest.news.id : undefined}>

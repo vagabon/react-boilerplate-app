@@ -3,6 +3,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import {
   FormInputType,
   IApiDto,
+  JSONObject,
   MdFormFile,
   MdFormSwitch,
   MdInputDatepicker,
@@ -106,7 +107,7 @@ const CustomForm: React.FC<ICustomFormProps> = memo(
                         label={form.label}
                         name={key}
                         values={formikProps.values}
-                        handleChangeFile={handleChangeFile(values.id, formikProps.handleChange)}
+                        handleChangeFile={handleChangeFile(formikProps.handleChange)}
                       />
                     </>
                   )}
@@ -125,6 +126,11 @@ const CustomForm: React.FC<ICustomFormProps> = memo(
                   )}
                   {form.type === 'switch' && (
                     <MdFormSwitch className={form.className} label={form.label} name={key} {...formikProps} />
+                  )}
+                  {form.type === 'image' && (
+                    <img
+                      src={apiUrl + '/file/download?filename=' + formikProps.values?.[form.label as keyof JSONObject]}
+                    />
                   )}
                 </Fragment>
               ))}

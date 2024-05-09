@@ -65,7 +65,7 @@ const ProfileAvatar: React.FC<IProfileAvatarProps> = memo(({ apiUrl, user, disab
             <MdFormFile
               label='Avatar'
               name='avatar'
-              handleChangeFile={handleChangeFile(user.id, callbackFile(modalProps.closeModal))}
+              handleChangeFile={handleChangeFile(callbackFile(modalProps.closeModal))}
               {...modalProps}
             />
           )}

@@ -35,8 +35,8 @@ const NewsCard: React.FC<INewsCardProps> = memo(({ apiUrl, news, endPoint, withS
     <>
       <MdCard
         title={news.title}
-        avatar={apiUrl + '/download?fileName=' + news.avatar}
-        image={apiUrl + '/download?fileName=' + news.image}
+        avatar={apiUrl + '/file/download?fileName=' + news.avatar}
+        image={apiUrl + '/file/download?fileName=' + news.image}
         date={news.creationDate}
         urlUpdate={hasUserRole(['ADMIN']) ? '/' + endPoint + '/update/' + news.id : undefined}
         actions={<CustomChatbotButton integrations={rest.integrations} />}>

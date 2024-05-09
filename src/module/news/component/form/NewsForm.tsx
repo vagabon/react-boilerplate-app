@@ -11,6 +11,7 @@ import AppFormik from '../../../../app/formik/AppFormik';
 import { useMessage } from '../../../../hook/message/useMessage';
 import { useCreateNews } from '../../../../module/news/hook/useCreateNews';
 import CustomChatbotButton, { IAppChatbotButtonProps } from '../../../custom/chatbot/component/CustomChatbotButton';
+import CustomFile from '../../../custom/file/component/CustomFile';
 import { useCustomFormUpload } from '../../../custom/form/hook/useCustomFormUpload';
 import { IBaseCustomSeoProps } from '../../../custom/seo/component/CustomSeo';
 import { INewsRouterProps } from '../../NewsRouter';
@@ -27,6 +28,7 @@ const NewsForm: React.FC<INewsFormProps> = memo(({ endPoint, newsAction, news, .
   const { createOrUpdateNews } = useCreateNews(rest.apiUrl, endPoint, newsAction, news.id as number);
   const [newsForm, setNewsForm] = useState<INewsDto>({});
   const { handleChangeFile } = useCustomFormUpload(rest.apiUrl, endPoint);
+  const [image, setImage] = useState('');
 
   useEffect(() => {
     setNewsForm(news ?? {});
@@ -50,14 +52,28 @@ const NewsForm: React.FC<INewsFormProps> = memo(({ endPoint, newsAction, news, .
     [endPoint],
   );
 
+  const handleUpdateImage = useCallback(
+    (file: string, closeModale?: () => void) => {
+      setImage('![](' + rest.apiUrl + '/file/download?filename=' + file + ')');
+      closeModale?.();
+    },
+    [rest.apiUrl],
+  );
+
   return (
     <>
       <MdCard
         title={news.id ? getLocale('UPDATE') : getLocale('CREATE')}
-        actions={<CustomChatbotButton integrations={rest.integrations} />}>
+        actions={
+          <>
+            <CustomFile apiUrl={rest.apiUrl} title='Image' directory={endPoint} callback={handleUpdateImage} />
+            <CustomChatbotButton integrations={rest.integrations} />
+          </>
+        }>
         <AppFormik initialValues={news} validationSchema={NEWS_SCHEMA} onSubmit={createOrUpdateNews}>
           {(formikProps) => (
             <>
+              {image}
               <MdInputText
                 label={getLocale('FIELDS.TITLE')}
                 name='title'
@@ -84,12 +100,12 @@ const NewsForm: React.FC<INewsFormProps> = memo(({ endPoint, newsAction, news, .
               <MdFormFile
                 label={getLocale('FIELDS.AVATAR')}
                 name='avatar'
-                handleChangeFile={handleChangeFile(newsForm.id, handleChange(newsForm, formikProps.handleChange))}
+                handleChangeFile={handleChangeFile(handleChange(newsForm, formikProps.handleChange))}
               />
               <MdFormFile
                 label={getLocale('FIELDS.IMAGE')}
                 name='image'
-                handleChangeFile={handleChangeFile(newsForm.id, handleChange(newsForm, formikProps.handleChange))}
+                handleChangeFile={handleChangeFile(handleChange(newsForm, formikProps.handleChange))}
               />
               <MdInputText
                 label={getLocale('FIELDS.TAGS')}

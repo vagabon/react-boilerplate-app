@@ -7,7 +7,6 @@ import CustomChatbot from '../../../module/custom/chatbot/component/CustomChatbo
 import CustomChatbotIntegration from '../../../module/custom/chatbot/component/CustomChatbotIntegration';
 import { CommonAction } from '../../../reducer/common/CommonReducer';
 import { useAppDispatch } from '../../../store/Store';
-import { StorageUtils } from '../../../utils/storage/StorageUtils';
 import Footer, { IFoorterProps } from '../../Footer';
 import Header, { IHeaderProp } from '../../Header';
 import { useAppFirebaseToken } from '../../hook/useAppFirebaseToken';
@@ -45,8 +44,7 @@ const AppThemeWithTemplate: React.FC<IAppThemeWithTemplateProps> = memo(
     }, [getScrollPage, location.pathname]);
 
     useEffect(() => {
-      StorageUtils.validateConsent() &&
-        ReactGA.send({ hitType: 'pageview', page: location.pathname + location.search });
+      ReactGA.send({ hitType: 'pageview', page: location.pathname + location.search });
     }, [location?.pathname, location?.search]);
 
     useEffect(() => {

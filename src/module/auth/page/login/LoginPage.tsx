@@ -1,14 +1,16 @@
 import { GoogleOAuthProvider } from '@react-oauth/google';
-import { MdCard, MdInputText, ObjectUtils } from '@vagabond-inc/react-boilerplate-md';
+import { MdCard } from '@vagabond-inc/react-boilerplate-md/dist/md/component/card/MdCard';
+import { MdInputText } from '@vagabond-inc/react-boilerplate-md/dist/md/component/form/text/MdInputText';
+import { ObjectUtils } from '@vagabond-inc/react-boilerplate-md/dist/utils/object/ObjectUtils';
 import { memo, useEffect } from 'react';
-import AppContent from '../../../../app/content/AppContent';
-import AppFormik from '../../../../app/formik/AppFormik';
-import { IHeaderProp } from '../../../../template/Header';
-import AuthFooter from '../../component/auth.footer/AuthFooter';
+import { AppContent } from '../../../../app/content/AppContent';
+import { AppFormik } from '../../../../app/formik/AppFormik';
+import { IHeaderDto } from '../../../../template/dto/HeaderDto';
+import { AuthFooter } from '../../component/auth.footer/AuthFooter';
 import { AuthFooterEnum } from '../../component/auth.footer/enum/AuthFooterEnum';
 import { useAuth } from '../../hook/useAuth';
-import LoginFacebook from './facebook/LoginFacebook';
-import LoginGoogle from './google/LoginGoogle';
+import { LoginFacebook } from './facebook/LoginFacebook';
+import { LoginGoogle } from './google/LoginGoogle';
 import LOGIN_SCHEMA from './schema/login.schema.json';
 
 const DEFAULT_VALUES = { username: '', password: '' };
@@ -17,9 +19,9 @@ export interface ILoginPageProps {
   googleClientId: string;
   facebookClientId: string;
 }
-export interface ILoginPageProps extends IHeaderProp {}
+export interface ILoginPageProps extends IHeaderDto {}
 
-const LoginPage: React.FC<ILoginPageProps> = memo(({ googleClientId, facebookClientId, ...rest }) => {
+export const LoginPage: React.FC<ILoginPageProps> = memo(({ googleClientId, facebookClientId, ...rest }) => {
   const { handleLogin, redirectIfLogged } = useAuth(rest.apiUrl);
 
   useEffect(() => {
@@ -61,5 +63,3 @@ const LoginPage: React.FC<ILoginPageProps> = memo(({ googleClientId, facebookCli
     </AppContent>
   );
 });
-
-export default LoginPage;

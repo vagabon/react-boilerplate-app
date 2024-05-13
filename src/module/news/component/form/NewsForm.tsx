@@ -1,29 +1,28 @@
-import {
-  HandleChangeType,
-  JSONObject,
-  MdCard,
-  MdFormFile,
-  MdFormSwitch,
-  MdInputText,
-} from '@vagabond-inc/react-boilerplate-md';
+import { JSONObject } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
+import { HandleChangeType } from '@vagabond-inc/react-boilerplate-md/dist/dto/form/FormDto';
+import { MdCard } from '@vagabond-inc/react-boilerplate-md/dist/md/component/card/MdCard';
+import { MdFormFile } from '@vagabond-inc/react-boilerplate-md/dist/md/component/form/file/MdFormFile';
+import { MdFormSwitch } from '@vagabond-inc/react-boilerplate-md/dist/md/component/form/switch/MdFormSwitch';
+import { MdInputText } from '@vagabond-inc/react-boilerplate-md/dist/md/component/form/text/MdInputText';
 import { ChangeEvent, memo, useCallback, useEffect, useState } from 'react';
-import AppFormik from '../../../../app/formik/AppFormik';
+import { AppFormik } from '../../../../app/formik/AppFormik';
 import { useMessage } from '../../../../hook/message/useMessage';
 import { useCreateNews } from '../../../../module/news/hook/useCreateNews';
-import CustomChatbotButton, { IAppChatbotButtonProps } from '../../../custom/chatbot/component/CustomChatbotButton';
-import CustomFile from '../../../custom/file/component/CustomFile';
+import { CustomChatbotButton, ICustomChatbotButtonProps } from '../../../custom/chatbot/component/CustomChatbotButton';
+import { CustomFile } from '../../../custom/file/component/CustomFile';
 import { useCustomFormUpload } from '../../../custom/form/hook/useCustomFormUpload';
 import { IBaseCustomSeoProps } from '../../../custom/seo/component/CustomSeo';
 import { INewsRouterProps } from '../../NewsRouter';
 import { INewsDto } from '../../dto/NewsDto';
-import NEWS_SCHEMA from '../../schema/news.schema.json';
-import NewsCard from '../card/NewsCard';
+import { NewsCard } from '../card/NewsCard';
 
-export interface INewsFormProps extends INewsRouterProps, IBaseCustomSeoProps, IAppChatbotButtonProps {
+import NEWS_SCHEMA from '../../schema/news.schema.json';
+
+export interface INewsFormProps extends INewsRouterProps, IBaseCustomSeoProps, ICustomChatbotButtonProps {
   news: INewsDto;
 }
 
-const NewsForm: React.FC<INewsFormProps> = memo(({ endPoint, newsAction, news, ...rest }) => {
+export const NewsForm: React.FC<INewsFormProps> = memo(({ endPoint, newsAction, news, ...rest }) => {
   const { setMessage } = useMessage();
   const { createOrUpdateNews } = useCreateNews(rest.apiUrl, endPoint, newsAction, news.id as number);
   const [newsForm, setNewsForm] = useState<INewsDto>({});
@@ -123,5 +122,3 @@ const NewsForm: React.FC<INewsFormProps> = memo(({ endPoint, newsAction, news, .
     </>
   );
 });
-
-export default NewsForm;

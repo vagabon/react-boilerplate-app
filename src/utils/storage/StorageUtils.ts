@@ -1,4 +1,4 @@
-import { JSONObject } from '@vagabond-inc/react-boilerplate-md';
+import { JSONObject } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
 import { ICurrentUserDto } from '../../dto/current-user/CurrentUserDto';
 import { IUserDto } from '../../module/user/user/dto/UserDto';
 

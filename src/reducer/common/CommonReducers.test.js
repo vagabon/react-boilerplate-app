@@ -1,4 +1,4 @@
-import CommonReducers, { CommonAction } from './CommonReducer';
+import { CommonAction, CommonReducers } from './CommonReducers';
 
 const state = {
   message: '',

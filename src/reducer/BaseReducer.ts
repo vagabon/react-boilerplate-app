@@ -1,5 +1,5 @@
 import { ActionCreatorWithPayload, PayloadAction } from '@reduxjs/toolkit';
-import { IApiDto } from '@vagabond-inc/react-boilerplate-md';
+import { IApiDto } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
 
 export type ActionReturn = { payload: IApiDto; type: string };
 

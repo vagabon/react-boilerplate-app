@@ -1,16 +1,17 @@
-import { MdTabs, useAppRouter } from '@vagabond-inc/react-boilerplate-md';
+import { MdTabs } from '@vagabond-inc/react-boilerplate-md/dist/md/component/tabs/MdTabs';
+import { useAppRouter } from '@vagabond-inc/react-boilerplate-md/dist/router/hook/useAppRouter';
 import { memo, useCallback, useEffect, useState } from 'react';
-import AppContent from '../../../../app/content/AppContent';
-import HasRole from '../../../../hook/role/HasRole';
-import { IHeaderProp } from '../../../../template/Header';
-import AdminTable from '../../component/AdminTable';
+import { AppContent } from '../../../../app/content/AppContent';
+import { HasRole } from '../../../../hook/role/HasRole';
+import { IHeaderDto } from '../../../../template/dto/HeaderDto';
+import { AdminTable } from '../../component/AdminTable';
 import { IAdminTabConfDto } from '../../dto/AdminConfDto';
 
-interface IAdminTabsPageProps extends IHeaderProp {
+interface IAdminTabsPageProps extends IHeaderDto {
   conf: IAdminTabConfDto;
 }
 
-const AdminTabsPage: React.FC<IAdminTabsPageProps> = memo(({ conf, ...rest }) => {
+export const AdminTabPage: React.FC<IAdminTabsPageProps> = memo(({ conf, ...rest }) => {
   const {
     navigate,
     params: { tab },
@@ -38,5 +39,3 @@ const AdminTabsPage: React.FC<IAdminTabsPageProps> = memo(({ conf, ...rest }) =>
     </AppContent>
   );
 });
-
-export default AdminTabsPage;

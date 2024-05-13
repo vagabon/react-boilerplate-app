@@ -1,17 +1,15 @@
-import {
-  IApiDto,
-  MdCard,
-  MdCommonModal,
-  MdList,
-  MdListItem,
-  MdListItemButton,
-  MdListItemText,
-  MdSearchBar,
-  useAppTranslate,
-} from '@vagabond-inc/react-boilerplate-md';
+import { IApiDto } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
+import { MdCard } from '@vagabond-inc/react-boilerplate-md/dist/md/component/card/MdCard';
+import { MdList } from '@vagabond-inc/react-boilerplate-md/dist/md/component/list/MdList';
+import { MdListItem } from '@vagabond-inc/react-boilerplate-md/dist/md/component/list/MdListItem';
+import { MdListItemButton } from '@vagabond-inc/react-boilerplate-md/dist/md/component/list/MdListItemButton';
+import { MdListItemText } from '@vagabond-inc/react-boilerplate-md/dist/md/component/list/MdListItemText';
+import { MdCommonModal } from '@vagabond-inc/react-boilerplate-md/dist/md/component/modal/MdCommonModal';
+import { MdSearchBar } from '@vagabond-inc/react-boilerplate-md/dist/md/component/searchbar/MdSearchBar';
+import { useAppTranslate } from '@vagabond-inc/react-boilerplate-md/dist/translate/hook/useAppTranslate';
 import { memo, useCallback, useEffect, useState } from 'react';
 import { IManyToManyDto } from '../../../admin/dto/AdminConfDto';
-import AdminService from '../../../admin/service/AdminService';
+import { AdminService } from '../../../admin/service/AdminService';
 
 interface ICustomFormModaleProps {
   apiUrl: string;
@@ -21,7 +19,7 @@ interface ICustomFormModaleProps {
   handleSelect: (data: IApiDto) => () => void;
 }
 
-const CustomFormModale: React.FC<ICustomFormModaleProps> = memo(({ apiUrl, conf, open, ...rest }) => {
+export const CustomFormModale: React.FC<ICustomFormModaleProps> = memo(({ apiUrl, conf, open, ...rest }) => {
   const { t } = useAppTranslate();
   const [search, setSearch] = useState<string>('');
   const [datas, setDatas] = useState<IApiDto[]>([]);
@@ -73,5 +71,3 @@ const CustomFormModale: React.FC<ICustomFormModaleProps> = memo(({ apiUrl, conf,
     </MdCommonModal>
   );
 });
-
-export default CustomFormModale;

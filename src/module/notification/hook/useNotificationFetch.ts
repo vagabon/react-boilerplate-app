@@ -1,4 +1,4 @@
-import { ID } from '@vagabond-inc/react-boilerplate-md';
+import { ID } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
 import { useCallback } from 'react';
 import { useApiServiceFetchBy } from '../../../api/hook/useApiServiceFetchBy';
 import { INotificationDto } from '../dto/NotificationDto';

@@ -1,14 +1,15 @@
-import { ID, UuidUtils } from '@vagabond-inc/react-boilerplate-md';
+import { ID } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
+import { UuidUtils } from '@vagabond-inc/react-boilerplate-md/dist/utils/uuid/UuidUtils';
 import { Dispatch } from 'redux';
 import { ApiService } from '../../../../api/service/ApiService';
-import { CommonAction } from '../../../../reducer/common/CommonReducer';
+import { CommonAction } from '../../../../reducer/common/CommonReducers';
 import { IUserDto } from '../dto/UserDto';
 
 const ENDPOINT_USERS = '/user';
 const ENDPOINT_USERS_FINDBY = ENDPOINT_USERS + '/findBy';
 const ENDPOINT_USERS_COUNTBY = ENDPOINT_USERS + '/countBy';
 
-const UserService = {
+export const UserService = {
   fetchById: (apiUrl: string, id: ID): Promise<IUserDto> => {
     return ApiService.findById<IUserDto>(apiUrl, ENDPOINT_USERS, id);
   },
@@ -67,5 +68,3 @@ const UserService = {
     }).then((data) => data);
   },
 };
-
-export default UserService;

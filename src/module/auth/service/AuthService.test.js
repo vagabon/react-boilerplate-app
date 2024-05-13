@@ -1,5 +1,5 @@
 import { ApiService } from '../../../api/service/ApiService';
-import AuthService from './AuthService';
+import { AuthService } from './AuthService';
 
 describe('AuthService', () => {
   test('Given AuthService when register then ApiService is called', () => {

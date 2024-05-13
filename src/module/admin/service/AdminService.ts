@@ -1,16 +1,17 @@
-import { IApiDto, UuidUtils } from '@vagabond-inc/react-boilerplate-md';
+import { IApiDto } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
+import { UuidUtils } from '@vagabond-inc/react-boilerplate-md/dist/utils/uuid/UuidUtils';
 import { Dispatch } from 'redux';
 import { ApiService } from '../../../api/service/ApiService';
 import { IPageableDto } from '../../../dto/pageable/PageableDto';
 import { IOrderState } from '../../../reducer/BaseReducer';
-import { CommonAction } from '../../../reducer/common/CommonReducer';
+import { CommonAction } from '../../../reducer/common/CommonReducers';
 
 const ENDPOINT_FINDBY = '/findBy';
 const ENDPOINT_FINDBY_ID = '/';
 const ENDPOINT_CREATE = '/';
 const ENDPOINT_UPDATE = '/';
 
-const AdminService = {
+export const AdminService = {
   findBy: (
     apiUrl: string,
     endPoint: string,
@@ -66,5 +67,3 @@ const AdminService = {
       });
     },
 };
-
-export default AdminService;

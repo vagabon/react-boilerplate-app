@@ -1,4 +1,6 @@
-import { JSONObject, MdButton, MdInputTextSimple } from '@vagabond-inc/react-boilerplate-md';
+import { JSONObject } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
+import { MdButton } from '@vagabond-inc/react-boilerplate-md/dist/md/component/button/MdButton';
+import { MdInputTextSimple } from '@vagabond-inc/react-boilerplate-md/dist/md/component/form/text/MdInputTextSimple';
 import { ChangeEvent, memo, useCallback, useEffect, useState } from 'react';
 import { useMessage } from '../../../hook/message/useMessage';
 
@@ -10,7 +12,7 @@ export interface IAppInputWithButtonProps {
   value?: string;
 }
 
-const AppInputWithButton: React.FC<IAppInputWithButtonProps> = memo(
+export const AppInputWithButton: React.FC<IAppInputWithButtonProps> = memo(
   ({ label, name, localeIfEmpty, value, callback }) => {
     const { setMessage } = useMessage();
     const [nameValue, setNameValue] = useState<string>('');
@@ -60,5 +62,3 @@ const AppInputWithButton: React.FC<IAppInputWithButtonProps> = memo(
     );
   },
 );
-
-export default AppInputWithButton;

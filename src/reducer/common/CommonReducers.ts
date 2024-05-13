@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { UuidUtils } from '@vagabond-inc/react-boilerplate-md';
+import { UuidUtils } from '@vagabond-inc/react-boilerplate-md/dist/utils/uuid/UuidUtils';
 import { IPathDto } from '../../dto/path/PathDto';
 
 export type MessageType = 'error' | 'success' | 'info' | 'warning';
@@ -142,5 +142,4 @@ export const CommonReducer = createSlice({
   },
 });
 export const CommonAction = { ...CommonReducer.actions };
-const CommonReducers = CommonReducer.reducer;
-export default CommonReducers;
+export const CommonReducers = CommonReducer.reducer;

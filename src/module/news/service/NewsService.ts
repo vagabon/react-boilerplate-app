@@ -1,11 +1,12 @@
-import { ID, UuidUtils } from '@vagabond-inc/react-boilerplate-md';
+import { ID } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
+import { UuidUtils } from '@vagabond-inc/react-boilerplate-md/dist/utils/uuid/UuidUtils';
 import { Dispatch } from 'redux';
 import { ApiService } from '../../../api/service/ApiService';
 import { IPageableDto } from '../../../dto/pageable/PageableDto';
-import { CommonAction } from '../../../reducer/common/CommonReducer';
+import { CommonAction } from '../../../reducer/common/CommonReducers';
 import { INewsDto } from '../dto/NewsDto';
 
-const NewsService = {
+export const NewsService = {
   fetchNews: (
     apiUrl: string,
     endPoint: string,
@@ -42,5 +43,3 @@ const NewsService = {
     }
   },
 };
-
-export default NewsService;

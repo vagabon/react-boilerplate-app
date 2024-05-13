@@ -1,4 +1,4 @@
-import { MdButton } from '@vagabond-inc/react-boilerplate-md';
+import { MdButton } from '@vagabond-inc/react-boilerplate-md/dist/md/component/button/MdButton';
 import { memo, useCallback } from 'react';
 
 export interface IAppButtonRefreshProps {
@@ -6,7 +6,7 @@ export interface IAppButtonRefreshProps {
   callback?: (data?: string) => void;
 }
 
-const AppButtonRefresh: React.FC<IAppButtonRefreshProps> = memo(({ data, callback }) => {
+export const AppButtonRefresh: React.FC<IAppButtonRefreshProps> = memo(({ data, callback }) => {
   const handleClick = useCallback(() => {
     callback?.(data);
   }, [data, callback]);
@@ -15,5 +15,3 @@ const AppButtonRefresh: React.FC<IAppButtonRefreshProps> = memo(({ data, callbac
     <>{callback && <MdButton className='button-icon' icon='refresh' variant='outlined' callback={handleClick} />}</>
   );
 });
-
-export default AppButtonRefresh;

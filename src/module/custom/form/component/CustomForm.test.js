@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import CustomForm from './CustomForm';
+import { CustomForm } from './CustomForm';
 
 const COMMON_INPUT = {
   creationDate: { label: 'AUTH:FIELDS.CREATE_DATE', type: 'datetime', required: false, className: 'width50' },

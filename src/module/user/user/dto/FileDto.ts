@@ -1,4 +1,4 @@
-import { IApiDto } from '@vagabond-inc/react-boilerplate-md';
+import { IApiDto } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
 import { IUserDto } from './UserDto';
 
 export interface IFileDto extends IApiDto {

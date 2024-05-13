@@ -1,15 +1,15 @@
-import { useAppRouter } from '@vagabond-inc/react-boilerplate-md';
+import { useAppRouter } from '@vagabond-inc/react-boilerplate-md/dist/router/hook/useAppRouter';
 import { memo, useEffect } from 'react';
-import AppContent from '../../../../app/content/AppContent';
-import HasRole from '../../../../hook/role/HasRole';
-import { IAppChatbotButtonProps } from '../../../custom/chatbot/component/CustomChatbotButton';
+import { AppContent } from '../../../../app/content/AppContent';
+import { HasRole } from '../../../../hook/role/HasRole';
+import { ICustomChatbotButtonProps } from '../../../custom/chatbot/component/CustomChatbotButton';
 import { INewsRouterProps } from '../../NewsRouter';
-import NewsCard from '../../component/card/NewsCard';
+import { NewsCard } from '../../component/card/NewsCard';
 import { useCreateNews } from '../../hook/useCreateNews';
 
-export interface INewsShowPageProps extends INewsRouterProps, IAppChatbotButtonProps {}
+export interface INewsShowPageProps extends INewsRouterProps, ICustomChatbotButtonProps {}
 
-const NewsShowPage: React.FC<INewsShowPageProps> = memo(({ endPoint, newsAction, ...rest }) => {
+export const NewsShowPage: React.FC<INewsShowPageProps> = memo(({ endPoint, newsAction, ...rest }) => {
   const {
     params: { id },
   } = useAppRouter();
@@ -33,5 +33,3 @@ const NewsShowPage: React.FC<INewsShowPageProps> = memo(({ endPoint, newsAction,
     </HasRole>
   );
 });
-
-export default NewsShowPage;

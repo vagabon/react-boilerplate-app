@@ -1,8 +1,11 @@
-import { JSONObject, MdCard, MdSearchBar, MdTableWithPagination } from '@vagabond-inc/react-boilerplate-md';
+import { JSONObject } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
+import { MdCard } from '@vagabond-inc/react-boilerplate-md/dist/md/component/card/MdCard';
+import { MdSearchBar } from '@vagabond-inc/react-boilerplate-md/dist/md/component/searchbar/MdSearchBar';
+import { MdTableWithPagination } from '@vagabond-inc/react-boilerplate-md/dist/md/component/table/MdTableWithPagination';
 import { memo, useEffect, useState } from 'react';
-import AppButtonRefresh from '../../../app/button/component/refresh/AppButtonRefresh';
-import AppFabAdd from '../../../app/fab/add/AppFabAdd';
-import HasRole from '../../../hook/role/HasRole';
+import { AppButtonRefresh } from '../../../app/button/component/refresh/AppButtonRefresh';
+import { AppFabAdd } from '../../../app/fab/add/AppFabAdd';
+import { HasRole } from '../../../hook/role/HasRole';
 import { IBaseCustomSeoProps } from '../../custom/seo/component/CustomSeo';
 import { IFileDto } from '../../user/user/dto/FileDto';
 import { IAdminTabConfDto, IAdminTabDto } from '../dto/AdminConfDto';
@@ -14,7 +17,8 @@ export interface IAdminListPageProps extends IBaseCustomSeoProps {
   activePage: string;
   conf: IAdminTabConfDto;
 }
-const AdminTable: React.FC<IAdminListPageProps> = memo(({ activePage, conf, ...rest }) => {
+
+export const AdminTable: React.FC<IAdminListPageProps> = memo(({ activePage, conf, ...rest }) => {
   const [pageConf, setPageConf] = useState<IAdminTabDto>();
   const { state } = useAdminState(activePage, pageConf as IAdminTabDto);
   const [cells, setCells] = useState(pageConf?.cells);
@@ -79,5 +83,3 @@ const AdminTable: React.FC<IAdminListPageProps> = memo(({ activePage, conf, ...r
     </>
   );
 });
-
-export default AdminTable;

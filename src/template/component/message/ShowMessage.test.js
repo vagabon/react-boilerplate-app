@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import ShowMessage from './ShowMessage';
+import { ShowMessage } from './ShowMessage';
 
 jest.useFakeTimers();
 

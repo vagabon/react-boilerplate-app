@@ -1,5 +1,5 @@
 import FacebookLogin from '@greatsumini/react-facebook-login';
-import { MdButton } from '@vagabond-inc/react-boilerplate-md';
+import { MdButton } from '@vagabond-inc/react-boilerplate-md/dist/md/component/button/MdButton';
 import { memo } from 'react';
 import { useAuth } from '../../../hook/useAuth';
 
@@ -8,7 +8,7 @@ export interface ILoginFacebookProps {
   facebookClientId: string;
 }
 
-const LoginFacebook: React.FC<ILoginFacebookProps> = memo(({ apiUrl, facebookClientId }) => {
+export const LoginFacebook: React.FC<ILoginFacebookProps> = memo(({ apiUrl, facebookClientId }) => {
   const { handleFacebookLogin } = useAuth(apiUrl);
 
   return (
@@ -34,5 +34,3 @@ const LoginFacebook: React.FC<ILoginFacebookProps> = memo(({ apiUrl, facebookCli
     />
   );
 });
-
-export default LoginFacebook;

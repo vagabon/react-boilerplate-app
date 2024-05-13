@@ -1,4 +1,4 @@
-import { IApiDto } from '@vagabond-inc/react-boilerplate-md';
+import { IApiDto } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
 import { useCallback, useRef } from 'react';
 import { useMessage } from '../../hook/message/useMessage';
 import { ApiCrudService } from '../service/crud/ApiCrudService';

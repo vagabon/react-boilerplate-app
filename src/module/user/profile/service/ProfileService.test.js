@@ -1,5 +1,5 @@
 import { ApiService } from '../../../../api/service/ApiService';
-import ProfileService from './ProfileService';
+import { ProfileService } from './ProfileService';
 
 describe('ProfileService', () => {
   test('Given ProfileService when loadRoles then ApiService is called', () => {

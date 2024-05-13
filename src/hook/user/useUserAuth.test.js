@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/react';
-import AuthService from '../../module/auth/service/AuthService';
+import { AuthService } from '../../module/auth/service/AuthService';
 import { useUserAuth } from './useUserAuth';
 
 describe('useUserAuth', () => {

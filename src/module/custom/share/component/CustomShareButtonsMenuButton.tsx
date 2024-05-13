@@ -12,7 +12,7 @@ import {
   TwitterShareButton,
 } from 'react-share';
 
-const CustomShareButtonsMenuButton: React.FC<{
+export const CustomShareButtonsMenuButton: React.FC<{
   type: string;
   url: string;
   buttonSize?: number;
@@ -49,5 +49,3 @@ const CustomShareButtonsMenuButton: React.FC<{
     </>
   );
 });
-
-export default CustomShareButtonsMenuButton;

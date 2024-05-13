@@ -1,5 +1,5 @@
 import { useGoogleLogin } from '@react-oauth/google';
-import { MdButton } from '@vagabond-inc/react-boilerplate-md';
+import { MdButton } from '@vagabond-inc/react-boilerplate-md/dist/md/component/button/MdButton';
 import { memo } from 'react';
 import { useAuth } from '../../../hook/useAuth';
 
@@ -7,7 +7,7 @@ export interface ILoginGoogleProps {
   apiUrl: string;
 }
 
-const LoginGoogle: React.FC<ILoginGoogleProps> = memo(({ apiUrl }) => {
+export const LoginGoogle: React.FC<ILoginGoogleProps> = memo(({ apiUrl }) => {
   const { handleGoogleLogin: doGoogleLogin } = useAuth(apiUrl);
 
   const handleGoogleLogin = useGoogleLogin({
@@ -29,5 +29,3 @@ const LoginGoogle: React.FC<ILoginGoogleProps> = memo(({ apiUrl }) => {
     />
   );
 });
-
-export default LoginGoogle;

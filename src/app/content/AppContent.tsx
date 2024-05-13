@@ -1,7 +1,7 @@
-import { useId } from '@vagabond-inc/react-boilerplate-md';
+import { useId } from '@vagabond-inc/react-boilerplate-md/dist/md/hook/useId';
 import { ReactNode, memo } from 'react';
-import CustomSeo from '../../module/custom/seo/component/CustomSeo';
-import { IHeaderProp as IHeaderDto } from '../../template/Header';
+import { CustomSeo } from '../../module/custom/seo/component/CustomSeo';
+import { IHeaderDto } from '../../template/dto/HeaderDto';
 
 export interface IAppContentProps extends IHeaderDto {
   id?: string;
@@ -13,7 +13,7 @@ export interface IAppContentProps extends IHeaderDto {
   seoDescription?: string;
 }
 
-const AppContent: React.FC<IAppContentProps> = memo(
+export const AppContent: React.FC<IAppContentProps> = memo(
   ({ id, className = '', date, seo, seoTitle, seoDescription, ...rest }) => {
     const { id: divId } = useId(id);
 
@@ -33,5 +33,3 @@ const AppContent: React.FC<IAppContentProps> = memo(
     );
   },
 );
-
-export default AppContent;

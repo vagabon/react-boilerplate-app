@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/react';
-import AdminService from '../service/AdminService';
+import { AdminService } from '../service/AdminService';
 import { useAdminList } from './useAdminList';
 
 describe('useAdminList', () => {

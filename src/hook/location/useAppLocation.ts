@@ -1,6 +1,6 @@
-import { useAppRouter } from '@vagabond-inc/react-boilerplate-md';
+import { useAppRouter } from '@vagabond-inc/react-boilerplate-md/dist/router/hook/useAppRouter';
 import { useCallback } from 'react';
-import { CommonAction } from '../../reducer/common/CommonReducer';
+import { CommonAction } from '../../reducer/common/CommonReducers';
 import { useAppDispatch, useAppSelector } from '../../store/Store';
 
 export const useAppLocation = () => {

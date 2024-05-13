@@ -1,4 +1,4 @@
-import { ID } from '@vagabond-inc/react-boilerplate-md';
+import { ID } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
 import { useCallback, useState } from 'react';
 import { useApiService } from '../../../../api/hook/useApiService';
 import { ICurrentUserDto } from '../../../../dto/current-user/CurrentUserDto';
@@ -7,7 +7,7 @@ import { useAppSelector } from '../../../../store/Store';
 import { StorageUtils } from '../../../../utils/storage/StorageUtils';
 import { useAuth } from '../../../auth/hook/useAuth';
 import { IUserDto } from '../dto/UserDto';
-import UserService from '../service/UserService';
+import { UserService } from '../service/UserService';
 
 export const useUser = (apiUrl: string) => {
   const { updateLocalStorage } = useAuth(apiUrl);

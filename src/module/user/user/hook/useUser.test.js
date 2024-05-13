@@ -1,5 +1,5 @@
 import { act, renderHook } from '@testing-library/react';
-import UserService from '../service/UserService';
+import { UserService } from '../service/UserService';
 import { useUser } from './useUser';
 
 describe('useUser', () => {

@@ -1,14 +1,18 @@
-import { PieChart } from '@mui/x-charts';
-import { I18nUtils, MdCard, useAppTranslate } from '@vagabond-inc/react-boilerplate-md';
-import { memo, useEffect, useState } from 'react';
+import { MdCard } from '@vagabond-inc/react-boilerplate-md/dist/md/component/card/MdCard';
+import { useAppTranslate } from '@vagabond-inc/react-boilerplate-md/dist/translate/hook/useAppTranslate';
+import { I18nUtils } from '@vagabond-inc/react-boilerplate-md/dist/utils/i18n/I18nUtils';
+import { lazy, memo, useEffect, useState } from 'react';
 import { ICustomListDto } from '../../../../module/custom/list/component/CustomList';
+import { SuspenceLoader } from '../../../../suspence/SuspenceLoader';
+
+const PieChart = lazy(() => import('@mui/x-charts').then((module) => ({ default: module.PieChart })));
 
 export interface IAppPieBarProps {
   custumList: ICustomListDto[];
   height?: number;
 }
 
-const AppPieBar: React.FC<IAppPieBarProps> = memo(({ custumList, height }) => {
+export const AppPieBar: React.FC<IAppPieBarProps> = memo(({ custumList, height }) => {
   const { t } = useAppTranslate();
   const [series, setSeries] = useState<{ id: number; value: number; label: string }[]>(
     custumList.map((item) => {
@@ -32,16 +36,16 @@ const AppPieBar: React.FC<IAppPieBarProps> = memo(({ custumList, height }) => {
 
   return (
     <MdCard>
-      <PieChart
-        series={[
-          {
-            data: series,
-          },
-        ]}
-        height={height ?? 320}
-      />
+      {SuspenceLoader(
+        <PieChart
+          series={[
+            {
+              data: series,
+            },
+          ]}
+          height={height ?? 320}
+        />,
+      )}
     </MdCard>
   );
 });
-
-export default AppPieBar;

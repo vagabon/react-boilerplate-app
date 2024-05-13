@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import AdminTabPage from './AdminTabPage';
+import { AdminTabPage } from './AdminTabPage';
 
 const COMMON_INPUT = {
   creationDate: { label: 'AUTH:FIELDS.CREATE_DATE', type: 'datetime', required: false, className: 'width50' },

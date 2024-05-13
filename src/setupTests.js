@@ -1,6 +1,6 @@
-import { mockBoilerPlateMd } from './setupTests-md';
+import './setupTests-md';
 
-console.error = jest.fn();
+console.debug = jest.fn();
 
 /********************************** MOCK REDUX ***********************************/
 
@@ -29,8 +29,6 @@ global.mockDispatch = jest.fn();
 
 /***************************** AFTER EACH RESET MOCK *****************************/
 
-jest.mock('@vagabond-inc/react-boilerplate-md', () => ({ ...mockBoilerPlateMd }));
-
 global.mockEnqueueSnackbar = jest.fn();
 
 jest.mock('notistack', () => ({
@@ -51,31 +49,8 @@ jest.mock('@mui/x-charts', () => ({
   PieChart: ({ children }) => <div data-testid='PieChart'>{children}</div>,
 }));
 
-jest.mock('@mui/material', () => ({
-  ...jest.requireActual('@mui/material'),
-  AppBar: ({ children }) => <div data-testid='AppBar'>{children}</div>,
-  FormControl: ({ children }) => <div data-testid='FormControl'>{children}</div>,
-  MenuItem: ({ value, onClick, children }) => (
-    <option data-testid='MenuItem' value={value} onClick={onClick}>
-      {children}
-    </option>
-  ),
-  Select: ({ name, onChange, value, children }) => (
-    <select name={name} data-testid='Select' onChange={onChange} value={value}>
-      {children}
-    </select>
-  ),
-}));
-
 /******************* AFTER EACH RESET MOCK *****************************/
 
-global.mockStore = {};
-
 beforeEach(() => {
-  // global.useAppSelectorSpy.mockImplementation((callback) => callback(global.mockStore));
   global.useAppDispatchSpy.mockReturnValue(global.mockDispatch);
 });
-
-window.ENV = {
-  API_URL: 'http://localhost:8090',
-};

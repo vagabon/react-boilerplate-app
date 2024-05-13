@@ -1,8 +1,11 @@
-import { IApiDto, JSONObject, MdButton, MdFormFile, ObjectUtils } from '@vagabond-inc/react-boilerplate-md';
+import { IApiDto, JSONObject } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
+import { MdButton } from '@vagabond-inc/react-boilerplate-md/dist/md/component/button/MdButton';
+import { MdFormFile } from '@vagabond-inc/react-boilerplate-md/dist/md/component/form/file/MdFormFile';
+import { ObjectUtils } from '@vagabond-inc/react-boilerplate-md/dist/utils/object/ObjectUtils';
 import { ChangeEvent, useCallback } from 'react';
 import { useModal } from '../../../../hook/modal/useModal';
 import { useCustomFormUpload } from '../../form/hook/useCustomFormUpload';
-import CustomModaleForm from '../../modale/component/CustomModaleForm';
+import { CustomModaleForm } from '../../modale/component/CustomModaleForm';
 
 export interface ICustomFileProps {
   apiUrl: string;
@@ -12,7 +15,13 @@ export interface ICustomFileProps {
   callback: (file: string, closeModale?: () => void) => void;
 }
 
-const CustomFile: React.FC<ICustomFileProps> = ({ apiUrl, title, directory, variant = 'contained', callback }) => {
+export const CustomFile: React.FC<ICustomFileProps> = ({
+  apiUrl,
+  title,
+  directory,
+  variant = 'contained',
+  callback,
+}) => {
   const { open, openModal, closeModal } = useModal();
 
   const { handleChangeFile } = useCustomFormUpload(apiUrl, directory);
@@ -42,4 +51,3 @@ const CustomFile: React.FC<ICustomFileProps> = ({ apiUrl, title, directory, vari
     </>
   );
 };
-export default CustomFile;

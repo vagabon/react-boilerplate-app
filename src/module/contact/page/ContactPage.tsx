@@ -1,10 +1,14 @@
-import { MdButton, MdCard, MdChip, MdLink, useAppTranslate } from '@vagabond-inc/react-boilerplate-md';
-import AppContent from '../../../app/content/AppContent';
-import { IHeaderProp } from '../../../template/Header';
+import { MdButton } from '@vagabond-inc/react-boilerplate-md/dist/md/component/button/MdButton';
+import { MdCard } from '@vagabond-inc/react-boilerplate-md/dist/md/component/card/MdCard';
+import { MdChip } from '@vagabond-inc/react-boilerplate-md/dist/md/component/chip/MdChip';
+import { MdLink } from '@vagabond-inc/react-boilerplate-md/dist/md/component/link/MdLink';
+import { useAppTranslate } from '@vagabond-inc/react-boilerplate-md/dist/translate/hook/useAppTranslate';
+import { AppContent } from '../../../app/content/AppContent';
+import { IHeaderDto } from '../../../template/dto/HeaderDto';
 
-export interface IContactPageProps extends IHeaderProp {}
+export interface IContactPageProps extends IHeaderDto {}
 
-const ContactPage: React.FC<IContactPageProps> = ({ ...rest }) => {
+export const ContactPage: React.FC<IContactPageProps> = ({ ...rest }) => {
   const { Trans } = useAppTranslate();
 
   return (
@@ -149,4 +153,3 @@ const ContactPage: React.FC<IContactPageProps> = ({ ...rest }) => {
     </AppContent>
   );
 };
-export default ContactPage;

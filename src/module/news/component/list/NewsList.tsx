@@ -1,14 +1,14 @@
 import { memo, useEffect } from 'react';
-import InfiniteScrollPage from '../../../../page/InfiniteScrollPage';
-import CustomSeo, { IBaseCustomSeoProps } from '../../../custom/seo/component/CustomSeo';
+import { InfiniteScrollPage } from '../../../../page/InfiniteScrollPage';
+import { CustomSeo, IBaseCustomSeoProps } from '../../../custom/seo/component/CustomSeo';
 import { INewsRouterProps } from '../../NewsRouter';
 import { INewsDto } from '../../dto/NewsDto';
 import { useFetchNews } from '../../hook/useFetchNews';
-import NewsCardSmall from '../card/NewsCardSmall';
+import { NewsCardSmall } from '../card/NewsCardSmall';
 
 export interface INewsListProps extends INewsRouterProps, IBaseCustomSeoProps {}
 
-const NewsList: React.FC<INewsListProps> = memo(({ endPoint, newsAction, ...rest }) => {
+export const NewsList: React.FC<INewsListProps> = memo(({ endPoint, newsAction, ...rest }) => {
   const { news, search, count, page, doSearch, doChangePage } = useFetchNews(rest.apiUrl, endPoint, newsAction);
 
   useEffect(() => {
@@ -45,5 +45,3 @@ const NewsList: React.FC<INewsListProps> = memo(({ endPoint, newsAction, ...rest
     </>
   );
 });
-
-export default NewsList;

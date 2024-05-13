@@ -1,4 +1,4 @@
-import NotificationReducers, { NotificationAction } from './NotificationReducer';
+import { NotificationAction, NotificationReducers } from './NotificationReducer';
 
 const state = {
   datas: [{ id: 1 }],

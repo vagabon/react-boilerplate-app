@@ -1,23 +1,25 @@
-import { JSONObject, useAppRouter } from '@vagabond-inc/react-boilerplate-md';
+import { JSONObject } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
+import { useAppRouter } from '@vagabond-inc/react-boilerplate-md/dist/router/hook/useAppRouter';
 import { type i18n as i18nType } from 'i18next';
 import { ReactNode, memo, useEffect, useRef } from 'react';
 import ReactGA from 'react-ga4';
 import { IMenuDto } from '../../../dto/menu/MenuDto';
-import CustomChatbot from '../../../module/custom/chatbot/component/CustomChatbot';
-import CustomChatbotIntegration from '../../../module/custom/chatbot/component/CustomChatbotIntegration';
-import { CommonAction } from '../../../reducer/common/CommonReducer';
+import { CustomChatbot } from '../../../module/custom/chatbot/component/CustomChatbot';
+import { CustomChatbotIntegration } from '../../../module/custom/chatbot/component/CustomChatbotIntegration';
+import { CommonAction } from '../../../reducer/common/CommonReducers';
 import { useAppDispatch } from '../../../store/Store';
-import Footer, { IFoorterProps } from '../../Footer';
-import Header, { IHeaderProp } from '../../Header';
+import { Footer, IFoorterProps } from '../../Footer';
+import { Header } from '../../Header';
+import { IHeaderDto } from '../../dto/HeaderDto';
 import { useAppFirebaseToken } from '../../hook/useAppFirebaseToken';
 import { useAppNotification } from '../../hook/useAppNotification';
 import { useAppScroll } from '../../hook/useAppScroll';
 import { useAppTheme } from '../../hook/useAppTheme';
-import CookieConsents from '../cookie/CookieConsents';
-import MenuDrawer from '../menu/MenuDrawer';
-import AppTheme from './AppTheme';
+import { CookieConsents } from '../cookie/CookieConsents';
+import { MenuDrawer } from '../menu/MenuDrawer';
+import { AppTheme } from './AppTheme';
 
-export interface IAppThemeWithTemplateProps extends IHeaderProp, IFoorterProps {
+export interface IAppThemeWithTemplateProps extends IHeaderDto, IFoorterProps {
   palette: JSONObject;
   generateToken?: () => Promise<string | undefined>;
   menu: IMenuDto[];
@@ -29,7 +31,7 @@ export interface IAppThemeWithTemplateProps extends IHeaderProp, IFoorterProps {
   children: ReactNode;
 }
 
-const AppThemeWithTemplate: React.FC<IAppThemeWithTemplateProps> = memo(
+export const AppThemeWithTemplate: React.FC<IAppThemeWithTemplateProps> = memo(
   ({ palette, generateToken, menu, i18n, showNotification, widthDrawer = true, reactHeader, children, ...rest }) => {
     const dispatch = useAppDispatch();
     const mainContainer = useRef<HTMLDivElement | null>(null);
@@ -102,5 +104,3 @@ const AppThemeWithTemplate: React.FC<IAppThemeWithTemplateProps> = memo(
     );
   },
 );
-
-export default AppThemeWithTemplate;

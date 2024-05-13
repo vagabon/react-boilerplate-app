@@ -1,4 +1,4 @@
-import { IApiDto, JSONObject } from '@vagabond-inc/react-boilerplate-md';
+import { IApiDto, JSONObject } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
 import { useCallback, useState } from 'react';
 import { useAppSelector } from '../../../../store/Store';
 import { IChartBarDto } from '../dto/ChartBarDto';

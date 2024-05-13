@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import NewsCard from './NewsCard';
+import { NewsCard } from './NewsCard';
 
 describe('NewsCard', () => {
   test('Given NewsCard when its mount then MdCard is shown', () => {

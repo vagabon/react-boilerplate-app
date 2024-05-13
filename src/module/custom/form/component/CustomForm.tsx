@@ -1,24 +1,20 @@
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import {
-  FormInputType,
-  IApiDto,
-  JSONObject,
-  MdFormFile,
-  MdFormSwitch,
-  MdInputDatepicker,
-  MdInputText,
-  MdInputTextSimple,
-  ObjectUtils,
-  useAppRouter,
-} from '@vagabond-inc/react-boilerplate-md';
+import { IApiDto, JSONObject } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
+import { MdInputDatepicker } from '@vagabond-inc/react-boilerplate-md/dist/md/component/form/datepicker/MdInputDatepicker';
+import { MdFormFile } from '@vagabond-inc/react-boilerplate-md/dist/md/component/form/file/MdFormFile';
+import { MdFormSwitch } from '@vagabond-inc/react-boilerplate-md/dist/md/component/form/switch/MdFormSwitch';
+import { FormInputType, MdInputText } from '@vagabond-inc/react-boilerplate-md/dist/md/component/form/text/MdInputText';
+import { MdInputTextSimple } from '@vagabond-inc/react-boilerplate-md/dist/md/component/form/text/MdInputTextSimple';
+import { useAppRouter } from '@vagabond-inc/react-boilerplate-md/dist/router/hook/useAppRouter';
+import { ObjectUtils } from '@vagabond-inc/react-boilerplate-md/dist/utils/object/ObjectUtils';
 import { Fragment, memo, useCallback } from 'react';
-import AppFormik from '../../../../app/formik/AppFormik';
+import { AppFormik } from '../../../../app/formik/AppFormik';
 import { IYupValidators } from '../../../../utils/yup/YupUtils';
 import { IFormDto } from '../../../admin/dto/AdminConfDto';
 import { useCustomFormUpload } from '../hook/useCustomFormUpload';
-import CustomFormManyToMany from './CustomFormManyToMany';
-import CustomFormSelect from './CustomFormSelect';
+import { CustomFormManyToMany } from './CustomFormManyToMany';
+import { CustomFormSelect } from './CustomFormSelect';
 
 export interface ICustomFormProps {
   apiUrl: string;
@@ -30,7 +26,7 @@ export interface ICustomFormProps {
   handleUpdate: (data: IApiDto) => void;
 }
 
-const CustomForm: React.FC<ICustomFormProps> = memo(
+export const CustomForm: React.FC<ICustomFormProps> = memo(
   ({ apiUrl, endPoint, conf, values, schema, urlGoBack, handleUpdate }) => {
     const { navigate } = useAppRouter();
     const { handleChangeFile } = useCustomFormUpload(apiUrl, endPoint);
@@ -141,5 +137,3 @@ const CustomForm: React.FC<ICustomFormProps> = memo(
     );
   },
 );
-
-export default CustomForm;

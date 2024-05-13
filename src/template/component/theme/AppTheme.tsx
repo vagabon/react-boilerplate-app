@@ -1,18 +1,14 @@
-import {
-  ITheme,
-  JSONObject,
-  MdThemeProvider,
-  ModeType,
-  useAppRouter,
-  useTheme,
-} from '@vagabond-inc/react-boilerplate-md';
+import { JSONObject } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
+import { MdThemeProvider } from '@vagabond-inc/react-boilerplate-md/dist/md/component/theme/MdThemeProvider';
+import { ITheme, ModeType, useTheme } from '@vagabond-inc/react-boilerplate-md/dist/md/component/theme/useTheme';
+import { useAppRouter } from '@vagabond-inc/react-boilerplate-md/dist/router/hook/useAppRouter';
 import { SnackbarKey, SnackbarProvider, closeSnackbar } from 'notistack';
 import React, { memo, useCallback, useEffect } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
-import AppScrollToAnchor from '../../../app/scrool/AppScrollToAnchor';
-import { CommonAction } from '../../../reducer/common/CommonReducer';
+import { AppScrollToAnchor } from '../../../app/scrool/AppScrollToAnchor';
+import { CommonAction } from '../../../reducer/common/CommonReducers';
 import { useAppDispatch, useAppSelector } from '../../../store/Store';
-import ShowMessage from '../message/ShowMessage';
+import { ShowMessage } from '../message/ShowMessage';
 
 export interface IFormThemeDto {
   mode: ModeType;
@@ -25,7 +21,7 @@ export interface IAppThemeProps {
   children: (props: IFormThemeDto) => React.JSX.Element;
 }
 
-const AppTheme: React.FC<IAppThemeProps> = memo(({ palette, children }) => {
+export const AppTheme: React.FC<IAppThemeProps> = memo(({ palette, children }) => {
   const dispatch = useAppDispatch();
   const { location } = useAppRouter();
   const { modeTheme } = useAppSelector((state) => state.common);
@@ -68,5 +64,3 @@ const AppTheme: React.FC<IAppThemeProps> = memo(({ palette, children }) => {
     </SnackbarProvider>
   );
 });
-
-export default AppTheme;

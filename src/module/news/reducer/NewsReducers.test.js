@@ -1,4 +1,4 @@
-import NewsReducers, { NewsAction } from './NewsReducers';
+import { NewsAction, NewsReducers } from './NewsReducers';
 
 const state = {
   isLoggedIn: false,

@@ -1,4 +1,4 @@
-import { DateUtils } from '@vagabond-inc/react-boilerplate-md';
+import { DateUtils } from '@vagabond-inc/react-boilerplate-md/dist/utils/date/DateUtils';
 import { ICustomListDto } from '../../custom/list/component/CustomList';
 import { INotificationDto } from '../dto/NotificationDto';
 

@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { CommonAction } from '../../../../reducer/common/CommonReducer';
+import { CommonAction } from '../../../../reducer/common/CommonReducers';
 import { useAppDispatch, useAppSelector } from '../../../../store/Store';
 
 export const useChatbot = () => {

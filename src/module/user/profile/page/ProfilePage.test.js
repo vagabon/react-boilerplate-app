@@ -1,6 +1,6 @@
 import { render, screen, waitFor } from '@testing-library/react';
-import UserService from '../../user/service/UserService';
-import ProfilePage from './ProfilePage';
+import { UserService } from '../../user/service/UserService';
+import { ProfilePage } from './ProfilePage';
 
 describe('ProfilePage', () => {
   test('Given ProfilePage when its mount then CardContent is shown', () => {

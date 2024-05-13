@@ -1,14 +1,18 @@
-import { ID, MdBouttonGroup, MdButton, MdCard, MdDivider } from '@vagabond-inc/react-boilerplate-md';
+import { ID } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
+import { MdButton } from '@vagabond-inc/react-boilerplate-md/dist/md/component/button/MdButton';
+import { MdBouttonGroup } from '@vagabond-inc/react-boilerplate-md/dist/md/component/button/group/MdBouttonGroup';
+import { MdCard } from '@vagabond-inc/react-boilerplate-md/dist/md/component/card/MdCard';
+import { MdDivider } from '@vagabond-inc/react-boilerplate-md/dist/md/component/divider/MdDivider';
 import { type i18n as i18nType } from 'i18next';
 import React, { useCallback } from 'react';
 import { useApiService } from '../../../../api/hook/useApiService';
-import HasRole from '../../../../hook/role/HasRole';
+import { HasRole } from '../../../../hook/role/HasRole';
 import { useUserAuth } from '../../../../hook/user/useUserAuth';
 import { useAppSelector } from '../../../../store/Store';
-import CustomModaleConfirm from '../../../custom/modale/component/CustomModaleConfirm';
+import { CustomModaleConfirm } from '../../../custom/modale/component/CustomModaleConfirm';
 import { IUserDto } from '../../user/dto/UserDto';
-import ProfileAvatar from './ProfileAvatar';
-import ProfileForm from './form/ProfileForm';
+import { ProfileAvatar } from './ProfileAvatar';
+import { ProfileForm } from './form/ProfileForm';
 
 export interface IProfileShowProps {
   apiUrl: string;
@@ -19,7 +23,7 @@ export interface IProfileShowProps {
   profileReactChildren?: (id: ID) => React.JSX.Element;
 }
 
-const ProfileShow: React.FC<IProfileShowProps> = ({
+export const ProfileShow: React.FC<IProfileShowProps> = ({
   i18n,
   user,
   disabled,
@@ -75,5 +79,3 @@ const ProfileShow: React.FC<IProfileShowProps> = ({
     </MdCard>
   );
 };
-
-export default ProfileShow;

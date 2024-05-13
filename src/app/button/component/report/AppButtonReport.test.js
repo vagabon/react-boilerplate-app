@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import AppButtonReport from './AppButtonReport';
+import { AppButtonReport } from './AppButtonReport';
 
 describe('AppButtonReport', () => {
   test('Given AppButtonReport when its mount then MdButton is shown', () => {

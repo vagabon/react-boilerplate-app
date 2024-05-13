@@ -1,4 +1,5 @@
-import { MdGrid, MdLink } from '@vagabond-inc/react-boilerplate-md';
+import { MdGrid } from '@vagabond-inc/react-boilerplate-md/dist/md/component/grid/MdGrid';
+import { MdLink } from '@vagabond-inc/react-boilerplate-md/dist/md/component/link/MdLink';
 import { memo, useCallback } from 'react';
 import { AuthFooterEnum } from './enum/AuthFooterEnum';
 
@@ -7,7 +8,7 @@ interface IAuthFooter {
   rigth: AuthFooterEnum;
 }
 
-const AuthFooter: React.FC<IAuthFooter> = memo(({ ...rest }) => {
+export const AuthFooter: React.FC<IAuthFooter> = memo(({ ...rest }) => {
   const getLink = useCallback((type: AuthFooterEnum) => {
     switch (type) {
       case AuthFooterEnum.SIGNIN:
@@ -28,5 +29,3 @@ const AuthFooter: React.FC<IAuthFooter> = memo(({ ...rest }) => {
     </MdGrid>
   );
 });
-
-export default AuthFooter;

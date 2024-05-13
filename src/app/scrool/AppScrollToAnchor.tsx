@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 
-const AppScrollToAnchor = () => {
+export const AppScrollToAnchor = () => {
   const location = useLocation();
   const lastHash = useRef('');
 
@@ -20,5 +20,3 @@ const AppScrollToAnchor = () => {
 
   return null;
 };
-
-export default AppScrollToAnchor;

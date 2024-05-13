@@ -1,12 +1,9 @@
-import {
-  ButtonColorType,
-  ID,
-  IconClickable,
-  IconColorType,
-  MdBadge,
-  MdButton,
-  MdCommonModal,
-} from '@vagabond-inc/react-boilerplate-md';
+import { ID } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
+import { IconClickable } from '@vagabond-inc/react-boilerplate-md/dist/icon/component/IconClickable';
+import { IconColorType } from '@vagabond-inc/react-boilerplate-md/dist/icon/hook/useIcon';
+import { MdBadge } from '@vagabond-inc/react-boilerplate-md/dist/md/component/badge/MdBadge';
+import { ButtonColorType, MdButton } from '@vagabond-inc/react-boilerplate-md/dist/md/component/button/MdButton';
+import { MdCommonModal } from '@vagabond-inc/react-boilerplate-md/dist/md/component/modal/MdCommonModal';
 import { memo, useCallback, useEffect } from 'react';
 import { useModal } from '../../../../hook/modal/useModal';
 
@@ -35,7 +32,7 @@ export interface ICustomModaleProps extends ICustomModaleChildProps {
   children: ICustomModalChildrenType;
 }
 
-const CustomModale: React.FC<ICustomModaleProps> = memo(
+export const CustomModale: React.FC<ICustomModaleProps> = memo(
   ({
     className,
     icon,
@@ -88,5 +85,3 @@ const CustomModale: React.FC<ICustomModaleProps> = memo(
     );
   },
 );
-
-export default CustomModale;

@@ -1,14 +1,13 @@
 import { withTests } from '@storybook/addon-jest';
+import { IApiDto, JSONObject } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
+import { IFormPropsDto } from '@vagabond-inc/react-boilerplate-md/dist/dto/form/FormDto';
 import { cloneElement } from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
+import { AppFormik } from '../app/formik/AppFormik';
+import results from '../jest-test-results.json';
 import store from '../store/Store';
 import { IYupValidators } from '../utils/yup/YupUtils';
-
-import { IApiDto, IFormPropsDto, JSONObject } from '@vagabond-inc/react-boilerplate-md';
-import AppFormik from '../app/formik/AppFormik';
-
-import results from '../jest-test-results.json';
 
 export const withProvider = (Story: React.FC) => (
   <Provider store={store}>

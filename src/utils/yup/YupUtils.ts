@@ -1,4 +1,4 @@
-import { I18nTranslate, I18nUtils } from '@vagabond-inc/react-boilerplate-md';
+import { I18nTranslate, I18nUtils } from '@vagabond-inc/react-boilerplate-md/dist/utils/i18n/I18nUtils';
 import * as Yup from 'yup';
 
 export interface IYupValidator {

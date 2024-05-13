@@ -1,9 +1,9 @@
 import { useChatbot } from '../hook/useChatbot';
-import CustomChatboIframe from './CustomChatboIframe';
+import { CustomChatboIframe } from './CustomChatboIframe';
 
 export interface ICustomChatbotIntegrationProps {}
 
-const CustomChatbotIntegration: React.FC<ICustomChatbotIntegrationProps> = () => {
+export const CustomChatbotIntegration: React.FC<ICustomChatbotIntegrationProps> = () => {
   const { chatbot, handleClick } = useChatbot();
 
   return (
@@ -19,4 +19,3 @@ const CustomChatbotIntegration: React.FC<ICustomChatbotIntegrationProps> = () =>
     </>
   );
 };
-export default CustomChatbotIntegration;

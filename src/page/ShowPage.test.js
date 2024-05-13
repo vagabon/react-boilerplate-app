@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import ShowPage from './ShowPage';
+import { ShowPage } from './ShowPage';
 
 describe('ShowPage', () => {
   test('Given ShowPage when its mount then ButtonGroup is shown', () => {

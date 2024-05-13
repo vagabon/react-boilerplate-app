@@ -2,8 +2,8 @@ import { useCallback, useEffect, useState } from 'react';
 import { useAppDispatch } from '../../../store/Store';
 import { IAdminTabDto } from '../dto/AdminConfDto';
 import { IAdminStateDto } from '../dto/AdminReducerDto';
-import { AdminAction } from '../reducer/AdminReducer';
-import AdminService from '../service/AdminService';
+import { AdminAction } from '../reducer/AdminReducers';
+import { AdminService } from '../service/AdminService';
 
 export const useAdminList = (apiUrl: string, activePage: string, pageConf: IAdminTabDto, state: IAdminStateDto) => {
   const dispatch = useAppDispatch();

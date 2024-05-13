@@ -1,19 +1,22 @@
-import { MdCard, MdChip, MdMarkdown, useId } from '@vagabond-inc/react-boilerplate-md';
+import { MdCard } from '@vagabond-inc/react-boilerplate-md/dist/md/component/card/MdCard';
+import { MdChip } from '@vagabond-inc/react-boilerplate-md/dist/md/component/chip/MdChip';
+import { MdMarkdown } from '@vagabond-inc/react-boilerplate-md/dist/md/component/markdown/MdMarkdown';
+import { useId } from '@vagabond-inc/react-boilerplate-md/dist/md/hook/useId';
 import { memo, useCallback, useState } from 'react';
 import { useMessage } from '../../../../hook/message/useMessage';
 import { useRole } from '../../../../hook/role/useRole';
-import CustomChatbotButton, { IAppChatbotButtonProps } from '../../../custom/chatbot/component/CustomChatbotButton';
+import { CustomChatbotButton, ICustomChatbotButtonProps } from '../../../custom/chatbot/component/CustomChatbotButton';
 import { INewsDto } from '../../dto/NewsDto';
-import NewsShare from '../share/NewsShare';
+import { NewsShare } from '../share/NewsShare';
 
-export interface INewsCardProps extends IAppChatbotButtonProps {
+export interface INewsCardProps extends ICustomChatbotButtonProps {
   apiUrl: string;
   news: INewsDto;
   endPoint: string;
   withSummary?: boolean;
 }
 
-const NewsCard: React.FC<INewsCardProps> = memo(({ apiUrl, news, endPoint, withSummary = true, ...rest }) => {
+export const NewsCard: React.FC<INewsCardProps> = memo(({ apiUrl, news, endPoint, withSummary = true, ...rest }) => {
   const { id } = useId();
   const { hasUserRole } = useRole();
   const { setMessage } = useMessage();
@@ -57,5 +60,3 @@ const NewsCard: React.FC<INewsCardProps> = memo(({ apiUrl, news, endPoint, withS
     </>
   );
 });
-
-export default NewsCard;

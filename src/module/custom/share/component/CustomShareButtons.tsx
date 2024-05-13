@@ -18,7 +18,7 @@ export interface ICustomShareButtonsProps {
   size?: number;
 }
 
-const CustomShareButtons: React.FC<ICustomShareButtonsProps> = memo(({ url, hashtag, size }) => {
+export const CustomShareButtons: React.FC<ICustomShareButtonsProps> = memo(({ url, hashtag, size }) => {
   const buttonSize = size ?? 32;
 
   return (
@@ -41,5 +41,3 @@ const CustomShareButtons: React.FC<ICustomShareButtonsProps> = memo(({ url, hash
     </div>
   );
 });
-
-export default CustomShareButtons;

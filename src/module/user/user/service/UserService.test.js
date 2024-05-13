@@ -1,5 +1,5 @@
 import { ApiService } from '../../../../api/service/ApiService';
-import UserService from './UserService';
+import { UserService } from './UserService';
 
 describe('UserService', () => {
   test('Given UserService when loadUsers then ApiService is called', () => {

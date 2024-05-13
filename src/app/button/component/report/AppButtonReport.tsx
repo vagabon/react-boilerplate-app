@@ -1,4 +1,7 @@
-import { I18nUtils, JSONObject, MdButton, useAppTranslate } from '@vagabond-inc/react-boilerplate-md';
+import { JSONObject } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
+import { MdButton } from '@vagabond-inc/react-boilerplate-md/dist/md/component/button/MdButton';
+import { useAppTranslate } from '@vagabond-inc/react-boilerplate-md/dist/translate/hook/useAppTranslate';
+import { I18nUtils } from '@vagabond-inc/react-boilerplate-md/dist/utils/i18n/I18nUtils';
 import { memo } from 'react';
 
 export interface IAppButtonReportProps {
@@ -8,7 +11,7 @@ export interface IAppButtonReportProps {
   data: JSONObject;
 }
 
-const AppButtonReport: React.FC<IAppButtonReportProps> = memo(({ emailContact, subject, body, data }) => {
+export const AppButtonReport: React.FC<IAppButtonReportProps> = memo(({ emailContact, subject, body, data }) => {
   const { t } = useAppTranslate();
 
   const handleReport = () => {
@@ -21,5 +24,3 @@ const AppButtonReport: React.FC<IAppButtonReportProps> = memo(({ emailContact, s
 
   return <MdButton color='error' label='SIGNALER' callback={handleReport} />;
 });
-
-export default AppButtonReport;

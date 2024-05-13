@@ -1,12 +1,12 @@
-import { MdFab } from '@vagabond-inc/react-boilerplate-md';
+import { MdFab } from '@vagabond-inc/react-boilerplate-md/dist/md/component/fab/MdFab';
 import { useState } from 'react';
-import CustomChatboIframe from './CustomChatboIframe';
+import { CustomChatboIframe } from './CustomChatboIframe';
 
 export interface ICustomChatbotProps {
   iframeUrl?: string;
 }
 
-const CustomChatbot: React.FC<ICustomChatbotProps> = ({ iframeUrl }) => {
+export const CustomChatbot: React.FC<ICustomChatbotProps> = ({ iframeUrl }) => {
   const [showChatbot, setShowChatbot] = useState(false);
 
   return (
@@ -31,5 +31,3 @@ const CustomChatbot: React.FC<ICustomChatbotProps> = ({ iframeUrl }) => {
     </>
   );
 };
-
-export default CustomChatbot;

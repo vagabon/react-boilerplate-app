@@ -1,4 +1,4 @@
-import { IconClickable } from '@vagabond-inc/react-boilerplate-md';
+import { IconClickable } from '@vagabond-inc/react-boilerplate-md/dist/icon/component/IconClickable';
 import { useCallback, useRef, useState } from 'react';
 
 export interface ICustomChatboIframeProps {
@@ -8,7 +8,7 @@ export interface ICustomChatboIframeProps {
   callbackClose?: () => void;
 }
 
-const CustomChatboIframe: React.FC<ICustomChatboIframeProps> = ({
+export const CustomChatboIframe: React.FC<ICustomChatboIframeProps> = ({
   showChatbot,
   acceptCopy,
   iframeUrl,
@@ -68,5 +68,3 @@ const CustomChatboIframe: React.FC<ICustomChatboIframeProps> = ({
     </>
   );
 };
-
-export default CustomChatboIframe;

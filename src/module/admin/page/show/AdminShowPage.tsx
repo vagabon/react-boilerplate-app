@@ -1,24 +1,27 @@
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { IApiDto, JSONObject, MdCard, useAppRouter, useAppTranslate } from '@vagabond-inc/react-boilerplate-md';
+import { IApiDto, JSONObject } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
+import { MdCard } from '@vagabond-inc/react-boilerplate-md/dist/md/component/card/MdCard';
+import { useAppRouter } from '@vagabond-inc/react-boilerplate-md/dist/router/hook/useAppRouter';
+import { useAppTranslate } from '@vagabond-inc/react-boilerplate-md/dist/translate/hook/useAppTranslate';
 import { memo, useCallback, useEffect } from 'react';
-import AppContent from '../../../../app/content/AppContent';
-import HasRole from '../../../../hook/role/HasRole';
+import { AppContent } from '../../../../app/content/AppContent';
+import { HasRole } from '../../../../hook/role/HasRole';
 import { useAppDispatch } from '../../../../store/Store';
-import { IHeaderProp } from '../../../../template/Header';
+import { IHeaderDto } from '../../../../template/dto/HeaderDto';
 import { IYupValidators } from '../../../../utils/yup/YupUtils';
-import CustomForm from '../../../custom/form/component/CustomForm';
+import { CustomForm } from '../../../custom/form/component/CustomForm';
 import { IAdminTabConfDto, IAdminTabDto } from '../../dto/AdminConfDto';
 import { useAdminConf } from '../../hook/useAdminConf';
 import { useAdminState } from '../../hook/useAdminState';
-import { AdminAction } from '../../reducer/AdminReducer';
-import AdminService from '../../service/AdminService';
+import { AdminAction } from '../../reducer/AdminReducers';
+import { AdminService } from '../../service/AdminService';
 
-export interface IAdminShowPageProps extends IHeaderProp {
+export interface IAdminShowPageProps extends IHeaderDto {
   conf: IAdminTabConfDto;
 }
 
-const AdminShowPage: React.FC<IAdminShowPageProps> = memo(({ conf, ...rest }) => {
+export const AdminShowPage: React.FC<IAdminShowPageProps> = memo(({ conf, ...rest }) => {
   const { t } = useAppTranslate();
   const dispatch = useAppDispatch();
   const {
@@ -97,5 +100,3 @@ const AdminShowPage: React.FC<IAdminShowPageProps> = memo(({ conf, ...rest }) =>
     </LocalizationProvider>
   );
 });
-
-export default AdminShowPage;

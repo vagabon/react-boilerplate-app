@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import AdminService from '../../../admin/service/AdminService';
-import CustomFormModale from './CustomFormModale';
+import { AdminService } from '../../../admin/service/AdminService';
+import { CustomFormModale } from './CustomFormModale';
 
 const PROFILE_M2M = {
   name: 'name',

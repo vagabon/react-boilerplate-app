@@ -1,6 +1,9 @@
-import { MdBox, MdContainer, MdLink, MdTypo } from '@vagabond-inc/react-boilerplate-md';
+import { MdBox } from '@vagabond-inc/react-boilerplate-md/dist/md/component/box/MdBox';
+import { MdContainer } from '@vagabond-inc/react-boilerplate-md/dist/md/component/container/MdContainer';
+import { MdLink } from '@vagabond-inc/react-boilerplate-md/dist/md/component/link/MdLink';
+import { MdTypo } from '@vagabond-inc/react-boilerplate-md/dist/md/component/typo/MdTypo';
 import { memo } from 'react';
-import { IHeaderProp } from './Header';
+import { IHeaderDto } from './dto/HeaderDto';
 
 export interface IFooterLinkDto {
   label: string;
@@ -8,12 +11,12 @@ export interface IFooterLinkDto {
   target?: string;
 }
 
-export interface IFoorterProps extends IHeaderProp {
+export interface IFoorterProps extends IHeaderDto {
   isContact?: boolean;
   links: IFooterLinkDto[];
 }
 
-const Footer: React.FC<IFoorterProps> = memo(({ isContact = true, links, ...rest }) => {
+export const Footer: React.FC<IFoorterProps> = memo(({ isContact = true, links, ...rest }) => {
   return (
     <MdBox id='footer' sx={{ borderBottom: 1, borderColor: 'divider' }}>
       <MdContainer maxWidth='lg'>
@@ -30,5 +33,3 @@ const Footer: React.FC<IFoorterProps> = memo(({ isContact = true, links, ...rest
     </MdBox>
   );
 });
-
-export default Footer;

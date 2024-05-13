@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { palette } from './AppTheme.test';
-import AppThemeWithTemplate from './AppThemeWithTemplate';
+import { AppThemeWithTemplate } from './AppThemeWithTemplate';
 
 const menu = [
   {

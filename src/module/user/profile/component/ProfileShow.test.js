@@ -1,5 +1,5 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import ProfileShow from './ProfileShow';
+import { ProfileShow } from './ProfileShow';
 
 describe('ProfileShow', () => {
   test('Given ProfileShow when its mount then CardContent is shown', async () => {

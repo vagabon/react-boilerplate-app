@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import AppContent from './AppContent';
+import { AppContent } from './AppContent';
 
 describe('AppContent', () => {
   test('Given AppContent when its mount then ButtonGroup is shown', () => {

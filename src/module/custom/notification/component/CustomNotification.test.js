@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import CustomNotification from './CustomNotification';
+import { CustomNotification } from './CustomNotification';
 
 const mockSearch = jest.fn();
 

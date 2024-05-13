@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import AuthService from '../../../service/AuthService';
-import LoginGoogle from './LoginGoogle';
+import { AuthService } from '../../../service/AuthService';
+import { LoginGoogle } from './LoginGoogle';
 
 jest.mock('@react-oauth/google', () => ({
   GoogleOAuthProvider: ({ children }) => <div data-testid='GOOGLE'>{children}</div>,

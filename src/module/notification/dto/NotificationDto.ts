@@ -1,4 +1,4 @@
-import { IApiDto } from '@vagabond-inc/react-boilerplate-md';
+import { IApiDto } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
 import { IUserDto } from '../../user/user/dto/UserDto';
 
 export interface INotificationDto extends IApiDto {

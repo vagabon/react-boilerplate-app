@@ -1,15 +1,17 @@
-import { MdButton, MdCard, useAppTranslate } from '@vagabond-inc/react-boilerplate-md';
+import { MdButton } from '@vagabond-inc/react-boilerplate-md/dist/md/component/button/MdButton';
+import { MdCard } from '@vagabond-inc/react-boilerplate-md/dist/md/component/card/MdCard';
+import { useAppTranslate } from '@vagabond-inc/react-boilerplate-md/dist/translate/hook/useAppTranslate';
 import { memo, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import AppContent from '../../../../app/content/AppContent';
+import { AppContent } from '../../../../app/content/AppContent';
 import { useAppSelector } from '../../../../store/Store';
-import { IHeaderProp } from '../../../../template/Header';
+import { IHeaderDto } from '../../../../template/dto/HeaderDto';
 import { useAuth } from '../../hook/useAuth';
-import AuthService from '../../service/AuthService';
+import { AuthService } from '../../service/AuthService';
 
-export interface IActivationPageProps extends IHeaderProp {}
+export interface IActivationPageProps extends IHeaderDto {}
 
-const ActivationPage: React.FC<IActivationPageProps> = memo(({ ...rest }) => {
+export const ActivationPage: React.FC<IActivationPageProps> = memo(({ ...rest }) => {
   const { Trans } = useAppTranslate();
   const params = useParams();
   const [isActivated, setIsActivated] = useState<boolean | undefined>(undefined);
@@ -54,5 +56,3 @@ const ActivationPage: React.FC<IActivationPageProps> = memo(({ ...rest }) => {
     </AppContent>
   );
 });
-
-export default ActivationPage;

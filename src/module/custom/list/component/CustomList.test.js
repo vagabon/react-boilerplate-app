@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import CustomList from './CustomList';
+import { CustomList } from './CustomList';
 
 describe('CustomList', () => {
   test('Given CustomList when its mount with no data then list is empty', () => {

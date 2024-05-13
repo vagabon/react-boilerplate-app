@@ -1,12 +1,14 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import AuthService from '../../service/AuthService';
-import ForgetPasswordPage from './ForgetPasswordPage';
+import { AuthService } from '../../service/AuthService';
+import { ForgetPasswordPage } from './ForgetPasswordPage';
 
-jest.mock('../../../../app/formik/AppFormik', () => ({ onSubmit, children }) => (
-  <div data-testid='AppFormik' onClick={onSubmit}>
-    {children()}
-  </div>
-));
+jest.mock('../../../../app/formik/AppFormik', () => ({
+  AppFormik: ({ onSubmit, children }) => (
+    <div data-testid='AppFormik' onClick={onSubmit}>
+      {children()}
+    </div>
+  ),
+}));
 
 describe('ForgetPasswordPage', () => {
   test('Given ForgetPasswordPage when its mount then ', async () => {

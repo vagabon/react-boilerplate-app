@@ -1,26 +1,24 @@
 import { GoogleOAuthProvider } from '@react-oauth/google';
-import {
-  JSONObject,
-  MdCard,
-  MdFormSwitch,
-  MdInputText,
-  ObjectUtils,
-  useAppTranslate,
-} from '@vagabond-inc/react-boilerplate-md';
+import { JSONObject } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
+import { MdCard } from '@vagabond-inc/react-boilerplate-md/dist/md/component/card/MdCard';
+import { MdFormSwitch } from '@vagabond-inc/react-boilerplate-md/dist/md/component/form/switch/MdFormSwitch';
+import { MdInputText } from '@vagabond-inc/react-boilerplate-md/dist/md/component/form/text/MdInputText';
+import { useAppTranslate } from '@vagabond-inc/react-boilerplate-md/dist/translate/hook/useAppTranslate';
+import { ObjectUtils } from '@vagabond-inc/react-boilerplate-md/dist/utils/object/ObjectUtils';
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { useApiService } from '../../../../api/hook/useApiService';
-import AppContent from '../../../../app/content/AppContent';
-import AppFormik from '../../../../app/formik/AppFormik';
+import { AppContent } from '../../../../app/content/AppContent';
+import { AppFormik } from '../../../../app/formik/AppFormik';
 import { useMessage } from '../../../../hook/message/useMessage';
 import { useAppSelector } from '../../../../store/Store';
-import AuthFooter from '../../component/auth.footer/AuthFooter';
+import { AuthFooter } from '../../component/auth.footer/AuthFooter';
 import { AuthFooterEnum } from '../../component/auth.footer/enum/AuthFooterEnum';
 import { useAuth } from '../../hook/useAuth';
-import AuthService from '../../service/AuthService';
+import { AuthService } from '../../service/AuthService';
 import { ILoginPageProps } from '../login/LoginPage';
-import LoginFacebook from '../login/facebook/LoginFacebook';
-import LoginGoogle from '../login/google/LoginGoogle';
+import { LoginFacebook } from '../login/facebook/LoginFacebook';
+import { LoginGoogle } from '../login/google/LoginGoogle';
 import { IRegisterDto, RegisterDto } from './dto/RegisterDto';
 import REGISTER_SCHEMA from './schema/register.schema.json';
 
@@ -30,7 +28,7 @@ export interface IRegisterPageProps extends ILoginPageProps {
   googleCaptchaId: string;
 }
 
-const RegisterPage: React.FC<IRegisterPageProps> = memo(
+export const RegisterPage: React.FC<IRegisterPageProps> = memo(
   ({ googleClientId, facebookClientId, googleCaptchaId, ...rest }) => {
     const { Trans } = useAppTranslate();
     const { modeTheme } = useAppSelector((state) => state.common);
@@ -114,5 +112,3 @@ const RegisterPage: React.FC<IRegisterPageProps> = memo(
     );
   },
 );
-
-export default RegisterPage;

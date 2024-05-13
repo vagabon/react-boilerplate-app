@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { withProvider, withTest } from '../../stories/Helpers';
-import AppContent from './AppContent';
+import { AppContent } from './AppContent';
 
 const meta: Meta<typeof AppContent> = {
   title: 'app/AppContent',

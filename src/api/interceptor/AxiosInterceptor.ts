@@ -1,8 +1,8 @@
 import { EnhancedStore } from '@reduxjs/toolkit/dist/configureStore';
-import { UuidUtils } from '@vagabond-inc/react-boilerplate-md';
+import { UuidUtils } from '@vagabond-inc/react-boilerplate-md/dist/utils/uuid/UuidUtils';
 import axios, { AxiosError, AxiosHeaders, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { LoginAction } from '../../module/auth/reducer/AuthReducers';
-import { CommonAction } from '../../reducer/common/CommonReducer';
+import { CommonAction } from '../../reducer/common/CommonReducers';
 import { StorageUtils } from '../../utils/storage/StorageUtils';
 
 export const AxiosInterceptor = <U>(

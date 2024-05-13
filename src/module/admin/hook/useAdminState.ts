@@ -1,9 +1,9 @@
-import { IApiDto } from '@vagabond-inc/react-boilerplate-md';
+import { IApiDto } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../store/Store';
 import { IAdminTabDto } from '../dto/AdminConfDto';
 import { IAdminReducerDto, IAdminStateDto } from '../dto/AdminReducerDto';
-import { AdminAction } from '../reducer/AdminReducer';
+import { AdminAction } from '../reducer/AdminReducers';
 
 const MAX_DEFAULT = 10;
 const ORDER_DEFAULT = 'asc';

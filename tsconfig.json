@@ -15,10 +15,10 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "declaration": true,
-    "declarationDir": "dist/types",
+    "declarationDir": "dist",
     "resolveJsonModule": true,
     "emitDeclarationOnly": true
   },
-  "exclude": ["node_modules", "coverage", "**/setupTests*.js", "**/*.test.js"],
+  "exclude": ["node_modules", "coverage", "**/setupTests*.js", "**/*.test.js", "**/__mocks__/**"],
   "include": ["src"]
 }

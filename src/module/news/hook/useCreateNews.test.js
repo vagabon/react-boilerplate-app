@@ -1,5 +1,5 @@
 import { act, renderHook } from '@testing-library/react';
-import NewsService from '../service/NewsService';
+import { NewsService } from '../service/NewsService';
 import { useCreateNews } from './useCreateNews';
 
 describe('useCreateNews', () => {

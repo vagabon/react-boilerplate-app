@@ -1,6 +1,6 @@
-import { UuidUtils } from '@vagabond-inc/react-boilerplate-md';
+import { UuidUtils } from '@vagabond-inc/react-boilerplate-md/dist/utils/uuid/UuidUtils';
 import { useCallback } from 'react';
-import { CommonAction } from '../../reducer/common/CommonReducer';
+import { CommonAction } from '../../reducer/common/CommonReducers';
 import { useAppDispatch, useAppSelector } from '../../store/Store';
 
 export const useMessage = () => {

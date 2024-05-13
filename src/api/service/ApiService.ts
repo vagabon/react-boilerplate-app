@@ -1,4 +1,4 @@
-import { ID, JSON } from '@vagabond-inc/react-boilerplate-md';
+import { ID, JSON } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { IOrderState } from '../../reducer/BaseReducer';
 

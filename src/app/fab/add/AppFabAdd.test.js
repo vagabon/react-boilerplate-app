@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import AppFabAdd from './AppFabAdd';
+import { AppFabAdd } from './AppFabAdd';
 
 describe('AppFabAdd', () => {
   test('Given AppFabAdd when its mount then ButtonGroup is shown', () => {

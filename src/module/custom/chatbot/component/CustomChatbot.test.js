@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import CustomChatbot from './CustomChatbot';
+import { CustomChatbot } from './CustomChatbot';
 
 describe('CustomChatbot', () => {
   test('Given CustomChatbot when its mount then MdFab is shown', () => {

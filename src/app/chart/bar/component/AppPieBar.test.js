@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import AppPieBar from './AppPieBar';
+import { AppPieBar } from './AppPieBar';
 
 describe('AppPieBar', () => {
   test('Given AppPieBar when its mount then MdCard is shown', () => {

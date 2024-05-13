@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { ApiService } from '../../../../api/service/ApiService';
-import CustomFormSelect from './CustomFormSelect';
+import { CustomFormSelect } from './CustomFormSelect';
 
 describe('CustomFormSelect', () => {
   test('Given CustomFormSelect when its mount then ', () => {

@@ -1,6 +1,6 @@
 import { act, renderHook } from '@testing-library/react';
 import { NewsAction } from '../reducer/NewsReducers';
-import NewsService from '../service/NewsService';
+import { NewsService } from '../service/NewsService';
 import { useFetchNews } from './useFetchNews';
 
 describe('useFetchNews', () => {

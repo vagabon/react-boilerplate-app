@@ -1,5 +1,5 @@
 import { fireEvent, render } from '@testing-library/react';
-import AppInfiniteScrool from './AppInfiniteScrool';
+import { AppInfiniteScrool } from './AppInfiniteScrool';
 
 describe('AppInfiniteScrool', () => {
   test('Given AppInfiniteScrool When its mount Then LinearProgress is shown', () => {

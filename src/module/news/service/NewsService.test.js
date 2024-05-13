@@ -1,5 +1,5 @@
 import { ApiService } from '../../../api/service/ApiService';
-import NewsService from './NewsService';
+import { NewsService } from './NewsService';
 
 const URL = 'http://localhost:8090';
 

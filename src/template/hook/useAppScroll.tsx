@@ -1,5 +1,5 @@
 import { MutableRefObject, useCallback } from 'react';
-import { CommonAction, ScrollsType } from '../../reducer/common/CommonReducer';
+import { CommonAction, ScrollsType } from '../../reducer/common/CommonReducers';
 import { useAppDispatch, useAppSelector } from '../../store/Store';
 
 export const useAppScroll = () => {

@@ -1,11 +1,11 @@
-import { useAppRouter } from '@vagabond-inc/react-boilerplate-md';
+import { useAppRouter } from '@vagabond-inc/react-boilerplate-md/dist/router/hook/useAppRouter';
 import { useCallback } from 'react';
 import { ICurrentUserDto } from '../../../dto/current-user/CurrentUserDto';
 import { useAppDispatch, useAppSelector } from '../../../store/Store';
 import { StorageUtils } from '../../../utils/storage/StorageUtils';
 import { IUserDto } from '../../user/user/dto/UserDto';
 import { LoginAction } from '../reducer/AuthReducers';
-import AuthService from '../service/AuthService';
+import { AuthService } from '../service/AuthService';
 
 const URL_LOGIN_REDIRECT = '/profile';
 

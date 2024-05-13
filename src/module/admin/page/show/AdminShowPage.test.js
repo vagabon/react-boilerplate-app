@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
-import AdminService from '../../service/AdminService';
-import AdminShowPage from './AdminShowPage';
+import { AdminService } from '../../service/AdminService';
+import { AdminShowPage } from './AdminShowPage';
 
 const COMMON_INPUT = {
   creationDate: { label: 'AUTH:FIELDS.CREATE_DATE', type: 'datetime', required: false, className: 'width50' },

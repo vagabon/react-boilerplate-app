@@ -1,6 +1,6 @@
-import { useAppRouter } from '@vagabond-inc/react-boilerplate-md';
+import { useAppRouter } from '@vagabond-inc/react-boilerplate-md/dist/router/hook/useAppRouter';
 import { ReactNode, memo, useCallback, useRef } from 'react';
-import { CommonAction } from '../../reducer/common/CommonReducer';
+import { CommonAction } from '../../reducer/common/CommonReducers';
 import { useAppDispatch } from '../../store/Store';
 
 export interface IAppInfiniteScroolProps {
@@ -10,7 +10,7 @@ export interface IAppInfiniteScroolProps {
   callBack?: () => void;
 }
 
-const AppInfiniteScrool: React.FC<IAppInfiniteScroolProps> = memo(({ className = '', callBack, ...rest }) => {
+export const AppInfiniteScrool: React.FC<IAppInfiniteScroolProps> = memo(({ className = '', callBack, ...rest }) => {
   const dispatch = useAppDispatch();
   const { location } = useAppRouter();
   const stopScroll = useRef(false);
@@ -45,5 +45,3 @@ const AppInfiniteScrool: React.FC<IAppInfiniteScroolProps> = memo(({ className =
     </div>
   );
 });
-
-export default AppInfiniteScrool;

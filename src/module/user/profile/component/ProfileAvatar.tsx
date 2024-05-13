@@ -1,17 +1,14 @@
-import {
-  IApiDto,
-  IconClickable,
-  JSONObject,
-  MdAvatar,
-  MdCardMedia,
-  MdFormFile,
-  ObjectUtils,
-} from '@vagabond-inc/react-boilerplate-md';
+import { IApiDto, JSONObject } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
+import { IconClickable } from '@vagabond-inc/react-boilerplate-md/dist/icon/component/IconClickable';
+import { MdAvatar } from '@vagabond-inc/react-boilerplate-md/dist/md/component/avatar/MdAvatar';
+import { MdCardMedia } from '@vagabond-inc/react-boilerplate-md/dist/md/component/card/media/MdCardMedia';
+import { MdFormFile } from '@vagabond-inc/react-boilerplate-md/dist/md/component/form/file/MdFormFile';
+import { ObjectUtils } from '@vagabond-inc/react-boilerplate-md/dist/utils/object/ObjectUtils';
 import { ChangeEvent, memo, useCallback } from 'react';
 import { useModal } from '../../../../hook/modal/useModal';
 import { useAppImage } from '../../../../template/hook/useAppImage';
 import { useCustomFormUpload } from '../../../custom/form/hook/useCustomFormUpload';
-import CustomModaleForm from '../../../custom/modale/component/CustomModaleForm';
+import { CustomModaleForm } from '../../../custom/modale/component/CustomModaleForm';
 import { IUserDto } from '../../user/dto/UserDto';
 import { useUser } from '../../user/hook/useUser';
 
@@ -21,7 +18,7 @@ export interface IProfileAvatarProps {
   disabled?: boolean;
 }
 
-const ProfileAvatar: React.FC<IProfileAvatarProps> = memo(({ apiUrl, user, disabled }) => {
+export const ProfileAvatar: React.FC<IProfileAvatarProps> = memo(({ apiUrl, user, disabled }) => {
   const { handleUpdateAvatar, isUserPassword } = useUser(apiUrl);
   const { getImage } = useAppImage(apiUrl);
   const { open, openModal, closeModal } = useModal();
@@ -74,5 +71,3 @@ const ProfileAvatar: React.FC<IProfileAvatarProps> = memo(({ apiUrl, user, disab
     </>
   );
 });
-
-export default ProfileAvatar;

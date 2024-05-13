@@ -1,22 +1,19 @@
-import {
-  IApiDto,
-  ID,
-  IconClickable,
-  MdAvatar,
-  MdChip,
-  MdDivider,
-  MdFormCheckboxSimple,
-  MdList,
-  MdListItem,
-  MdListItemAvatar,
-  MdListItemIcon,
-  MdListItemText,
-  useAppTranslate,
-} from '@vagabond-inc/react-boilerplate-md';
+import { IApiDto, ID } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
+import { IconClickable } from '@vagabond-inc/react-boilerplate-md/dist/icon/component/IconClickable';
+import { MdAvatar } from '@vagabond-inc/react-boilerplate-md/dist/md/component/avatar/MdAvatar';
+import { MdChip } from '@vagabond-inc/react-boilerplate-md/dist/md/component/chip/MdChip';
+import { MdDivider } from '@vagabond-inc/react-boilerplate-md/dist/md/component/divider/MdDivider';
+import { MdFormCheckboxSimple } from '@vagabond-inc/react-boilerplate-md/dist/md/component/form/checkbox/MdFormCheckboxSimple';
+import { MdList } from '@vagabond-inc/react-boilerplate-md/dist/md/component/list/MdList';
+import { MdListItem } from '@vagabond-inc/react-boilerplate-md/dist/md/component/list/MdListItem';
+import { MdListItemAvatar } from '@vagabond-inc/react-boilerplate-md/dist/md/component/list/MdListItemAvatar';
+import { MdListItemIcon } from '@vagabond-inc/react-boilerplate-md/dist/md/component/list/MdListItemIcon';
+import { MdListItemText } from '@vagabond-inc/react-boilerplate-md/dist/md/component/list/MdListItemText';
+import { useAppTranslate } from '@vagabond-inc/react-boilerplate-md/dist/translate/hook/useAppTranslate';
 import React, { Fragment, memo } from 'react';
 import { useMessage } from '../../../../hook/message/useMessage';
 import { useAppImage } from '../../../../template/hook/useAppImage';
-import CustomModaleConfirm from '../../modale/component/CustomModaleConfirm';
+import { CustomModaleConfirm } from '../../modale/component/CustomModaleConfirm';
 import { useCustomList } from '../hook/useCustomList';
 
 export interface ICustomListDto {
@@ -47,7 +44,7 @@ export interface ICustomListProps {
   callbackSettings?: (data: IApiDto) => void;
 }
 
-const CustomList: React.FC<ICustomListProps> = memo(
+export const CustomList: React.FC<ICustomListProps> = memo(
   ({
     apiUrl,
     className = '',
@@ -151,5 +148,3 @@ const CustomList: React.FC<ICustomListProps> = memo(
     );
   },
 );
-
-export default CustomList;

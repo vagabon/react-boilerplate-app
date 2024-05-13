@@ -1,5 +1,6 @@
 import { ReducerType } from '@reduxjs/toolkit';
-import { IApiDto, IOrderDto, JSONObject } from '@vagabond-inc/react-boilerplate-md';
+import { IApiDto, JSONObject } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
+import { IOrderDto } from '@vagabond-inc/react-boilerplate-md/dist/dto/form/FormDto';
 import { useCallback, useRef } from 'react';
 import { IOrderState, IReducersActionsProps } from '../../reducer/BaseReducer';
 import { useAppDispatch, useAppSelector } from '../../store/Store';

@@ -1,21 +1,23 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
-import RegisterPage from './RegisterPage';
+import { RegisterPage } from './RegisterPage';
 
-jest.mock('../../../../app/formik/AppFormik', () => ({ onSubmit, children }) => (
-  <div
-    data-testid='AppFormik'
-    onClick={() =>
-      onSubmit({
-        accept: true,
-        username: 'username',
-        email: 'email',
-        password: 'password',
-      })
-    }>
-    {children()}
-  </div>
-));
+jest.mock('../../../../app/formik/AppFormik', () => ({
+  AppFormik: ({ onSubmit, children }) => (
+    <div
+      data-testid='AppFormik'
+      onClick={() =>
+        onSubmit({
+          accept: true,
+          username: 'username',
+          email: 'email',
+          password: 'password',
+        })
+      }>
+      {children()}
+    </div>
+  ),
+}));
 
 jest.mock('react-google-recaptcha', () => ({ ref, ...props }) => {
   if (ref?.current) {

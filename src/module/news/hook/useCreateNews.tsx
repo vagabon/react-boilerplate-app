@@ -1,12 +1,13 @@
-import { ID, useAppRouter } from '@vagabond-inc/react-boilerplate-md';
+import { ID } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
+import { useAppRouter } from '@vagabond-inc/react-boilerplate-md/dist/router/hook/useAppRouter';
 import { useCallback } from 'react';
 import { useRole } from '../../../hook/role/useRole';
 import { IReducersActionsProps } from '../../../reducer/BaseReducer';
-import { CommonAction } from '../../../reducer/common/CommonReducer';
+import { CommonAction } from '../../../reducer/common/CommonReducers';
 import { useAppDispatch, useAppSelector } from '../../../store/Store';
 import { INewsDto } from '../dto/NewsDto';
 import { NewsReducerState } from '../reducer/NewsReducers';
-import NewsService from '../service/NewsService';
+import { NewsService } from '../service/NewsService';
 
 export const useCreateNews = (apiUrl: string, endPoint: string, newsAction: IReducersActionsProps, idNews: number) => {
   const { navigate } = useAppRouter();

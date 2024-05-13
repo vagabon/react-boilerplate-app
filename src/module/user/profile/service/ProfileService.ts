@@ -1,10 +1,10 @@
-import { UuidUtils } from '@vagabond-inc/react-boilerplate-md';
+import { UuidUtils } from '@vagabond-inc/react-boilerplate-md/dist/utils/uuid/UuidUtils';
 import { Dispatch } from 'redux';
 import { ApiService } from '../../../../api/service/ApiService';
-import { CommonAction } from '../../../../reducer/common/CommonReducer';
+import { CommonAction } from '../../../../reducer/common/CommonReducers';
 import { IProfileDto } from '../dto/ProfileDto';
 
-const ProfileService = {
+export const ProfileService = {
   loadRoles: (
     apiUrl: string,
     filter: IProfileDto,
@@ -39,5 +39,3 @@ const ProfileService = {
     });
   },
 };
-
-export default ProfileService;

@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import NotificationPage from '../page/NotificationPage';
+import { NotificationPage } from '../page/NotificationPage';
 
 describe('NotificationPage', () => {
   test('Given NotificationPage when its mount then AppContent is shown', async () => {

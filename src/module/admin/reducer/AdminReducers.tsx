@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IApiDto } from '@vagabond-inc/react-boilerplate-md';
+import { IApiDto } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
 import { IAdminFilterDto, IAdminReducerDto, IAdminStateDto, IAdminTableDto } from '../dto/AdminReducerDto';
 
 const getPageState = (page: string, state: IAdminReducerDto) => {

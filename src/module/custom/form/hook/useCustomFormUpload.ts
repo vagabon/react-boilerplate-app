@@ -1,4 +1,6 @@
-import { HandleChangeType, JSONObject, ObjectUtils } from '@vagabond-inc/react-boilerplate-md';
+import { JSONObject } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
+import { HandleChangeType } from '@vagabond-inc/react-boilerplate-md/dist/dto/form/FormDto';
+import { ObjectUtils } from '@vagabond-inc/react-boilerplate-md/dist/utils/object/ObjectUtils';
 import { useCallback } from 'react';
 import { ApiService } from '../../../../api/service/ApiService';
 

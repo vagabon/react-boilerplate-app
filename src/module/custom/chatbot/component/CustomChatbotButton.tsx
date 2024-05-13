@@ -1,4 +1,7 @@
-import { IApiDto, MdButton, MdMenu, useIcon } from '@vagabond-inc/react-boilerplate-md';
+import { IApiDto } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
+import { useIcon } from '@vagabond-inc/react-boilerplate-md/dist/icon/hook/useIcon';
+import { MdButton } from '@vagabond-inc/react-boilerplate-md/dist/md/component/button/MdButton';
+import { MdMenu } from '@vagabond-inc/react-boilerplate-md/dist/md/component/menu/MdMenu';
 import { useCallback } from 'react';
 import { useChatbot } from '../hook/useChatbot';
 
@@ -7,11 +10,11 @@ export interface IChatbotIntegrationDto extends IApiDto {
   url: string;
 }
 
-export interface IAppChatbotButtonProps {
+export interface ICustomChatbotButtonProps {
   integrations?: IChatbotIntegrationDto[];
 }
 
-const AppChatbotButton: React.FC<IAppChatbotButtonProps> = ({ integrations }) => {
+export const CustomChatbotButton: React.FC<ICustomChatbotButtonProps> = ({ integrations }) => {
   const { getIcon } = useIcon();
   const { handleClick } = useChatbot();
 
@@ -49,5 +52,3 @@ const AppChatbotButton: React.FC<IAppChatbotButtonProps> = ({ integrations }) =>
     </>
   );
 };
-
-export default AppChatbotButton;

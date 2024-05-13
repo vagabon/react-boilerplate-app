@@ -1,55 +1,13 @@
-/********************************** LOCAL STORAGE *********************************/
-
-console.debug = jest.fn();
-
-const localStorageMock = (function () {
-  let store = {};
-  return {
-    getItem: (key) => store[key],
-    setItem: (key, value) => (store[key] = value),
-    clear: () => (store = {}),
-    removeItem: (key) => delete store[key],
-    getAll: () => store,
-  };
-})();
-Object.defineProperty(window, 'localStorage', { value: localStorageMock });
-
-global.localStorageMock = localStorageMock;
-
-global.setLocalStorage = (id, data) => {
-  window.localStorage.setItem(id, JSON.stringify(data));
-};
-
-/********************************* MOCK COMPONENT ********************************/
-
-global.mockWithChildren = (name, { children }) => <div data-testid={name}>{children}</div>;
-global.mockComponent =
-  (props) =>
-  ({ children }) => {
-    return <div data-testid={props}>{children}</div>;
-  };
-global.mockComponentWithCallBack =
-  (name) =>
-  ({ onClick, children }) => (
-    <>
-      <input data-testid={name} onClick={onClick} />
-      {children}
-    </>
-  );
-
-global.spyOn = (object, method, data) => {
-  return jest.spyOn(object, method).mockReturnValue(Promise.resolve(data));
-};
-
 global.mockedUsedNavigate = jest.fn();
 global.mockParams = { id: 0 };
 global.mockLocation = { pathname: 'home' };
 global.mockNavigate = jest.fn();
 global.currentUser = undefined;
+global.mockWithChildren = (name, { children }) => <div data-testid={name}>{children}</div>;
 
 const mockT = (value) => value;
 
-export const mockBoilerPlateMd = {
+const mockBoilerPlateMd = {
   IconClickable: ({ callback }) => <div data-testid='IconClickable' onClick={callback}></div>,
 
   useIcon: () => ({
@@ -231,8 +189,8 @@ export const mockBoilerPlateMd = {
     toUpperCase: (data) => data.toUpperCase(),
     toNumberFormat: (data) => data,
     toNumberShot: (data) => data,
-    getDtoValue: (data, name) => data?.[name],
-    getDtoString: (data, name) => data?.[name],
+    getDtoValue: (data, name) => data?.[name] ?? '',
+    getDtoString: (data, name) => data?.[name] ?? '',
     getRecursivValue: (data, name) => data?.[name],
     compareId: () => true,
     addOrReplace: () => [{ id: 1 }],
@@ -246,8 +204,4 @@ export const mockBoilerPlateMd = {
   },
 };
 
-/***************************** AFTER EACH RESET MOCK *****************************/
-
-afterEach(() => {
-  jest.resetAllMocks();
-});
+module.exports = mockBoilerPlateMd;

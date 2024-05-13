@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import { NewsAction } from '../../reducer/NewsReducers';
-import NewsService from '../../service/NewsService';
-import NewsListPage from './NewsListPage';
+import { NewsService } from '../../service/NewsService';
+import { NewsListPage } from './NewsListPage';
 
 describe('NewsListPage', () => {
   test('Given NewsListPage when its mount then ', () => {

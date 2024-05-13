@@ -1,5 +1,5 @@
 import { ApiService } from '../../../api/service/ApiService';
-import AdminService from './AdminService';
+import { AdminService } from './AdminService';
 
 describe('AdminService', () => {
   test('Given AdminService when findBy then ApiService is called', () => {

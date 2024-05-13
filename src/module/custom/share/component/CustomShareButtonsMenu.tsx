@@ -1,6 +1,7 @@
-import { MdMenu, useIcon } from '@vagabond-inc/react-boilerplate-md';
+import { useIcon } from '@vagabond-inc/react-boilerplate-md/dist/icon/hook/useIcon';
+import { MdMenu } from '@vagabond-inc/react-boilerplate-md/dist/md/component/menu/MdMenu';
 import React, { memo, useCallback } from 'react';
-import CustomShareButtonsMenuButton from './CustomShareButtonsMenuButton';
+import { CustomShareButtonsMenuButton } from './CustomShareButtonsMenuButton';
 
 export interface ICustomShareButtonsMenuProps {
   url: string;
@@ -8,7 +9,7 @@ export interface ICustomShareButtonsMenuProps {
   size?: number;
 }
 
-const CustomShareButtonsMenu: React.FC<ICustomShareButtonsMenuProps> = memo(({ url, hashtag, size = 32 }) => {
+export const CustomShareButtonsMenu: React.FC<ICustomShareButtonsMenuProps> = memo(({ url, hashtag, size = 32 }) => {
   const { getIcon } = useIcon();
 
   const getElement = useCallback(
@@ -54,5 +55,3 @@ const CustomShareButtonsMenu: React.FC<ICustomShareButtonsMenuProps> = memo(({ u
     />
   );
 });
-
-export default CustomShareButtonsMenu;

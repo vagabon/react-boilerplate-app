@@ -1,11 +1,8 @@
-import {
-  IApiDto,
-  IFormPropsDto,
-  IListDto,
-  JSONObject,
-  MdFormSelect,
-  ObjectUtils,
-} from '@vagabond-inc/react-boilerplate-md';
+import { IApiDto, JSONObject } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
+import { IFormPropsDto } from '@vagabond-inc/react-boilerplate-md/dist/dto/form/FormDto';
+import { MdFormSelect } from '@vagabond-inc/react-boilerplate-md/dist/md/component/form/select/MdFormSelect';
+import { IListDto } from '@vagabond-inc/react-boilerplate-md/dist/utils/list/ListUtils';
+import { ObjectUtils } from '@vagabond-inc/react-boilerplate-md/dist/utils/object/ObjectUtils';
 import { memo, useEffect, useState } from 'react';
 import { ApiService } from '../../../../api/service/ApiService';
 import { IPageableDto } from '../../../../dto/pageable/PageableDto';
@@ -19,24 +16,24 @@ export interface ICustomFormSelectProps extends IFormPropsDto {
   listId: boolean;
 }
 
-const CustomFormSelect: React.FC<ICustomFormSelectProps> = memo(({ apiUrl, conf, label, name, listId, ...rest }) => {
-  const [datas, setDatas] = useState<IListDto[]>([]);
+export const CustomFormSelect: React.FC<ICustomFormSelectProps> = memo(
+  ({ apiUrl, conf, label, name, listId, ...rest }) => {
+    const [datas, setDatas] = useState<IListDto[]>([]);
 
-  useEffect(() => {
-    conf.listEndPoint &&
-      ApiService.get<IPageableDto<IApiDto[]>>(apiUrl, conf.listEndPoint).then((data) => {
-        setDatas(
-          data?.content?.map((dat) => {
-            return {
-              id: dat.id,
-              libelle: ObjectUtils.getRecursivValue(dat as JSONObject, conf.listName as string),
-            } as IListDto;
-          }),
-        );
-      });
-  }, [apiUrl, conf]);
+    useEffect(() => {
+      conf.listEndPoint &&
+        ApiService.get<IPageableDto<IApiDto[]>>(apiUrl, conf.listEndPoint).then((data) => {
+          setDatas(
+            data?.content?.map((dat) => {
+              return {
+                id: dat.id,
+                libelle: ObjectUtils.getRecursivValue(dat as JSONObject, conf.listName as string),
+              } as IListDto;
+            }),
+          );
+        });
+    }, [apiUrl, conf]);
 
-  return <MdFormSelect label={label} name={name} list={datas} byId={listId} {...rest} />;
-});
-
-export default CustomFormSelect;
+    return <MdFormSelect label={label} name={name} list={datas} byId={listId} {...rest} />;
+  },
+);

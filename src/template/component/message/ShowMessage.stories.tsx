@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { withProvider, withTest } from '../../../stories/Helpers';
-import ShowMessage from './ShowMessage';
+import { ShowMessage } from './ShowMessage';
 
 const meta: Meta<typeof ShowMessage> = {
   title: 'template/ShowMessage',

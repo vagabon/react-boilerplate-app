@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import AppInputWithButton from './AppInputWithButton';
+import { AppInputWithButton } from './AppInputWithButton';
 
 describe('AppInputWithButton', () => {
   test('Given AppInputWithButton When its mount Then MdInputTextSimple is shown', () => {

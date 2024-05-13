@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import AppChartBar from './AppChartBar';
+import { AppChartBar } from './AppChartBar';
 
 describe('AppChartBar', () => {
   test('Given AppChartBar when its mount then MdCard is shown', () => {

@@ -1,4 +1,4 @@
-import { ID } from '@vagabond-inc/react-boilerplate-md';
+import { ID } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
 import { useCallback, useState } from 'react';
 import { useApiService } from '../../../api/hook/useApiService';
 import { useModal } from '../../../hook/modal/useModal';

@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import CustomModaleConfirm from './CustomModaleConfirm';
+import { CustomModaleConfirm } from './CustomModaleConfirm';
 
 describe('CustomModaleConfirm', () => {
   test('Given CustomModaleConfirm when its mount with no data then list is empty', () => {

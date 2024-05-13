@@ -39,6 +39,7 @@ module.exports = {
     '**/*.test.*',
     'src/setupTests*.js',
     'node_modules/**/*.ts?(x)',
+    '**/__mocks__/**',
   ],
   overrides: [
     {

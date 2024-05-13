@@ -1,12 +1,14 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import CustomFormManyToMany from './CustomFormManyToMany';
+import { CustomFormManyToMany } from './CustomFormManyToMany';
 
-jest.mock('./CustomFormModale', () => ({ handleClose, handleSelect }) => (
-  <>
-    <input name='handleClose' onClick={handleClose([{ id: 2, name: 'name2' }])} />
-    <input name='handleSelect' onClick={handleSelect([{ id: 2, name: 'name2' }])} />
-  </>
-));
+jest.mock('./CustomFormModale', () => ({
+  CustomFormModale: ({ handleClose, handleSelect }) => (
+    <>
+      <input name='handleClose' onClick={handleClose([{ id: 2, name: 'name2' }])} />
+      <input name='handleSelect' onClick={handleSelect([{ id: 2, name: 'name2' }])} />
+    </>
+  ),
+}));
 
 const PROFILE_M2M = {
   name: 'name',

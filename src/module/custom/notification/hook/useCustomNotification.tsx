@@ -1,4 +1,6 @@
-import { DateUtils, IApiDto, ID, ObjectUtils } from '@vagabond-inc/react-boilerplate-md';
+import { IApiDto, ID } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
+import { DateUtils } from '@vagabond-inc/react-boilerplate-md/dist/utils/date/DateUtils';
+import { ObjectUtils } from '@vagabond-inc/react-boilerplate-md/dist/utils/object/ObjectUtils';
 import { useCallback, useEffect, useState } from 'react';
 import { ApiService } from '../../../../api/service/ApiService';
 import { IPageableDto } from '../../../../dto/pageable/PageableDto';

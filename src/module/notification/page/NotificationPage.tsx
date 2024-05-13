@@ -1,24 +1,27 @@
-import { MdButton, MdCard, MdMarkdown, MdSearchBar } from '@vagabond-inc/react-boilerplate-md';
+import { MdButton } from '@vagabond-inc/react-boilerplate-md/dist/md/component/button/MdButton';
+import { MdCard } from '@vagabond-inc/react-boilerplate-md/dist/md/component/card/MdCard';
+import { MdMarkdown } from '@vagabond-inc/react-boilerplate-md/dist/md/component/markdown/MdMarkdown';
+import { MdSearchBar } from '@vagabond-inc/react-boilerplate-md/dist/md/component/searchbar/MdSearchBar';
 import { ReactNode, memo, useEffect } from 'react';
-import AppButtonRefresh from '../../../app/button/component/refresh/AppButtonRefresh';
-import AppContent from '../../../app/content/AppContent';
-import HasRole from '../../../hook/role/HasRole';
-import { IHeaderProp } from '../../../template/Header';
+import { AppButtonRefresh } from '../../../app/button/component/refresh/AppButtonRefresh';
+import { AppContent } from '../../../app/content/AppContent';
+import { HasRole } from '../../../hook/role/HasRole';
+import { IHeaderDto } from '../../../template/dto/HeaderDto';
 import { useAuth } from '../../auth/hook/useAuth';
-import CustomModale from '../../custom/modale/component/CustomModale';
-import CustomModaleConfirm from '../../custom/modale/component/CustomModaleConfirm';
-import NotificationList from '../component/list/NotificationList';
+import { CustomModale } from '../../custom/modale/component/CustomModale';
+import { CustomModaleConfirm } from '../../custom/modale/component/CustomModaleConfirm';
+import { NotificationList } from '../component/list/NotificationList';
 import { INotificationDto } from '../dto/NotificationDto';
 import { useNotification } from '../hook/useNotification';
 import { useNotificationFetch } from '../hook/useNotificationFetch';
 
-export interface INotificationPageProps extends IHeaderProp {
+export interface INotificationPageProps extends IHeaderDto {
   handleSelect: (notification: INotificationDto) => void;
   getNotificationIcon: (category: string) => void;
   header?: ReactNode;
 }
 
-const NotificationPage: React.FC<INotificationPageProps> = memo(
+export const NotificationPage: React.FC<INotificationPageProps> = memo(
   ({ handleSelect, getNotificationIcon, header, ...rest }) => {
     const { user } = useAuth(rest.apiUrl);
     const { handleReadAll, handleCheckbox, handleClick, open, notification, closeModal } = useNotification(rest.apiUrl);
@@ -79,5 +82,3 @@ const NotificationPage: React.FC<INotificationPageProps> = memo(
     );
   },
 );
-
-export default NotificationPage;

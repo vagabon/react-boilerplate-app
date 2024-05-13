@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import Language from './Language';
+import { Language } from './Language';
 
 describe('Language', () => {
   test('Given Language when its mount then Select is shown', () => {

@@ -1,10 +1,11 @@
 import { Fade, Paper } from '@mui/material';
 import TrapFocus from '@mui/material/Unstable_TrapFocus';
-import { MdButton, useAppTranslate } from '@vagabond-inc/react-boilerplate-md';
+import { MdButton } from '@vagabond-inc/react-boilerplate-md/dist/md/component/button/MdButton';
+import { useAppTranslate } from '@vagabond-inc/react-boilerplate-md/dist/translate/hook/useAppTranslate';
 import { useCallback, useState } from 'react';
 import { StorageUtils } from '../../../utils/storage/StorageUtils';
 
-const CookieConsents: React.FC = () => {
+export const CookieConsents: React.FC = () => {
   const { Trans } = useAppTranslate();
   const [bannerOpen, setBannerOpen] = useState(!StorageUtils.getConsent());
 
@@ -56,4 +57,3 @@ const CookieConsents: React.FC = () => {
     </>
   );
 };
-export default CookieConsents;

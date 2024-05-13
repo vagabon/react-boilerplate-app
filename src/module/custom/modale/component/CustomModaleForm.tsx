@@ -1,9 +1,9 @@
-import { IApiDto, JSONObject } from '@vagabond-inc/react-boilerplate-md';
+import { IApiDto, JSONObject } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
 import { memo } from 'react';
-import AppFormik from '../../../../app/formik/AppFormik';
+import { AppFormik } from '../../../../app/formik/AppFormik';
 import { IYupValidators } from '../../../../utils/yup/YupUtils';
 import { ICustomModalChildrenType, ICustomModaleChildProps } from './CustomModale';
-import CustomModaleCard from './CustomModaleCard';
+import { CustomModaleCard } from './CustomModaleCard';
 
 export interface ICustomModaleFormProps extends ICustomModaleChildProps {
   icon?: string;
@@ -15,7 +15,7 @@ export interface ICustomModaleFormProps extends ICustomModaleChildProps {
   children: ICustomModalChildrenType;
 }
 
-const CustomModaleForm: React.FC<ICustomModaleFormProps> = memo(
+export const CustomModaleForm: React.FC<ICustomModaleFormProps> = memo(
   ({ icon, title, initialValues = {}, validationSchema = {}, onSubmit, children, ...rest }) => {
     return (
       <CustomModaleCard {...rest} icon={icon} title={title} className={'modal-form'}>
@@ -33,5 +33,3 @@ const CustomModaleForm: React.FC<ICustomModaleFormProps> = memo(
     );
   },
 );
-
-export default CustomModaleForm;

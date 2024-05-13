@@ -1,12 +1,14 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import AuthService from '../../service/AuthService';
-import CheckIdentityPage from './CheckIdentityPage';
+import { AuthService } from '../../service/AuthService';
+import { CheckIdentityPage } from './CheckIdentityPage';
 
-jest.mock('../../../../app/formik/AppFormik', () => ({ onSubmit, children }) => (
-  <div data-testid='AppFormik' onClick={onSubmit}>
-    {children()}
-  </div>
-));
+jest.mock('../../../../app/formik/AppFormik', () => ({
+  AppFormik: ({ onSubmit, children }) => (
+    <div data-testid='AppFormik' onClick={onSubmit}>
+      {children()}
+    </div>
+  ),
+}));
 
 describe('CheckIdentityPage', () => {
   test('Given CheckIdentityPage when its mount then ', async () => {

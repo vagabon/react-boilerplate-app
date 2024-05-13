@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import AppButtonRefresh from './AppButtonRefresh';
+import { AppButtonRefresh } from './AppButtonRefresh';
 
 describe('AppButtonRefresh', () => {
   test('Given AppButtonRefresh when its mount then MdButton is shown', () => {

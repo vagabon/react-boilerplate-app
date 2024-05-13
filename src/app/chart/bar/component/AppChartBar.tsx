@@ -1,7 +1,12 @@
-import { BarChart, cheerfulFiestaPaletteDark } from '@mui/x-charts';
-import { IApiDto, MdBouttonGroup, MdButton, MdCard } from '@vagabond-inc/react-boilerplate-md';
-import { memo, useEffect } from 'react';
+import { IApiDto } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
+import { MdButton } from '@vagabond-inc/react-boilerplate-md/dist/md/component/button/MdButton';
+import { MdBouttonGroup } from '@vagabond-inc/react-boilerplate-md/dist/md/component/button/group/MdBouttonGroup';
+import { MdCard } from '@vagabond-inc/react-boilerplate-md/dist/md/component/card/MdCard';
+import { lazy, memo, useEffect } from 'react';
+import { SuspenceLoader } from '../../../../suspence/SuspenceLoader';
 import { useAppChartBar } from '../hook/useAppChartBar';
+
+const BarChart = lazy(() => import('@mui/x-charts').then((module) => ({ default: module.BarChart })));
 
 export interface IAppChartBarProps {
   id?: string;
@@ -13,7 +18,7 @@ export interface IAppChartBarProps {
   generateCallback?: () => void;
 }
 
-const AppChartBar: React.FC<IAppChartBarProps> = memo(
+export const AppChartBar: React.FC<IAppChartBarProps> = memo(
   ({ id, title, charts, colors, titleField = 'day', nbField = 'nb', generateCallback }) => {
     const { axis, series, convertToChartBar } = useAppChartBar(title);
 
@@ -28,16 +33,15 @@ const AppChartBar: React.FC<IAppChartBarProps> = memo(
         <MdBouttonGroup className='button-right'>
           {generateCallback && <MdButton label='GENERATE' callback={generateCallback} />}
         </MdBouttonGroup>
-        <BarChart
-          colors={cheerfulFiestaPaletteDark}
-          xAxis={[{ data: axis, scaleType: 'band' }]}
-          series={series}
-          height={290}
-          margin={{ bottom: 30, left: 40, right: 10 }}
-        />
+        {SuspenceLoader(
+          <BarChart
+            xAxis={[{ data: axis, scaleType: 'band' }]}
+            series={series}
+            height={290}
+            margin={{ bottom: 30, left: 40, right: 10 }}
+          />,
+        )}
       </MdCard>
     );
   },
 );
-
-export default AppChartBar;

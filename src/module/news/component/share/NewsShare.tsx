@@ -1,6 +1,6 @@
 import { memo, useEffect, useState } from 'react';
 import { CustomSeoUtils } from '../../../custom/seo/utils/CustomSeoUtils';
-import CustomShareButtons from '../../../custom/share/component/CustomShareButtons';
+import { CustomShareButtons } from '../../../custom/share/component/CustomShareButtons';
 import { INewsDto } from '../../dto/NewsDto';
 
 export interface INewsShareProps {
@@ -8,7 +8,7 @@ export interface INewsShareProps {
   news: INewsDto;
 }
 
-const NewsShare: React.FC<INewsShareProps> = memo(({ endPoint, news }) => {
+export const NewsShare: React.FC<INewsShareProps> = memo(({ endPoint, news }) => {
   const [url, setUrl] = useState<string>('');
 
   useEffect(() => {
@@ -19,5 +19,3 @@ const NewsShare: React.FC<INewsShareProps> = memo(({ endPoint, news }) => {
 
   return <CustomShareButtons url={url} />;
 });
-
-export default NewsShare;

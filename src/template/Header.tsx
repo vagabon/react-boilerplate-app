@@ -1,38 +1,30 @@
 import { AppBar } from '@mui/material';
-import {
-  IApiDto,
-  IconClickable,
-  MdAvatar,
-  MdBadge,
-  MdBouttonGroup,
-  MdButton,
-  MdLinearProgress,
-  MdMenuItem,
-  MdToolbar,
-  MdTypo,
-  ModeType,
-  useAppRouter,
-  useIcon,
-} from '@vagabond-inc/react-boilerplate-md';
+import { IApiDto } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
+import { IconClickable } from '@vagabond-inc/react-boilerplate-md/dist/icon/component/IconClickable';
+import { useIcon } from '@vagabond-inc/react-boilerplate-md/dist/icon/hook/useIcon';
+import { MdAvatar } from '@vagabond-inc/react-boilerplate-md/dist/md/component/avatar/MdAvatar';
+import { MdBadge } from '@vagabond-inc/react-boilerplate-md/dist/md/component/badge/MdBadge';
+import { MdButton } from '@vagabond-inc/react-boilerplate-md/dist/md/component/button/MdButton';
+import { MdBouttonGroup } from '@vagabond-inc/react-boilerplate-md/dist/md/component/button/group/MdBouttonGroup';
+import { MdLinearProgress } from '@vagabond-inc/react-boilerplate-md/dist/md/component/linear-progress/MdLinearProgress';
+import { MdMenuItem } from '@vagabond-inc/react-boilerplate-md/dist/md/component/menu/MdMenuItem';
+import { ModeType } from '@vagabond-inc/react-boilerplate-md/dist/md/component/theme/useTheme';
+import { MdToolbar } from '@vagabond-inc/react-boilerplate-md/dist/md/component/toolbar/MdToolbar';
+import { MdTypo } from '@vagabond-inc/react-boilerplate-md/dist/md/component/typo/MdTypo';
+import { useAppRouter } from '@vagabond-inc/react-boilerplate-md/dist/router/hook/useAppRouter';
 import { type i18n as i18nType } from 'i18next';
 import { ReactNode, memo, useEffect, useState } from 'react';
 import { IMenuDto } from '../dto/menu/MenuDto';
 import { useAppLocation } from '../hook/location/useAppLocation';
-import HasRole from '../hook/role/HasRole';
+import { HasRole } from '../hook/role/HasRole';
 import { useUserAuth } from '../hook/user/useUserAuth';
-import CustomModaleConfirm from '../module/custom/modale/component/CustomModaleConfirm';
+import { CustomModaleConfirm } from '../module/custom/modale/component/CustomModaleConfirm';
 import { useAppSelector } from '../store/Store';
-import Language from './component/language/Language';
+import { Language } from './component/language/Language';
+import { IHeaderDto } from './dto/HeaderDto';
 import { useAppImage } from './hook/useAppImage';
 
-export interface IHeaderProp {
-  apiUrl: string;
-  title: string;
-  image: string;
-  email: string;
-}
-
-export interface IHeaderProps extends IHeaderProp {
+export interface IHeaderProps extends IHeaderDto {
   mode: ModeType;
   menu: IMenuDto[];
   callbackTheme?: () => void;
@@ -45,7 +37,7 @@ export interface IHeaderProps extends IHeaderProp {
   showOpenDrawer?: boolean;
 }
 
-const Header: React.FC<IHeaderProps> = memo(
+export const Header: React.FC<IHeaderProps> = memo(
   ({ mode, menu, widthDrawer, showNotification, nbNotification, ...rest }) => {
     const { location, Link, handleNavigate } = useAppRouter();
     const { isLoggedIn, user } = useAppSelector((state) => state.auth);
@@ -142,5 +134,3 @@ const Header: React.FC<IHeaderProps> = memo(
     );
   },
 );
-
-export default Header;

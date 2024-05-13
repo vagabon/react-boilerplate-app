@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { withProvider, withTest } from '../../../stories/Helpers';
-import AppFabAdd from './AppFabAdd';
+import { AppFabAdd } from './AppFabAdd';
 
 const meta: Meta<typeof AppFabAdd> = {
   title: 'app/AppFabAdd',

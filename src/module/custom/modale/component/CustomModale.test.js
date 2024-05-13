@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import CustomModale from './CustomModale';
+import { CustomModale } from './CustomModale';
 
 describe('CustomModale', () => {
   test('Given CustomModale when its mount with no data then list is empty', () => {

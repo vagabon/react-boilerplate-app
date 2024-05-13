@@ -1,8 +1,10 @@
-import { MdCard, MdLink, MdMarkdown } from '@vagabond-inc/react-boilerplate-md';
+import { MdCard } from '@vagabond-inc/react-boilerplate-md/dist/md/component/card/MdCard';
+import { MdLink } from '@vagabond-inc/react-boilerplate-md/dist/md/component/link/MdLink';
+import { MdMarkdown } from '@vagabond-inc/react-boilerplate-md/dist/md/component/markdown/MdMarkdown';
 import { memo } from 'react';
 import { useRole } from '../../../../hook/role/useRole';
 import { CustomSeoUtils } from '../../../custom/seo/utils/CustomSeoUtils';
-import NewsShare from '../share/NewsShare';
+import { NewsShare } from '../share/NewsShare';
 import { INewsCardProps } from './NewsCard';
 
 export interface INewsCardSmallProps extends INewsCardProps {
@@ -10,7 +12,7 @@ export interface INewsCardSmallProps extends INewsCardProps {
   endPoint: string;
 }
 
-const NewsCardSmall: React.FC<INewsCardSmallProps> = memo(({ apiUrl, ...rest }) => {
+export const NewsCardSmall: React.FC<INewsCardSmallProps> = memo(({ apiUrl, ...rest }) => {
   const { hasUserRole } = useRole();
 
   return (
@@ -30,5 +32,3 @@ const NewsCardSmall: React.FC<INewsCardSmallProps> = memo(({ apiUrl, ...rest }) 
     </MdCard>
   );
 });
-
-export default NewsCardSmall;

@@ -14,7 +14,7 @@ const ENDPOINT_RESET_PASSWORD = ENDPOINT_USER + '/resetPassword';
 const ENDPOINT_GOOGLE_CONNECT = ENDPOINT_USER + '/google-connect';
 const ENDPOINT_FACEBOOK_CONNECT = ENDPOINT_USER + '/facebook-connect';
 
-const AuthService = {
+export const AuthService = {
   register: (apiUrl: string, username?: string, email?: string, password?: string) => {
     return ApiService.post(apiUrl, ENDPOINT_SIGNUP, {
       username,
@@ -59,5 +59,3 @@ const AuthService = {
     StorageUtils.removeCurrentUser();
   },
 };
-
-export default AuthService;

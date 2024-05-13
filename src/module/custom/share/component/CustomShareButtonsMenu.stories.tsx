@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { withProvider, withTest } from '../../../../stories/Helpers';
 
-import CustomShareButtonsMenu from './CustomShareButtonsMenu';
+import { CustomShareButtonsMenu } from './CustomShareButtonsMenu';
 
 const meta: Meta<typeof CustomShareButtonsMenu> = {
   title: 'custom/share/CustomShareButtonsMenu',

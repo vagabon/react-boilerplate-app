@@ -1,35 +1,41 @@
 import babel from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
+import multiEntry from '@rollup/plugin-multi-entry';
 import resolve from '@rollup/plugin-node-resolve';
 import terser from '@rollup/plugin-terser';
 import typescript from '@rollup/plugin-typescript';
-import dts from 'rollup-plugin-dts';
+import { glob } from 'glob';
 import external from 'rollup-plugin-peer-deps-external';
 import postcss from 'rollup-plugin-postcss';
 import scss from 'rollup-plugin-scss';
 
-const packageJson = require('./package.json');
+const inputFiles = glob.sync('src/**/*.ts*', { ignore: 'src/**/*.stories.tsx' });
 
 export default [
   {
-    input: 'src/index.ts',
+    input: inputFiles,
     output: [
       {
-        file: packageJson.main,
+        dir: 'dist',
         format: 'cjs',
+        exports: 'named',
         sourcemap: true,
+        preserveModules: true,
+        preserveModulesRoot: 'src',
       },
       {
-        file: packageJson.module,
-        format: 'esm',
+        dir: 'dist',
+        format: 'es',
+        exports: 'named',
         sourcemap: true,
+        preserveModules: true,
+        preserveModulesRoot: 'src',
       },
     ],
     onwarn(warning, warn) {
-      if (warning.message.includes('Module level directives cause errors when bundled')) return;
-      if (warning.code === 'MODULE_LEVEL_DIRECTIVE') return;
-      if (warning.code === 'THIS_IS_UNDEFINED') return;
+      if (warning.message.includes('preferring built-in module')) return;
+      if (warning.code === 'EVAL') return;
       warn(warning);
     },
     plugins: [
@@ -46,12 +52,9 @@ export default [
       json(),
       scss(),
       terser(),
+      multiEntry({
+        entryFileName: '[name].js',
+      }),
     ],
-  },
-  {
-    input: 'dist/types/index.d.ts',
-    output: [{ file: 'dist/index.d.ts', format: 'esm' }],
-    external: [/\.*css$/],
-    plugins: [dts.default()],
   },
 ];

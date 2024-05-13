@@ -1,10 +1,13 @@
 import { Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
-
 import ClickAwayListener from '@mui/material/ClickAwayListener';
-import { I18nUtils, MdDivider, useAppRouter, useAppTranslate, useIcon } from '@vagabond-inc/react-boilerplate-md';
+import { useIcon } from '@vagabond-inc/react-boilerplate-md/dist/icon/hook/useIcon';
+import { MdDivider } from '@vagabond-inc/react-boilerplate-md/dist/md/component/divider/MdDivider';
+import { useAppRouter } from '@vagabond-inc/react-boilerplate-md/dist/router/hook/useAppRouter';
+import { useAppTranslate } from '@vagabond-inc/react-boilerplate-md/dist/translate/hook/useAppTranslate';
+import { I18nUtils } from '@vagabond-inc/react-boilerplate-md/dist/utils/i18n/I18nUtils';
 import { memo, useCallback, useEffect, useState } from 'react';
 import { IMenuDto } from '../../../dto/menu/MenuDto';
-import HasRole from '../../../hook/role/HasRole';
+import { HasRole } from '../../../hook/role/HasRole';
 import { useAuth } from '../../../module/auth/hook/useAuth';
 
 export interface IDrawerProps {
@@ -16,7 +19,7 @@ export interface IDrawerProps {
   callbackClose?: () => void;
 }
 
-const MenuDrawer: React.FC<IDrawerProps> = memo(
+export const MenuDrawer: React.FC<IDrawerProps> = memo(
   ({ apiUrl, drawerWidth, openDrawer, variantDrawer, menu, callbackClose }) => {
     const { t } = useAppTranslate();
     const { getIcon } = useIcon();
@@ -109,5 +112,3 @@ const MenuDrawer: React.FC<IDrawerProps> = memo(
     );
   },
 );
-
-export default MenuDrawer;

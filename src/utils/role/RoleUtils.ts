@@ -1,7 +1,7 @@
 import { ICurrentUserDto } from '../../dto/current-user/CurrentUserDto';
 import { IUserDto } from '../../module/user/user/dto/UserDto';
 
-const RoleUtils = {
+export const RoleUtils = {
   hasProfile: (currentUser: ICurrentUserDto<IUserDto> | null, roleToCheck?: string[]): boolean => {
     let hasProfile: boolean = false;
     if (roleToCheck === undefined || roleToCheck.length === 0 || roleToCheck[0] === '') {
@@ -17,5 +17,3 @@ const RoleUtils = {
     return hasProfile;
   },
 };
-
-export default RoleUtils;

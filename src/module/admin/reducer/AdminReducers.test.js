@@ -1,4 +1,4 @@
-import { AdminAction, AdminReducers } from './AdminReducer';
+import { AdminAction, AdminReducers } from './AdminReducers';
 
 const state = {
   user: {

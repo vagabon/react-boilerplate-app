@@ -1,19 +1,20 @@
-import { ID, useAppRouter } from '@vagabond-inc/react-boilerplate-md';
+import { ID } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
+import { useAppRouter } from '@vagabond-inc/react-boilerplate-md/dist/router/hook/useAppRouter';
 import { type i18n as i18nType } from 'i18next';
 import { memo, useEffect } from 'react';
-import AppContent from '../../../../app/content/AppContent';
+import { AppContent } from '../../../../app/content/AppContent';
 import { useAppSelector } from '../../../../store/Store';
-import { IHeaderProp } from '../../../../template/Header';
+import { IHeaderDto } from '../../../../template/dto/HeaderDto';
 import { useUser } from '../../user/hook/useUser';
-import ProfileShow from '../component/ProfileShow';
+import { ProfileShow } from '../component/ProfileShow';
 
-export interface IProfilePageProps extends IHeaderProp {
+export interface IProfilePageProps extends IHeaderDto {
   i18n: i18nType;
   profileReact: (id: ID) => React.JSX.Element;
   profileReactChildren?: (id: ID) => React.JSX.Element;
 }
 
-const ProfilePage: React.FC<IProfilePageProps> = memo(({ i18n, ...rest }) => {
+export const ProfilePage: React.FC<IProfilePageProps> = memo(({ i18n, ...rest }) => {
   const {
     navigate,
     params: { id = -1 },
@@ -38,5 +39,3 @@ const ProfilePage: React.FC<IProfilePageProps> = memo(({ i18n, ...rest }) => {
     </AppContent>
   );
 });
-
-export default ProfilePage;

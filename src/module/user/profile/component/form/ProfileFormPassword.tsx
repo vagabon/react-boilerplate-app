@@ -1,7 +1,10 @@
-import { IMdInputTextProps, MdInputText } from '@vagabond-inc/react-boilerplate-md';
+import {
+  IMdInputTextProps,
+  MdInputText,
+} from '@vagabond-inc/react-boilerplate-md/dist/md/component/form/text/MdInputText';
 import { memo, useCallback } from 'react';
 import { IYupValidators } from '../../../../../utils/yup/YupUtils';
-import CustomModaleForm from '../../../../custom/modale/component/CustomModaleForm';
+import { CustomModaleForm } from '../../../../custom/modale/component/CustomModaleForm';
 import { IBaseCustomSeoProps } from '../../../../custom/seo/component/CustomSeo';
 import { IUserDto } from '../../../user/dto/UserDto';
 import { useUser } from '../../../user/hook/useUser';
@@ -33,7 +36,7 @@ export interface IProfileFormPasswordProps extends IBaseCustomSeoProps {
   user?: IUserDto;
 }
 
-const ProfileFormPassword: React.FC<IProfileFormPasswordProps> = memo(({ user, ...rest }) => {
+export const ProfileFormPassword: React.FC<IProfileFormPasswordProps> = memo(({ user, ...rest }) => {
   const { handleUpdatePassword } = useUser(rest.apiUrl);
 
   const handleSubmit = useCallback(
@@ -78,5 +81,3 @@ const ProfileFormPassword: React.FC<IProfileFormPasswordProps> = memo(({ user, .
     </div>
   );
 });
-
-export default ProfileFormPassword;

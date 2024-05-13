@@ -1,4 +1,4 @@
-import AuthReducers, { LoginAction } from './AuthReducers';
+import { AuthReducers, LoginAction } from './AuthReducers';
 
 const state = {
   isLoggedIn: false,

@@ -1,19 +1,17 @@
-import {
-  MdAlert,
-  MdBouttonGroup,
-  MdButton,
-  MdCard,
-  MdLink,
-  MdTypo,
-  useAppTranslate,
-} from '@vagabond-inc/react-boilerplate-md';
+import { MdAlert } from '@vagabond-inc/react-boilerplate-md/dist/md/component/alert/MdAlert';
+import { MdButton } from '@vagabond-inc/react-boilerplate-md/dist/md/component/button/MdButton';
+import { MdBouttonGroup } from '@vagabond-inc/react-boilerplate-md/dist/md/component/button/group/MdBouttonGroup';
+import { MdCard } from '@vagabond-inc/react-boilerplate-md/dist/md/component/card/MdCard';
+import { MdLink } from '@vagabond-inc/react-boilerplate-md/dist/md/component/link/MdLink';
+import { MdTypo } from '@vagabond-inc/react-boilerplate-md/dist/md/component/typo/MdTypo';
+import { useAppTranslate } from '@vagabond-inc/react-boilerplate-md/dist/translate/hook/useAppTranslate';
 import { memo } from 'react';
-import AppContent from '../../../app/content/AppContent';
-import { IHeaderProp } from '../../../template/Header';
+import { AppContent } from '../../../app/content/AppContent';
+import { IHeaderDto } from '../../../template/dto/HeaderDto';
 
-export interface INotFoundPageProps extends IHeaderProp {}
+export interface INotFoundPageProps extends IHeaderDto {}
 
-const NotFoundPage: React.FC<INotFoundPageProps> = memo(({ ...rest }) => {
+export const NotFoundPage: React.FC<INotFoundPageProps> = memo(({ ...rest }) => {
   const { Trans } = useAppTranslate();
 
   return (
@@ -38,5 +36,3 @@ const NotFoundPage: React.FC<INotFoundPageProps> = memo(({ ...rest }) => {
     </AppContent>
   );
 });
-
-export default NotFoundPage;

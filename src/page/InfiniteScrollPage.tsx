@@ -1,7 +1,8 @@
-import { MdCard, MdSearchBar } from '@vagabond-inc/react-boilerplate-md';
+import { MdCard } from '@vagabond-inc/react-boilerplate-md/dist/md/component/card/MdCard';
+import { MdSearchBar } from '@vagabond-inc/react-boilerplate-md/dist/md/component/searchbar/MdSearchBar';
 import { ReactNode, memo, useCallback } from 'react';
-import AppFabAdd, { IAppFabAddProps } from '../app/fab/add/AppFabAdd';
-import AppInfiniteScrool from '../app/infinite-scroll/AppInfiniteScrool';
+import { AppFabAdd, IAppFabAddProps } from '../app/fab/add/AppFabAdd';
+import { AppInfiniteScrool } from '../app/infinite-scroll/AppInfiniteScrool';
 
 export interface InfiniteScroolPageProps extends IAppFabAddProps {
   icon?: string;
@@ -15,7 +16,7 @@ export interface InfiniteScroolPageProps extends IAppFabAddProps {
   doSearch?: (search: string) => void;
 }
 
-const InfiniteScrollPage: React.FC<InfiniteScroolPageProps> = memo(
+export const InfiniteScrollPage: React.FC<InfiniteScroolPageProps> = memo(
   ({ icon, title, titleCount, className, isCard = true, ...rest }) => {
     const handleSearch = useCallback(
       (callback?: (search: string) => void) => (search: string) => {
@@ -52,5 +53,3 @@ const InfiniteScrollPage: React.FC<InfiniteScroolPageProps> = memo(
     );
   },
 );
-
-export default InfiniteScrollPage;

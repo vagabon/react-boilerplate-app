@@ -19,5 +19,4 @@ export const NewsReducer = createSlice({
   },
 });
 export const NewsAction = { ...NewsReducer.actions };
-const NewsReducers = NewsReducer.reducer;
-export default NewsReducers;
+export const NewsReducers = NewsReducer.reducer;

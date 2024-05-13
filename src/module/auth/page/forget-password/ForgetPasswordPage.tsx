@@ -1,21 +1,22 @@
-import { IUserDto } from '../../../user/user/dto/UserDto';
-import AuthService from '../../service/AuthService';
-
-import { MdCard, MdInputText, useAppRouter } from '@vagabond-inc/react-boilerplate-md';
+import { MdCard } from '@vagabond-inc/react-boilerplate-md/dist/md/component/card/MdCard';
+import { MdInputText } from '@vagabond-inc/react-boilerplate-md/dist/md/component/form/text/MdInputText';
+import { useAppRouter } from '@vagabond-inc/react-boilerplate-md/dist/router/hook/useAppRouter';
 import { memo, useCallback, useEffect } from 'react';
-import AppContent from '../../../../app/content/AppContent';
-import AppFormik from '../../../../app/formik/AppFormik';
-import { IHeaderProp } from '../../../../template/Header';
-import AuthFooter from '../../component/auth.footer/AuthFooter';
+import { AppContent } from '../../../../app/content/AppContent';
+import { AppFormik } from '../../../../app/formik/AppFormik';
+import { IHeaderDto } from '../../../../template/dto/HeaderDto';
+import { IUserDto } from '../../../user/user/dto/UserDto';
+import { AuthFooter } from '../../component/auth.footer/AuthFooter';
 import { AuthFooterEnum } from '../../component/auth.footer/enum/AuthFooterEnum';
 import { useAuth } from '../../hook/useAuth';
+import { AuthService } from '../../service/AuthService';
 import FORGET_PASSWORD_SCHEMA from './schema/forget.password.schema.json';
 
 const DEFAULT_VALUES = { email: '' };
 
-export interface IForgetPasswordPageProps extends IHeaderProp {}
+export interface IForgetPasswordPageProps extends IHeaderDto {}
 
-const ForgetPasswordPage: React.FC<IForgetPasswordPageProps> = memo(({ ...rest }) => {
+export const ForgetPasswordPage: React.FC<IForgetPasswordPageProps> = memo(({ ...rest }) => {
   const { navigate } = useAppRouter();
   const { redirectIfLogged } = useAuth(rest.apiUrl);
 
@@ -48,5 +49,3 @@ const ForgetPasswordPage: React.FC<IForgetPasswordPageProps> = memo(({ ...rest }
     </AppContent>
   );
 });
-
-export default ForgetPasswordPage;

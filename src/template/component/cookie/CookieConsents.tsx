@@ -1,5 +1,4 @@
-import { Fade, Paper } from '@mui/material';
-import TrapFocus from '@mui/material/Unstable_TrapFocus';
+import { Fade, Paper, Unstable_TrapFocus as TrapFocus } from '@mui/material';
 import { MdButton } from '@vagabond-inc/react-boilerplate-md/dist/md/component/button/MdButton';
 import { useAppTranslate } from '@vagabond-inc/react-boilerplate-md/dist/translate/hook/useAppTranslate';
 import { useCallback, useState } from 'react';

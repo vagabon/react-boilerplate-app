@@ -1,6 +1,5 @@
 import { ID } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
 import { IconClickable } from '@vagabond-inc/react-boilerplate-md/dist/icon/component/IconClickable';
-import { IconColorType } from '@vagabond-inc/react-boilerplate-md/dist/icon/hook/useIcon';
 import { MdBadge } from '@vagabond-inc/react-boilerplate-md/dist/md/component/badge/MdBadge';
 import { ButtonColorType, MdButton } from '@vagabond-inc/react-boilerplate-md/dist/md/component/button/MdButton';
 import { MdCommonModal } from '@vagabond-inc/react-boilerplate-md/dist/md/component/modal/MdCommonModal';
@@ -10,7 +9,7 @@ import { useModal } from '../../../../hook/modal/useModal';
 export interface ICustomModaleChildProps {
   className?: string;
   icon?: string;
-  iconColor?: IconColorType;
+  iconColor?: ButtonColorType;
   iconBadge?: number;
   iconBadgeColor?: 'primary' | 'secondary' | 'default' | 'error' | 'info' | 'success' | 'warning';
   button?: string;

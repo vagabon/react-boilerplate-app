@@ -47,7 +47,13 @@ export default [
         babelHelpers: 'bundled',
       }),
       commonjs(),
-      typescript(),
+      typescript({
+        compilerOptions: {
+          module: 'esnext',
+          declaration: true,
+          declarationDir: 'dist',
+        },
+      }),
       postcss(),
       json(),
       scss(),

@@ -15,7 +15,6 @@
   "collectCoverageFrom": [
     "src/**/*.{js,jsx,ts,tsx}",
     "!<rootDir>/node_modules/",
-    "!<rootDir>/**/reportWebVitals.ts",
     "!<rootDir>/**/setupTests*.*",
     "!src/vite-env.d.ts",
     "!src/**/*Dto.ts",

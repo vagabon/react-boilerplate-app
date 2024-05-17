@@ -54,7 +54,7 @@ export const AppTheme: React.FC<IAppThemeProps> = memo(({ palette, children }) =
 
   return (
     <SnackbarProvider maxSnack={5} action={handleCloseSnackbar}>
-      <HelmetProvider data-rh='true' ata-react-helmet='true'>
+      <HelmetProvider data-rh='true' data-react-helmet='true'>
         <AppScrollToAnchor />
         <MdThemeProvider theme={theme}>
           <div className={'flex heigth100 mode-' + mode}>{children({ mode, theme, switchTheme })}</div>

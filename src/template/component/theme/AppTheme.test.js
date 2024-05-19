@@ -32,6 +32,6 @@ describe('AppTheme', () => {
         <AppTheme palette={palette}>{() => <></>}</AppTheme>
       </BrowserRouter>,
     );
-    expect(screen.getByTestId('MdThemeProvider')).toBeDefined();
+    expect(screen.getByTestId('ThemeContextProvider')).toBeDefined();
   });
 });

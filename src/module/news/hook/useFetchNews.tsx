@@ -1,11 +1,12 @@
 import { useCallback, useState } from 'react';
+import { shallowEqual } from 'react-redux';
 import { IReducersActionsProps } from '../../../reducer/BaseReducer';
 import { useAppDispatch, useAppSelector } from '../../../store/Store';
 import { INewsDto } from '../dto/NewsDto';
 import { NewsService } from '../service/NewsService';
 
 export const useFetchNews = (apiUrl: string, endPoint: string, newsAction: IReducersActionsProps) => {
-  const { datas: news, search, count, page } = useAppSelector((state) => state[endPoint]);
+  const { datas: news, search, count, page } = useAppSelector((state) => state[endPoint], shallowEqual);
   const dispatch = useAppDispatch();
 
   const [stopLoad, setStopLoad] = useState(false);

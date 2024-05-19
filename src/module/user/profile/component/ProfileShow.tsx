@@ -3,7 +3,6 @@ import { MdButton } from '@vagabond-inc/react-boilerplate-md/dist/md/component/b
 import { MdBouttonGroup } from '@vagabond-inc/react-boilerplate-md/dist/md/component/button/group/MdBouttonGroup';
 import { MdCard } from '@vagabond-inc/react-boilerplate-md/dist/md/component/card/MdCard';
 import { MdDivider } from '@vagabond-inc/react-boilerplate-md/dist/md/component/divider/MdDivider';
-import { type i18n as i18nType } from 'i18next';
 import React, { useCallback } from 'react';
 import { useApiService } from '../../../../api/hook/useApiService';
 import { HasRole } from '../../../../hook/role/HasRole';
@@ -16,7 +15,6 @@ import { ProfileForm } from './form/ProfileForm';
 
 export interface IProfileShowProps {
   apiUrl: string;
-  i18n?: i18nType;
   user: IUserDto;
   disabled?: boolean;
   profileReact: (id: ID) => React.JSX.Element;
@@ -24,7 +22,6 @@ export interface IProfileShowProps {
 }
 
 export const ProfileShow: React.FC<IProfileShowProps> = ({
-  i18n,
   user,
   disabled,
   profileReact,
@@ -66,7 +63,7 @@ export const ProfileShow: React.FC<IProfileShowProps> = ({
       <div className='flex flex1'>
         {profileReact(user.id)}
 
-        <ProfileForm {...rest} i18n={i18n} user={user} disabled={disabled} />
+        <ProfileForm {...rest} user={user} disabled={disabled} />
 
         <HasRole roles={['ADMIN']} showError={false}>
           <MdDivider />

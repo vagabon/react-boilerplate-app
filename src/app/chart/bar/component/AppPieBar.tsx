@@ -1,7 +1,6 @@
 import { MdCard } from '@vagabond-inc/react-boilerplate-md/dist/md/component/card/MdCard';
-import { useAppTranslate } from '@vagabond-inc/react-boilerplate-md/dist/translate/hook/useAppTranslate';
-import { I18nUtils } from '@vagabond-inc/react-boilerplate-md/dist/utils/i18n/I18nUtils';
 import { lazy, memo, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ICustomListDto } from '../../../../module/custom/list/component/CustomList';
 import { SuspenceLoader } from '../../../../suspence/SuspenceLoader';
 
@@ -13,7 +12,7 @@ export interface IAppPieBarProps {
 }
 
 export const AppPieBar: React.FC<IAppPieBarProps> = memo(({ custumList, height }) => {
-  const { t } = useAppTranslate();
+  const { t } = useTranslation();
   const [series, setSeries] = useState<{ id: number; value: number; label: string }[]>(
     custumList.map((item) => {
       return { id: item.entity.id as number, value: parseInt(item.chip?.toString() ?? '0'), label: item.name };
@@ -31,8 +30,8 @@ export const AppPieBar: React.FC<IAppPieBarProps> = memo(({ custumList, height }
           };
         }),
       );
-    custumList.length === 0 && setSeries([{ id: 0, value: 0, label: I18nUtils.translate(t, 'NO_CLICK') }]);
-  }, [custumList, t]);
+    custumList.length === 0 && setSeries([{ id: 0, value: 0, label: t('NO_CLICK') }]);
+  }, [t, custumList]);
 
   return (
     <MdCard>

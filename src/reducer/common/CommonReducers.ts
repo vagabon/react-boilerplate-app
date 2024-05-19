@@ -22,23 +22,17 @@ export interface IApiState {
   loading: boolean;
   history: IPathDto[];
   scrolls: ScrollsType[];
-  modeTheme: string;
-  language: string;
   chatbot: ChatbotType;
 }
 
 const SUCCESS: MessageType = 'success';
 const HOME: string = '/';
 
-const language = navigator?.language?.split('-')?.[0] ?? 'fr';
-
 const initialState: IApiState = {
   message: { id: '', message: '', type: SUCCESS },
   loading: false,
   history: [],
   scrolls: [],
-  modeTheme: '',
-  language: language,
   chatbot: { show: false, selected: '' },
 };
 
@@ -119,18 +113,6 @@ export const CommonReducer = createSlice({
       return {
         ...state,
         scrolls,
-      };
-    },
-    setModeTheme: (state: IApiState, action: PayloadAction<string>) => {
-      return {
-        ...state,
-        modeTheme: action?.payload,
-      };
-    },
-    setLanguage: (state: IApiState, action: PayloadAction<string>) => {
-      return {
-        ...state,
-        language: action?.payload,
       };
     },
     setChatbot: (state: IApiState, action: PayloadAction<ChatbotType>) => {

@@ -1,5 +1,6 @@
 import { useAppRouter } from '@vagabond-inc/react-boilerplate-md/dist/router/hook/useAppRouter';
 import { useCallback } from 'react';
+import { shallowEqual } from 'react-redux';
 import { ICurrentUserDto } from '../../../dto/current-user/CurrentUserDto';
 import { useAppDispatch, useAppSelector } from '../../../store/Store';
 import { StorageUtils } from '../../../utils/storage/StorageUtils';
@@ -12,7 +13,8 @@ const URL_LOGIN_REDIRECT = '/profile';
 export const useAuth = (apiUrl: string) => {
   const dispatch = useAppDispatch();
   const { navigate } = useAppRouter();
-  const { isLoggedIn, user } = useAppSelector((state) => state.auth);
+  const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn, shallowEqual);
+  const user = useAppSelector((state) => state.auth.user, shallowEqual);
 
   const handleLogin = useCallback(
     (data: IUserDto) => {

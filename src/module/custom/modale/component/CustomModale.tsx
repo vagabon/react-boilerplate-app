@@ -1,15 +1,16 @@
 import { ID } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
-import { IconClickable } from '@vagabond-inc/react-boilerplate-md/dist/icon/component/IconClickable';
+import { IconClickable, IconType } from '@vagabond-inc/react-boilerplate-md/dist/icon/component/IconClickable';
 import { MdBadge } from '@vagabond-inc/react-boilerplate-md/dist/md/component/badge/MdBadge';
 import { ButtonColorType, MdButton } from '@vagabond-inc/react-boilerplate-md/dist/md/component/button/MdButton';
-import { MdCommonModal } from '@vagabond-inc/react-boilerplate-md/dist/md/component/modal/MdCommonModal';
+import { MdModal } from '@vagabond-inc/react-boilerplate-md/dist/md/component/modal/MdModal';
 import { memo, useCallback, useEffect } from 'react';
 import { useModal } from '../../../../hook/modal/useModal';
 
 export interface ICustomModaleChildProps {
   className?: string;
+  classNameButton?: string;
   icon?: string;
-  iconColor?: ButtonColorType;
+  iconColor?: IconType;
   iconBadge?: number;
   iconBadgeColor?: 'primary' | 'secondary' | 'default' | 'error' | 'info' | 'success' | 'warning';
   button?: string;
@@ -62,14 +63,14 @@ export const CustomModale: React.FC<ICustomModaleProps> = memo(
 
     return (
       <>
-        <MdCommonModal className={className} open={open} handleClose={handleClose(rest.callbackOpen)}>
+        <MdModal className={className} open={open} handleClose={handleClose(rest.callbackOpen)}>
           {children({ openModal: openModal, closeModal: handleClose(rest.callbackOpen), handleYes })}
-        </MdCommonModal>
+        </MdModal>
         {icon && iconColor && <IconClickable color={iconColor} icon={icon} callback={openModal} disabled={disabled} />}
         {(button || buttonColor) && (
-          <MdBadge content={iconBadge ?? 0} color={iconBadgeColor ?? 'primary'}>
+          <MdBadge badgeContent={iconBadge ?? 0} color={iconBadgeColor ?? 'primary'}>
             <MdButton
-              className={icon ? 'button-icon' : ''}
+              className={(icon ? 'button-icon ' : '') + rest.classNameButton}
               size={buttonSize}
               label={button}
               color={buttonColor}

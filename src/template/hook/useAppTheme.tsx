@@ -19,7 +19,7 @@ export const useAppTheme = () => {
       setVariantDrawer('temporary');
       setShowOpenDrawer(true);
     }
-  }, [windowSize]);
+  }, [windowSize.width]);
 
   const handleDrawerOpen = useCallback(
     (oldOpen: boolean) => () => {

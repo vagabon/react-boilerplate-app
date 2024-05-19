@@ -22,6 +22,7 @@ const mockBoilerPlateMd = {
     </div>
   ),
   MdAlert: ({ label }) => <div data-testid='MdAlert'>{label}</div>,
+  MdAppBar: (props) => mockWithChildren('MdAppBar', props),
   MdAvatar: ({ callback }) => <div data-testid='MdAvatar' onClick={callback}></div>,
   MdBackdrop: ({ children }) => <div data-testid='MdBackdrop'>{children}</div>,
   MdBadge: ({ children }) => <div data-testid='MdBadge'>{children}</div>,
@@ -86,8 +87,8 @@ const mockBoilerPlateMd = {
 
   MdGrid: (props) => mockWithChildren('MdGrid', props),
 
-  MdCommonModal: ({ handleClose, children }) => (
-    <div data-testid='MdCommonModal' onClick={handleClose}>
+  MdModal: ({ handleClose, children }) => (
+    <div data-testid='MdModal' onClick={handleClose}>
       {children}
     </div>
   ),
@@ -110,7 +111,9 @@ const mockBoilerPlateMd = {
   MdListItemIcon: (props) => mockWithChildren('MdListItemIcon', props),
   MdListItemText: (props) => mockWithChildren('MdListItemText', props),
 
+  MdCircularProgress: (props) => mockWithChildren('MdCircularProgress', props),
   MdLinearProgress: (props) => mockWithChildren('MdLinearProgress', props),
+
   MdLink: (props) => mockWithChildren('MdLink', props),
   MdMarkdown: ({ summaryCallback, content }) => (
     <div data-testid='MdMarkdown'>
@@ -128,6 +131,7 @@ const mockBoilerPlateMd = {
   MdMenuItem: (props) => mockWithChildren('MdMenuItem', props),
   MdSearchBar: ({ callback }) => <div data-testid='MdSearchBar' onClick={callback}></div>,
   MdSnackbar: (props) => mockWithChildren('MdSnackbar', props),
+  MdSkeleton: (props) => mockWithChildren('MdSkeleton', props),
   MdThemeProvider: (props) => mockWithChildren('MdThemeProvider', props),
   MdTabs: ({ callback }) => <div data-testid='MdTabs' onClick={callback}></div>,
   MdToolbar: (props) => mockWithChildren('MdToolbar', props),
@@ -140,6 +144,8 @@ const mockBoilerPlateMd = {
 
   MdTable: (props) => mockWithChildren('MdTable', props),
   MdTableWithPagination: (props) => mockWithChildren('MdTableWithPagination', props),
+
+  MdTooltip: (props) => mockWithChildren('MdTooltip', props),
 
   useFormError: () => ({ error: '' }),
   useAppTranslate: () => ({
@@ -173,6 +179,13 @@ const mockBoilerPlateMd = {
     mode: 'dark',
     theme: {},
     switchTheme: jest.fn(),
+  }),
+
+  ThemeContextProvider: (props) => mockWithChildren('ThemeContextProvider', props),
+  Translate: ({ i18nKey }) => <span data-testid='Translate'>{i18nKey}</span>,
+  useThemeContent: () => ({
+    mode: 'dark',
+    switchTheme: jest.fn(() => {}),
   }),
 
   DateUtils: {

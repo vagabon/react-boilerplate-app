@@ -11,18 +11,18 @@ const mocks = {
   useAppChartBar: () => ({
     getColors: jest.fn(),
   }),
-  AppChartBar: ({ generateCallback }) => <div data-testid="AppChartBar" onClick={generateCallback} aria-hidden></div>,
-  AppPieBar: () => <div data-testid="AppPieBar"></div>,
+  AppChartBar: ({ generateCallback }) => <div data-testid='AppChartBar' onClick={generateCallback} aria-hidden></div>,
+  AppPieBar: () => <div data-testid='AppPieBar'></div>,
   AppFormik: ({ onSubmit, children }) => (
-    <div data-testid="AppFormik" onClick={onSubmit} aria-hidden>
+    <div data-testid='AppFormik' onClick={onSubmit} aria-hidden>
       {children({ values: [], handleSubmit: jest.fn(), setFieldValue: jest.fn() })}
     </div>
   ),
-  AppButtonRefresh: ({ callback }) => <div data-testid="AppButtonRefresh" onClick={callback} aria-hidden></div>,
-  AppButtonReport: ({ callback }) => <div data-testid="AppButtonReport" onClick={callback} aria-hidden></div>,
+  AppButtonRefresh: ({ callback }) => <div data-testid='AppButtonRefresh' onClick={callback} aria-hidden></div>,
+  AppButtonReport: ({ callback }) => <div data-testid='AppButtonReport' onClick={callback} aria-hidden></div>,
   AppContent: (props) => global.mockWithChildren('AppContent', props),
-  AppFabAdd: ({ callback }) => <div data-testid="AppFabAdd" onClick={callback} aria-hidden></div>,
-  AppInfiniteScrool: ({ children }) => <div data-testid="AppInfiniteScrool">{children}</div>,
+  AppFabAdd: ({ callback }) => <div data-testid='AppFabAdd' onClick={callback} aria-hidden></div>,
+  AppInfiniteScrool: ({ children }) => <div data-testid='AppInfiniteScrool'>{children}</div>,
   ShowMessage: () => global.mockWithSimple('ShowMessage'),
   NewsList: (props) => global.mockWithChildren('NewsList', props),
 
@@ -33,66 +33,66 @@ const mocks = {
   UserRouter: () => <></>,
   NotificationRouter: () => <></>,
   InfiniteScrollPage: ({ doChangePage, doSearch, children }) => (
-    <div data-testid="InfiniteScrollPage" onClick={doChangePage} aria-hidden>
-      <div data-testid="InfiniteScrollPageSearch" onClick={doSearch} aria-hidden>
+    <div data-testid='InfiniteScrollPage' onClick={doChangePage} aria-hidden>
+      <div data-testid='InfiniteScrollPageSearch' onClick={doSearch} aria-hidden>
         {children}
       </div>
     </div>
   ),
 
-  CustomChatbot: () => <div data-testid="CustomChatbot"></div>,
-  CustomFile: () => <div data-testid="CustomFile"></div>,
-  CustomForm: ({ handleUpdate }) => <div data-testid="CustomForm" onClick={handleUpdate} aria-hidden></div>,
+  CustomChatbot: () => <div data-testid='CustomChatbot'></div>,
+  CustomFile: () => <div data-testid='CustomFile'></div>,
+  CustomForm: ({ handleUpdate }) => <div data-testid='CustomForm' onClick={handleUpdate} aria-hidden></div>,
   CustomList: ({ buttonChildren, callback, callbackAvatar, callbackDelete, callbackSettings, callbackCheckbox }) => (
-    <div data-testid="CustomList" onClick={callback} aria-hidden>
-      <div data-testid="CustomListButton">{buttonChildren?.('1')}</div>
-      <div data-testid="CustomListDelete" onClick={callbackDelete} aria-hidden></div>
-      <div data-testid="CustomListAvatar" onClick={callbackAvatar?.({ id: 1 })} aria-hidden></div>
-      <div data-testid="CustomListSettings" onClick={callbackSettings} aria-hidden></div>
-      <div data-testid="CustomListCheckbox" onClick={() => callbackCheckbox(1, true)} aria-hidden></div>
+    <div data-testid='CustomList' onClick={callback} aria-hidden>
+      <div data-testid='CustomListButton'>{buttonChildren?.('1')}</div>
+      <div data-testid='CustomListDelete' onClick={callbackDelete} aria-hidden></div>
+      <div data-testid='CustomListAvatar' onClick={callbackAvatar?.({ id: 1 })} aria-hidden></div>
+      <div data-testid='CustomListSettings' onClick={callbackSettings} aria-hidden></div>
+      <div data-testid='CustomListCheckbox' onClick={() => callbackCheckbox(1, true)} aria-hidden></div>
     </div>
   ),
   CustomModale: ({ callback, children }) => (
-    <div data-testid="CustomModale" onClick={callback} aria-hidden>
+    <div data-testid='CustomModale' onClick={callback} aria-hidden>
       {children({ closeModale: () => {} })}
     </div>
   ),
   CustomModaleCard: ({ callback, children }) => (
-    <div data-testid="CustomModaleCard" onClick={callback} aria-hidden>
+    <div data-testid='CustomModaleCard' onClick={callback} aria-hidden>
       {children()}
     </div>
   ),
   CustomModaleConfirm: ({ callback, children }) => (
-    <div data-testid="CustomModaleConfirm" onClick={callback} aria-hidden>
+    <div data-testid='CustomModaleConfirm' onClick={callback} aria-hidden>
       {children?.()}
     </div>
   ),
   CustomModaleForm: ({ callback, children }) => (
-    <div data-testid="CustomModaleForm" onClick={callback} aria-hidden>
+    <div data-testid='CustomModaleForm' onClick={callback} aria-hidden>
       {children()}
     </div>
   ),
-  CustomNotification: () => <div data-testid="CustomNotification"></div>,
-  CustomShareButtons: () => <div data-testid="CustomShareButtons"></div>,
-  CustomShareButtonsMenu: () => <div data-testid="CustomShareButtonsMenu"></div>,
-  CustomSeo: () => <div data-testid="CustomSeo"></div>,
+  CustomNotification: () => <div data-testid='CustomNotification'></div>,
+  CustomShareButtons: () => <div data-testid='CustomShareButtons'></div>,
+  CustomShareButtonsMenu: () => <div data-testid='CustomShareButtonsMenu'></div>,
+  CustomSeo: () => <div data-testid='CustomSeo'></div>,
 
-  NewsCard: ({ children }) => <div data-testid="NewsCard">{children}</div>,
-  NewsCardSmall: ({ children }) => <div data-testid="NewsCardSmall">{children}</div>,
+  NewsCard: ({ children }) => <div data-testid='NewsCard'>{children}</div>,
+  NewsCardSmall: ({ children }) => <div data-testid='NewsCardSmall'>{children}</div>,
 
-  SuspenceLoader: ({ children }) => <div data-testid="SuspenceLoader">{children}</div>,
+  SuspenceLoader: ({ children }) => <div data-testid='SuspenceLoader'>{children}</div>,
 
-  ContactPage: ({ children }) => <div data-testid="ContactPage">{children}</div>,
-  ProfilePage: ({ children }) => <div data-testid="ProfilePage">{children}</div>,
-  ProfileShow: ({ children }) => <div data-testid="ProfileShow">{children}</div>,
+  ContactPage: ({ children }) => <div data-testid='ContactPage'>{children}</div>,
+  ProfilePage: ({ children }) => <div data-testid='ProfilePage'>{children}</div>,
+  ProfileShow: ({ children }) => <div data-testid='ProfileShow'>{children}</div>,
   ProfileService: {},
   UserService: {},
 
-  AppTheme: ({ children }) => <div data-testid="AppTheme">{children}</div>,
-  AppThemeWithTemplate: ({ children }) => <div data-testid="AppThemeWithTemplate">{children}</div>,
-  Header: ({ children }) => <div data-testid="Header">{children}</div>,
-  Footer: ({ children }) => <div data-testid="Footer">{children}</div>,
-  NotFoundPage: () => <div data-testid="NotFoundPage"></div>,
+  AppTheme: ({ children }) => <div data-testid='AppTheme'>{children}</div>,
+  AppThemeWithTemplate: ({ children }) => <div data-testid='AppThemeWithTemplate'>{children}</div>,
+  Header: ({ children }) => <div data-testid='Header'>{children}</div>,
+  Footer: ({ children }) => <div data-testid='Footer'>{children}</div>,
+  NotFoundPage: () => <div data-testid='NotFoundPage'></div>,
 
   AxiosInterceptor: () => jest.fn(),
   CommonAction: {

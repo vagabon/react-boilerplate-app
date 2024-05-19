@@ -1,12 +1,12 @@
 import { IApiDto, JSONObject } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
+import { IThemeContextDto, useThemeContent } from '@vagabond-inc/react-boilerplate-md/dist/theme/context/ThemeContext';
 import { useCallback, useState } from 'react';
-import { useAppSelector } from '../../../../store/Store';
 import { IChartBarDto } from '../dto/ChartBarDto';
 
 export const useAppChartBar = (title: string = 'Nombre de clicks') => {
   const [axis, setAxis] = useState<string[]>(['']);
   const [series, setSeries] = useState<IChartBarDto[]>([]);
-  const { modeTheme } = useAppSelector((state) => state.common);
+  const { mode } = useThemeContent() as IThemeContextDto;
 
   const convertToChartBar = useCallback(
     (datas: IApiDto[], titleField: string, nbField: string, colors: string[] = ['#02b2af']) => {
@@ -27,12 +27,12 @@ export const useAppChartBar = (title: string = 'Nombre de clicks') => {
   const getColors = useCallback(
     (palette: JSONObject, isMember?: boolean) => {
       const primary =
-        modeTheme === 'dark' ? palette['primary-dark' as keyof JSONObject] : palette['primary' as keyof JSONObject];
+        mode === 'dark' ? palette['primary-dark' as keyof JSONObject] : palette['primary' as keyof JSONObject];
       const secondary =
-        modeTheme === 'dark' ? palette['secondary-dark' as keyof JSONObject] : palette['secondary' as keyof JSONObject];
+        mode === 'dark' ? palette['secondary-dark' as keyof JSONObject] : palette['secondary' as keyof JSONObject];
       return [isMember ? primary : secondary];
     },
-    [modeTheme],
+    [mode],
   );
 
   return { axis, series, convertToChartBar, getColors };

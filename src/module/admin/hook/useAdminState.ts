@@ -1,5 +1,6 @@
 import { IApiDto } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
 import { useEffect, useState } from 'react';
+import { shallowEqual } from 'react-redux';
 import { useAppDispatch, useAppSelector } from '../../../store/Store';
 import { IAdminTabDto } from '../dto/AdminConfDto';
 import { IAdminReducerDto, IAdminStateDto } from '../dto/AdminReducerDto';
@@ -10,7 +11,7 @@ const ORDER_DEFAULT = 'asc';
 
 export const useAdminState = (activePage: string, pageConf: IAdminTabDto) => {
   const dispatch = useAppDispatch();
-  const admin = useAppSelector<IAdminReducerDto>((state) => state.admin);
+  const admin = useAppSelector<IAdminReducerDto>((state) => state.admin, shallowEqual);
   const [state, setState] = useState<IAdminStateDto>();
 
   useEffect(() => {

@@ -2,6 +2,12 @@ import './setupTests-md';
 
 console.debug = jest.fn();
 
+/* global jest */
+jest.mock('i18next', () => ({
+  ...jest.requireActual('i18next'),
+  t: (str) => str,
+}));
+
 /********************************** MOCK REDUX ***********************************/
 
 import * as redux from 'react-redux';

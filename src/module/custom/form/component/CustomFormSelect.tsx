@@ -1,7 +1,7 @@
 import { IApiDto, JSONObject } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
 import { IFormPropsDto } from '@vagabond-inc/react-boilerplate-md/dist/dto/form/FormDto';
+import { IListDto } from '@vagabond-inc/react-boilerplate-md/dist/dto/list/ListDto';
 import { MdFormSelect } from '@vagabond-inc/react-boilerplate-md/dist/md/component/form/select/MdFormSelect';
-import { IListDto } from '@vagabond-inc/react-boilerplate-md/dist/utils/list/ListUtils';
 import { ObjectUtils } from '@vagabond-inc/react-boilerplate-md/dist/utils/object/ObjectUtils';
 import { memo, useEffect, useState } from 'react';
 import { ApiService } from '../../../../api/service/ApiService';

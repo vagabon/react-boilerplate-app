@@ -1,0 +1,39 @@
+import { MdBouttonGroup } from '@vagabond-inc/react-boilerplate-md/dist/md/component/button/group/MdBouttonGroup';
+import { MdMenuItem } from '@vagabond-inc/react-boilerplate-md/dist/md/component/menu/MdMenuItem';
+import { MdToolbar } from '@vagabond-inc/react-boilerplate-md/dist/md/component/toolbar/MdToolbar';
+import { useAppRouter } from '@vagabond-inc/react-boilerplate-md/dist/router/hook/useAppRouter';
+import { useMemo } from 'react';
+import { IMenuDto } from '../../../dto/menu/MenuDto';
+import { HasRole } from '../../../hook/role/HasRole';
+
+export interface IMenuProps {
+  menu: IMenuDto[];
+}
+
+export const Menu: React.FC<IMenuProps> = ({ menu }) => {
+  const { location } = useAppRouter();
+  const currentLocation = useMemo(() => location.pathname, [location]);
+
+  return (
+    <MdToolbar
+      id='menu'
+      sx={{
+        justifyContent: 'center',
+        borderBottom: 1,
+        borderColor: 'divider',
+      }}>
+      <MdBouttonGroup variant='text' size='large'>
+        {menu?.map((menu) => (
+          <HasRole roles={menu.roles} key={menu.title} showError={false}>
+            <MdMenuItem
+              name={menu.title}
+              url={menu.link}
+              childrens={menu.childrens}
+              currentLocation={currentLocation}
+            />
+          </HasRole>
+        ))}
+      </MdBouttonGroup>
+    </MdToolbar>
+  );
+};

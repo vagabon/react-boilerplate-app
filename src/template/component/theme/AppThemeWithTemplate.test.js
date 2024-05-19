@@ -68,9 +68,11 @@ describe('AppThemeWithTemplate', () => {
           image='image'
           email='email'
           links={[{ label: 'label', url: 'url' }]}
+          showNotification={true}
+          showLanguage={true}
         />
       </BrowserRouter>,
     );
-    expect(screen.getByTestId('MdThemeProvider')).toBeDefined();
+    expect(screen.getByTestId('ThemeContextProvider')).toBeDefined();
   });
 });

@@ -1,8 +1,8 @@
 html { font-size: 13px; }
 html, body, #root { height: 100%; }
 
-a { text-decoration: none !important; font-weight: bold !important; }
-button { cursor: pointer; &:focus { outline: none; } }
+a { text-decoration: none !important; }
+button { cursor: pointer; font-weight: bold !important; &:focus { outline: none; } }
 .button-icon { min-width: 27px !important; width: 27px !important; }
 .align-end .button-icon { height: 40px; margin-bottom: 5px !important; }
 
@@ -16,18 +16,16 @@ code { position: relative; display: block; width: 100%; min-height: 32px; white-
 .button-copy { position: absolute; top: 2px; right: 2px; svg { color: unset; } }
 pre:has(code) { padding: 0px !important;  }
 
-body, span.MuiTypography-root, p.MuiTypography-root { font-size: 1.0rem !important; }
-h1 { font-size: 2.5rem !important; font-weight: 400 !important; }
-h2 { font-size: 2.1rem !important; font-weight: 400 !important; }
-h3 { font-size: 1.8em !important; font-weight: 400 !important; }
+h1 { font-size: 2.1rem !important; font-weight: 400 !important; }
+h2 { font-size: 1.9rem !important; font-weight: 400 !important; }
+h3 { font-size: 1.7em !important; font-weight: 400 !important; }
 h4 { font-size: 1.5rem !important; font-weight: 400 !important; }
 h5 { font-size: 1.3rem !important; font-weight: 400 !important; }
-.MuiCardContent-root p { margin: 0 0 15px !important; }
 
 @media screen and (max-width: 900px) {
-  h1 { font-size: 1.7rem !important; font-weight: 450 !important; }
-  h2 { font-size: 1.5rem !important; font-weight: 450 !important; }
-  h3 { font-size: 1.4rem !important; font-weight: 450 !important; }
+  h1 { font-size: 1.9rem !important; font-weight: 450 !important; }
+  h2 { font-size: 1.7rem !important; font-weight: 450 !important; }
+  h3 { font-size: 1.5rem !important; font-weight: 450 !important; }
   h4 { font-size: 1.3rem !important; font-weight: 450 !important; }
   h5 { font-size: 1.1rem !important; font-weight: 450 !important; }
 }
@@ -67,9 +65,14 @@ h5 { font-size: 1.3rem !important; font-weight: 400 !important; }
 .text-center { text-align: center; .MuiTypography-root { text-align: center; } }
 .margin-top { margin-top: 10px; }
 
+.width33 { width: 33%; }
 .width50 { width: 50%; }
 .width100 { width: 100%; }
 .heigth100 { height: 100%; }
+
+@media (max-width: 800px) {
+  .width33, .width50 { width: 100% !important; }
+}
 
 .text-primary { color: var(--mui-palette-primary-main) !important; }
 .mode-dark .text-primary { color: var(--mui-palette-primary-main-dark) !important; }
@@ -77,15 +80,6 @@ h5 { font-size: 1.3rem !important; font-weight: 400 !important; }
 .mode-dark .text-secondary { color: var(--mui-palette-secondary-main-dark) !important; }
 .text-error { color: var(--mui-palette-error-main) !important; }
 .mode-dark .text-error { color: var(--mui-palette-error-main-dark) !important; }
-
-.icon-primary .MuiChip-deleteIcon { color: var(--mui-palette-primary-main) !important; }
-.mode-dark .icon-primary .MuiChip-deleteIcon { color: var(--mui-palette-primary-main-dark) !important; }
-.icon-secondary .MuiChip-deleteIcon { color: var(--mui-palette-secondary-main) !important; }
-.mode-dark .icon-secondary .MuiChip-deleteIcon { color: var(--mui-palette-secondary-main-dark) !important; }
-.icon-error .MuiChip-deleteIcon { color: var(--mui-palette-error-main) !important; }
-.mode-dark .icon-error .MuiChip-deleteIcon { color: var(--mui-palette-error-main-dark) !important; }
-
-a.MuiTypography-root { font-size: 1rem; }
 
 .info { color: var(--mui-palette-info-main) !important; }
 .mode-dark .info { color: var(--mui-palette-info-main-dark) !important; }
@@ -108,13 +102,3 @@ a.MuiTypography-root { font-size: 1rem; }
 .mode-dark .border-error { border-color: var(--mui-palette-error-main-dark) !important; }
 
 .divider-margin { margin: 10px 0px; }
-
-@media (max-width: 800px) {
-  .width50 { width: 100% !important; }
-}
-
-/*** ROOT ***/
-:root {
-  --mui-palette-primary-main: #9f9f9f8e;
-  --mui-palette-secondary-main: #9f9f9f8e;
-}

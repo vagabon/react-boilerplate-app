@@ -10,7 +10,7 @@ describe('ProfilePage', () => {
         auth: {
           user: { user: mockUser },
         },
-        common: { history: [], language: 'fr', modeTheme: 'dark' },
+        common: { history: [], language: 'fr' },
       }),
     );
 

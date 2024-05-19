@@ -2,10 +2,10 @@ import { IApiDto, JSONObject } from '@vagabond-inc/react-boilerplate-md/dist/dto
 import { IFormPropsDto, SetFieldValueType } from '@vagabond-inc/react-boilerplate-md/dist/dto/form/FormDto';
 import { MdButton } from '@vagabond-inc/react-boilerplate-md/dist/md/component/button/MdButton';
 import { useAppRouter } from '@vagabond-inc/react-boilerplate-md/dist/router/hook/useAppRouter';
-import { useAppTranslate } from '@vagabond-inc/react-boilerplate-md/dist/translate/hook/useAppTranslate';
 import { UuidUtils } from '@vagabond-inc/react-boilerplate-md/dist/utils/uuid/UuidUtils';
 import { Formik, FormikErrors } from 'formik';
 import React, { memo, useCallback, useEffect, useState } from 'react';
+import { shallowEqual } from 'react-redux';
 import { IPathDto } from '../../dto/path/PathDto';
 import { useMessage } from '../../hook/message/useMessage';
 import { CustomModaleConfirm } from '../../module/custom/modale/component/CustomModaleConfirm';
@@ -29,8 +29,7 @@ export const AppFormik: React.FC<IAppFormikProps> = memo(
   ({ className = '', backButton = true, submitButton = true, ...rest }) => {
     const dispatch = useAppDispatch();
     const { navigate } = useAppRouter();
-    const { history } = useAppSelector((state) => state.common);
-    const { t } = useAppTranslate();
+    const history = useAppSelector((state) => state.common.history, shallowEqual);
     const { message } = useMessage();
 
     const [state, setState] = useState<JSONObject>(rest.initialValues);
@@ -78,7 +77,7 @@ export const AppFormik: React.FC<IAppFormikProps> = memo(
     return (
       <Formik
         initialValues={state}
-        validationSchema={YupUtils.convertToYup(rest.validationSchema, t)}
+        validationSchema={YupUtils.convertToYup(rest.validationSchema)}
         onSubmit={onSubmit}
         autoComplete='off'
         enableReinitialize>

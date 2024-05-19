@@ -1,5 +1,6 @@
 import { ID } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
 import { useCallback, useState } from 'react';
+import { shallowEqual } from 'react-redux';
 import { useApiService } from '../../../../api/hook/useApiService';
 import { ICurrentUserDto } from '../../../../dto/current-user/CurrentUserDto';
 import { useMessage } from '../../../../hook/message/useMessage';
@@ -13,7 +14,7 @@ export const useUser = (apiUrl: string) => {
   const { updateLocalStorage } = useAuth(apiUrl);
   const { setMessage } = useMessage();
   const [user, setUser] = useState<IUserDto>({});
-  const { user: currentUser } = useAppSelector((state) => state.auth);
+  const { user: currentUser } = useAppSelector((state) => state.auth, shallowEqual);
   const { httpPost } = useApiService<IUserDto>(apiUrl);
 
   const fetchById = useCallback(

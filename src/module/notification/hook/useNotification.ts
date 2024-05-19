@@ -1,9 +1,9 @@
 import { ID } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
 import { useCallback, useState } from 'react';
+import { shallowEqual } from 'react-redux';
 import { useApiService } from '../../../api/hook/useApiService';
 import { useModal } from '../../../hook/modal/useModal';
 import { useAppDispatch, useAppSelector } from '../../../store/Store';
-import { useAuth } from '../../auth/hook/useAuth';
 import { INotificationDto } from '../dto/NotificationDto';
 import { NotificationAction } from '../reducer/NotificationReducer';
 
@@ -13,19 +13,19 @@ const URI_NOTIFICATION_READALL = '/notification/readAll/';
 
 export const useNotification = (apiUrl: string) => {
   const dispatch = useAppDispatch();
-  const { nbNotification } = useAppSelector((state) => state.notification);
-  const { user } = useAuth(apiUrl);
+  const userId = useAppSelector((state) => state.auth.user?.user?.id, shallowEqual);
+  const nbNotification = useAppSelector((state) => state.notification.nbNotification, shallowEqual);
   const { httpGet } = useApiService(apiUrl);
   const { httpPut } = useApiService(apiUrl);
   const { open, openModal, closeModal } = useModal();
   const [notification, setNotification] = useState<INotificationDto>({});
 
   const fetchNotificationUnread = useCallback(() => {
-    user?.id &&
-      httpGet(URI_NOTIFICATION_COUNT + user?.id, (data) => {
+    userId &&
+      httpGet(URI_NOTIFICATION_COUNT + userId, (data) => {
         dispatch(NotificationAction.setNbNotification(data as number));
       });
-  }, [httpGet, dispatch, user?.id]);
+  }, [httpGet, dispatch, userId]);
 
   const updateNotification = useCallback(
     (notification: INotificationDto, callback: () => void) => {
@@ -39,13 +39,13 @@ export const useNotification = (apiUrl: string) => {
 
   const handleReadAll = useCallback(
     (callback?: () => void) => () => {
-      httpPut(URI_NOTIFICATION_READALL + user?.id, {}, () => {
+      httpPut(URI_NOTIFICATION_READALL + userId, {}, () => {
         callback?.();
         dispatch(NotificationAction.setNbNotification(0));
         dispatch(NotificationAction.readAll());
       });
     },
-    [httpPut, dispatch, user?.id],
+    [httpPut, dispatch, userId],
   );
 
   const handleCheckboxUpdate = useCallback(

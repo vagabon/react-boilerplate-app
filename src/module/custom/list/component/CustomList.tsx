@@ -9,7 +9,6 @@ import { MdListItem } from '@vagabond-inc/react-boilerplate-md/dist/md/component
 import { MdListItemAvatar } from '@vagabond-inc/react-boilerplate-md/dist/md/component/list/MdListItemAvatar';
 import { MdListItemIcon } from '@vagabond-inc/react-boilerplate-md/dist/md/component/list/MdListItemIcon';
 import { MdListItemText } from '@vagabond-inc/react-boilerplate-md/dist/md/component/list/MdListItemText';
-import { useAppTranslate } from '@vagabond-inc/react-boilerplate-md/dist/translate/hook/useAppTranslate';
 import React, { Fragment, memo } from 'react';
 import { useMessage } from '../../../../hook/message/useMessage';
 import { useAppImage } from '../../../../template/hook/useAppImage';
@@ -60,7 +59,6 @@ export const CustomList: React.FC<ICustomListProps> = memo(
     iconSettings,
     callbackSettings,
   }) => {
-    const { t } = useAppTranslate();
     const { message } = useMessage();
     const { disabled, handleClick, handleClickChecbox, getIconColor, getTextColor } = useCustomList(
       message,
@@ -75,7 +73,7 @@ export const CustomList: React.FC<ICustomListProps> = memo(
         {!datas || datas.length === 0 ? (
           <MdListItem className='no-animate' component='div' disablePadding>
             <MdListItem className='no-animate'>
-              <MdListItemText color='flex align-center' label={t('NO_RESULT')} />
+              <MdListItemText color='flex align-center' label={'NO_RESULT'} />
             </MdListItem>
           </MdListItem>
         ) : (

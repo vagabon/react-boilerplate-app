@@ -1,4 +1,4 @@
-import { I18nTranslate, I18nUtils } from '@vagabond-inc/react-boilerplate-md/dist/utils/i18n/I18nUtils';
+import { t } from 'i18next';
 import * as Yup from 'yup';
 
 export interface IYupValidator {
@@ -24,60 +24,60 @@ export interface IYupValidators {
 type IYupShape = { [x: string]: Yup.StringSchema | Yup.AnySchema };
 
 export const YupUtils = {
-  convertToYup: (datas: IYupValidators, t: I18nTranslate): Yup.Schema => {
+  convertToYup: (datas: IYupValidators): Yup.Schema => {
     let shape: IYupShape = {};
 
     Object.entries(datas).forEach(([key, value]: [string, IYupValidator]) => {
       if (value.listId) {
-        shape = YupUtils.getObjectSchema(shape, value, key, t);
+        shape = YupUtils.getObjectSchema(shape, value, key);
       } else if (value.array) {
-        shape = YupUtils.getArraySchema(shape, value, key, t);
+        shape = YupUtils.getArraySchema(shape, value, key);
       } else {
-        shape = YupUtils.getStringSchema(shape, value, key, t);
+        shape = YupUtils.getStringSchema(shape, value, key);
       }
     });
     return Yup.object().shape(shape);
   },
-  getObjectSchema(shape: IYupShape, value: IYupValidator, key: string, t: I18nTranslate): IYupShape {
+  getObjectSchema(shape: IYupShape, value: IYupValidator, key: string): IYupShape {
     if (value.required) {
       shape = {
         ...shape,
-        [key]: YupUtils.getObjectSchemaRequired(t),
+        [key]: YupUtils.getObjectSchemaRequired(),
       };
     }
     return shape;
   },
-  getArraySchema(shape: IYupShape, value: IYupValidator, key: string, t: I18nTranslate): IYupShape {
+  getArraySchema(shape: IYupShape, value: IYupValidator, key: string): IYupShape {
     if (value.required) {
       shape = {
         ...shape,
         [key]: Yup.array()
           .of(
             Yup.object().shape({
-              id: Yup.string().required(I18nUtils.translate(t, 'ERRORS:REQUIRED')),
+              id: Yup.string().required(t('ERRORS:REQUIRED')),
             }),
           )
-          .defined(I18nUtils.translate(t, 'ERRORS:REQUIRED'))
-          .test('required', I18nUtils.translate(t, 'ERRORS:REQUIRED'), (value) => value && value.length > 0),
+          .defined(t('ERRORS:REQUIRED'))
+          .test('required', t('ERRORS:REQUIRED'), (value) => value && value.length > 0),
       };
     }
     return shape;
   },
-  getObjectSchemaRequired(t: I18nTranslate): Yup.Schema {
-    return Yup.object().required(I18nUtils.translate(t, 'ERRORS:REQUIRED'));
+  getObjectSchemaRequired(): Yup.Schema {
+    return Yup.object().required(t('ERRORS:REQUIRED'));
   },
-  getStringSchema(shape: IYupShape, value: IYupValidator, key: string, t: I18nTranslate): IYupShape {
+  getStringSchema(shape: IYupShape, value: IYupValidator, key: string): IYupShape {
     shape = {
       ...shape,
-      [key]: YupUtils.getStringSchemaYup(value, t),
+      [key]: YupUtils.getStringSchemaYup(value),
     };
     return shape;
   },
-  getStringSchemaYup(value: IYupValidator, t: I18nTranslate): Yup.Schema {
+  getStringSchemaYup(value: IYupValidator): Yup.Schema {
     let yup: Yup.StringSchema = Yup.string();
 
     if (value.required === true) {
-      yup = yup.required(I18nUtils.translate(t, 'ERRORS:REQUIRED'));
+      yup = yup.required(t('ERRORS:REQUIRED'));
     }
     if (value.min) {
       yup = yup.min(value.min, t('ERRORS:MIN').replace('$1', value.min.toString()));
@@ -86,21 +86,14 @@ export const YupUtils = {
       yup = yup.max(value.max, t('ERRORS:MAX').replace('$1', value.max.toString()));
     }
     if (value.same) {
-      const translate: string = value.sameLabel
-        ? I18nUtils.translate(t, value.sameLabel)
-        : I18nUtils.translate(t, 'ERRORS:SAME');
+      const translate: string = value.sameLabel ? t(value.sameLabel) : t('ERRORS:SAME');
       yup = yup.oneOf([Yup.ref(value.same)], translate);
     }
     if (value.email) {
-      yup = yup.email(I18nUtils.translate(t, 'ERRORS:FORMAT_MAIL'));
+      yup = yup.email(t('ERRORS:FORMAT_MAIL'));
     }
     if (value.regexp) {
-      yup = yup
-        .trim()
-        .matches(
-          new RegExp(value.regexp),
-          I18nUtils.translate(t, value.regexpError ? value.regexpError : 'ERRORS:REGEXP'),
-        );
+      yup = yup.trim().matches(new RegExp(value.regexp), t(value.regexpError ? value.regexpError : 'ERRORS:REGEXP'));
     }
     return yup.nullable();
   },

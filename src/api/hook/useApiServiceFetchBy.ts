@@ -2,6 +2,7 @@ import { ReducerType } from '@reduxjs/toolkit';
 import { IApiDto, JSONObject } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
 import { IOrderDto } from '@vagabond-inc/react-boilerplate-md/dist/dto/form/FormDto';
 import { useCallback, useRef } from 'react';
+import { shallowEqual } from 'react-redux';
 import { IOrderState, IReducersActionsProps } from '../../reducer/BaseReducer';
 import { useAppDispatch, useAppSelector } from '../../store/Store';
 import { useApiServiceFindBy } from './useApiServiceFindBy';
@@ -17,7 +18,10 @@ export const useApiServiceFetchBy = <T extends IApiDto>(
 ) => {
   const firstRender = useRef(false);
   const dispatch = useAppDispatch();
-  const { datas, search, count, order, page } = useAppSelector((state) => state[stateName as keyof ReducerType]);
+  const { datas, search, count, order, page } = useAppSelector(
+    (state) => state[stateName as keyof ReducerType],
+    shallowEqual,
+  );
   const { fetchBy, resetStopLoad } = useApiServiceFindBy<T>(apiUrl, uri, query, max);
 
   const fetchByFields = useCallback(

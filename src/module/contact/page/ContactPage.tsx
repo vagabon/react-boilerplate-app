@@ -2,14 +2,16 @@ import { MdButton } from '@vagabond-inc/react-boilerplate-md/dist/md/component/b
 import { MdCard } from '@vagabond-inc/react-boilerplate-md/dist/md/component/card/MdCard';
 import { MdChip } from '@vagabond-inc/react-boilerplate-md/dist/md/component/chip/MdChip';
 import { MdLink } from '@vagabond-inc/react-boilerplate-md/dist/md/component/link/MdLink';
-import { useAppTranslate } from '@vagabond-inc/react-boilerplate-md/dist/translate/hook/useAppTranslate';
+import { MdTypo } from '@vagabond-inc/react-boilerplate-md/dist/md/component/typo/MdTypo';
+import { Translate } from '@vagabond-inc/react-boilerplate-md/dist/translate/component/Translate';
+import { Trans, useTranslation } from 'react-i18next';
 import { AppContent } from '../../../app/content/AppContent';
 import { IHeaderDto } from '../../../template/dto/HeaderDto';
 
 export interface IContactPageProps extends IHeaderDto {}
 
 export const ContactPage: React.FC<IContactPageProps> = ({ ...rest }) => {
-  const { Trans } = useAppTranslate();
+  const { t } = useTranslation();
 
   return (
     <AppContent {...rest} className='flex1 profil-content' seo='SEO:CONTACT'>
@@ -18,11 +20,9 @@ export const ContactPage: React.FC<IContactPageProps> = ({ ...rest }) => {
           <div className='flex-row-responsive flex1 align-start'>
             <div className='width50 align-center flex'>
               <img className='vagabond border-secondary' src='images/vagabond.png' title='vagabond' alt='vagabond' />
-              <h3>
-                <Trans i18nKey='CONTACT.LOGIN' />
-              </h3>
+              <MdTypo content='CONTACT.LOGIN' component='h3' />
               <p>
-                <Trans i18nKey='CONTACT.DESCRIPTION' />
+                <Translate i18nKey='CONTACT.DESCRIPTION' />
                 <br />
                 <Trans i18nKey='CONTACT.DESCRIPTION2' />
               </p>
@@ -35,20 +35,14 @@ export const ContactPage: React.FC<IContactPageProps> = ({ ...rest }) => {
             </div>
             <div className='width50 flex gap10'>
               <div>
-                <h3>
-                  <Trans i18nKey='CONTACT.CONTACT_ME' />
-                </h3>
-                <p>
-                  <Trans i18nKey='CONTACT.WRITE_TO_ME' />
-                </p>
+                <MdTypo content='CONTACT.CONTACT_ME' component='h3' />
+                <MdTypo content='CONTACT.WRITE_TO_ME' />
                 <a className='link-email text-primary' href={'mailto:' + rest.email}>
                   {rest.email}
                 </a>
               </div>
               <div>
-                <h3>
-                  <Trans i18nKey='CONTACT.FOLLOW_ME' />
-                </h3>
+                <MdTypo content='CONTACT.FOLLOW_ME' component='h3' />
                 <div className='flex align-start gap10'>
                   <MdButton
                     startIcon={

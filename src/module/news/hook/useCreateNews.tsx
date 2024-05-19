@@ -1,6 +1,7 @@
 import { ID } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
 import { useAppRouter } from '@vagabond-inc/react-boilerplate-md/dist/router/hook/useAppRouter';
 import { useCallback } from 'react';
+import { shallowEqual } from 'react-redux';
 import { useRole } from '../../../hook/role/useRole';
 import { IReducersActionsProps } from '../../../reducer/BaseReducer';
 import { CommonAction } from '../../../reducer/common/CommonReducers';
@@ -12,7 +13,7 @@ import { NewsService } from '../service/NewsService';
 export const useCreateNews = (apiUrl: string, endPoint: string, newsAction: IReducersActionsProps, idNews: number) => {
   const { navigate } = useAppRouter();
   const { userConnected } = useRole();
-  const { data: news } = useAppSelector<NewsReducerState>((state) => state[endPoint]);
+  const { data: news } = useAppSelector<NewsReducerState>((state) => state[endPoint], shallowEqual);
   const dispatch = useAppDispatch();
 
   const fetchById = useCallback(

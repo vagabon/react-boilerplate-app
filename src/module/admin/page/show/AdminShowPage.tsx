@@ -3,8 +3,8 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { IApiDto, JSONObject } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
 import { MdCard } from '@vagabond-inc/react-boilerplate-md/dist/md/component/card/MdCard';
 import { useAppRouter } from '@vagabond-inc/react-boilerplate-md/dist/router/hook/useAppRouter';
-import { useAppTranslate } from '@vagabond-inc/react-boilerplate-md/dist/translate/hook/useAppTranslate';
 import { memo, useCallback, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { AppContent } from '../../../../app/content/AppContent';
 import { HasRole } from '../../../../hook/role/HasRole';
 import { useAppDispatch } from '../../../../store/Store';
@@ -22,7 +22,7 @@ export interface IAdminShowPageProps extends IHeaderDto {
 }
 
 export const AdminShowPage: React.FC<IAdminShowPageProps> = memo(({ conf, ...rest }) => {
-  const { t } = useAppTranslate();
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const {
     params: { page = '', id = '-1' },
@@ -76,7 +76,7 @@ export const AdminShowPage: React.FC<IAdminShowPageProps> = memo(({ conf, ...res
       title += t(pageConf.label);
     }
     return title;
-  }, [id, t, pageConf]);
+  }, [t, id, pageConf]);
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>

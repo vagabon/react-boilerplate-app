@@ -3,7 +3,8 @@ import { JSONObject } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiD
 import { MdCard } from '@vagabond-inc/react-boilerplate-md/dist/md/component/card/MdCard';
 import { MdFormSwitch } from '@vagabond-inc/react-boilerplate-md/dist/md/component/form/switch/MdFormSwitch';
 import { MdInputText } from '@vagabond-inc/react-boilerplate-md/dist/md/component/form/text/MdInputText';
-import { useAppTranslate } from '@vagabond-inc/react-boilerplate-md/dist/translate/hook/useAppTranslate';
+import { MdTypo } from '@vagabond-inc/react-boilerplate-md/dist/md/component/typo/MdTypo';
+import { IThemeContextDto, useThemeContent } from '@vagabond-inc/react-boilerplate-md/dist/theme/context/ThemeContext';
 import { ObjectUtils } from '@vagabond-inc/react-boilerplate-md/dist/utils/object/ObjectUtils';
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
@@ -11,7 +12,6 @@ import { useApiService } from '../../../../api/hook/useApiService';
 import { AppContent } from '../../../../app/content/AppContent';
 import { AppFormik } from '../../../../app/formik/AppFormik';
 import { useMessage } from '../../../../hook/message/useMessage';
-import { useAppSelector } from '../../../../store/Store';
 import { AuthFooter } from '../../component/auth.footer/AuthFooter';
 import { AuthFooterEnum } from '../../component/auth.footer/enum/AuthFooterEnum';
 import { useAuth } from '../../hook/useAuth';
@@ -30,8 +30,7 @@ export interface IRegisterPageProps extends ILoginPageProps {
 
 export const RegisterPage: React.FC<IRegisterPageProps> = memo(
   ({ googleClientId, facebookClientId, googleCaptchaId, ...rest }) => {
-    const { Trans } = useAppTranslate();
-    const { modeTheme } = useAppSelector((state) => state.common);
+    const { mode } = useThemeContent() as IThemeContextDto;
     const { redirectIfLogged } = useAuth(rest.apiUrl);
     const { httpPost } = useApiService(rest.apiUrl);
     const { setMessage } = useMessage();
@@ -95,17 +94,13 @@ export const RegisterPage: React.FC<IRegisterPageProps> = memo(
                   <MdInputText label='AUTH:FIELDS.PASSWORD_CONFIRM' name='password2' type='password' {...formikProps} />
                   <MdFormSwitch label='AUTH:FIELDS.ACCEPT_TERMS' name='accept' {...formikProps} />
                   <div className='flex' style={{ marginTop: '15px', alignItems: 'flex-end' }}>
-                    <ReCAPTCHA
-                      sitekey={googleCaptchaId}
-                      ref={captchaRef}
-                      theme={modeTheme === 'dark' ? 'dark' : 'light'}
-                    />
+                    <ReCAPTCHA sitekey={googleCaptchaId} ref={captchaRef} theme={mode === 'dark' ? 'dark' : 'light'} />
                   </div>
                 </>
               )}
             </AppFormik>
           )}
-          {isRegister && <Trans i18nKey='AUTH:REGISTER.SUCCESS' />}
+          {isRegister && <MdTypo content='AUTH:REGISTER.SUCCESS' />}
           <AuthFooter left={AuthFooterEnum.FORGETED_PASSWORD} rigth={AuthFooterEnum.SIGNIN} />
         </MdCard>
       </AppContent>

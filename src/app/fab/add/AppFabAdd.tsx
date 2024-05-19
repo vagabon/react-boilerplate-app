@@ -1,6 +1,7 @@
 import { MdFab } from '@vagabond-inc/react-boilerplate-md/dist/md/component/fab/MdFab';
 import { useAppRouter } from '@vagabond-inc/react-boilerplate-md/dist/router/hook/useAppRouter';
 import { memo, useCallback } from 'react';
+import { shallowEqual } from 'react-redux';
 import { ICurrentUserDto } from '../../../dto/current-user/CurrentUserDto';
 import { IUserDto } from '../../../module/user/user/dto/UserDto';
 import { useAppSelector } from '../../../store/Store';
@@ -14,7 +15,7 @@ export interface IAppFabAddProps {
 }
 
 export const AppFabAdd: React.FC<IAppFabAddProps> = memo(({ ...rest }) => {
-  const currentUser = useAppSelector<ICurrentUserDto<IUserDto> | null>((state) => state.auth.user);
+  const currentUser = useAppSelector<ICurrentUserDto<IUserDto> | null>((state) => state.auth.user, shallowEqual);
   const { navigate } = useAppRouter();
 
   const doCreate = useCallback(

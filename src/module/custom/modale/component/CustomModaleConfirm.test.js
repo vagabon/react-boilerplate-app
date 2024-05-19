@@ -9,6 +9,6 @@ describe('CustomModaleConfirm', () => {
         {() => <></>}
       </CustomModaleConfirm>,
     );
-    expect(screen.getByTestId('MdCommonModal')).toBeDefined();
+    expect(screen.getByTestId('MdModal')).toBeDefined();
   });
 });

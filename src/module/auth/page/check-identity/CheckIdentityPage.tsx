@@ -1,6 +1,6 @@
 import { MdCard } from '@vagabond-inc/react-boilerplate-md/dist/md/component/card/MdCard';
 import { MdInputText } from '@vagabond-inc/react-boilerplate-md/dist/md/component/form/text/MdInputText';
-import { useAppTranslate } from '@vagabond-inc/react-boilerplate-md/dist/translate/hook/useAppTranslate';
+import { MdTypo } from '@vagabond-inc/react-boilerplate-md/dist/md/component/typo/MdTypo';
 import { memo, useCallback, useEffect, useState } from 'react';
 import { AppContent } from '../../../../app/content/AppContent';
 import { AppFormik } from '../../../../app/formik/AppFormik';
@@ -17,7 +17,6 @@ const DEFAULT_VALUES = { token: '' };
 export interface ICheckIdentityPageProps extends IHeaderDto {}
 
 export const CheckIdentityPage: React.FC<ICheckIdentityPageProps> = memo(({ ...rest }) => {
-  const { Trans } = useAppTranslate();
   const [state, setState] = useState<boolean>(false);
   const { redirectIfLogged } = useAuth(rest.apiUrl);
 
@@ -54,7 +53,7 @@ export const CheckIdentityPage: React.FC<ICheckIdentityPageProps> = memo(({ ...r
         )}
         {state === true && (
           <div>
-            <Trans i18nKey='AUTH:CHECK_IDENTITY.SUCCESS' />
+            <MdTypo content='AUTH:CHECK_IDENTITY.SUCCESS' />
             <p>&nbsp;</p>
           </div>
         )}

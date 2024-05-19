@@ -4,9 +4,8 @@ import { MdList } from '@vagabond-inc/react-boilerplate-md/dist/md/component/lis
 import { MdListItem } from '@vagabond-inc/react-boilerplate-md/dist/md/component/list/MdListItem';
 import { MdListItemButton } from '@vagabond-inc/react-boilerplate-md/dist/md/component/list/MdListItemButton';
 import { MdListItemText } from '@vagabond-inc/react-boilerplate-md/dist/md/component/list/MdListItemText';
-import { MdCommonModal } from '@vagabond-inc/react-boilerplate-md/dist/md/component/modal/MdCommonModal';
+import { MdModal } from '@vagabond-inc/react-boilerplate-md/dist/md/component/modal/MdModal';
 import { MdSearchBar } from '@vagabond-inc/react-boilerplate-md/dist/md/component/searchbar/MdSearchBar';
-import { useAppTranslate } from '@vagabond-inc/react-boilerplate-md/dist/translate/hook/useAppTranslate';
 import { memo, useCallback, useEffect, useState } from 'react';
 import { IManyToManyDto } from '../../../admin/dto/AdminConfDto';
 import { AdminService } from '../../../admin/service/AdminService';
@@ -20,7 +19,6 @@ interface ICustomFormModaleProps {
 }
 
 export const CustomFormModale: React.FC<ICustomFormModaleProps> = memo(({ apiUrl, conf, open, ...rest }) => {
-  const { t } = useAppTranslate();
   const [search, setSearch] = useState<string>('');
   const [datas, setDatas] = useState<IApiDto[]>([]);
 
@@ -48,14 +46,14 @@ export const CustomFormModale: React.FC<ICustomFormModaleProps> = memo(({ apiUrl
   }, [open, search, loadDatas]);
 
   return (
-    <MdCommonModal className='flex' open={open} handleClose={rest.handleClose}>
+    <MdModal className='flex' open={open} handleClose={rest.handleClose}>
       <MdCard icon='add' title='Ajouter'>
         <MdSearchBar callBack={handleSearch} search={search} />
         <MdList className='modal-list overflow overflow-x-none'>
           {(!datas || datas.length === 0) && (
             <MdListItem component='div' disablePadding>
               <MdListItem>
-                <MdListItemText color='flex justify-center' label={t('NO_RESULT')} />
+                <MdListItemText color='flex justify-center' label='NO_RESULT' />
               </MdListItem>
             </MdListItem>
           )}
@@ -68,6 +66,6 @@ export const CustomFormModale: React.FC<ICustomFormModaleProps> = memo(({ apiUrl
           ))}
         </MdList>
       </MdCard>
-    </MdCommonModal>
+    </MdModal>
   );
 });

@@ -9,7 +9,7 @@ describe('CustomModale', () => {
         {() => <></>}
       </CustomModale>,
     );
-    expect(screen.getByTestId('MdCommonModal')).toBeDefined();
-    fireEvent.click(screen.getByTestId('MdCommonModal'));
+    expect(screen.getByTestId('MdModal')).toBeDefined();
+    fireEvent.click(screen.getByTestId('MdModal'));
   });
 });

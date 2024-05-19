@@ -1,13 +1,18 @@
-import { MutableRefObject, useCallback } from 'react';
-import { CommonAction, ScrollsType } from '../../reducer/common/CommonReducers';
-import { useAppDispatch, useAppSelector } from '../../store/Store';
+import { useCallback, useRef } from 'react';
+import { shallowEqual } from 'react-redux';
+import { ScrollsType } from '../../reducer/common/CommonReducers';
+import { useAppSelector } from '../../store/Store';
 
 export const useAppScroll = () => {
-  const dispatch = useAppDispatch();
-  const { scrolls } = useAppSelector((state) => state.common);
+  const scrolls = useAppSelector((state) => state.common.scrolls, shallowEqual);
+  const lastScrollPagthName = useRef('');
 
   const getScrollPage = useCallback(
     (pathname: string) => {
+      if (lastScrollPagthName.current === pathname) {
+        return;
+      }
+      lastScrollPagthName.current = pathname;
       const scroll = scrolls?.filter((scroll: ScrollsType) => scroll.pathname === pathname);
       const classes = document.getElementsByClassName('main-container');
       let find = false;
@@ -25,13 +30,5 @@ export const useAppScroll = () => {
     [scrolls],
   );
 
-  const handleScroll = useCallback(
-    (mainContainer: MutableRefObject<HTMLDivElement | null>, pathname: string) => () => {
-      const scrollTop = mainContainer?.current?.scrollTop ?? 0;
-      dispatch(CommonAction.setScrools({ pathname: pathname, position: scrollTop }));
-    },
-    [dispatch],
-  );
-
-  return { handleScroll, getScrollPage };
+  return { getScrollPage };
 };

@@ -1,10 +1,11 @@
 import { useCallback } from 'react';
+import { shallowEqual } from 'react-redux';
 import { CommonAction } from '../../../../reducer/common/CommonReducers';
 import { useAppDispatch, useAppSelector } from '../../../../store/Store';
 
 export const useChatbot = () => {
   const dispatch = useAppDispatch();
-  const { chatbot } = useAppSelector((state) => state.common);
+  const chatbot = useAppSelector((state) => state.common.chatbot, shallowEqual);
 
   const handleClick = useCallback(
     (url: string, show: boolean, handleClose?: () => void) => () => {

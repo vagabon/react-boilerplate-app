@@ -81,9 +81,4 @@ describe('CommonReducer', () => {
     const tested = CommonReducers(state, CommonAction.setScrools(scroll));
     expect(Object.entries(tested.scrolls)).toHaveLength(2);
   });
-
-  test('Given CommonReducer When setScrools Then scroll from state is update', () => {
-    CommonReducers(state, CommonAction.setModeTheme('dark'));
-    CommonReducers(state, CommonAction.setLanguage('fr'));
-  });
 });

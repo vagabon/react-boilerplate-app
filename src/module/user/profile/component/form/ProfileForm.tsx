@@ -1,6 +1,5 @@
 import { MdDivider } from '@vagabond-inc/react-boilerplate-md/dist/md/component/divider/MdDivider';
-import { useAppTranslate } from '@vagabond-inc/react-boilerplate-md/dist/translate/hook/useAppTranslate';
-import { type i18n as i18nType } from 'i18next';
+import { MdTypo } from '@vagabond-inc/react-boilerplate-md/dist/md/component/typo/MdTypo';
 import { memo } from 'react';
 import { HasRole } from '../../../../../hook/role/HasRole';
 import { IBaseCustomSeoProps } from '../../../../custom/seo/component/CustomSeo';
@@ -12,21 +11,19 @@ import { ProfileFormParam } from './ProfileFormParam';
 import { ProfileFormPassword } from './ProfileFormPassword';
 
 export interface IProfileFormProps extends IBaseCustomSeoProps {
-  i18n?: i18nType;
   apiUrl: string;
   user: IUserDto;
   disabled?: boolean;
 }
 
-export const ProfileForm: React.FC<IProfileFormProps> = memo(({ i18n, user, disabled, ...rest }) => {
-  const { Trans } = useAppTranslate();
+export const ProfileForm: React.FC<IProfileFormProps> = memo(({ user, disabled, ...rest }) => {
   const { isUserPassword } = useUser(rest.apiUrl);
 
   return (
     <div className='profile-form'>
       {!disabled && (
         <>
-          <ProfileFormParam {...rest} i18n={i18n} />
+          <ProfileFormParam {...rest} />
           <MdDivider />
         </>
       )}
@@ -42,9 +39,7 @@ export const ProfileForm: React.FC<IProfileFormProps> = memo(({ i18n, user, disa
       <HasRole roles={['ADMIN']} showError={false}>
         <MdDivider />
         <div>
-          <b>
-            <Trans i18nKey={'AUTH:FIELDS.ROLES'} />:
-          </b>
+          <MdTypo content={'AUTH:FIELDS.ROLES'} component='b' />:
           {user?.profiles?.map((role: IProfileDto) => <span key={role.id}> {role.name} </span>)}
         </div>
       </HasRole>

@@ -2,7 +2,7 @@ import {
   IMdInputTextProps,
   MdInputText,
 } from '@vagabond-inc/react-boilerplate-md/dist/md/component/form/text/MdInputText';
-import { useAppTranslate } from '@vagabond-inc/react-boilerplate-md/dist/translate/hook/useAppTranslate';
+import { MdTypo } from '@vagabond-inc/react-boilerplate-md/dist/md/component/typo/MdTypo';
 import { memo, useCallback } from 'react';
 import { IYupValidators } from '../../../../../utils/yup/YupUtils';
 import { CustomModaleForm } from '../../../../custom/modale/component/CustomModaleForm';
@@ -29,7 +29,6 @@ export interface IProfileFormEmailProps extends IBaseCustomSeoProps {
 
 export const ProfileFormEmail: React.FC<IProfileFormEmailProps> = memo(({ user, ...rest }) => {
   const { handleUpdateEmail } = useUser(rest.apiUrl);
-  const { Trans } = useAppTranslate();
 
   const handleSubmit = useCallback(
     (callback?: () => void) => (data: IUserDto) => {
@@ -40,9 +39,7 @@ export const ProfileFormEmail: React.FC<IProfileFormEmailProps> = memo(({ user, 
 
   return (
     <div className='flex flex-row align-center space-between'>
-      <b>
-        <Trans i18nKey='AUTH:FIELDS.EMAIL' />
-      </b>
+      <MdTypo content='AUTH:FIELDS.EMAIL' component='b' />
       <span>{user?.email}</span>
       <CustomModaleForm
         title='AUTH:USER.EMAIL.TITLE'

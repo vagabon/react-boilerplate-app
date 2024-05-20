@@ -43,6 +43,8 @@ export default [
     ],
     onwarn(warning, warn) {
       if (warning.message.includes('preferring built-in module')) return;
+      if (warning.message.includes('use client')) return;
+      if (warning.code === 'CIRCULAR_DEPENDENCY') return;
       if (warning.code === 'EVAL') return;
       warn(warning);
     },

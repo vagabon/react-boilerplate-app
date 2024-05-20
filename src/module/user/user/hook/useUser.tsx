@@ -14,7 +14,7 @@ export const useUser = (apiUrl: string) => {
   const { updateLocalStorage } = useAuth(apiUrl);
   const { setMessage } = useMessage();
   const [user, setUser] = useState<IUserDto>({});
-  const { user: currentUser } = useAppSelector((state) => state.auth, shallowEqual);
+  const userId = useAppSelector((state) => state.auth.user?.user?.id, shallowEqual);
   const { httpPost } = useApiService<IUserDto>(apiUrl);
 
   const fetchById = useCallback(
@@ -82,12 +82,10 @@ export const useUser = (apiUrl: string) => {
   const isUserPassword = useCallback(
     (user: IUserDto) => {
       return (
-        (!user.googleId || user.googleId === '') &&
-        (!user.facebookId || user.facebookId === '') &&
-        currentUser?.user?.id === user.id
+        (!user.googleId || user.googleId === '') && (!user.facebookId || user.facebookId === '') && userId === user.id
       );
     },
-    [currentUser?.user?.id],
+    [userId],
   );
 
   return { user, fetchById, handleUpdateAvatar, handleUpdateEmail, handleUpdatePassword, isUserPassword };

@@ -6,16 +6,18 @@ import { useAppSelector } from '../../../store/Store';
 
 export const ShowMessage: React.FC = memo(() => {
   const { t } = useTranslation();
-  const message = useAppSelector((state) => state.common.message, shallowEqual);
+  const messageId = useAppSelector((state) => state.common.message.id, shallowEqual);
+  const messageType = useAppSelector((state) => state.common.message.type, shallowEqual);
+  const messageContent = useAppSelector((state) => state.common.message.message, shallowEqual);
   const { enqueueSnackbar } = useSnackbar();
   const lastMessage = useRef<string>();
 
   useEffect(() => {
-    if (message.id !== '' && message.message !== '' && message.message !== lastMessage.current) {
-      lastMessage.current = message.message;
-      const messages = message.message.split(';');
+    if (messageId !== '' && messageContent !== '' && messageContent !== lastMessage.current) {
+      lastMessage.current = messageContent;
+      const messages = messageContent.split(';');
       enqueueSnackbar(t(messages[0]), {
-        variant: message.type,
+        variant: messageType,
         autoHideDuration: 3000,
         anchorOrigin: { horizontal: 'right', vertical: 'bottom' },
         onClick: () => {
@@ -26,7 +28,7 @@ export const ShowMessage: React.FC = memo(() => {
         lastMessage.current = '';
       }, 3000);
     }
-  }, [t, message, enqueueSnackbar]);
+  }, [t, messageId, messageContent, messageType, enqueueSnackbar]);
 
   return <></>;
 });

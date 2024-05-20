@@ -2,9 +2,9 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { IApiDto, JSONObject } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
 import { MdCard } from '@vagabond-inc/react-boilerplate-md/dist/md/component/card/MdCard';
-import { useAppRouter } from '@vagabond-inc/react-boilerplate-md/dist/router/hook/useAppRouter';
 import { memo, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useParams } from 'react-router-dom';
 import { AppContent } from '../../../../app/content/AppContent';
 import { HasRole } from '../../../../hook/role/HasRole';
 import { useAppDispatch } from '../../../../store/Store';
@@ -24,9 +24,7 @@ export interface IAdminShowPageProps extends IHeaderDto {
 export const AdminShowPage: React.FC<IAdminShowPageProps> = memo(({ conf, ...rest }) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const {
-    params: { page = '', id = '-1' },
-  } = useAppRouter();
+  const { page = '', id = '-1' } = useParams();
   const { pageConf, formConf } = useAdminConf(page, conf);
 
   const { state } = useAdminState(page, pageConf as IAdminTabDto);

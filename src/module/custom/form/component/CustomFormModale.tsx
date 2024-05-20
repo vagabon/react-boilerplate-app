@@ -46,7 +46,7 @@ export const CustomFormModale: React.FC<ICustomFormModaleProps> = memo(({ apiUrl
   }, [open, search, loadDatas]);
 
   return (
-    <MdModal className='flex' open={open} handleClose={rest.handleClose}>
+    <MdModal className='flex' open={open} callbackClose={rest.handleClose}>
       <MdCard icon='add' title='Ajouter'>
         <MdSearchBar callBack={handleSearch} search={search} />
         <MdList className='modal-list overflow overflow-x-none'>

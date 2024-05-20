@@ -15,8 +15,7 @@ export interface IActivationPageProps extends IHeaderDto {}
 export const ActivationPage: React.FC<IActivationPageProps> = memo(({ ...rest }) => {
   const params = useParams();
   const [isActivated, setIsActivated] = useState<boolean | undefined>(undefined);
-
-  const message = useAppSelector((state) => state.common.message, shallowEqual);
+  const message = useAppSelector((state) => state.common.message.message, shallowEqual);
   const { redirectIfLogged } = useAuth(rest.apiUrl);
 
   useEffect(() => {

@@ -1,6 +1,8 @@
 import { ID } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
 import { useAppRouter } from '@vagabond-inc/react-boilerplate-md/dist/router/hook/useAppRouter';
 import { memo, useEffect } from 'react';
+import { shallowEqual } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { AppContent } from '../../../../app/content/AppContent';
 import { useAppSelector } from '../../../../store/Store';
 import { IHeaderDto } from '../../../../template/dto/HeaderDto';
@@ -13,18 +15,16 @@ export interface IProfilePageProps extends IHeaderDto {
 }
 
 export const ProfilePage: React.FC<IProfilePageProps> = memo(({ ...rest }) => {
-  const {
-    navigate,
-    params: { id = -1 },
-  } = useAppRouter();
-  const { user: currentUser } = useAppSelector((state) => state.auth);
+  const { navigate } = useAppRouter();
+  const { id = -1 } = useParams();
+  const currentUser = useAppSelector((state) => state.auth?.user?.user, shallowEqual);
   const { user, fetchById } = useUser(rest.apiUrl);
 
   useEffect(() => {
     if (id !== -1) {
       fetchById(id);
     }
-  }, [fetchById, id, currentUser]);
+  }, [fetchById, id]);
 
   if (!currentUser) {
     navigate('/auth/signin');
@@ -33,7 +33,7 @@ export const ProfilePage: React.FC<IProfilePageProps> = memo(({ ...rest }) => {
 
   return (
     <AppContent {...rest} className='flex1 profil-content' seo='SEO:PROFIL'>
-      <ProfileShow {...rest} user={id !== -1 ? user : currentUser.user} />
+      <ProfileShow {...rest} user={id !== -1 ? user : currentUser} />
     </AppContent>
   );
 });

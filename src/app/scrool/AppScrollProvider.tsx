@@ -5,7 +5,7 @@ import { CommonAction } from '../../reducer/common/CommonReducers';
 import { useAppDispatch } from '../../store/Store';
 import { useAppScroll } from '../../template/hook/useAppScroll';
 
-export const AppScrollToAnchor = () => {
+export const AppScrollProvider = () => {
   const dispatch = useAppDispatch();
   const location = useLocation();
   const lastHash = useRef('');

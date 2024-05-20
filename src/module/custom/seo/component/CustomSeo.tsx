@@ -1,7 +1,7 @@
-import { useAppRouter } from '@vagabond-inc/react-boilerplate-md/dist/router/hook/useAppRouter';
 import { memo, useCallback, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
+import { useLocation } from 'react-router-dom';
 
 export interface IBaseCustomSeoProps {
   apiUrl: string;
@@ -17,7 +17,7 @@ export interface ICustomSeoProps extends IBaseCustomSeoProps {
 
 export const CustomSeo: React.FC<ICustomSeoProps> = memo(({ apiUrl, title = '', description, image, type, date }) => {
   const { t } = useTranslation();
-  const { location } = useAppRouter();
+  const location = useLocation();
   const [url, setUrl] = useState<string>();
 
   useEffect(() => {

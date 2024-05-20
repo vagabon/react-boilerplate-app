@@ -1,8 +1,8 @@
 import { MdBouttonGroup } from '@vagabond-inc/react-boilerplate-md/dist/md/component/button/group/MdBouttonGroup';
 import { MdMenuItem } from '@vagabond-inc/react-boilerplate-md/dist/md/component/menu/MdMenuItem';
 import { MdToolbar } from '@vagabond-inc/react-boilerplate-md/dist/md/component/toolbar/MdToolbar';
-import { useAppRouter } from '@vagabond-inc/react-boilerplate-md/dist/router/hook/useAppRouter';
 import { useMemo } from 'react';
+import { useLocation } from 'react-router-dom';
 import { IMenuDto } from '../../../dto/menu/MenuDto';
 import { HasRole } from '../../../hook/role/HasRole';
 
@@ -11,7 +11,7 @@ export interface IMenuProps {
 }
 
 export const Menu: React.FC<IMenuProps> = ({ menu }) => {
-  const { location } = useAppRouter();
+  const location = useLocation();
   const currentLocation = useMemo(() => location.pathname, [location]);
 
   return (

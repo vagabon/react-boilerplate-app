@@ -63,7 +63,7 @@ export const CustomModale: React.FC<ICustomModaleProps> = memo(
 
     return (
       <>
-        <MdModal className={className} open={open} handleClose={handleClose(rest.callbackOpen)}>
+        <MdModal className={className} open={open} callbackClose={handleClose(rest.callbackOpen)}>
           {children({ openModal: openModal, closeModal: handleClose(rest.callbackOpen), handleYes })}
         </MdModal>
         {icon && iconColor && <IconClickable color={iconColor} icon={icon} callback={openModal} disabled={disabled} />}

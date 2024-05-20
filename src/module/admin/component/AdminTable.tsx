@@ -2,7 +2,7 @@ import { JSONObject } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiD
 import { MdCard } from '@vagabond-inc/react-boilerplate-md/dist/md/component/card/MdCard';
 import { MdSearchBar } from '@vagabond-inc/react-boilerplate-md/dist/md/component/searchbar/MdSearchBar';
 import { MdTableWithPagination } from '@vagabond-inc/react-boilerplate-md/dist/md/component/table/MdTableWithPagination';
-import { memo, useEffect, useState } from 'react';
+import { memo, useCallback, useEffect, useState } from 'react';
 import { AppButtonRefresh } from '../../../app/button/component/refresh/AppButtonRefresh';
 import { AppFabAdd } from '../../../app/fab/add/AppFabAdd';
 import { HasRole } from '../../../hook/role/HasRole';
@@ -23,6 +23,11 @@ export const AdminTable: React.FC<IAdminListPageProps> = memo(({ activePage, con
   const { state } = useAdminState(activePage, pageConf as IAdminTabDto);
   const [cells, setCells] = useState(pageConf?.cells);
 
+  const showImage = useCallback(
+    (data: IFileDto) => <img src={rest.apiUrl + '/file/download?filename=' + data.path} width='50px' />,
+    [rest.apiUrl],
+  );
+
   useEffect(() => {
     if (pageConf?.cells) {
       let cells = [...pageConf.cells];
@@ -31,9 +36,7 @@ export const AdminTable: React.FC<IAdminListPageProps> = memo(({ activePage, con
           if (cell.name === 'img') {
             cell = {
               ...cell,
-              react: (data: IFileDto) => (
-                <img src={rest.apiUrl + '/file/download?filename=' + data.path} width='50px' />
-              ),
+              react: showImage,
             };
           }
           return cell;

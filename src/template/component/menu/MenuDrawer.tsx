@@ -2,11 +2,10 @@ import { Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 import { useIcon } from '@vagabond-inc/react-boilerplate-md/dist/icon/hook/useIcon';
 import { MdDivider } from '@vagabond-inc/react-boilerplate-md/dist/md/component/divider/MdDivider';
-import { useAppRouter } from '@vagabond-inc/react-boilerplate-md/dist/router/hook/useAppRouter';
 import { memo, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { shallowEqual } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { IMenuDto } from '../../../dto/menu/MenuDto';
 import { HasRole } from '../../../hook/role/HasRole';
 import { useAppSelector } from '../../../store/Store';
@@ -20,10 +19,10 @@ export interface IDrawerProps {
 }
 
 export const MenuDrawer: React.FC<IDrawerProps> = memo(
-  ({  drawerWidth, openDrawer, variantDrawer, menu, callbackClose }) => {
+  ({ drawerWidth, openDrawer, variantDrawer, menu, callbackClose }) => {
     const { t } = useTranslation();
     const { getIcon } = useIcon();
-    const { location } = useAppRouter();
+    const location = useLocation();
     const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn, shallowEqual);
     const currentLocation = useMemo(() => location.pathname, [location]);
 

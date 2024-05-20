@@ -1,6 +1,7 @@
 import { MdTabs } from '@vagabond-inc/react-boilerplate-md/dist/md/component/tabs/MdTabs';
 import { useAppRouter } from '@vagabond-inc/react-boilerplate-md/dist/router/hook/useAppRouter';
 import { memo, useCallback, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { AppContent } from '../../../../app/content/AppContent';
 import { HasRole } from '../../../../hook/role/HasRole';
 import { IHeaderDto } from '../../../../template/dto/HeaderDto';
@@ -12,10 +13,8 @@ interface IAdminTabsPageProps extends IHeaderDto {
 }
 
 export const AdminTabPage: React.FC<IAdminTabsPageProps> = memo(({ conf, ...rest }) => {
-  const {
-    navigate,
-    params: { tab },
-  } = useAppRouter();
+  const { navigate } = useAppRouter();
+  const { tab } = useParams();
   const [activeTab, setActiveTab] = useState<string>();
 
   useEffect(() => {

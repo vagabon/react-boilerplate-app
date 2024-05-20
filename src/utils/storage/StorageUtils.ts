@@ -25,6 +25,8 @@ export const StorageUtils = {
   },
 
   get: <T>(name: string) => {
+    const data = localStorage.getItem(name);
+    if (!data) return undefined;
     try {
       return JSON.parse(localStorage.getItem(name) ?? '') as T;
     } catch (e) {

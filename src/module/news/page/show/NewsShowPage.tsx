@@ -1,5 +1,5 @@
-import { useAppRouter } from '@vagabond-inc/react-boilerplate-md/dist/router/hook/useAppRouter';
 import { memo, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { AppContent } from '../../../../app/content/AppContent';
 import { HasRole } from '../../../../hook/role/HasRole';
 import { ICustomChatbotButtonProps } from '../../../custom/chatbot/component/CustomChatbotButton';
@@ -10,9 +10,7 @@ import { useCreateNews } from '../../hook/useCreateNews';
 export interface INewsShowPageProps extends INewsRouterProps, ICustomChatbotButtonProps {}
 
 export const NewsShowPage: React.FC<INewsShowPageProps> = memo(({ endPoint, newsAction, ...rest }) => {
-  const {
-    params: { id },
-  } = useAppRouter();
+  const { id } = useParams();
   const { news, fetchById } = useCreateNews(rest.apiUrl, endPoint, newsAction, parseInt(id as string));
 
   useEffect(() => {

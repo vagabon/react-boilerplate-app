@@ -4,6 +4,7 @@ import { MdBouttonGroup } from '@vagabond-inc/react-boilerplate-md/dist/md/compo
 import { MdCard } from '@vagabond-inc/react-boilerplate-md/dist/md/component/card/MdCard';
 import { MdDivider } from '@vagabond-inc/react-boilerplate-md/dist/md/component/divider/MdDivider';
 import React, { useCallback } from 'react';
+import { shallowEqual } from 'react-redux';
 import { useApiService } from '../../../../api/hook/useApiService';
 import { HasRole } from '../../../../hook/role/HasRole';
 import { useUserAuth } from '../../../../hook/user/useUserAuth';
@@ -29,7 +30,7 @@ export const ProfileShow: React.FC<IProfileShowProps> = ({
   ...rest
 }) => {
   const { handleLogout } = useUserAuth();
-  const { user: currentUser } = useAppSelector((state) => state.auth);
+  const currentUserId = useAppSelector((state) => state.auth?.user?.user?.id, shallowEqual);
   const { httpPost } = useApiService(rest.apiUrl);
 
   const handleSendNotification = useCallback(() => {
@@ -46,7 +47,7 @@ export const ProfileShow: React.FC<IProfileShowProps> = ({
       title={user?.username}
       buttonchildren={
         <>
-          {currentUser?.user?.id === user.id && !disabled && (
+          {currentUserId === user.id && !disabled && (
             <CustomModaleConfirm
               button='COMMON:LOGOUT'
               label='COMMON:LOGOUT_LABEL'

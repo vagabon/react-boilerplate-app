@@ -26,7 +26,7 @@ describe('CustomForm', () => {
   test('Given CustomForm when its mount then ', () => {
     useAppSelectorSpy.mockImplementation((callback) =>
       callback({
-        common: { history: {} },
+        common: { history: {}, message: { message: 'message' } },
       }),
     );
     const conf = {

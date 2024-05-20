@@ -3,11 +3,12 @@ import { MdCard } from '@vagabond-inc/react-boilerplate-md/dist/md/component/car
 import { MdMarkdown } from '@vagabond-inc/react-boilerplate-md/dist/md/component/markdown/MdMarkdown';
 import { MdSearchBar } from '@vagabond-inc/react-boilerplate-md/dist/md/component/searchbar/MdSearchBar';
 import { ReactNode, memo, useEffect } from 'react';
+import { shallowEqual } from 'react-redux';
 import { AppButtonRefresh } from '../../../app/button/component/refresh/AppButtonRefresh';
 import { AppContent } from '../../../app/content/AppContent';
 import { HasRole } from '../../../hook/role/HasRole';
+import { useAppSelector } from '../../../store/Store';
 import { IHeaderDto } from '../../../template/dto/HeaderDto';
-import { useAuth } from '../../auth/hook/useAuth';
 import { CustomModale } from '../../custom/modale/component/CustomModale';
 import { CustomModaleConfirm } from '../../custom/modale/component/CustomModaleConfirm';
 import { NotificationList } from '../component/list/NotificationList';
@@ -23,7 +24,7 @@ export interface INotificationPageProps extends IHeaderDto {
 
 export const NotificationPage: React.FC<INotificationPageProps> = memo(
   ({ handleSelect, getNotificationIcon, header, ...rest }) => {
-    const { user } = useAuth(rest.apiUrl);
+    const userId = useAppSelector((state) => state.auth.user?.user?.id, shallowEqual);
     const { handleReadAll, handleCheckbox, handleClick, open, notification, closeModal } = useNotification(rest.apiUrl);
     const {
       notifications,
@@ -36,8 +37,8 @@ export const NotificationPage: React.FC<INotificationPageProps> = memo(
     } = useNotificationFetch(rest.apiUrl);
 
     useEffect(() => {
-      page === 0 && user?.id && doFetchNotifications({ title: '' }, page, user?.id);
-    }, [doFetchNotifications, page, user?.id]);
+      page === 0 && userId && doFetchNotifications({ title: '' }, page, userId);
+    }, [doFetchNotifications, page, userId]);
 
     return (
       <HasRole roles={['USER']} showError={true}>
@@ -50,11 +51,11 @@ export const NotificationPage: React.FC<INotificationPageProps> = memo(
             actions={
               <>
                 <CustomModaleConfirm button='READ_ALL' label='READ_ALL_CONFIRM' callback={handleReadAll()} />
-                <AppButtonRefresh data={search} callback={doSearchNotifications(user?.id)} />
+                <AppButtonRefresh data={search} callback={doSearchNotifications(userId)} />
               </>
             }>
             {header && <div className='flex flex-row align-start width100 gap10'>{header}</div>}
-            <MdSearchBar search={search} callBack={doSearchNotifications(user?.id)} />
+            <MdSearchBar search={search} callBack={doSearchNotifications(userId)} />
           </MdCard>
           <NotificationList
             {...rest}
@@ -63,7 +64,7 @@ export const NotificationPage: React.FC<INotificationPageProps> = memo(
             callbackClick={handleClick(notifications)}
             callbackCheckbox={handleCheckbox(notifications)}
             callbackSettings={handleSelect}
-            doChangePage={doChangePageNotifications(page, user?.id)}
+            doChangePage={doChangePageNotifications(page, userId)}
           />
           <CustomModale className='modal-card modal-small' open={open} callbackOpen={closeModal}>
             {() => (

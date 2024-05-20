@@ -4,15 +4,13 @@ import { MdChip } from '@vagabond-inc/react-boilerplate-md/dist/md/component/chi
 import { MdLink } from '@vagabond-inc/react-boilerplate-md/dist/md/component/link/MdLink';
 import { MdTypo } from '@vagabond-inc/react-boilerplate-md/dist/md/component/typo/MdTypo';
 import { Translate } from '@vagabond-inc/react-boilerplate-md/dist/translate/component/Translate';
-import { Trans, useTranslation } from 'react-i18next';
+import { Trans } from 'react-i18next';
 import { AppContent } from '../../../app/content/AppContent';
 import { IHeaderDto } from '../../../template/dto/HeaderDto';
 
 export interface IContactPageProps extends IHeaderDto {}
 
 export const ContactPage: React.FC<IContactPageProps> = ({ ...rest }) => {
-  const { t } = useTranslation();
-
   return (
     <AppContent {...rest} className='flex1 profil-content' seo='SEO:CONTACT'>
       <section className='contact-page'>

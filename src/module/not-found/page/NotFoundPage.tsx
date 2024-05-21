@@ -6,7 +6,7 @@ import { MdLink } from '@vagabond-inc/react-boilerplate-md/dist/md/component/lin
 import { MdTypo } from '@vagabond-inc/react-boilerplate-md/dist/md/component/typo/MdTypo';
 import { Translate } from '@vagabond-inc/react-boilerplate-md/dist/translate/component/Translate';
 import { memo } from 'react';
-import { AppContent } from '../../../app/content/AppContent';
+import { AppContent } from '../../../app/content/component/AppContent';
 import { IHeaderDto } from '../../../template/dto/HeaderDto';
 
 export interface INotFoundPageProps extends IHeaderDto {}

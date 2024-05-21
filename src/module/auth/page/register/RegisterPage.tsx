@@ -9,8 +9,8 @@ import { ObjectUtils } from '@vagabond-inc/react-boilerplate-md/dist/utils/objec
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { useApiService } from '../../../../api/hook/useApiService';
-import { AppContent } from '../../../../app/content/AppContent';
-import { AppFormik } from '../../../../app/formik/AppFormik';
+import { AppContent } from '../../../../app/content/component/AppContent';
+import { AppForm } from '../../../../app/form/component/AppForm';
 import { useMessage } from '../../../../hook/message/useMessage';
 import { AuthFooter } from '../../component/auth.footer/AuthFooter';
 import { AuthFooterEnum } from '../../component/auth.footer/enum/AuthFooterEnum';
@@ -67,7 +67,7 @@ export const RegisterPage: React.FC<IRegisterPageProps> = memo(
       <AppContent {...rest} seo='SEO:REGISTER'>
         <MdCard icon='account' title='AUTH:REGISTER.TITLE'>
           {!isRegister && (
-            <AppFormik
+            <AppForm
               initialValues={DEFAULT_VALUES}
               validationSchema={REGISTER_SCHEMA}
               onSubmit={handleRegister}
@@ -98,7 +98,7 @@ export const RegisterPage: React.FC<IRegisterPageProps> = memo(
                   </div>
                 </>
               )}
-            </AppFormik>
+            </AppForm>
           )}
           {isRegister && <MdTypo content='AUTH:REGISTER.SUCCESS' />}
           <AuthFooter left={AuthFooterEnum.FORGETED_PASSWORD} rigth={AuthFooterEnum.SIGNIN} />

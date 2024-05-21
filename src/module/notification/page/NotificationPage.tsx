@@ -5,7 +5,7 @@ import { MdSearchBar } from '@vagabond-inc/react-boilerplate-md/dist/md/componen
 import { ReactNode, memo, useEffect } from 'react';
 import { shallowEqual } from 'react-redux';
 import { AppButtonRefresh } from '../../../app/button/component/refresh/AppButtonRefresh';
-import { AppContent } from '../../../app/content/AppContent';
+import { AppContent } from '../../../app/content/component/AppContent';
 import { HasRole } from '../../../hook/role/HasRole';
 import { useAppSelector } from '../../../store/Store';
 import { IHeaderDto } from '../../../template/dto/HeaderDto';

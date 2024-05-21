@@ -10,8 +10,8 @@ import { MdListItemAvatar } from '@vagabond-inc/react-boilerplate-md/dist/md/com
 import { MdListItemIcon } from '@vagabond-inc/react-boilerplate-md/dist/md/component/list/MdListItemIcon';
 import { MdListItemText } from '@vagabond-inc/react-boilerplate-md/dist/md/component/list/MdListItemText';
 import React, { Fragment, memo } from 'react';
+import { useAppImage } from '../../../../app/image/hook/useAppImage';
 import { useMessage } from '../../../../hook/message/useMessage';
-import { useAppImage } from '../../../../template/hook/useAppImage';
 import { CustomModaleConfirm } from '../../modale/component/CustomModaleConfirm';
 import { useCustomList } from '../hook/useCustomList';
 

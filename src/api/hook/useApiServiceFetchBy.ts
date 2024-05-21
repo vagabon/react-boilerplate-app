@@ -1,7 +1,7 @@
 import { ReducerType } from '@reduxjs/toolkit';
 import { IApiDto, JSONObject } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
 import { IOrderDto } from '@vagabond-inc/react-boilerplate-md/dist/dto/form/FormDto';
-import { useCallback, useRef } from 'react';
+import { useCallback, useState } from 'react';
 import { shallowEqual } from 'react-redux';
 import { IOrderState, IReducersActionsProps } from '../../reducer/BaseReducer';
 import { deepEqual } from '../../reducer/utils/ReducerUtils';
@@ -17,7 +17,6 @@ export const useApiServiceFetchBy = <T extends IApiDto>(
   max: number = 10,
   orderList: IOrderDto[] = [{ id: 'id', libelle: 'ID', orderAsc: false }],
 ) => {
-  const firstRender = useRef(false);
   const dispatch = useAppDispatch();
   const datas = useAppSelector((state) => state[stateName as keyof ReducerType].datas, deepEqual);
   const search = useAppSelector((state) => state[stateName as keyof ReducerType].search, shallowEqual);
@@ -25,13 +24,14 @@ export const useApiServiceFetchBy = <T extends IApiDto>(
   const order = useAppSelector((state) => state[stateName as keyof ReducerType].order, shallowEqual);
   const page = useAppSelector((state) => state[stateName as keyof ReducerType].page, shallowEqual);
   const { fetchBy, resetStopLoad } = useApiServiceFindBy<T>(apiUrl, uri, query, max);
+  const [firstRender, setFirstRender] = useState(false);
 
   const fetchByFields = useCallback(
     (values: string, page: number, order?: IOrderState) => {
       fetchBy(values, page, order?.order, order?.orderAsc ? '' : 'desc', (data) => {
         dispatch(action.setCount(data.totalElements));
         dispatch(page === 0 ? action.setDatas(data?.content ?? []) : action.addDatas(data?.content ?? []));
-        firstRender.current = true;
+        setFirstRender(true);
       });
     },
     [fetchBy, dispatch, action],
@@ -75,7 +75,7 @@ export const useApiServiceFetchBy = <T extends IApiDto>(
   );
 
   return {
-    firstRender: firstRender.current,
+    firstRender,
     datas,
     search,
     count,

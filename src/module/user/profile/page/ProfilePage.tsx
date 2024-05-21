@@ -3,7 +3,7 @@ import { useAppRouter } from '@vagabond-inc/react-boilerplate-md/dist/router/hoo
 import { memo, useEffect } from 'react';
 import { shallowEqual } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { AppContent } from '../../../../app/content/AppContent';
+import { AppContent } from '../../../../app/content/component/AppContent';
 import { useAppSelector } from '../../../../store/Store';
 import { IHeaderDto } from '../../../../template/dto/HeaderDto';
 import { useUser } from '../../user/hook/useUser';

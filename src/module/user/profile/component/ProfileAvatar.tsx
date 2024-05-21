@@ -5,8 +5,8 @@ import { MdCardMedia } from '@vagabond-inc/react-boilerplate-md/dist/md/componen
 import { MdFormFile } from '@vagabond-inc/react-boilerplate-md/dist/md/component/form/file/MdFormFile';
 import { ObjectUtils } from '@vagabond-inc/react-boilerplate-md/dist/utils/object/ObjectUtils';
 import { ChangeEvent, memo, useCallback } from 'react';
+import { useAppImage } from '../../../../app/image/hook/useAppImage';
 import { useModal } from '../../../../hook/modal/useModal';
-import { useAppImage } from '../../../../template/hook/useAppImage';
 import { useCustomFormUpload } from '../../../custom/form/hook/useCustomFormUpload';
 import { CustomModaleForm } from '../../../custom/modale/component/CustomModaleForm';
 import { IUserDto } from '../../user/dto/UserDto';

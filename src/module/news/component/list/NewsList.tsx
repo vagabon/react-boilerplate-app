@@ -1,5 +1,5 @@
 import { memo, useEffect } from 'react';
-import { InfiniteScrollPage } from '../../../../page/InfiniteScrollPage';
+import { AppInfiniteScrollProvider } from '../../../../app/infinite-scroll/component/provider/AppInfiniteScrollProvider';
 import { INewsRouterProps } from '../../NewsRouter';
 import { INewsDto } from '../../dto/NewsDto';
 import { useFetchNews } from '../../hook/useFetchNews';
@@ -15,23 +15,21 @@ export const NewsList: React.FC<INewsListProps> = memo(({ endPoint, newsAction, 
   }, [doSearch]);
 
   return (
-    <>
-      <InfiniteScrollPage
-        icon={endPoint === 'news' ? 'news' : 'blog'}
-        title={endPoint === 'news' ? 'NEWS:TITLE' : 'BLOG:TITLE'}
-        titleCount={count}
-        search={search}
-        className='news-list'
-        doChangePage={doChangePage(page)}
-        doSearch={doSearch}
-        urlAdd={'/' + endPoint + '/add'}
-        urlAddRole={['ADMIN']}>
-        <>
-          {news.map((oneNews: INewsDto) => (
-            <NewsCardSmall {...rest} key={'news_' + oneNews.id} news={oneNews} endPoint={endPoint} />
-          ))}
-        </>
-      </InfiniteScrollPage>
-    </>
+    <AppInfiniteScrollProvider
+      icon={endPoint === 'news' ? 'news' : 'blog'}
+      title={endPoint === 'news' ? 'NEWS:TITLE' : 'BLOG:TITLE'}
+      titleCount={count}
+      search={search}
+      className='news-list'
+      doChangePage={doChangePage(page)}
+      doSearch={doSearch}
+      urlAdd={'/' + endPoint + '/add'}
+      urlAddRole={['ADMIN']}>
+      <>
+        {news.map((oneNews: INewsDto) => (
+          <NewsCardSmall {...rest} key={'news_' + oneNews.id} news={oneNews} endPoint={endPoint} />
+        ))}
+      </>
+    </AppInfiniteScrollProvider>
   );
 });

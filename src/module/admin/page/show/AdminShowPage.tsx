@@ -5,7 +5,7 @@ import { MdCard } from '@vagabond-inc/react-boilerplate-md/dist/md/component/car
 import { memo, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
-import { AppContent } from '../../../../app/content/AppContent';
+import { AppContent } from '../../../../app/content/component/AppContent';
 import { HasRole } from '../../../../hook/role/HasRole';
 import { useAppDispatch } from '../../../../store/Store';
 import { IHeaderDto } from '../../../../template/dto/HeaderDto';

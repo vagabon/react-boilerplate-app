@@ -4,7 +4,7 @@ import { IFormPropsDto } from '@vagabond-inc/react-boilerplate-md/dist/dto/form/
 import { cloneElement } from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-import { AppFormik } from '../app/formik/AppFormik';
+import { AppForm } from '../app/form/component/AppForm';
 import results from '../jest-test-results.json';
 import store from '../store/Store';
 import { IYupValidators } from '../utils/yup/YupUtils';
@@ -26,9 +26,9 @@ interface IRadioWithFormProps {
 
 export const FormWrapper = (props: IRadioWithFormProps) => {
   return (
-    <AppFormik initialValues={props.initialValues} validationSchema={props.validationSchema} onSubmit={props.onSubmit}>
+    <AppForm initialValues={props.initialValues} validationSchema={props.validationSchema} onSubmit={props.onSubmit}>
       {(formikProps: IFormPropsDto) => <>{cloneElement(props.children, formikProps)}</>}
-    </AppFormik>
+    </AppForm>
   );
 };
 

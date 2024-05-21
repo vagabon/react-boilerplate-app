@@ -4,7 +4,7 @@ import { MdTypo } from '@vagabond-inc/react-boilerplate-md/dist/md/component/typ
 import { memo, useEffect, useState } from 'react';
 import { shallowEqual } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { AppContent } from '../../../../app/content/AppContent';
+import { AppContent } from '../../../../app/content/component/AppContent';
 import { useAppSelector } from '../../../../store/Store';
 import { IHeaderDto } from '../../../../template/dto/HeaderDto';
 import { useAuth } from '../../hook/useAuth';

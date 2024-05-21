@@ -1,22 +1,20 @@
 import { useCallback } from 'react';
-import { shallowEqual } from 'react-redux';
-import { ICurrentUserDto } from '../../dto/current-user/CurrentUserDto';
-import { IUserDto } from '../../module/user/user/dto/UserDto';
+import { deepEqual } from '../../reducer/utils/ReducerUtils';
 import { useAppSelector } from '../../store/Store';
 import { RoleUtils } from '../../utils/role/RoleUtils';
 
 export const useRole = () => {
-  const currentUser = useAppSelector<ICurrentUserDto<IUserDto> | null>((state) => state.auth.user, shallowEqual);
+  const userConnected = useAppSelector((state) => state.auth.user?.user, deepEqual);
 
   const hasUserRole = useCallback(
     (roles?: string[], notRoles?: string[]) => {
       if (notRoles && notRoles.length > 0) {
-        return RoleUtils.hasProfile(currentUser, roles) && !RoleUtils.hasProfile(currentUser, notRoles);
+        return RoleUtils.hasProfile(userConnected, roles) && !RoleUtils.hasProfile(userConnected, notRoles);
       }
-      return RoleUtils.hasProfile(currentUser, roles);
+      return RoleUtils.hasProfile(userConnected, roles);
     },
-    [currentUser],
+    [userConnected],
   );
 
-  return { currentUser, userConnected: currentUser?.user, hasUserRole };
+  return { userConnected, userId: userConnected?.id, hasUserRole };
 };

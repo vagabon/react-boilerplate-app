@@ -24,7 +24,7 @@ export const AdminTable: React.FC<IAdminListPageProps> = memo(({ activePage, con
   const [cells, setCells] = useState(pageConf?.cells);
 
   const showImage = useCallback(
-    (data: IFileDto) => <img src={rest.apiUrl + '/file/download?filename=' + data.path} width='50px' />,
+    (data: IFileDto) => <img src={rest.apiUrl + '/file/download?filename=' + data.path} alt='download' width='50px' />,
     [rest.apiUrl],
   );
 
@@ -44,7 +44,7 @@ export const AdminTable: React.FC<IAdminListPageProps> = memo(({ activePage, con
       }
       setCells(cells);
     }
-  }, [activePage, pageConf?.cells, rest.apiUrl]);
+  }, [activePage, pageConf?.cells, rest.apiUrl, showImage]);
 
   const { search, handleSearch, handleTableChange } = useAdminList(
     rest.apiUrl,

@@ -1,6 +1,6 @@
 import { IApiDto, JSONObject } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
 import { memo } from 'react';
-import { AppFormik } from '../../../../app/formik/AppFormik';
+import { AppForm } from '../../../../app/form/component/AppForm';
 import { IYupValidators } from '../../../../utils/yup/YupUtils';
 import { ICustomModalChildrenType, ICustomModaleChildProps } from './CustomModale';
 import { CustomModaleCard } from './CustomModaleCard';
@@ -20,14 +20,14 @@ export const CustomModaleForm: React.FC<ICustomModaleFormProps> = memo(
     return (
       <CustomModaleCard {...rest} icon={icon} title={title} className={'modal-form'}>
         {({ closeModal }) => (
-          <AppFormik
+          <AppForm
             className='flex justify-center'
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={onSubmit?.(closeModal)}
             onGoBack={closeModal}>
             {(formikProps) => <>{children({ ...formikProps, closeModal: closeModal })}</>}
-          </AppFormik>
+          </AppForm>
         )}
       </CustomModaleCard>
     );

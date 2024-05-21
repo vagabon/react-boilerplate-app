@@ -1,6 +1,6 @@
 import { memo, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { AppContent } from '../../../../app/content/AppContent';
+import { AppContent } from '../../../../app/content/component/AppContent';
 import { HasRole } from '../../../../hook/role/HasRole';
 import { ICustomChatbotButtonProps } from '../../../custom/chatbot/component/CustomChatbotButton';
 import { INewsRouterProps } from '../../NewsRouter';

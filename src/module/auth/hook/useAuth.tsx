@@ -13,7 +13,6 @@ const URL_LOGIN_REDIRECT = '/profile';
 export const useAuth = (apiUrl: string) => {
   const dispatch = useAppDispatch();
   const { navigate } = useAppRouter();
-  const userId = useAppSelector((state) => state.auth.user?.user?.id, shallowEqual);
   const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn, shallowEqual);
 
   const handleLogin = useCallback(
@@ -67,7 +66,6 @@ export const useAuth = (apiUrl: string) => {
   );
 
   return {
-    userId,
     isLoggedIn,
     handleLogin,
     updateLocalStorage,

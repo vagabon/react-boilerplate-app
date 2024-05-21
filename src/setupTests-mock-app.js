@@ -12,9 +12,9 @@ const mocks = {
     getColors: jest.fn(),
   }),
   AppChartBar: ({ generateCallback }) => <div data-testid='AppChartBar' onClick={generateCallback} aria-hidden></div>,
-  AppPieBar: () => <div data-testid='AppPieBar'></div>,
-  AppFormik: ({ onSubmit, children }) => (
-    <div data-testid='AppFormik' onClick={onSubmit} aria-hidden>
+  AppChartPie: () => <div data-testid='AppChartPie'></div>,
+  AppForm: ({ onSubmit, children }) => (
+    <div data-testid='AppForm' onClick={onSubmit} aria-hidden>
       {children({ values: [], handleSubmit: jest.fn(), setFieldValue: jest.fn() })}
     </div>
   ),
@@ -32,9 +32,9 @@ const mocks = {
   NewsRouter: () => <></>,
   UserRouter: () => <></>,
   NotificationRouter: () => <></>,
-  InfiniteScrollPage: ({ doChangePage, doSearch, children }) => (
-    <div data-testid='InfiniteScrollPage' onClick={doChangePage} aria-hidden>
-      <div data-testid='InfiniteScrollPageSearch' onClick={doSearch} aria-hidden>
+  AppInfiniteScrollProvider: ({ doChangePage, doSearch, children }) => (
+    <div data-testid='AppInfiniteScrollProvider' onClick={doChangePage} aria-hidden>
+      <div data-testid='AppInfiniteScrollProviderSearch' onClick={doSearch} aria-hidden>
         {children}
       </div>
     </div>
@@ -72,7 +72,7 @@ const mocks = {
       {children()}
     </div>
   ),
-  CustomNotification: () => <div data-testid='CustomNotification'></div>,
+  NotificationSearch: () => <div data-testid='NotificationSearch'></div>,
   CustomShareButtons: () => <div data-testid='CustomShareButtons'></div>,
   CustomShareButtonsMenu: () => <div data-testid='CustomShareButtonsMenu'></div>,
   CustomSeo: () => <div data-testid='CustomSeo'></div>,
@@ -89,7 +89,7 @@ const mocks = {
   UserService: {},
 
   AppTheme: ({ children }) => <div data-testid='AppTheme'>{children}</div>,
-  AppThemeWithTemplate: ({ children }) => <div data-testid='AppThemeWithTemplate'>{children}</div>,
+  AppThemeProvider: ({ children }) => <div data-testid='AppThemeProvider'>{children}</div>,
   Header: ({ children }) => <div data-testid='Header'>{children}</div>,
   Footer: ({ children }) => <div data-testid='Footer'>{children}</div>,
   NotFoundPage: () => <div data-testid='NotFoundPage'></div>,

@@ -2,7 +2,7 @@ import { MdTabs } from '@vagabond-inc/react-boilerplate-md/dist/md/component/tab
 import { useAppRouter } from '@vagabond-inc/react-boilerplate-md/dist/router/hook/useAppRouter';
 import { memo, useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { AppContent } from '../../../../app/content/AppContent';
+import { AppContent } from '../../../../app/content/component/AppContent';
 import { HasRole } from '../../../../hook/role/HasRole';
 import { IHeaderDto } from '../../../../template/dto/HeaderDto';
 import { AdminTable } from '../../component/AdminTable';

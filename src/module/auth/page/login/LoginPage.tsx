@@ -3,8 +3,8 @@ import { MdCard } from '@vagabond-inc/react-boilerplate-md/dist/md/component/car
 import { MdInputText } from '@vagabond-inc/react-boilerplate-md/dist/md/component/form/text/MdInputText';
 import { ObjectUtils } from '@vagabond-inc/react-boilerplate-md/dist/utils/object/ObjectUtils';
 import { memo, useEffect } from 'react';
-import { AppContent } from '../../../../app/content/AppContent';
-import { AppFormik } from '../../../../app/formik/AppFormik';
+import { AppContent } from '../../../../app/content/component/AppContent';
+import { AppForm } from '../../../../app/form/component/AppForm';
 import { IHeaderDto } from '../../../../template/dto/HeaderDto';
 import { AuthFooter } from '../../component/auth.footer/AuthFooter';
 import { AuthFooterEnum } from '../../component/auth.footer/enum/AuthFooterEnum';
@@ -31,7 +31,7 @@ export const LoginPage: React.FC<ILoginPageProps> = memo(({ googleClientId, face
   return (
     <AppContent {...rest} className='max-width-800' seo='SEO:LOGIN'>
       <MdCard icon='exit' title='AUTH:LOGIN.TITLE'>
-        <AppFormik
+        <AppForm
           initialValues={DEFAULT_VALUES}
           validationSchema={LOGIN_SCHEMA}
           onSubmit={handleLogin}
@@ -56,7 +56,7 @@ export const LoginPage: React.FC<ILoginPageProps> = memo(({ googleClientId, face
               <MdInputText label='AUTH:FIELDS.PASSWORD' name='password' type='password' {...formikProps} />
             </>
           )}
-        </AppFormik>
+        </AppForm>
 
         <AuthFooter left={AuthFooterEnum.FORGETED_PASSWORD} rigth={AuthFooterEnum.SIGNUP} />
       </MdCard>

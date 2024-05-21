@@ -2,8 +2,8 @@ import { MdCard } from '@vagabond-inc/react-boilerplate-md/dist/md/component/car
 import { MdInputText } from '@vagabond-inc/react-boilerplate-md/dist/md/component/form/text/MdInputText';
 import { useAppRouter } from '@vagabond-inc/react-boilerplate-md/dist/router/hook/useAppRouter';
 import { memo, useCallback, useEffect } from 'react';
-import { AppContent } from '../../../../app/content/AppContent';
-import { AppFormik } from '../../../../app/formik/AppFormik';
+import { AppContent } from '../../../../app/content/component/AppContent';
+import { AppForm } from '../../../../app/form/component/AppForm';
 import { IHeaderDto } from '../../../../template/dto/HeaderDto';
 import { IUserDto } from '../../../user/user/dto/UserDto';
 import { AuthFooter } from '../../component/auth.footer/AuthFooter';
@@ -36,13 +36,13 @@ export const ForgetPasswordPage: React.FC<IForgetPasswordPageProps> = memo(({ ..
   return (
     <AppContent {...rest} seo='SEO:FORGET_PASSWORD'>
       <MdCard icon='password' title='AUTH:FORGET_PASSWORD.TITLE'>
-        <AppFormik
+        <AppForm
           initialValues={DEFAULT_VALUES}
           validationSchema={FORGET_PASSWORD_SCHEMA}
           onSubmit={handleForgetPassword}
           backButton={false}>
           {(formikProps) => <MdInputText label='AUTH:FIELDS.EMAIL' name='email' {...formikProps} />}
-        </AppFormik>
+        </AppForm>
 
         <AuthFooter left={AuthFooterEnum.SIGNIN} rigth={AuthFooterEnum.SIGNUP} />
       </MdCard>

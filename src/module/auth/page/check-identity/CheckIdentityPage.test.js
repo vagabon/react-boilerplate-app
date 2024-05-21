@@ -2,9 +2,9 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { AuthService } from '../../service/AuthService';
 import { CheckIdentityPage } from './CheckIdentityPage';
 
-jest.mock('../../../../app/formik/AppFormik', () => ({
-  AppFormik: ({ onSubmit, children }) => (
-    <div data-testid='AppFormik' onClick={onSubmit}>
+jest.mock('../../../../app/form/component/AppForm', () => ({
+  AppForm: ({ onSubmit, children }) => (
+    <div data-testid='AppForm' onClick={onSubmit}>
       {children()}
     </div>
   ),
@@ -20,7 +20,7 @@ describe('CheckIdentityPage', () => {
     await render(<CheckIdentityPage />);
 
     expect(screen.getByText(/AUTH:CHECK_IDENTITY.TITLE/)).toBeDefined();
-    fireEvent.click(screen.getByTestId('AppFormik'));
+    fireEvent.click(screen.getByTestId('AppForm'));
     expect(mockCheckIdentityToken).toBeCalledTimes(1);
   });
 });

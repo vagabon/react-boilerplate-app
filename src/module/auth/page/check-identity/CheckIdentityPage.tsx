@@ -2,8 +2,8 @@ import { MdCard } from '@vagabond-inc/react-boilerplate-md/dist/md/component/car
 import { MdInputText } from '@vagabond-inc/react-boilerplate-md/dist/md/component/form/text/MdInputText';
 import { MdTypo } from '@vagabond-inc/react-boilerplate-md/dist/md/component/typo/MdTypo';
 import { memo, useCallback, useEffect, useState } from 'react';
-import { AppContent } from '../../../../app/content/AppContent';
-import { AppFormik } from '../../../../app/formik/AppFormik';
+import { AppContent } from '../../../../app/content/component/AppContent';
+import { AppForm } from '../../../../app/form/component/AppForm';
 import { IHeaderDto } from '../../../../template/dto/HeaderDto';
 import { AuthFooter } from '../../component/auth.footer/AuthFooter';
 import { AuthFooterEnum } from '../../component/auth.footer/enum/AuthFooterEnum';
@@ -43,13 +43,13 @@ export const CheckIdentityPage: React.FC<ICheckIdentityPageProps> = memo(({ ...r
     <AppContent {...rest} seo='SEO:IDENTITY.TITLE'>
       <MdCard icon='profile' title='AUTH:CHECK_IDENTITY.TITLE'>
         {state === false && (
-          <AppFormik
+          <AppForm
             initialValues={DEFAULT_VALUES}
             validationSchema={CHECK_IDENTITY_SCHEMA}
             onSubmit={handleCheckIdentity}
             backButton={false}>
             {(formikProps) => <MdInputText label='AUTH:FIELDS.CODE' name='token' {...formikProps} />}
-          </AppFormik>
+          </AppForm>
         )}
         {state === true && (
           <div>

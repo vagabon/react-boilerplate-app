@@ -2,10 +2,10 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
 import { RegisterPage } from './RegisterPage';
 
-jest.mock('../../../../app/formik/AppFormik', () => ({
-  AppFormik: ({ onSubmit, children }) => (
+jest.mock('../../../../app/form/component/AppForm', () => ({
+  AppForm: ({ onSubmit, children }) => (
     <div
-      data-testid='AppFormik'
+      data-testid='AppForm'
       onClick={() =>
         onSubmit({
           accept: true,
@@ -53,6 +53,6 @@ describe('RegisterPage', () => {
     fireEvent.change(container.querySelector(`input[name="password"]`), { target: { value: 'password' } });
     fireEvent.change(container.querySelector(`input[name="password2"]`), { target: { value: 'password' } });
     fireEvent.change(container.querySelector(`input[name="accept"]`), { target: { value: true } });
-    fireEvent.click(screen.getAllByTestId('AppFormik')[0]);
+    fireEvent.click(screen.getAllByTestId('AppForm')[0]);
   });
 });

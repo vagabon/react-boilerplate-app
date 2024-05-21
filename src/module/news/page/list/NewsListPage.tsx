@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { AppContent } from '../../../../app/content/AppContent';
+import { AppContent } from '../../../../app/content/component/AppContent';
 import { HasRole } from '../../../../hook/role/HasRole';
 import { IBaseCustomSeoProps } from '../../../custom/seo/component/CustomSeo';
 import { INewsRouterProps } from '../../NewsRouter';

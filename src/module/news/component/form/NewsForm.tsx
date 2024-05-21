@@ -5,7 +5,7 @@ import { MdFormFile } from '@vagabond-inc/react-boilerplate-md/dist/md/component
 import { MdFormSwitch } from '@vagabond-inc/react-boilerplate-md/dist/md/component/form/switch/MdFormSwitch';
 import { MdInputText } from '@vagabond-inc/react-boilerplate-md/dist/md/component/form/text/MdInputText';
 import { ChangeEvent, memo, useCallback, useEffect, useState } from 'react';
-import { AppFormik } from '../../../../app/formik/AppFormik';
+import { AppForm } from '../../../../app/form/component/AppForm';
 import { useMessage } from '../../../../hook/message/useMessage';
 import { useCreateNews } from '../../../../module/news/hook/useCreateNews';
 import { CustomChatbotButton, ICustomChatbotButtonProps } from '../../../custom/chatbot/component/CustomChatbotButton';
@@ -69,7 +69,7 @@ export const NewsForm: React.FC<INewsFormProps> = memo(({ endPoint, newsAction, 
             <CustomChatbotButton integrations={rest.integrations} />
           </>
         }>
-        <AppFormik initialValues={news} validationSchema={NEWS_SCHEMA} onSubmit={createOrUpdateNews}>
+        <AppForm initialValues={news} validationSchema={NEWS_SCHEMA} onSubmit={createOrUpdateNews}>
           {(formikProps) => (
             <>
               {image}
@@ -116,7 +116,7 @@ export const NewsForm: React.FC<INewsFormProps> = memo(({ endPoint, newsAction, 
               <MdFormSwitch label={'ACTIVE'} name='active' {...formikProps} />
             </>
           )}
-        </AppFormik>
+        </AppForm>
       </MdCard>
       <NewsCard {...rest} news={newsForm} endPoint={endPoint} withSummary={false} />
     </>

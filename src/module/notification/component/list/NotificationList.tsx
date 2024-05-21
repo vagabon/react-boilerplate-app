@@ -1,7 +1,7 @@
 import { IApiDto, ID } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
 import { MdCard } from '@vagabond-inc/react-boilerplate-md/dist/md/component/card/MdCard';
 import { memo, useEffect, useState } from 'react';
-import { InfiniteScrollPage } from '../../../../page/InfiniteScrollPage';
+import { AppInfiniteScrollProvider } from '../../../../app/infinite-scroll/component/provider/AppInfiniteScrollProvider';
 import { CustomList, ICustomListDto } from '../../../custom/list/component/CustomList';
 import { INotificationDto } from '../../dto/NotificationDto';
 import { NotificationUtils } from '../../utils/NotificationUtils';
@@ -27,7 +27,7 @@ export const NotificationList: React.FC<INotificationListProps> = memo(
     }, [notifications, getNotificationIcon]);
 
     return (
-      <InfiniteScrollPage doChangePage={doChangePage}>
+      <AppInfiniteScrollProvider doChangePage={doChangePage}>
         <MdCard>
           <CustomList
             apiUrl={apiUrl}
@@ -39,7 +39,7 @@ export const NotificationList: React.FC<INotificationListProps> = memo(
             datas={custumList}
           />
         </MdCard>
-      </InfiniteScrollPage>
+      </AppInfiniteScrollProvider>
     );
   },
 );

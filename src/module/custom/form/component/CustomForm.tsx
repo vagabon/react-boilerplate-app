@@ -9,7 +9,7 @@ import { MdInputTextSimple } from '@vagabond-inc/react-boilerplate-md/dist/md/co
 import { useAppRouter } from '@vagabond-inc/react-boilerplate-md/dist/router/hook/useAppRouter';
 import { ObjectUtils } from '@vagabond-inc/react-boilerplate-md/dist/utils/object/ObjectUtils';
 import { Fragment, memo, useCallback } from 'react';
-import { AppFormik } from '../../../../app/formik/AppFormik';
+import { AppForm } from '../../../../app/form/component/AppForm';
 import { IYupValidators } from '../../../../utils/yup/YupUtils';
 import { IFormDto } from '../../../admin/dto/AdminConfDto';
 import { useCustomFormUpload } from '../hook/useCustomFormUpload';
@@ -46,7 +46,7 @@ export const CustomForm: React.FC<ICustomFormProps> = memo(
 
     return (
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <AppFormik
+        <AppForm
           className='flex-row custom-form form'
           initialValues={values}
           validationSchema={schema}
@@ -132,7 +132,7 @@ export const CustomForm: React.FC<ICustomFormProps> = memo(
               ))}
             </>
           )}
-        </AppFormik>
+        </AppForm>
       </LocalizationProvider>
     );
   },

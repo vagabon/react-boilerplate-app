@@ -6,9 +6,9 @@ import { memo, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { shallowEqual } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
-import { IMenuDto } from '../../../dto/menu/MenuDto';
-import { HasRole } from '../../../hook/role/HasRole';
+import { ProfileRole } from '../../../module/user/profile/component/role/ProfileRole';
 import { useAppSelector } from '../../../store/Store';
+import { IMenuDto } from '../../dto/menu/MenuDto';
 
 export interface IDrawerProps {
   drawerWidth: number;
@@ -61,7 +61,7 @@ export const MenuDrawer: React.FC<IDrawerProps> = memo(
             }}>
             {menu?.map((menu) => (
               <List key={menu.title}>
-                <HasRole roles={menu.roles} notRroles={menu.notRoles} key={menu.title} showError={false}>
+                <ProfileRole roles={menu.roles} notRoles={menu.notRoles} key={menu.title} showError={false}>
                   {(!menu.notConnected || (menu.notConnected && !isLoggedIn)) && (
                     <>
                       <ListItem
@@ -76,9 +76,9 @@ export const MenuDrawer: React.FC<IDrawerProps> = memo(
                       {menu.childrens && (
                         <List style={{ marginLeft: '14px' }}>
                           {menu.childrens?.map((child) => (
-                            <HasRole
+                            <ProfileRole
                               roles={child.roles}
-                              notRroles={child.notRoles}
+                              notRoles={child.notRoles}
                               key={menu.title + '-' + child.title}
                               showError={false}>
                               <ListItem
@@ -89,14 +89,14 @@ export const MenuDrawer: React.FC<IDrawerProps> = memo(
                                   <ListItemText primary={t(child.title)} className='text-primary' />
                                 </ListItemButton>
                               </ListItem>
-                            </HasRole>
+                            </ProfileRole>
                           ))}
                         </List>
                       )}
                       <MdDivider />
                     </>
                   )}
-                </HasRole>
+                </ProfileRole>
               </List>
             ))}
           </Box>

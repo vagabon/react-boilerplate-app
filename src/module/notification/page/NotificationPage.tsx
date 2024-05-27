@@ -6,11 +6,11 @@ import { ReactNode, memo, useEffect } from 'react';
 import { shallowEqual } from 'react-redux';
 import { AppButtonRefresh } from '../../../app/button/component/refresh/AppButtonRefresh';
 import { AppContent } from '../../../app/content/component/AppContent';
-import { HasRole } from '../../../hook/role/HasRole';
 import { useAppSelector } from '../../../store/Store';
 import { IHeaderDto } from '../../../template/dto/HeaderDto';
 import { CustomModale } from '../../custom/modale/component/CustomModale';
 import { CustomModaleConfirm } from '../../custom/modale/component/CustomModaleConfirm';
+import { ProfileRole } from '../../user/profile/component/role/ProfileRole';
 import { NotificationList } from '../component/list/NotificationList';
 import { INotificationDto } from '../dto/NotificationDto';
 import { useNotification } from '../hook/useNotification';
@@ -41,7 +41,7 @@ export const NotificationPage: React.FC<INotificationPageProps> = memo(
     }, [doFetchNotifications, page, userId]);
 
     return (
-      <HasRole roles={['USER']} showError={true}>
+      <ProfileRole roles={['USER']} showError={true}>
         <AppContent {...rest} className='no-overflow' seo='SEO:NOTIFICATION'>
           <MdCard
             className='creator-card border border-secondary'
@@ -79,7 +79,7 @@ export const NotificationPage: React.FC<INotificationPageProps> = memo(
             )}
           </CustomModale>
         </AppContent>
-      </HasRole>
+      </ProfileRole>
     );
   },
 );

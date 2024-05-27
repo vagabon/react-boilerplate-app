@@ -11,7 +11,7 @@ import ReCAPTCHA from 'react-google-recaptcha';
 import { useApiService } from '../../../../api/hook/useApiService';
 import { AppContent } from '../../../../app/content/component/AppContent';
 import { AppForm } from '../../../../app/form/component/AppForm';
-import { useMessage } from '../../../../hook/message/useMessage';
+import { useAppMessage } from '../../../../app/message/hook/useAppMessage';
 import { AuthFooter } from '../../component/auth.footer/AuthFooter';
 import { AuthFooterEnum } from '../../component/auth.footer/enum/AuthFooterEnum';
 import { useAuth } from '../../hook/useAuth';
@@ -33,7 +33,7 @@ export const RegisterPage: React.FC<IRegisterPageProps> = memo(
     const { mode } = useThemeContent() as IThemeContextDto;
     const { redirectIfLogged } = useAuth(rest.apiUrl);
     const { httpPost } = useApiService(rest.apiUrl);
-    const { setMessage } = useMessage();
+    const { setMessage } = useAppMessage();
     const [isRegister, setIsRegister] = useState<boolean>(false);
     const captchaRef = useRef<ReCAPTCHA>(null);
 

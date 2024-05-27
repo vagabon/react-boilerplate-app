@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { shallowEqual } from 'react-redux';
-import { CommonAction } from '../../../../reducer/common/CommonReducers';
 import { useAppDispatch, useAppSelector } from '../../../../store/Store';
+import { CommonAction } from '../../../../store/reducer/common/CommonReducers';
 
 export const useChatbot = () => {
   const dispatch = useAppDispatch();

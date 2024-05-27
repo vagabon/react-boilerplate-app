@@ -6,7 +6,7 @@ import { MdFormSwitch } from '@vagabond-inc/react-boilerplate-md/dist/md/compone
 import { MdInputText } from '@vagabond-inc/react-boilerplate-md/dist/md/component/form/text/MdInputText';
 import { ChangeEvent, memo, useCallback, useEffect, useState } from 'react';
 import { AppForm } from '../../../../app/form/component/AppForm';
-import { useMessage } from '../../../../hook/message/useMessage';
+import { useAppMessage } from '../../../../app/message/hook/useAppMessage';
 import { useCreateNews } from '../../../../module/news/hook/useCreateNews';
 import { CustomChatbotButton, ICustomChatbotButtonProps } from '../../../custom/chatbot/component/CustomChatbotButton';
 import { CustomFile } from '../../../custom/file/component/CustomFile';
@@ -23,7 +23,7 @@ export interface INewsFormProps extends INewsRouterProps, IBaseCustomSeoProps, I
 }
 
 export const NewsForm: React.FC<INewsFormProps> = memo(({ endPoint, newsAction, news, ...rest }) => {
-  const { setMessage } = useMessage();
+  const { setMessage } = useAppMessage();
   const { createOrUpdateNews } = useCreateNews(rest.apiUrl, endPoint, newsAction, news.id as number);
   const [newsForm, setNewsForm] = useState<INewsDto>({});
   const { handleChangeFile } = useCustomFormUpload(rest.apiUrl, endPoint);

@@ -1,7 +1,7 @@
 import { MdAppBar } from '@vagabond-inc/react-boilerplate-md/dist/md/component/app-bar/MdAppBar';
 import { ReactNode, memo } from 'react';
-import { IMenuDto } from '../../../dto/menu/MenuDto';
 import { IHeaderDto } from '../../dto/HeaderDto';
+import { IMenuDto } from '../../dto/menu/MenuDto';
 import { Toolbar } from '../toolbar/Toolbar';
 import ToolbarProgress from '../toolbar/progress/ToolbarProgress';
 

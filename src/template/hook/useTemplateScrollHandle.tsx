@@ -1,6 +1,6 @@
 import { MutableRefObject, useCallback } from 'react';
-import { CommonAction } from '../../reducer/common/CommonReducers';
 import { useAppDispatch } from '../../store/Store';
+import { CommonAction } from '../../store/reducer/common/CommonReducers';
 
 export const useTemplateScrollHandle = () => {
   const dispatch = useAppDispatch();

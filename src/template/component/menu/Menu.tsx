@@ -3,8 +3,8 @@ import { MdMenuItem } from '@vagabond-inc/react-boilerplate-md/dist/md/component
 import { MdToolbar } from '@vagabond-inc/react-boilerplate-md/dist/md/component/toolbar/MdToolbar';
 import { useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
-import { IMenuDto } from '../../../dto/menu/MenuDto';
-import { HasRole } from '../../../hook/role/HasRole';
+import { ProfileRole } from '../../../module/user/profile/component/role/ProfileRole';
+import { IMenuDto } from '../../dto/menu/MenuDto';
 
 export interface IMenuProps {
   menu: IMenuDto[];
@@ -24,14 +24,14 @@ export const Menu: React.FC<IMenuProps> = ({ menu }) => {
       }}>
       <MdBouttonGroup variant='text' size='large'>
         {menu?.map((menu) => (
-          <HasRole roles={menu.roles} key={menu.title} showError={false}>
+          <ProfileRole roles={menu.roles} key={menu.title} showError={false}>
             <MdMenuItem
               name={menu.title}
               url={menu.link}
               childrens={menu.childrens}
               currentLocation={currentLocation}
             />
-          </HasRole>
+          </ProfileRole>
         ))}
       </MdBouttonGroup>
     </MdToolbar>

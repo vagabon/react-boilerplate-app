@@ -2,7 +2,7 @@ import { ID } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
 import { useCallback, useState } from 'react';
 import { shallowEqual } from 'react-redux';
 import { useApiService } from '../../../api/hook/useApiService';
-import { useModal } from '../../../hook/modal/useModal';
+import { useModal } from '../../../app/modal/hook/useModal';
 import { useAppDispatch, useAppSelector } from '../../../store/Store';
 import { INotificationDto } from '../dto/NotificationDto';
 import { NotificationAction } from '../reducer/NotificationReducer';

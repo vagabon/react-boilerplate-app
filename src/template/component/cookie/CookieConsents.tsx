@@ -2,14 +2,14 @@ import { Fade, Paper, Unstable_TrapFocus as TrapFocus } from '@mui/material';
 import { MdButton } from '@vagabond-inc/react-boilerplate-md/dist/md/component/button/MdButton';
 import { MdTypo } from '@vagabond-inc/react-boilerplate-md/dist/md/component/typo/MdTypo';
 import { useCallback, useState } from 'react';
-import { StorageUtils } from '../../../utils/storage/StorageUtils';
+import { AppStorageUtils } from '../../../app/storage/utils/AppStorageUtils';
 
 export const CookieConsents: React.FC = () => {
-  const [bannerOpen, setBannerOpen] = useState(!StorageUtils.getConsent());
+  const [bannerOpen, setBannerOpen] = useState(!AppStorageUtils.getConsent());
 
   const closeBanner = useCallback(
     (consent: boolean) => () => {
-      StorageUtils.setConsent(consent);
+      AppStorageUtils.setConsent(consent);
       setBannerOpen(false);
     },
     [],

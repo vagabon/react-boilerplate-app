@@ -4,7 +4,7 @@ import { MdBadge } from '@vagabond-inc/react-boilerplate-md/dist/md/component/ba
 import { ButtonColorType, MdButton } from '@vagabond-inc/react-boilerplate-md/dist/md/component/button/MdButton';
 import { MdModal } from '@vagabond-inc/react-boilerplate-md/dist/md/component/modal/MdModal';
 import { memo, useCallback, useEffect } from 'react';
-import { useModal } from '../../../../hook/modal/useModal';
+import { useModal } from '../../../../app/modal/hook/useModal';
 
 export interface ICustomModaleChildProps {
   className?: string;

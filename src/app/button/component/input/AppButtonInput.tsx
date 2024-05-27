@@ -2,7 +2,7 @@ import { JSONObject } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiD
 import { MdButton } from '@vagabond-inc/react-boilerplate-md/dist/md/component/button/MdButton';
 import { MdInputTextSimple } from '@vagabond-inc/react-boilerplate-md/dist/md/component/form/text/MdInputTextSimple';
 import { ChangeEvent, memo, useCallback, useEffect, useState } from 'react';
-import { useMessage } from '../../../../hook/message/useMessage';
+import { useAppMessage } from '../../../message/hook/useAppMessage';
 
 export interface IAppButtonInputProps {
   label?: string;
@@ -14,7 +14,7 @@ export interface IAppButtonInputProps {
 
 export const AppButtonInput: React.FC<IAppButtonInputProps> = memo(
   ({ label, name, localeIfEmpty, value, callback }) => {
-    const { setMessage } = useMessage();
+    const { setMessage } = useAppMessage();
     const [nameValue, setNameValue] = useState<string>('');
 
     useEffect(() => {

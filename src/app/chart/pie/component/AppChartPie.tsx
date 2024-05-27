@@ -2,7 +2,7 @@ import { MdCard } from '@vagabond-inc/react-boilerplate-md/dist/md/component/car
 import { lazy, memo, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ICustomListDto } from '../../../../module/custom/list/component/CustomList';
-import { SuspenceLoader } from '../../../../suspence/SuspenceLoader';
+import { AppSuspenceLoader } from '../../../suspence/component/AppSuspenceLoader';
 
 const PieChart = lazy(() => import('@mui/x-charts').then((module) => ({ default: module.PieChart })));
 
@@ -35,7 +35,7 @@ export const AppChartPie: React.FC<IAppChartPieProps> = memo(({ custumList, heig
 
   return (
     <MdCard>
-      {SuspenceLoader(
+      {AppSuspenceLoader(
         <PieChart
           series={[
             {

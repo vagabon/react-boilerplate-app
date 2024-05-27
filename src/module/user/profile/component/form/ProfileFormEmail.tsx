@@ -4,7 +4,7 @@ import {
 } from '@vagabond-inc/react-boilerplate-md/dist/md/component/form/text/MdInputText';
 import { MdTypo } from '@vagabond-inc/react-boilerplate-md/dist/md/component/typo/MdTypo';
 import { memo, useCallback } from 'react';
-import { IYupValidators } from '../../../../../utils/yup/YupUtils';
+import { IYupValidators } from '../../../../../app/form/utils/AppFormUtils';
 import { CustomModaleForm } from '../../../../custom/modale/component/CustomModaleForm';
 import { IBaseCustomSeoProps } from '../../../../custom/seo/component/CustomSeo';
 import { IUserDto } from '../../../user/dto/UserDto';

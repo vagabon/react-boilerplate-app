@@ -1,6 +1,6 @@
 import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { SuspenceLoader } from '../../suspence/SuspenceLoader';
+import { AppSuspenceLoader } from '../../app/suspence/component/AppSuspenceLoader';
 import { IHeaderDto } from '../../template/dto/HeaderDto';
 
 const LoginPage = lazy(() => import('./page/login/LoginPage').then((module) => ({ default: module.LoginPage })));
@@ -37,13 +37,13 @@ export const AuthRouter: React.FC<IAuthRouterProps> = ({
       <Route>
         <Route
           path='/signin'
-          element={SuspenceLoader(
+          element={AppSuspenceLoader(
             <LoginPage googleClientId={googleClientId} facebookClientId={facebookClientId} {...rest} />,
           )}
         />
         <Route
           path='/signup'
-          element={SuspenceLoader(
+          element={AppSuspenceLoader(
             <RegisterPage
               googleClientId={googleClientId}
               facebookClientId={facebookClientId}
@@ -52,10 +52,10 @@ export const AuthRouter: React.FC<IAuthRouterProps> = ({
             />,
           )}
         />
-        <Route path='/activation/:token' element={SuspenceLoader(<ActivationPage {...rest} />)} />
-        <Route path='/forget/password' element={SuspenceLoader(<ForgetPasswordPage {...rest} />)} />
-        <Route path='/check/identity' element={SuspenceLoader(<CheckIdentityPage {...rest} />)} />
-        <Route path='*' element={SuspenceLoader(<NotFoundPage {...rest} />)}></Route>
+        <Route path='/activation/:token' element={AppSuspenceLoader(<ActivationPage {...rest} />)} />
+        <Route path='/forget/password' element={AppSuspenceLoader(<ForgetPasswordPage {...rest} />)} />
+        <Route path='/check/identity' element={AppSuspenceLoader(<CheckIdentityPage {...rest} />)} />
+        <Route path='*' element={AppSuspenceLoader(<NotFoundPage {...rest} />)}></Route>
       </Route>
     </Routes>
   );

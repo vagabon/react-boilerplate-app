@@ -1,8 +1,8 @@
 import { memo, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { AppContent } from '../../../../app/content/component/AppContent';
-import { HasRole } from '../../../../hook/role/HasRole';
 import { ICustomChatbotButtonProps } from '../../../custom/chatbot/component/CustomChatbotButton';
+import { ProfileRole } from '../../../user/profile/component/role/ProfileRole';
 import { INewsRouterProps } from '../../NewsRouter';
 import { NewsCard } from '../../component/card/NewsCard';
 import { useCreateNews } from '../../hook/useCreateNews';
@@ -18,7 +18,7 @@ export const NewsShowPage: React.FC<INewsShowPageProps> = memo(({ endPoint, news
   }, [id, fetchById]);
 
   return (
-    <HasRole roles={[]}>
+    <ProfileRole roles={[]}>
       <AppContent
         id={id}
         className='mardown-with-summary'
@@ -28,6 +28,6 @@ export const NewsShowPage: React.FC<INewsShowPageProps> = memo(({ endPoint, news
         {...rest}>
         {id && <NewsCard {...rest} news={news ?? {}} endPoint={endPoint} />}
       </AppContent>
-    </HasRole>
+    </ProfileRole>
   );
 });

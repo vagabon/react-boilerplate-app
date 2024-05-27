@@ -1,6 +1,6 @@
 import { IApiDto, ID } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
 import { useCallback, useEffect, useState } from 'react';
-import { IMessageState } from '../../../../reducer/common/CommonReducers';
+import { IMessageState } from '../../../../store/reducer/common/CommonReducers';
 
 export const useCustomList = (
   message: IMessageState,

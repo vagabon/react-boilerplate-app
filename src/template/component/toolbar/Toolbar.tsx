@@ -3,7 +3,7 @@ import { MdLink } from '@vagabond-inc/react-boilerplate-md/dist/md/component/lin
 import { MdToolbar } from '@vagabond-inc/react-boilerplate-md/dist/md/component/toolbar/MdToolbar';
 import { MdTypo } from '@vagabond-inc/react-boilerplate-md/dist/md/component/typo/MdTypo';
 import { ReactNode } from 'react';
-import { IMenuDto } from '../../../dto/menu/MenuDto';
+import { IMenuDto } from '../../dto/menu/MenuDto';
 import { Language } from '../language/Language';
 import { Menu } from '../menu/Menu';
 import ToolbarButtons from './buttons/ToolbarButtons';

@@ -1,6 +1,6 @@
 import { lazy, memo } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { SuspenceLoader } from '../../suspence/SuspenceLoader';
+import { AppSuspenceLoader } from '../../app/suspence/component/AppSuspenceLoader';
 import { IHeaderDto } from '../../template/dto/HeaderDto';
 import { IAdminTabConfDto } from './dto/AdminConfDto';
 
@@ -23,9 +23,9 @@ export const AdminRouter: React.FC<IAdminRouterProps> = memo(({ ...rest }) => {
   return (
     <Routes>
       <Route>
-        <Route path='/tab/:tab' element={SuspenceLoader(<AdminTabsPage {...rest} />)} />
-        <Route path='/update/:page/:id' element={SuspenceLoader(<AdminShowPage {...rest} />)} />
-        <Route path='*' element={SuspenceLoader(<NotFoundPage {...rest} />)}></Route>
+        <Route path='/tab/:tab' element={AppSuspenceLoader(<AdminTabsPage {...rest} />)} />
+        <Route path='/update/:page/:id' element={AppSuspenceLoader(<AdminShowPage {...rest} />)} />
+        <Route path='*' element={AppSuspenceLoader(<NotFoundPage {...rest} />)}></Route>
       </Route>
     </Routes>
   );

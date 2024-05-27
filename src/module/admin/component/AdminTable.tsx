@@ -3,10 +3,10 @@ import { MdCard } from '@vagabond-inc/react-boilerplate-md/dist/md/component/car
 import { MdSearchBar } from '@vagabond-inc/react-boilerplate-md/dist/md/component/searchbar/MdSearchBar';
 import { MdTableWithPagination } from '@vagabond-inc/react-boilerplate-md/dist/md/component/table/MdTableWithPagination';
 import { memo, useCallback, useEffect, useState } from 'react';
+import { AppFabAdd } from '../../../app/button/component/fab/add/AppFabAdd';
 import { AppButtonRefresh } from '../../../app/button/component/refresh/AppButtonRefresh';
-import { AppFabAdd } from '../../../app/fab/add/AppFabAdd';
-import { HasRole } from '../../../hook/role/HasRole';
 import { IBaseCustomSeoProps } from '../../custom/seo/component/CustomSeo';
+import { ProfileRole } from '../../user/profile/component/role/ProfileRole';
 import { IFileDto } from '../../user/user/dto/FileDto';
 import { IAdminTabConfDto, IAdminTabDto } from '../dto/AdminConfDto';
 import { IAdminStateDto } from '../dto/AdminReducerDto';
@@ -61,7 +61,7 @@ export const AdminTable: React.FC<IAdminListPageProps> = memo(({ activePage, con
   return (
     <>
       <MdCard className='flex flex1'>
-        <HasRole roles={['ADMIN']}>
+        <ProfileRole roles={['ADMIN']}>
           <div className='flex flex-row align-end'>
             <MdSearchBar className='flex1' callBack={handleSearch} search={state?.filter?.search} />
             <AppButtonRefresh data={search} callback={handleSearch} />
@@ -80,7 +80,7 @@ export const AdminTable: React.FC<IAdminListPageProps> = memo(({ activePage, con
               showEmpty
             />
           )}
-        </HasRole>
+        </ProfileRole>
       </MdCard>
       <AppFabAdd urlAdd={'/admin/update/' + activePage + '/-1'} urlAddRole={['ADMIN']} />
     </>

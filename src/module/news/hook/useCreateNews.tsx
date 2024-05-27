@@ -2,17 +2,17 @@ import { ID } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
 import { useAppRouter } from '@vagabond-inc/react-boilerplate-md/dist/router/hook/useAppRouter';
 import { useCallback } from 'react';
 import { shallowEqual } from 'react-redux';
-import { useRole } from '../../../hook/role/useRole';
-import { IReducersActionsProps } from '../../../reducer/BaseReducer';
-import { CommonAction } from '../../../reducer/common/CommonReducers';
 import { useAppDispatch, useAppSelector } from '../../../store/Store';
+import { IReducersActionsProps } from '../../../store/reducer/BaseReducer';
+import { CommonAction } from '../../../store/reducer/common/CommonReducers';
+import { useProfile } from '../../user/profile/hook/useProfile';
 import { INewsDto } from '../dto/NewsDto';
 import { NewsReducerState } from '../reducer/NewsReducers';
 import { NewsService } from '../service/NewsService';
 
 export const useCreateNews = (apiUrl: string, endPoint: string, newsAction: IReducersActionsProps, idNews: number) => {
   const { navigate } = useAppRouter();
-  const { userConnected } = useRole();
+  const { userConnected } = useProfile();
   const { data: news } = useAppSelector<NewsReducerState>((state) => state[endPoint], shallowEqual);
   const dispatch = useAppDispatch();
 

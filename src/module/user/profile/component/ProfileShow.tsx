@@ -6,13 +6,13 @@ import { MdDivider } from '@vagabond-inc/react-boilerplate-md/dist/md/component/
 import React, { useCallback } from 'react';
 import { shallowEqual } from 'react-redux';
 import { useApiService } from '../../../../api/hook/useApiService';
-import { HasRole } from '../../../../hook/role/HasRole';
-import { useUserAuth } from '../../../../hook/user/useUserAuth';
 import { useAppSelector } from '../../../../store/Store';
+import { useAuthLogout } from '../../../auth/hook/logout/useAuthLogout';
 import { CustomModaleConfirm } from '../../../custom/modale/component/CustomModaleConfirm';
 import { IUserDto } from '../../user/dto/UserDto';
 import { ProfileAvatar } from './ProfileAvatar';
 import { ProfileForm } from './form/ProfileForm';
+import { ProfileRole } from './role/ProfileRole';
 
 export interface IProfileShowProps {
   apiUrl: string;
@@ -29,7 +29,7 @@ export const ProfileShow: React.FC<IProfileShowProps> = ({
   profileReactChildren,
   ...rest
 }) => {
-  const { handleLogout } = useUserAuth();
+  const { handleLogout } = useAuthLogout();
   const currentUserId = useAppSelector((state) => state.auth?.user?.user?.id, shallowEqual);
   const { httpPost } = useApiService(rest.apiUrl);
 
@@ -66,13 +66,13 @@ export const ProfileShow: React.FC<IProfileShowProps> = ({
 
         <ProfileForm {...rest} user={user} disabled={disabled} />
 
-        <HasRole roles={['ADMIN']} showError={false}>
+        <ProfileRole roles={['ADMIN']} showError={false}>
           <MdDivider />
           <MdBouttonGroup sx={{ gap: '10px', justifyContent: 'flex-end', margin: '10px 5px' }}>
             <MdButton label='SEND_NOTIFICATION' callback={handleSendNotification} />
             <MdButton label='SEND_MAIL' callback={handleSendEmail} />
           </MdBouttonGroup>
-        </HasRole>
+        </ProfileRole>
       </div>
     </MdCard>
   );

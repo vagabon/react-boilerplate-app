@@ -2,9 +2,8 @@ import { MdButton } from '@vagabond-inc/react-boilerplate-md/dist/md/component/b
 import { useAppRouter } from '@vagabond-inc/react-boilerplate-md/dist/router/hook/useAppRouter';
 import { useCallback } from 'react';
 import { shallowEqual } from 'react-redux';
-import { IPathDto } from '../../../../dto/path/PathDto';
-import { CommonAction } from '../../../../reducer/common/CommonReducers';
 import { useAppDispatch, useAppSelector } from '../../../../store/Store';
+import { CommonAction, IPathDto } from '../../../../store/reducer/common/CommonReducers';
 
 export interface IButtonGoBackProps {
   onGoBack?: () => void;

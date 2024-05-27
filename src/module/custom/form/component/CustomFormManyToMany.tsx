@@ -7,7 +7,7 @@ import { MdTypo } from '@vagabond-inc/react-boilerplate-md/dist/md/component/typ
 import { useFormError } from '@vagabond-inc/react-boilerplate-md/dist/md/hook/useFormError';
 import { memo, useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useMessage } from '../../../../hook/message/useMessage';
+import { useAppMessage } from '../../../../app/message/hook/useAppMessage';
 import { IFormDto } from '../../../admin/dto/AdminConfDto';
 import { CustomFormModale } from './CustomFormModale';
 
@@ -21,7 +21,7 @@ export interface ICustomFormManyToManyProps extends IFormPropsDto {
 export const CustomFormManyToMany: React.FC<ICustomFormManyToManyProps> = memo(
   ({ conf, label, name, apiUrl, ...rest }) => {
     const { t } = useTranslation();
-    const { message } = useMessage();
+    const { message } = useAppMessage();
     const [open, setOpen] = useState(false);
     const [datas, setDatas] = useState<IApiDto[]>();
     const { error } = useFormError(name, rest.errors, rest.touched, message?.message);

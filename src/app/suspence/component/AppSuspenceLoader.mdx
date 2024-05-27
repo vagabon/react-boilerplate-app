@@ -1,0 +1,16 @@
+import { Meta, Source } from '@storybook/blocks';
+
+<Meta title="suspence/AppSuspenceLoader" />
+
+# AppSuspenceLoader
+
+<Source code={`
+  const HomeRouter = lazy(() => import('module/home/home.router'));
+  
+  <Routes>
+    <Route>
+      <Route path="/home/*" element={AppSuspenceLoader(<HomeRouter />)} />
+    </Route>
+  </Routes>
+
+`} language='javascript' />

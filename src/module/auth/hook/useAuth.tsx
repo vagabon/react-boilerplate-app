@@ -1,9 +1,9 @@
 import { useAppRouter } from '@vagabond-inc/react-boilerplate-md/dist/router/hook/useAppRouter';
 import { useCallback } from 'react';
 import { shallowEqual } from 'react-redux';
-import { ICurrentUserDto } from '../../../dto/current-user/CurrentUserDto';
+import { ICurrentUserDto } from '../../../api/dto/current-user/CurrentUserDto';
+import { AppStorageUtils } from '../../../app/storage/utils/AppStorageUtils';
 import { useAppDispatch, useAppSelector } from '../../../store/Store';
-import { StorageUtils } from '../../../utils/storage/StorageUtils';
 import { IUserDto } from '../../user/user/dto/UserDto';
 import { LoginAction } from '../reducer/AuthReducers';
 import { AuthService } from '../service/AuthService';
@@ -19,7 +19,7 @@ export const useAuth = (apiUrl: string) => {
     (data: IUserDto) => {
       AuthService.login(apiUrl, data.username as string, data.password as string).then((data) => {
         dispatch(LoginAction.setLoginSuccess(data as ICurrentUserDto<IUserDto>));
-        StorageUtils.setCurrentUser(data as ICurrentUserDto<IUserDto>);
+        AppStorageUtils.setCurrentUser(data as ICurrentUserDto<IUserDto>);
         navigate(URL_LOGIN_REDIRECT);
       });
     },
@@ -30,7 +30,7 @@ export const useAuth = (apiUrl: string) => {
     (token: string) => {
       AuthService.googleConnect(apiUrl, token).then((data) => {
         dispatch(LoginAction.setLoginSuccess(data as ICurrentUserDto<IUserDto>));
-        StorageUtils.setCurrentUser(data as ICurrentUserDto<IUserDto>);
+        AppStorageUtils.setCurrentUser(data as ICurrentUserDto<IUserDto>);
         navigate(URL_LOGIN_REDIRECT);
       });
     },
@@ -41,7 +41,7 @@ export const useAuth = (apiUrl: string) => {
     (token: string) => {
       AuthService.facebookConnect(apiUrl, token).then((data) => {
         dispatch(LoginAction.setLoginSuccess(data as ICurrentUserDto<IUserDto>));
-        StorageUtils.setCurrentUser(data as ICurrentUserDto<IUserDto>);
+        AppStorageUtils.setCurrentUser(data as ICurrentUserDto<IUserDto>);
         navigate(URL_LOGIN_REDIRECT);
       });
     },

@@ -4,7 +4,7 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { combineReducers } from 'redux';
 import { AuthReducers } from '../module/auth/reducer/AuthReducers';
 import { NewsReducers } from '../module/news/reducer/NewsReducers';
-import { CommonReducers } from '../reducer/common/CommonReducers';
+import { CommonReducers } from './reducer/common/CommonReducers';
 
 const reducers = combineReducers({
   common: CommonReducers,

@@ -1,6 +1,6 @@
 import { ID, JSON } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
-import { IOrderState } from '../../reducer/BaseReducer';
+import { IOrderState } from '../../store/reducer/BaseReducer';
 
 export const ApiService = {
   get: <T>(baseUrl: string, endPoint: string): Promise<T> => {

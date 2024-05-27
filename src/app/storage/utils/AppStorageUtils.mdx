@@ -1,0 +1,19 @@
+import { Meta, Source } from '@storybook/blocks';
+
+<Meta title="utils/AppStorageUtils" />
+
+# AppStorageUtils
+
+<Source code={`
+
+  const { t } = useTranslation();
+  
+  AppStorageUtils.setCurrentUser<UserDto>(data: ICurrentUserDto<U>)
+
+  ListUtils.removeCurrentUser()
+
+  ListUtils.getCurrentUser<UserDto>()
+
+  ListUtils.getJwt()
+
+`} language='javascript' />

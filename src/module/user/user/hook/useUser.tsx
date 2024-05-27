@@ -1,18 +1,18 @@
 import { ID } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
 import { useCallback, useState } from 'react';
 import { shallowEqual } from 'react-redux';
+import { ICurrentUserDto } from '../../../../api/dto/current-user/CurrentUserDto';
 import { useApiService } from '../../../../api/hook/useApiService';
-import { ICurrentUserDto } from '../../../../dto/current-user/CurrentUserDto';
-import { useMessage } from '../../../../hook/message/useMessage';
+import { useAppMessage } from '../../../../app/message/hook/useAppMessage';
+import { AppStorageUtils } from '../../../../app/storage/utils/AppStorageUtils';
 import { useAppSelector } from '../../../../store/Store';
-import { StorageUtils } from '../../../../utils/storage/StorageUtils';
 import { useAuth } from '../../../auth/hook/useAuth';
 import { IUserDto } from '../dto/UserDto';
 import { UserService } from '../service/UserService';
 
 export const useUser = (apiUrl: string) => {
   const { updateLocalStorage } = useAuth(apiUrl);
-  const { setMessage } = useMessage();
+  const { setMessage } = useAppMessage();
   const [user, setUser] = useState<IUserDto>({});
   const userId = useAppSelector((state) => state.auth.user?.user?.id, shallowEqual);
   const { httpPost } = useApiService<IUserDto>(apiUrl);
@@ -29,7 +29,7 @@ export const useUser = (apiUrl: string) => {
 
   const updateLocalUser = useCallback(
     (newUser: IUserDto) => {
-      let user = StorageUtils.getCurrentUser<ICurrentUserDto<IUserDto>>();
+      let user = AppStorageUtils.getCurrentUser<ICurrentUserDto<IUserDto>>();
       if (user?.user) {
         user = {
           ...user,

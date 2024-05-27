@@ -4,8 +4,8 @@ import { IListDto } from '@vagabond-inc/react-boilerplate-md/dist/dto/list/ListD
 import { MdFormSelect } from '@vagabond-inc/react-boilerplate-md/dist/md/component/form/select/MdFormSelect';
 import { ObjectUtils } from '@vagabond-inc/react-boilerplate-md/dist/utils/object/ObjectUtils';
 import { memo, useEffect, useState } from 'react';
+import { IPageableDto } from '../../../../api/dto/pageable/PageableDto';
 import { ApiService } from '../../../../api/service/ApiService';
-import { IPageableDto } from '../../../../dto/pageable/PageableDto';
 import { IFormDto } from '../../../admin/dto/AdminConfDto';
 
 export interface ICustomFormSelectProps extends IFormPropsDto {

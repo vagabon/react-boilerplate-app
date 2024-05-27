@@ -1,6 +1,6 @@
+import { ICurrentUserDto } from '../../../api/dto/current-user/CurrentUserDto';
 import { ApiService } from '../../../api/service/ApiService';
-import { ICurrentUserDto } from '../../../dto/current-user/CurrentUserDto';
-import { StorageUtils } from '../../../utils/storage/StorageUtils';
+import { AppStorageUtils } from '../../../app/storage/utils/AppStorageUtils';
 import { IUserDto } from '../../user/user/dto/UserDto';
 import { ICheckIdentityDto } from '../page/check-identity/dto/CheckIdentityDto';
 
@@ -28,7 +28,7 @@ export const AuthService = {
   },
 
   updateLocalStorage: (data: ICurrentUserDto<IUserDto>) => {
-    StorageUtils.setCurrentUser(data);
+    AppStorageUtils.setCurrentUser(data);
   },
 
   activation: (apiUrl: string, token: string) => {
@@ -56,6 +56,6 @@ export const AuthService = {
   },
 
   logout: () => {
-    StorageUtils.removeCurrentUser();
+    AppStorageUtils.removeCurrentUser();
   },
 };

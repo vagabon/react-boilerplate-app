@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { DefaultState, ReducerCrudState, ReducersActions } from '../../../reducer/BaseReducer';
+import { DefaultState, ReducerCrudState, ReducersActions } from '../../../store/reducer/BaseReducer';
 import { INotificationDto } from '../dto/NotificationDto';
 
 export interface INotificationReducerState extends ReducerCrudState {

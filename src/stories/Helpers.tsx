@@ -5,9 +5,9 @@ import { cloneElement } from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { AppForm } from '../app/form/component/AppForm';
+import { IYupValidators } from '../app/form/utils/AppFormUtils';
 import results from '../jest-test-results.json';
 import store from '../store/Store';
-import { IYupValidators } from '../utils/yup/YupUtils';
 
 export const withProvider = (Story: React.FC) => (
   <Provider store={store}>

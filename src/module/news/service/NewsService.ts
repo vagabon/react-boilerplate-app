@@ -1,9 +1,9 @@
 import { ID } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
 import { UuidUtils } from '@vagabond-inc/react-boilerplate-md/dist/utils/uuid/UuidUtils';
 import { Dispatch } from 'redux';
+import { IPageableDto } from '../../../api/dto/pageable/PageableDto';
 import { ApiService } from '../../../api/service/ApiService';
-import { IPageableDto } from '../../../dto/pageable/PageableDto';
-import { CommonAction } from '../../../reducer/common/CommonReducers';
+import { CommonAction } from '../../../store/reducer/common/CommonReducers';
 import { INewsDto } from '../dto/NewsDto';
 
 export const NewsService = {

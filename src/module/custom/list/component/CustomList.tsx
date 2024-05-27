@@ -11,7 +11,7 @@ import { MdListItemIcon } from '@vagabond-inc/react-boilerplate-md/dist/md/compo
 import { MdListItemText } from '@vagabond-inc/react-boilerplate-md/dist/md/component/list/MdListItemText';
 import React, { Fragment, memo } from 'react';
 import { useAppImage } from '../../../../app/image/hook/useAppImage';
-import { useMessage } from '../../../../hook/message/useMessage';
+import { useAppMessage } from '../../../../app/message/hook/useAppMessage';
 import { CustomModaleConfirm } from '../../modale/component/CustomModaleConfirm';
 import { useCustomList } from '../hook/useCustomList';
 
@@ -59,7 +59,7 @@ export const CustomList: React.FC<ICustomListProps> = memo(
     iconSettings,
     callbackSettings,
   }) => {
-    const { message } = useMessage();
+    const { message } = useAppMessage();
     const { disabled, handleClick, handleClickChecbox, getIconColor, getTextColor } = useCustomList(
       message,
       callback,

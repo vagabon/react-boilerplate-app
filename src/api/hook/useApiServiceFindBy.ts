@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
 import { useCallback, useRef } from 'react';
-import { IPageableDto } from '../../dto/pageable/PageableDto';
+import { IPageableDto } from '../dto/pageable/PageableDto';
 import { ApiService } from '../service/ApiService';
 
 export const useApiServiceFindBy = <T>(apiUrl: string, url: string, champs?: string, max?: number) => {

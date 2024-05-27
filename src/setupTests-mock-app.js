@@ -3,7 +3,7 @@ const mockDatas = [];
 global.mockWithChildren = (name, { children }) => <div data-testid={name}>{children}</div>;
 
 const mocks = {
-  StorageUtils: {
+  AppStorageUtils: {
     getCurrentUser: () => global.currentUser,
     setCurrentUser: jest.fn(),
     validateConsent: () => true,
@@ -22,11 +22,11 @@ const mocks = {
   AppButtonReport: ({ callback }) => <div data-testid='AppButtonReport' onClick={callback} aria-hidden></div>,
   AppContent: (props) => global.mockWithChildren('AppContent', props),
   AppFabAdd: ({ callback }) => <div data-testid='AppFabAdd' onClick={callback} aria-hidden></div>,
-  AppInfiniteScrool: ({ children }) => <div data-testid='AppInfiniteScrool'>{children}</div>,
+  AppInfiniteScroll: ({ children }) => <div data-testid='AppInfiniteScroll'>{children}</div>,
   ShowMessage: () => global.mockWithSimple('ShowMessage'),
   NewsList: (props) => global.mockWithChildren('NewsList', props),
 
-  HasRole: (props) => global.mockWithChildren('HasRole', props),
+  ProfileRole: (props) => global.mockWithChildren('ProfileRole', props),
   AdminRouter: () => <></>,
   AuthRouter: () => <></>,
   NewsRouter: () => <></>,
@@ -80,7 +80,7 @@ const mocks = {
   NewsCard: ({ children }) => <div data-testid='NewsCard'>{children}</div>,
   NewsCardSmall: ({ children }) => <div data-testid='NewsCardSmall'>{children}</div>,
 
-  SuspenceLoader: ({ children }) => <div data-testid='SuspenceLoader'>{children}</div>,
+  AppSuspenceLoader: ({ children }) => <div data-testid='AppSuspenceLoader'>{children}</div>,
 
   ContactPage: ({ children }) => <div data-testid='ContactPage'>{children}</div>,
   ProfilePage: ({ children }) => <div data-testid='ProfilePage'>{children}</div>,
@@ -181,12 +181,12 @@ const mocks = {
       closeModal: jest.fn(),
     };
   },
-  useMessage: () => {
+  useAppMessage: () => {
     return {
       setMessage: jest.fn(),
     };
   },
-  useRole: () => {
+  useProfile: () => {
     return {
       userConnected: global.mockUserConnected,
       hasUserRole: jest.fn(),
@@ -211,7 +211,7 @@ const mocks = {
       reducer: reducers,
     };
   },
-  RoleUtils: {
+  ProfileUtils: {
     hasProfile: () => true,
   },
   Provider: jest.fn(),

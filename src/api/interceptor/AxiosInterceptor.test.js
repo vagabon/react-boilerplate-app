@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { StorageUtils } from '../../utils/storage/StorageUtils';
+import { AppStorageUtils } from '../../app/storage/utils/AppStorageUtils';
 import { AxiosInterceptor } from './AxiosInterceptor';
 
 const store = {
@@ -26,7 +26,7 @@ describe('API INTERCEPTOR', () => {
   });
 
   test('Given axios request When its called with a jwt token Then request is upgrade', () => {
-    jest.spyOn(StorageUtils, 'getJwt').mockReturnValue('token');
+    jest.spyOn(AppStorageUtils, 'getJwt').mockReturnValue('token');
     const config = { headers: { test: 'test' }, url: '/test' };
     const tested = axios.interceptors.request.handlers[0].fulfilled(config);
     expect(tested).toMatchObject(config);
@@ -52,7 +52,7 @@ describe('API INTERCEPTOR', () => {
   });
 
   test('Given axios response When its in error 401 and not retry Then refresh token is called', () => {
-    jest.spyOn(StorageUtils, 'getCurrentUser').mockReturnValue({ jwtRefresh: 'token' });
+    jest.spyOn(AppStorageUtils, 'getCurrentUser').mockReturnValue({ jwtRefresh: 'token' });
     jest.spyOn(axios, 'post').mockImplementation(() =>
       Promise.resolve({
         data: {
@@ -66,7 +66,7 @@ describe('API INTERCEPTOR', () => {
   });
 
   test('Given axios response When its in error 401 and in retry Then refresh token is not called', () => {
-    jest.spyOn(StorageUtils, 'getCurrentUser').mockReturnValue({ jwtRefresh: 'token' });
+    jest.spyOn(AppStorageUtils, 'getCurrentUser').mockReturnValue({ jwtRefresh: 'token' });
     const error = {
       response: { data: { debugMessage: 'debugMessage' } },
       config: { url: '/url', data: [], _retry: true },
@@ -76,14 +76,14 @@ describe('API INTERCEPTOR', () => {
   });
 
   test('Given axios response When its in error 401 and in retry with message Then refresh token is not called', () => {
-    jest.spyOn(StorageUtils, 'getCurrentUser').mockReturnValue({ jwtRefresh: 'token' });
+    jest.spyOn(AppStorageUtils, 'getCurrentUser').mockReturnValue({ jwtRefresh: 'token' });
     const error = { message: 'message', config: { url: '/url', data: [], _retry: true } };
     const tested = axios.interceptors.response.handlers[0].rejected(error);
     expect(tested).not.toBeNull();
   });
 
   test('Given axios response When its in error 401 and in retry without message Then refresh token is not called', () => {
-    jest.spyOn(StorageUtils, 'getCurrentUser').mockReturnValue({ jwtRefresh: 'token' });
+    jest.spyOn(AppStorageUtils, 'getCurrentUser').mockReturnValue({ jwtRefresh: 'token' });
     const error = { config: { url: '/url', data: [], _retry: true } };
     const tested = axios.interceptors.response.handlers[0].rejected(error);
     expect(tested).not.toBeNull();

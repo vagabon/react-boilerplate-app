@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import { shallowEqual } from 'react-redux';
-import { IReducersActionsProps } from '../../../reducer/BaseReducer';
 import { useAppDispatch, useAppSelector } from '../../../store/Store';
+import { IReducersActionsProps } from '../../../store/reducer/BaseReducer';
 import { INewsDto } from '../dto/NewsDto';
 import { NewsService } from '../service/NewsService';
 

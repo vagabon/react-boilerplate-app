@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { AppContent } from '../../../../app/content/component/AppContent';
-import { HasRole } from '../../../../hook/role/HasRole';
 import { IBaseCustomSeoProps } from '../../../custom/seo/component/CustomSeo';
+import { ProfileRole } from '../../../user/profile/component/role/ProfileRole';
 import { INewsRouterProps } from '../../NewsRouter';
 import { NewsList } from '../../component/list/NewsList';
 
@@ -10,9 +10,9 @@ export interface INewsListPageProps extends INewsRouterProps, IBaseCustomSeoProp
 export const NewsListPage: React.FC<INewsListPageProps> = memo(({ endPoint, newsAction, ...rest }) => {
   return (
     <AppContent {...rest} className='no-overflow' seo='SEO:NEWS'>
-      <HasRole roles={[]}>
+      <ProfileRole roles={[]}>
         <NewsList {...rest} endPoint={endPoint} newsAction={newsAction} />
-      </HasRole>
+      </ProfileRole>
     </AppContent>
   );
 });

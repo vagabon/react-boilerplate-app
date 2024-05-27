@@ -1,10 +1,10 @@
 import { IApiDto } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
 import { useCallback, useRef } from 'react';
-import { useMessage } from '../../hook/message/useMessage';
+import { useAppMessage } from '../../app/message/hook/useAppMessage';
 import { ApiCrudService } from '../service/crud/ApiCrudService';
 
 export const useApiServiceCrud = <T extends IApiDto>(apiUrl: string) => {
-  const { setMessage } = useMessage();
+  const { setMessage } = useAppMessage();
   const isLoad = useRef(false);
 
   const createOrUpdate = useCallback(

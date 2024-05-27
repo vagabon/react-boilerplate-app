@@ -1,7 +1,7 @@
 import { IApiDto, JSONObject } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
 import { memo } from 'react';
 import { AppForm } from '../../../../app/form/component/AppForm';
-import { IYupValidators } from '../../../../utils/yup/YupUtils';
+import { IYupValidators } from '../../../../app/form/utils/AppFormUtils';
 import { ICustomModalChildrenType, ICustomModaleChildProps } from './CustomModale';
 import { CustomModaleCard } from './CustomModaleCard';
 

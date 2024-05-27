@@ -2,7 +2,7 @@ import { ID } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
 import { UuidUtils } from '@vagabond-inc/react-boilerplate-md/dist/utils/uuid/UuidUtils';
 import { Dispatch } from 'redux';
 import { ApiService } from '../../../../api/service/ApiService';
-import { CommonAction } from '../../../../reducer/common/CommonReducers';
+import { CommonAction } from '../../../../store/reducer/common/CommonReducers';
 import { IUserDto } from '../dto/UserDto';
 
 const ENDPOINT_USERS = '/user';

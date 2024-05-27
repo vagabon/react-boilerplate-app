@@ -3,7 +3,7 @@ import { MdButton } from '@vagabond-inc/react-boilerplate-md/dist/md/component/b
 import { MdBouttonGroup } from '@vagabond-inc/react-boilerplate-md/dist/md/component/button/group/MdBouttonGroup';
 import { MdCard } from '@vagabond-inc/react-boilerplate-md/dist/md/component/card/MdCard';
 import { lazy, memo, useEffect } from 'react';
-import { SuspenceLoader } from '../../../../suspence/SuspenceLoader';
+import { AppSuspenceLoader } from '../../../suspence/component/AppSuspenceLoader';
 import { useAppChartBar } from '../hook/useAppChartBar';
 
 const BarChart = lazy(() => import('@mui/x-charts').then((module) => ({ default: module.BarChart })));
@@ -33,7 +33,7 @@ export const AppChartBar: React.FC<IAppChartBarProps> = memo(
         <MdBouttonGroup className='button-right'>
           {generateCallback && <MdButton label='GENERATE' callback={generateCallback} />}
         </MdBouttonGroup>
-        {SuspenceLoader(
+        {AppSuspenceLoader(
           <BarChart
             xAxis={[{ data: axis, scaleType: 'band' }]}
             series={series}

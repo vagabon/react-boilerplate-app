@@ -1,7 +1,7 @@
 import { UuidUtils } from '@vagabond-inc/react-boilerplate-md/dist/utils/uuid/UuidUtils';
 import { Dispatch } from 'redux';
 import { ApiService } from '../../../../api/service/ApiService';
-import { CommonAction } from '../../../../reducer/common/CommonReducers';
+import { CommonAction } from '../../../../store/reducer/common/CommonReducers';
 import { IProfileDto } from '../dto/ProfileDto';
 
 export const ProfileService = {

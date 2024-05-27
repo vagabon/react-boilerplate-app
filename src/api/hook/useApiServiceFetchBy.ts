@@ -3,9 +3,9 @@ import { IApiDto, JSONObject } from '@vagabond-inc/react-boilerplate-md/dist/dto
 import { IOrderDto } from '@vagabond-inc/react-boilerplate-md/dist/dto/form/FormDto';
 import { useCallback, useState } from 'react';
 import { shallowEqual } from 'react-redux';
-import { IOrderState, IReducersActionsProps } from '../../reducer/BaseReducer';
-import { deepEqual } from '../../reducer/utils/ReducerUtils';
 import { useAppDispatch, useAppSelector } from '../../store/Store';
+import { IOrderState, IReducersActionsProps } from '../../store/reducer/BaseReducer';
+import { deepEqual } from '../../store/utils/StoreUtils';
 import { useApiServiceFindBy } from './useApiServiceFindBy';
 
 export const useApiServiceFetchBy = <T extends IApiDto>(

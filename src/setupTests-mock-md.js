@@ -208,10 +208,6 @@ const mockBoilerPlateMd = {
     compareId: () => true,
     addOrReplace: () => [{ id: 1 }],
   },
-  StorageUtils: {
-    getCurrentUser: () => global.currentUser,
-    setCurrentUser: jest.fn(),
-  },
   UuidUtils: {
     createUUID: () => 'uuid',
   },

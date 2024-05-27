@@ -42,7 +42,11 @@ jest.mock('notistack', () => ({
     enqueueSnackbar: global.mockEnqueueSnackbar,
   }),
   closeSnackbar: jest.fn(),
-  SnackbarProvider: ({ children }) => <>{children}</>,
+  SnackbarProvider: ({ children, action }) => (
+    <div onClick={() => action(1)} data-testid='SnackbarProvider'>
+      {children}
+    </div>
+  ),
 }));
 
 jest.mock('react-helmet-async', () => ({

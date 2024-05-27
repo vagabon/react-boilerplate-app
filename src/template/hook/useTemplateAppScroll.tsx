@@ -1,7 +1,7 @@
 import { useCallback, useRef } from 'react';
 import { shallowEqual } from 'react-redux';
-import { ScrollsType } from '../../reducer/common/CommonReducers';
 import { useAppSelector } from '../../store/Store';
+import { ScrollsType } from '../../store/reducer/common/CommonReducers';
 
 export const useTemplateAppScroll = () => {
   const scrolls = useAppSelector((state) => state.common.scrolls, shallowEqual);

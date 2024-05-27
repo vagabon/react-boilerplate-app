@@ -1,10 +1,10 @@
 import { IApiDto } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
 import { UuidUtils } from '@vagabond-inc/react-boilerplate-md/dist/utils/uuid/UuidUtils';
 import { Dispatch } from 'redux';
+import { IPageableDto } from '../../../api/dto/pageable/PageableDto';
 import { ApiService } from '../../../api/service/ApiService';
-import { IPageableDto } from '../../../dto/pageable/PageableDto';
-import { IOrderState } from '../../../reducer/BaseReducer';
-import { CommonAction } from '../../../reducer/common/CommonReducers';
+import { IOrderState } from '../../../store/reducer/BaseReducer';
+import { CommonAction } from '../../../store/reducer/common/CommonReducers';
 
 const ENDPOINT_FINDBY = '/findBy';
 const ENDPOINT_FINDBY_ID = '/';

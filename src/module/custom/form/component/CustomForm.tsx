@@ -10,7 +10,7 @@ import { useAppRouter } from '@vagabond-inc/react-boilerplate-md/dist/router/hoo
 import { ObjectUtils } from '@vagabond-inc/react-boilerplate-md/dist/utils/object/ObjectUtils';
 import { Fragment, memo, useCallback } from 'react';
 import { AppForm } from '../../../../app/form/component/AppForm';
-import { IYupValidators } from '../../../../utils/yup/YupUtils';
+import { IYupValidators } from '../../../../app/form/utils/AppFormUtils';
 import { IFormDto } from '../../../admin/dto/AdminConfDto';
 import { useCustomFormUpload } from '../hook/useCustomFormUpload';
 import { CustomFormManyToMany } from './CustomFormManyToMany';
@@ -126,6 +126,7 @@ export const CustomForm: React.FC<ICustomFormProps> = memo(
                   {form.type === 'image' && (
                     <img
                       src={apiUrl + '/file/download?filename=' + formikProps.values?.[form.label as keyof JSONObject]}
+                      alt='DOWNLOAD'
                     />
                   )}
                 </Fragment>

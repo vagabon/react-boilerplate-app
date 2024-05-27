@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { IReducersActionsProps } from '../../reducer/BaseReducer';
+import { IReducersActionsProps } from '../../store/reducer/BaseReducer';
 import { IHeaderDto } from '../../template/dto/HeaderDto';
 import { ICustomChatbotButtonProps } from '../custom/chatbot/component/CustomChatbotButton';
 import { NotFoundPage } from '../not-found/page/NotFoundPage';

@@ -1,9 +1,9 @@
 import { EnhancedStore } from '@reduxjs/toolkit/dist/configureStore';
 import { UuidUtils } from '@vagabond-inc/react-boilerplate-md/dist/utils/uuid/UuidUtils';
 import axios, { AxiosError, AxiosHeaders, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import { AppStorageUtils } from '../../app/storage/utils/AppStorageUtils';
 import { LoginAction } from '../../module/auth/reducer/AuthReducers';
-import { CommonAction } from '../../reducer/common/CommonReducers';
-import { StorageUtils } from '../../utils/storage/StorageUtils';
+import { CommonAction } from '../../store/reducer/common/CommonReducers';
 
 export const AxiosInterceptor = <U>(
   store: EnhancedStore,
@@ -73,7 +73,7 @@ export const AxiosInterceptor = <U>(
           });
           axios.defaults.headers.common['Authorization'] = 'Bearer ' + data.data.jwt;
           store.dispatch(LoginAction.setLoginSuccess(data.data));
-          StorageUtils.setCurrentUser(data.data);
+          AppStorageUtils.setCurrentUser(data.data);
           return axios(originalRequest);
         }
       } else if (error.response && error.response.status === 401) {

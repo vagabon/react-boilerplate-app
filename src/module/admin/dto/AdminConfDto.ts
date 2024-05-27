@@ -1,5 +1,5 @@
 import { ITableDto } from '@vagabond-inc/react-boilerplate-md/dist/md/component/table/MdTable';
-import { IYupValidator } from '../../../utils/yup/YupUtils';
+import { IYupValidator } from '../../../app/form/utils/AppFormUtils';
 
 export interface IManyToManyDto {
   name: string;

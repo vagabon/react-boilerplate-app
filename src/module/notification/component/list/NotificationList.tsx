@@ -1,7 +1,7 @@
 import { IApiDto, ID } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
 import { MdCard } from '@vagabond-inc/react-boilerplate-md/dist/md/component/card/MdCard';
 import { memo, useEffect, useState } from 'react';
-import { AppInfiniteScrollProvider } from '../../../../app/infinite-scroll/component/provider/AppInfiniteScrollProvider';
+import { AppInfiniteScrollProvider } from '../../../../app/scroll/component/infinite/provider/AppInfiniteScrollProvider';
 import { CustomList, ICustomListDto } from '../../../custom/list/component/CustomList';
 import { INotificationDto } from '../../dto/NotificationDto';
 import { NotificationUtils } from '../../utils/NotificationUtils';

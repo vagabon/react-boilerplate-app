@@ -6,11 +6,11 @@ import { memo, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { AppContent } from '../../../../app/content/component/AppContent';
-import { HasRole } from '../../../../hook/role/HasRole';
+import { IYupValidators } from '../../../../app/form/utils/AppFormUtils';
 import { useAppDispatch } from '../../../../store/Store';
 import { IHeaderDto } from '../../../../template/dto/HeaderDto';
-import { IYupValidators } from '../../../../utils/yup/YupUtils';
 import { CustomForm } from '../../../custom/form/component/CustomForm';
+import { ProfileRole } from '../../../user/profile/component/role/ProfileRole';
 import { IAdminTabConfDto, IAdminTabDto } from '../../dto/AdminConfDto';
 import { useAdminConf } from '../../hook/useAdminConf';
 import { useAdminState } from '../../hook/useAdminState';
@@ -79,7 +79,7 @@ export const AdminShowPage: React.FC<IAdminShowPageProps> = memo(({ conf, ...res
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <AppContent {...rest} seo='SEO:ADMIN'>
-        <HasRole roles={['ADMIN']}>
+        <ProfileRole roles={['ADMIN']}>
           <MdCard title={getTitle()}>
             {state && (
               <CustomForm
@@ -93,7 +93,7 @@ export const AdminShowPage: React.FC<IAdminShowPageProps> = memo(({ conf, ...res
               />
             )}
           </MdCard>
-        </HasRole>
+        </ProfileRole>
       </AppContent>
     </LocalizationProvider>
   );

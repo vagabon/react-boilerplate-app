@@ -3,8 +3,8 @@ import { useAppRouter } from '@vagabond-inc/react-boilerplate-md/dist/router/hoo
 import { memo, useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { AppContent } from '../../../../app/content/component/AppContent';
-import { HasRole } from '../../../../hook/role/HasRole';
 import { IHeaderDto } from '../../../../template/dto/HeaderDto';
+import { ProfileRole } from '../../../user/profile/component/role/ProfileRole';
 import { AdminTable } from '../../component/AdminTable';
 import { IAdminTabConfDto } from '../../dto/AdminConfDto';
 
@@ -31,10 +31,10 @@ export const AdminTabPage: React.FC<IAdminTabsPageProps> = memo(({ conf, ...rest
 
   return (
     <AppContent {...rest} className='admin' seo='SEO:ADMIN'>
-      <HasRole roles={['ADMIN']}>
+      <ProfileRole roles={['ADMIN']}>
         {activeTab && <MdTabs value={activeTab} callback={handleChange} tabs={conf.tabs} />}
         {activeTab && <AdminTable {...rest} activePage={activeTab} conf={conf} />}
-      </HasRole>
+      </ProfileRole>
     </AppContent>
   );
 });

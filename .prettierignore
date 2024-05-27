@@ -4,5 +4,3 @@ build/
 .prettierrc.js
 **/*.scss
 **/*.css
-**/*.md*
-**/*.mdx

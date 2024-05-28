@@ -1,6 +1,8 @@
-import { ReactNode, Suspense } from 'react';
+import React, { PropsWithChildren, Suspense } from 'react';
 
-export const AppSuspenceLoader = (component: ReactNode) => {
+export interface IAppSuspenceLoaderProps extends PropsWithChildren {}
+
+export const AppSuspenceLoader: React.FC<IAppSuspenceLoaderProps> = ({ children }) => {
   return (
     <Suspense
       fallback={
@@ -8,7 +10,7 @@ export const AppSuspenceLoader = (component: ReactNode) => {
           <div></div>
         </div>
       }>
-      {component}
+      {children}
     </Suspense>
   );
 };

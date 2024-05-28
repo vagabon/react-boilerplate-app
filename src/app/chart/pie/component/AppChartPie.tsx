@@ -35,7 +35,7 @@ export const AppChartPie: React.FC<IAppChartPieProps> = memo(({ custumList, heig
 
   return (
     <MdCard>
-      {AppSuspenceLoader(
+      <AppSuspenceLoader>
         <PieChart
           series={[
             {
@@ -43,8 +43,8 @@ export const AppChartPie: React.FC<IAppChartPieProps> = memo(({ custumList, heig
             },
           ]}
           height={height ?? 320}
-        />,
-      )}
+        />
+      </AppSuspenceLoader>
     </MdCard>
   );
 });

@@ -32,6 +32,7 @@ export const Language: React.FC<ILanguageProps> = memo(({ show, hidden = true })
       {show && (
         <FormControl size='small' sx={{ margin: '0 !important', padding: '0 !important' }}>
           <Select
+            name='language'
             value={i18n.language}
             onChange={handleChangeLanguage}
             className={(hidden ? 'hidden-responsive ' : '') + 'select-language'}>

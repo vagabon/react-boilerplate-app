@@ -18,7 +18,7 @@ export const AppButtonReport: React.FC<IAppButtonReportProps> = memo(({ emailCon
     const translateBody = t(body, JSON.stringify(data));
     const mailtoLink = `mailto:"${emailContact}"?subject=${translateSubject}&body=${translateBody}`;
 
-    window.location.href = mailtoLink;
+    window.open(mailtoLink);
   };
 
   return <MdButton color='error' label='SIGNALER' callback={handleReport} />;

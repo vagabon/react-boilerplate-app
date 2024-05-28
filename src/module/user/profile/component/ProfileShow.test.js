@@ -7,7 +7,7 @@ describe('ProfileShow', () => {
 
     useAppSelectorSpy.mockImplementation((callback) =>
       callback({
-        auth: { user: { user: mockUser } },
+        auth: { user: { user: mockUser }, isLoggedIn: true },
         common: { history: [], language: 'fr', message: { message: '' } },
       }),
     );

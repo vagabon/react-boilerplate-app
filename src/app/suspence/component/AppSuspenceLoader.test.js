@@ -7,7 +7,11 @@ const ReactComponent = () => {
 
 describe('AppSuspenceLoader', () => {
   test('Give AppSuspenceLoader When component is mount Then loader class name is found', () => {
-    render(<>{AppSuspenceLoader(<ReactComponent />)}</>);
+    render(
+      <AppSuspenceLoader>
+        <ReactComponent />
+      </AppSuspenceLoader>,
+    );
     expect(screen.getByText('TEST')).toBeDefined();
   });
 });

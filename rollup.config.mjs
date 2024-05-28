@@ -10,7 +10,10 @@ import copy from 'rollup-plugin-copy';
 import external from 'rollup-plugin-peer-deps-external';
 import postcss from 'rollup-plugin-postcss';
 import scss from 'rollup-plugin-scss';
+
 const fs = require('fs-extra');
+
+const ReactCompilerConfig = {};
 
 const isDev = process.argv[4] === '--watch';
 
@@ -61,6 +64,10 @@ export default [
         exclude: 'node_modules/**',
         presets: ['@babel/env', '@babel/preset-react'],
         babelHelpers: 'bundled',
+        plugins: [
+          ['babel-plugin-direct-import', { modules: ['@mui/material', '@mui/icons-material'] }],
+          ['babel-plugin-react-compiler', ReactCompilerConfig],
+        ],
       }),
       commonjs(),
       typescript({
@@ -70,9 +77,11 @@ export default [
           declarationDir: 'dist',
         },
       }),
-      postcss(),
-      json(),
       scss(),
+      postcss(),
+      json({
+        compact: true,
+      }),
       !isDev && terser(),
       multiEntry({
         entryFileName: '[name].js',
@@ -84,5 +93,6 @@ export default [
         ],
       }),
     ],
+    external: ['react', 'react-dom'],
   },
 ];

@@ -19,20 +19,6 @@ jest.mock('../../../../app/form/component/AppForm', () => ({
   ),
 }));
 
-jest.mock('react-google-recaptcha', () => ({ ref, ...props }) => {
-  if (ref?.current) {
-    ref.current.getValue = () => {
-      return 'token';
-    };
-  }
-
-  return (
-    <>
-      <input type='checkbox' data-testid='mock-recaptcha' {...props} onClick={props.onChange} ref={ref} />
-    </>
-  );
-});
-
 describe('RegisterPage', () => {
   test('Given RegisterPage when its mount then ', () => {
     jest.spyOn(React, 'useRef').mockImplementation(() => ({

@@ -33,14 +33,14 @@ export const AppChartBar: React.FC<IAppChartBarProps> = memo(
         <MdBouttonGroup className='button-right'>
           {generateCallback && <MdButton label='GENERATE' callback={generateCallback} />}
         </MdBouttonGroup>
-        {AppSuspenceLoader(
+        <AppSuspenceLoader>
           <BarChart
             xAxis={[{ data: axis, scaleType: 'band' }]}
             series={series}
             height={290}
             margin={{ bottom: 30, left: 40, right: 10 }}
-          />,
-        )}
+          />
+        </AppSuspenceLoader>
       </MdCard>
     );
   },

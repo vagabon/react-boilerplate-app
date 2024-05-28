@@ -2,7 +2,9 @@ import { IconClickable } from '@vagabond-inc/react-boilerplate-md/dist/icon/comp
 import { useIcon } from '@vagabond-inc/react-boilerplate-md/dist/icon/hook/useIcon';
 import { MdBadge } from '@vagabond-inc/react-boilerplate-md/dist/md/component/badge/MdBadge';
 import { useAppRouter } from '@vagabond-inc/react-boilerplate-md/dist/router/hook/useAppRouter';
+import { shallowEqual } from 'react-redux';
 import { useNotificationInterval } from '../../../../module/notification/hook/useNotificationInterval';
+import { useAppSelector } from '../../../../store/Store';
 
 export interface IToolbarNotificationProps {
   apiUrl: string;
@@ -12,13 +14,18 @@ export const ToolbarNotification: React.FC<IToolbarNotificationProps> = ({ apiUr
   const { getIcon } = useIcon();
   const { handleNavigate } = useAppRouter();
   const { nbNotification } = useNotificationInterval(apiUrl);
+  const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn, shallowEqual);
 
   return (
-    <IconClickable
-      color='inherit'
-      aria-label={'show ' + nbNotification + ' new notifications'}
-      callback={handleNavigate('/notification')}>
-      <MdBadge badgeContent={nbNotification}>{getIcon('notification', 'inherit')}</MdBadge>
-    </IconClickable>
+    <>
+      {isLoggedIn && (
+        <IconClickable
+          color='inherit'
+          aria-label={'show ' + nbNotification + ' new notifications'}
+          callback={handleNavigate('/notification')}>
+          <MdBadge badgeContent={nbNotification}>{getIcon('notification', 'inherit')}</MdBadge>
+        </IconClickable>
+      )}
+    </>
   );
 };

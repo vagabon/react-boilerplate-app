@@ -23,9 +23,30 @@ export const AdminRouter: React.FC<IAdminRouterProps> = memo(({ ...rest }) => {
   return (
     <Routes>
       <Route>
-        <Route path='/tab/:tab' element={AppSuspenceLoader(<AdminTabsPage {...rest} />)} />
-        <Route path='/update/:page/:id' element={AppSuspenceLoader(<AdminShowPage {...rest} />)} />
-        <Route path='*' element={AppSuspenceLoader(<NotFoundPage {...rest} />)}></Route>
+        <Route
+          path='/tab/:tab'
+          element={
+            <AppSuspenceLoader>
+              <AdminTabsPage {...rest} />
+            </AppSuspenceLoader>
+          }
+        />
+        <Route
+          path='/update/:page/:id'
+          element={
+            <AppSuspenceLoader>
+              <AdminShowPage {...rest} />
+            </AppSuspenceLoader>
+          }
+        />
+        <Route
+          path='*'
+          element={
+            <AppSuspenceLoader>
+              <NotFoundPage {...rest} />
+            </AppSuspenceLoader>
+          }
+        />
       </Route>
     </Routes>
   );

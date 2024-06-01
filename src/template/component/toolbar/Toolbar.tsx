@@ -26,7 +26,7 @@ export interface IToolbarProps {
 export const Toolbar: React.FC<IToolbarProps> = ({ apiUrl, image, title, menu, ...rest }) => {
   return (
     <>
-      <MdToolbar id='header' sx={{ borderBottom: 1, borderColor: 'divider' }}>
+      <MdToolbar id='header' className='max-width' sx={{ borderBottom: 1, borderColor: 'divider' }}>
         {rest.widthDrawer && rest.showOpenDrawer && (
           <IconClickable color='inherit' icon='menu' aria-label='open drawer' callback={rest.callbackDrawer} />
         )}

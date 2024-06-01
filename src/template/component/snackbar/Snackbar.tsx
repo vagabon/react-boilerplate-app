@@ -10,7 +10,7 @@ export const Snackbar: React.FC = memo(() => {
   const messageType = useAppSelector((state) => state.common.message.type, shallowEqual);
   const messageContent = useAppSelector((state) => state.common.message.message, shallowEqual);
   const { enqueueSnackbar } = useSnackbar();
-  const lastMessage = useRef<string>();
+  const lastMessage = useRef<string>('');
 
   useEffect(() => {
     if (messageId !== '' && messageContent !== '' && messageContent !== lastMessage.current) {

@@ -5,8 +5,6 @@ describe('useNotification', () => {
   test('Given useNotification when is mount Then ', async () => {
     const { result } = renderHook(() => useNotification());
 
-    result.current.fetchNotificationUnread();
-
     const callback = jest.fn();
     result.current.updateNotification({}, callback);
 

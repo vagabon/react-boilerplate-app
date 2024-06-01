@@ -27,7 +27,7 @@ export const ForgetPasswordPage: React.FC<IForgetPasswordPageProps> = memo(({ ..
   const handleForgetPassword = useCallback(
     (data: IUserDto) => {
       AuthService.createIdentityToken(rest.apiUrl, data.email as string).then(() => {
-        navigate('/auth/check/identity');
+        navigate?.('/auth/check/identity');
       });
     },
     [rest.apiUrl, navigate],

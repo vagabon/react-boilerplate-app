@@ -27,7 +27,7 @@ export const ProfilePage: React.FC<IProfilePageProps> = memo(({ ...rest }) => {
   }, [fetchById, id]);
 
   if (!currentUser) {
-    navigate('/auth/signin');
+    navigate?.('/auth/signin');
     return <></>;
   }
 

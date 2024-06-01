@@ -35,7 +35,7 @@ export const useCreateNews = (apiUrl: string, endPoint: string, newsAction: IRed
         if (!news.id) {
           dispatch(CommonAction.sliceHistoryOnce());
         }
-        navigate('/' + endPoint + '/update/' + data.id);
+        navigate?.('/' + endPoint + '/update/' + data.id);
       });
     },
     [apiUrl, dispatch, endPoint, navigate, userConnected],

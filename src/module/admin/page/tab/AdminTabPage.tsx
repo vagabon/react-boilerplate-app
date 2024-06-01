@@ -24,7 +24,7 @@ export const AdminTabPage: React.FC<IAdminTabsPageProps> = memo(({ conf, ...rest
   const handleChange = useCallback(
     (newTab: string) => {
       setActiveTab(newTab);
-      navigate('/admin/tab/' + newTab);
+      navigate?.('/admin/tab/' + newTab);
     },
     [navigate],
   );

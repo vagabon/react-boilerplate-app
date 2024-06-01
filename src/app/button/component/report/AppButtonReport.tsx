@@ -1,7 +1,7 @@
 import { JSONObject } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
 import { MdButton } from '@vagabond-inc/react-boilerplate-md/dist/md/component/button/MdButton';
+import { useTranslate } from '@vagabond-inc/react-boilerplate-md/dist/translate/hook/useTranslate';
 import { memo } from 'react';
-import { useTranslation } from 'react-i18next';
 
 export interface IAppButtonReportProps {
   emailContact: string;
@@ -11,11 +11,11 @@ export interface IAppButtonReportProps {
 }
 
 export const AppButtonReport: React.FC<IAppButtonReportProps> = memo(({ emailContact, subject, body, data }) => {
-  const { t } = useTranslation();
+  const { translate } = useTranslate();
 
   const handleReport = () => {
-    const translateSubject = t(subject, JSON.stringify(data));
-    const translateBody = t(body, JSON.stringify(data));
+    const translateSubject = translate(subject, JSON.stringify(data));
+    const translateBody = translate(body, JSON.stringify(data));
     const mailtoLink = `mailto:"${emailContact}"?subject=${translateSubject}&body=${translateBody}`;
 
     window.open(mailtoLink);

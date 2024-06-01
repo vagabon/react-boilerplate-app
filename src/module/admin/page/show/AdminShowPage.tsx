@@ -2,8 +2,8 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { IApiDto, JSONObject } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
 import { MdCard } from '@vagabond-inc/react-boilerplate-md/dist/md/component/card/MdCard';
+import { useTranslate } from '@vagabond-inc/react-boilerplate-md/dist/translate/hook/useTranslate';
 import { memo, useCallback, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { AppContent } from '../../../../app/content/component/AppContent';
 import { IYupValidators } from '../../../../app/form/utils/AppFormUtils';
@@ -22,7 +22,7 @@ export interface IAdminShowPageProps extends IHeaderDto {
 }
 
 export const AdminShowPage: React.FC<IAdminShowPageProps> = memo(({ conf, ...rest }) => {
-  const { t } = useTranslation();
+  const { translate } = useTranslate();
   const dispatch = useAppDispatch();
   const { page = '', id = '-1' } = useParams();
   const { pageConf, formConf } = useAdminConf(page, conf);
@@ -66,15 +66,15 @@ export const AdminShowPage: React.FC<IAdminShowPageProps> = memo(({ conf, ...res
   );
 
   const getTitle = useCallback(() => {
-    let title = t('COMMON:FORM:CREATE');
+    let title = translate('COMMON:FORM:CREATE');
     if (id !== '-1') {
-      title = t('COMMON:FORM:UPDATE');
+      title = translate('COMMON:FORM:UPDATE');
     }
     if (pageConf) {
-      title += t(pageConf.label);
+      title += translate(pageConf.label);
     }
     return title;
-  }, [t, id, pageConf]);
+  }, [translate, id, pageConf]);
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>

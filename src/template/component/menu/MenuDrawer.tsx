@@ -1,14 +1,14 @@
-import { Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
-import ClickAwayListener from '@mui/material/ClickAwayListener';
+import { Box, ClickAwayListener, Drawer, List, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import { useIcon } from '@vagabond-inc/react-boilerplate-md/dist/icon/hook/useIcon';
 import { MdDivider } from '@vagabond-inc/react-boilerplate-md/dist/md/component/divider/MdDivider';
-import { memo, useCallback, useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useTranslate } from '@vagabond-inc/react-boilerplate-md/dist/translate/hook/useTranslate';
+import { memo, useCallback } from 'react';
 import { shallowEqual } from 'react-redux';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ProfileRole } from '../../../module/user/profile/component/role/ProfileRole';
 import { useAppSelector } from '../../../store/Store';
 import { IMenuDto } from '../../dto/menu/MenuDto';
+import { MenuDrawerListItem } from './MenuDrawerListItem';
 
 export interface IDrawerProps {
   drawerWidth: number;
@@ -20,27 +20,15 @@ export interface IDrawerProps {
 
 export const MenuDrawer: React.FC<IDrawerProps> = memo(
   ({ drawerWidth, openDrawer, variantDrawer, menu, callbackClose }) => {
-    const { t } = useTranslation();
+    const { translate } = useTranslate();
     const { getIcon } = useIcon();
-    const location = useLocation();
     const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn, shallowEqual);
-    const currentLocation = useMemo(() => location.pathname, [location]);
 
     const handleClickAway = useCallback(
       (callbackClose?: () => void) => () => {
         callbackClose?.();
       },
       [],
-    );
-
-    const isCurrentLocation = useCallback(
-      (url: string = '/') => {
-        if (url === '/') {
-          return currentLocation === '/';
-        }
-        return currentLocation?.startsWith(url);
-      },
-      [currentLocation],
     );
 
     return (
@@ -64,15 +52,12 @@ export const MenuDrawer: React.FC<IDrawerProps> = memo(
                 <ProfileRole roles={menu.roles} notRoles={menu.notRoles} key={menu.title} showError={false}>
                   {(!menu.notConnected || (menu.notConnected && !isLoggedIn)) && (
                     <>
-                      <ListItem
-                        key={menu.link}
-                        disablePadding
-                        className={isCurrentLocation(menu.base) ? 'selected-secondary' : ''}>
+                      <MenuDrawerListItem key={menu.link} link={menu.base}>
                         <ListItemButton onClick={callbackClose} component={Link} to={menu.link}>
                           {menu.icon && <ListItemIcon>{getIcon(menu.icon, 'secondary')}</ListItemIcon>}
-                          <ListItemText primary={t(menu.title)} className='text-secondary' />
+                          <ListItemText primary={translate(menu.title)} className='text-secondary' />
                         </ListItemButton>
-                      </ListItem>
+                      </MenuDrawerListItem>
                       {menu.childrens && (
                         <List style={{ marginLeft: '14px' }}>
                           {menu.childrens?.map((child) => (
@@ -81,14 +66,12 @@ export const MenuDrawer: React.FC<IDrawerProps> = memo(
                               notRoles={child.notRoles}
                               key={menu.title + '-' + child.title}
                               showError={false}>
-                              <ListItem
-                                disablePadding
-                                className={isCurrentLocation(child.link) ? 'selected-primary' : ''}>
+                              <MenuDrawerListItem link={child.link}>
                                 <ListItemButton onClick={callbackClose} component={Link} to={child.link}>
                                   {menu.icon && <ListItemIcon>{getIcon(child.icon, 'primary')}</ListItemIcon>}
-                                  <ListItemText primary={t(child.title)} className='text-primary' />
+                                  <ListItemText primary={translate(child.title)} className='text-primary' />
                                 </ListItemButton>
-                              </ListItem>
+                              </MenuDrawerListItem>
                             </ProfileRole>
                           ))}
                         </List>

@@ -20,7 +20,7 @@ export const ButtonGoBack: React.FC<IButtonGoBackProps> = ({ onGoBack }) => {
     } else {
       const lastPage: IPathDto = history[history.length - 2];
       dispatch(CommonAction.sliceHistory());
-      navigate(lastPage.link);
+      navigate?.(lastPage.link);
     }
   }, [dispatch, history, navigate, onGoBack]);
 

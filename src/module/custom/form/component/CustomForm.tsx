@@ -32,7 +32,7 @@ export const CustomForm: React.FC<ICustomFormProps> = memo(
     const { handleChangeFile } = useCustomFormUpload(apiUrl, endPoint);
 
     const handleGoBack = useCallback(() => {
-      urlGoBack && navigate(urlGoBack);
+      urlGoBack && navigate?.(urlGoBack);
     }, [navigate, urlGoBack]);
 
     const getTextareaLength = useCallback((type: string) => {

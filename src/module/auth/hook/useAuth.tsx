@@ -20,7 +20,7 @@ export const useAuth = (apiUrl: string) => {
       AuthService.login(apiUrl, data.username as string, data.password as string).then((data) => {
         dispatch(LoginAction.setLoginSuccess(data as ICurrentUserDto<IUserDto>));
         AppStorageUtils.setCurrentUser(data as ICurrentUserDto<IUserDto>);
-        navigate(URL_LOGIN_REDIRECT);
+        navigate?.(URL_LOGIN_REDIRECT);
       });
     },
     [apiUrl, dispatch, navigate],
@@ -31,7 +31,7 @@ export const useAuth = (apiUrl: string) => {
       AuthService.googleConnect(apiUrl, token).then((data) => {
         dispatch(LoginAction.setLoginSuccess(data as ICurrentUserDto<IUserDto>));
         AppStorageUtils.setCurrentUser(data as ICurrentUserDto<IUserDto>);
-        navigate(URL_LOGIN_REDIRECT);
+        navigate?.(URL_LOGIN_REDIRECT);
       });
     },
     [apiUrl, dispatch, navigate],
@@ -42,7 +42,7 @@ export const useAuth = (apiUrl: string) => {
       AuthService.facebookConnect(apiUrl, token).then((data) => {
         dispatch(LoginAction.setLoginSuccess(data as ICurrentUserDto<IUserDto>));
         AppStorageUtils.setCurrentUser(data as ICurrentUserDto<IUserDto>);
-        navigate(URL_LOGIN_REDIRECT);
+        navigate?.(URL_LOGIN_REDIRECT);
       });
     },
     [apiUrl, dispatch, navigate],
@@ -59,7 +59,7 @@ export const useAuth = (apiUrl: string) => {
   const redirectIfLogged = useCallback(
     (url: string = URL_LOGIN_REDIRECT) => {
       if (isLoggedIn) {
-        navigate(url, { replace: true });
+        navigate?.(url, { replace: true });
       }
     },
     [isLoggedIn, navigate],

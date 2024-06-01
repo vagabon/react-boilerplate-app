@@ -8,24 +8,14 @@ import { INotificationDto } from '../dto/NotificationDto';
 import { NotificationAction } from '../reducer/NotificationReducer';
 
 const URI_NOTIFICATION = '/notification/';
-const URI_NOTIFICATION_COUNT = '/notification/count/';
 const URI_NOTIFICATION_READALL = '/notification/readAll/';
 
 export const useNotification = (apiUrl: string) => {
   const dispatch = useAppDispatch();
   const userId = useAppSelector((state) => state.auth.user?.user?.id, shallowEqual);
-  const nbNotification = useAppSelector((state) => state.notification.nbNotification, shallowEqual);
-  const { httpGet } = useApiService(apiUrl);
   const { httpPut } = useApiService(apiUrl);
   const { open, openModal, closeModal } = useModal();
   const [notification, setNotification] = useState<INotificationDto>({});
-
-  const fetchNotificationUnread = useCallback(() => {
-    userId &&
-      httpGet(URI_NOTIFICATION_COUNT + userId, (data) => {
-        dispatch(NotificationAction.setNbNotification(data as number));
-      });
-  }, [httpGet, dispatch, userId]);
 
   const updateNotification = useCallback(
     (notification: INotificationDto, callback: () => void) => {
@@ -83,8 +73,6 @@ export const useNotification = (apiUrl: string) => {
   );
 
   return {
-    nbNotification,
-    fetchNotificationUnread,
     updateNotification,
     handleReadAll,
     handleClick,

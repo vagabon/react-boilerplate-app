@@ -188,6 +188,11 @@ const mockBoilerPlateMd = {
     switchTheme: jest.fn(() => {}),
   }),
 
+  RouterProvider: (props) => mockWithChildren('RouterProvider', props),
+  useTranslate: () => ({
+    translate: mockT,
+  }),
+
   DateUtils: {
     format: (data, format) => data,
     showEndDate: () => ({ days: 1, hours: 2, minutes: 3 }),

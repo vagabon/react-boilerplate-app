@@ -1,12 +1,10 @@
 import { UuidUtils } from '@vagabond-inc/react-boilerplate-md/dist/utils/uuid/UuidUtils';
 import { useCallback } from 'react';
-import { shallowEqual } from 'react-redux';
-import { useAppDispatch, useAppSelector } from '../../../store/Store';
+import { useAppDispatch } from '../../../store/Store';
 import { CommonAction } from '../../../store/reducer/common/CommonReducers';
 
 export const useAppMessage = () => {
   const dispatch = useAppDispatch();
-  const message = useAppSelector((state) => state.common.message, shallowEqual);
 
   const setMessage = useCallback(
     (message: string, type: 'success' | 'error' = 'error') => {
@@ -20,5 +18,5 @@ export const useAppMessage = () => {
     dispatch(CommonAction.clearMessage());
   }, [dispatch]);
 
-  return { message, setMessage, clearMessage };
+  return { setMessage, clearMessage };
 };

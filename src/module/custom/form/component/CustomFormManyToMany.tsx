@@ -5,9 +5,10 @@ import { MdChip } from '@vagabond-inc/react-boilerplate-md/dist/md/component/chi
 import { MdFormError } from '@vagabond-inc/react-boilerplate-md/dist/md/component/form/MdFormError';
 import { MdTypo } from '@vagabond-inc/react-boilerplate-md/dist/md/component/typo/MdTypo';
 import { useFormError } from '@vagabond-inc/react-boilerplate-md/dist/md/hook/useFormError';
+import { useTranslate } from '@vagabond-inc/react-boilerplate-md/dist/translate/hook/useTranslate';
 import { memo, useCallback, useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useAppMessage } from '../../../../app/message/hook/useAppMessage';
+import { shallowEqual } from 'react-redux';
+import { useAppSelector } from '../../../../store/Store';
 import { IFormDto } from '../../../admin/dto/AdminConfDto';
 import { CustomFormModale } from './CustomFormModale';
 
@@ -20,8 +21,8 @@ export interface ICustomFormManyToManyProps extends IFormPropsDto {
 
 export const CustomFormManyToMany: React.FC<ICustomFormManyToManyProps> = memo(
   ({ conf, label, name, apiUrl, ...rest }) => {
-    const { t } = useTranslation();
-    const { message } = useAppMessage();
+    const { translate } = useTranslate();
+    const message = useAppSelector((state) => state.common.message, shallowEqual);
     const [open, setOpen] = useState(false);
     const [datas, setDatas] = useState<IApiDto[]>();
     const { error } = useFormError(name, rest.errors, rest.touched, message?.message);
@@ -69,7 +70,7 @@ export const CustomFormManyToMany: React.FC<ICustomFormManyToManyProps> = memo(
         <div className='flex m2m width100'>
           <div>
             <MdTypo paragraph={true} sx={{ marginLeft: '10px' }}>
-              {t(label)}
+              {translate(label)}
               {validationSchema?.['required' as keyof JSONObject] ? ' *' : ''}
             </MdTypo>
             <div>

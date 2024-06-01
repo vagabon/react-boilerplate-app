@@ -1,6 +1,6 @@
+import { useTranslate } from '@vagabond-inc/react-boilerplate-md/dist/translate/hook/useTranslate';
 import { memo, useCallback, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
 
 export interface IBaseCustomSeoProps {
@@ -16,7 +16,7 @@ export interface ICustomSeoProps extends IBaseCustomSeoProps {
 }
 
 export const CustomSeo: React.FC<ICustomSeoProps> = memo(({ apiUrl, title = '', description, image, type, date }) => {
-  const { t } = useTranslation();
+  const { translate } = useTranslate();
   const location = useLocation();
   const [url, setUrl] = useState<string>();
 
@@ -39,30 +39,30 @@ export const CustomSeo: React.FC<ICustomSeoProps> = memo(({ apiUrl, title = '', 
 
   return (
     <Helmet data-rh='true' ata-react-helmet='true'>
-      <title data-rh='true'>{t(title)}</title>
+      <title data-rh='true'>{translate(title)}</title>
       <link rel='canonical' href={url} />
-      <meta name='description' content={t(description)} data-rh='true' />
+      <meta name='description' content={translate(description)} data-rh='true' />
       <meta property='og:type' content={type ?? 'webapp'} />
-      <meta property='og:title' content={t(title)} />
+      <meta property='og:title' content={translate(title)} />
       {image && <meta property='og:image' content={getImage(image)} />}
-      <meta property='og:description' content={t(description)} />
+      <meta property='og:description' content={translate(description)} />
       <meta name='twitter:creator' content={'@VagabondDev'} />
       <meta name='twitter:card' content={type ?? 'webapp'} />
-      <meta name='twitter:title' content={t(title)} />
-      <meta name='twitter:description' content={t(description)} />
+      <meta name='twitter:title' content={translate(title)} />
+      <meta name='twitter:description' content={translate(description)} />
       <script type='application/ld+json'>
         {JSON.stringify({
           '@context': 'https://schema.org/',
           '@type': 'WebSite',
           url: { url },
-          name: { title: t(title) },
+          name: { title: translate(title) },
           image: image ? [getImage(image)] : [],
           author: {
             '@type': 'Organization',
             name: 'Vagabond',
           },
           datePublished: { date: date?.toLocaleString() ?? new Date() },
-          description: { description: t(description) },
+          description: { description: translate(description) },
           keywords: 'vagabond,blog,react,quarkus',
         })}
       </script>

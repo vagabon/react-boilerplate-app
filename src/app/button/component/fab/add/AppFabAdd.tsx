@@ -17,7 +17,7 @@ export const AppFabAdd: React.FC<IAppFabAddProps> = memo(({ ...rest }) => {
 
   const doCreate = useCallback(
     (callback?: () => void) => () => {
-      rest.urlAdd && navigate(rest.urlAdd);
+      rest.urlAdd && navigate?.(rest.urlAdd);
       callback?.();
     },
     [rest.urlAdd, navigate],

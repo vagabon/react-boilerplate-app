@@ -10,6 +10,7 @@
 .drawer-width { min-width: 240px !important; }
 .drawer-height { height: 46px !important; }
 
+
 #header {
   gap: 5px;
   .select-language {
@@ -94,6 +95,7 @@ $maxWidth: 1000px;
   .MuiListItem-root:not(.no-animate):hover { transform: scale(1.01); }
 }
 .MuiMenu-list { padding-top: 8px !important; padding-bottom: 8px !important; }
+.MuiMenuItem-root { max-height: 35px !important; }
 .MuiDivider-root { margin: 10px 0px; list-style: none; }
 
 .MuiCardContent-root { overflow: auto; padding: 5px !important; }

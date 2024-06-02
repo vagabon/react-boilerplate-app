@@ -88,9 +88,11 @@ export const ToolbarDropdown: React.FC<IToolbarDropdownProps> = memo(({ apiUrl, 
               <MdMenuItem className='justify-center gap4' onClick={goToProfile}>
                 {getIcon('avatar')} Profile
               </MdMenuItem>
-              <MdMenuItem className='justify-center gap4' onClick={goToProfile}>
-                {reactHeader}
-              </MdMenuItem>
+              {reactHeader && (
+                <MdMenuItem className='justify-center gap4' onClick={goToProfile}>
+                  {reactHeader}
+                </MdMenuItem>
+              )}
               <MdDivider />
             </>
           )}

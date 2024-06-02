@@ -7,10 +7,9 @@ import { useTranslation } from 'react-i18next';
 export interface ILanguageProps {
   fullWidth?: boolean;
   show?: boolean;
-  hidden?: boolean;
 }
 
-export const Language: React.FC<ILanguageProps> = memo(({ fullWidth = false, show, hidden = true }) => {
+export const Language: React.FC<ILanguageProps> = memo(({ fullWidth = false, show = true }) => {
   const { i18n } = useTranslation();
 
   useEffect(() => {
@@ -36,7 +35,7 @@ export const Language: React.FC<ILanguageProps> = memo(({ fullWidth = false, sho
           name='langugage'
           values={{ langugage: i18n.language }}
           callBack={handleChangeLanguage}
-          className={(hidden ? 'hidden-responsive ' : '') + 'select-language'}
+          className={'select-language'}
           list={
             [
               { id: 'fr', libelle: 'fr' },

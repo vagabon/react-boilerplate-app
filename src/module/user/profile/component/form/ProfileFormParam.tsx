@@ -22,7 +22,7 @@ export const ProfileFormParam: React.FC<IProfileFormParamProps> = memo(() => {
         <b>
           <Translate i18nKey='AUTH:FIELDS.LANGUAGE' />
         </b>
-        <Language show hidden={false} />
+        <Language show />
       </div>
     </>
   );

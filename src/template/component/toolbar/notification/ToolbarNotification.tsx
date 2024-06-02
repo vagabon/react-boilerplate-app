@@ -25,7 +25,6 @@ export const ToolbarNotification: React.FC<IToolbarNotificationProps> = ({ apiUr
     <>
       {isLoggedIn && (
         <IconClickable
-          color='inherit'
           aria-label={'show ' + nbNotification + ' new notifications'}
           callback={handleNavigate('/notification')}>
           <MdBadge badgeContent={nbNotification}>{getIcon('notification', 'inherit')}</MdBadge>

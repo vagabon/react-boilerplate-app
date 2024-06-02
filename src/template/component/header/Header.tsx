@@ -12,6 +12,7 @@ export interface IHeaderProps extends IHeaderDto {
   showLanguage: boolean;
   showNotification?: boolean;
   reactHeader?: ReactNode;
+  reactHeaderButton?: ReactNode;
 }
 
 export const Header: React.FC<IHeaderProps> = memo(({ menu, widthDrawer, ...rest }) => {
@@ -28,6 +29,7 @@ export const Header: React.FC<IHeaderProps> = memo(({ menu, widthDrawer, ...rest
           showLanguage={rest.showLanguage}
           widthDrawer={widthDrawer}
           reactHeader={rest.reactHeader}
+          reactHeaderButton={rest.reactHeaderButton}
         />
       </MdAppBar>
       {widthDrawer && <div className='drawer-height'></div>}

@@ -8,7 +8,6 @@ export const ToolbarTheme: React.FC = memo(() => {
   return (
     <IconClickable
       color='inherit'
-      className='hidden-responsive'
       icon={themeContext?.mode === 'dark' ? 'sun' : 'moon'}
       callback={themeContext?.switchTheme(themeContext?.mode)}
     />

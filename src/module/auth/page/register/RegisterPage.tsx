@@ -91,7 +91,7 @@ export const RegisterPage: React.FC<IRegisterPageProps> = memo(
                   <MdInputText label='AUTH:FIELDS.PASSWORD' name='password' type='password' {...formikProps} />
                   <MdInputText label='AUTH:FIELDS.PASSWORD_CONFIRM' name='password2' type='password' {...formikProps} />
                   <MdFormSwitch label='AUTH:FIELDS.ACCEPT_TERMS' name='accept' {...formikProps} />
-                  <div className='flex margin-top15 align-self-end'>
+                  <div className='flex margin-top15 align-end'>
                     <ReCAPTCHA sitekey={googleCaptchaId} ref={captchaRef} theme={mode === 'dark' ? 'dark' : 'light'} />
                   </div>
                 </>

@@ -6,7 +6,6 @@ import { MdList } from '@vagabond-inc/react-boilerplate-md/dist/md/component/lis
 import { MdListItemButton } from '@vagabond-inc/react-boilerplate-md/dist/md/component/list/MdListItemButton';
 import { MdListItemIcon } from '@vagabond-inc/react-boilerplate-md/dist/md/component/list/MdListItemIcon';
 import { MdListItemText } from '@vagabond-inc/react-boilerplate-md/dist/md/component/list/MdListItemText';
-import { useTranslate } from '@vagabond-inc/react-boilerplate-md/dist/translate/hook/useTranslate';
 import { memo } from 'react';
 import { shallowEqual } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -26,7 +25,6 @@ export const MenuDrawer: React.FC<IDrawerProps> = memo(({ drawerWidth, menu }) =
   const variant = useAppSelector((state) => state.common.drawer.variant, shallowEqual);
   const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn, shallowEqual);
   const { handleSwitchDrawer } = useTemplateDrawer();
-  const { translate } = useTranslate();
   const { getIcon } = useIcon();
 
   return (
@@ -51,7 +49,7 @@ export const MenuDrawer: React.FC<IDrawerProps> = memo(({ drawerWidth, menu }) =
                       {menu.icon && (
                         <MdListItemIcon className='text-black'>{getIcon(menu.icon, 'inherit')} </MdListItemIcon>
                       )}
-                      <MdListItemText primary={translate(menu.title)} className='text-black font-weight-450' />
+                      <MdListItemText content={menu.title} className='text-black font-weight-450' />
                     </MdListItemButton>
                   </MenuDrawerListItem>
                   {menu.childrens && (
@@ -69,7 +67,7 @@ export const MenuDrawer: React.FC<IDrawerProps> = memo(({ drawerWidth, menu }) =
                               component={Link}
                               to={child.link}>
                               {menu.icon && <MdListItemIcon>{getIcon(child.icon, 'inherit')}</MdListItemIcon>}
-                              <MdListItemText primary={translate(child.title)} className='' />
+                              <MdListItemText content={child.title} className='' />
                             </MdListItemButton>
                           </MenuDrawerListItem>
                         </ProfileRole>

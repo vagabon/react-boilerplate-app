@@ -1,5 +1,5 @@
 import { MdBouttonGroup } from '@vagabond-inc/react-boilerplate-md/dist/md/component/button/group/MdBouttonGroup';
-import { MdMenuItem } from '@vagabond-inc/react-boilerplate-md/dist/md/component/menu/item/MdMenuItem';
+import { MdMenuProviderItem } from '@vagabond-inc/react-boilerplate-md/dist/md/component/menu/provider/item/MdMenuProviderItem';
 import { MdToolbar } from '@vagabond-inc/react-boilerplate-md/dist/md/component/toolbar/MdToolbar';
 import { useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
@@ -25,7 +25,7 @@ export const Menu: React.FC<IMenuProps> = ({ menu }) => {
       <MdBouttonGroup variant='text' size='large'>
         {menu?.map((menu) => (
           <ProfileRole roles={menu.roles} key={menu.title} showError={false}>
-            <MdMenuItem
+            <MdMenuProviderItem
               name={menu.title}
               url={menu.link}
               childrens={menu.childrens}

@@ -16,7 +16,7 @@ export const MenuDrawerButton: React.FC<IMenuDrawerButtonProps> = memo(({ widthD
   return (
     <>
       {widthDrawer && !force && (
-        <IconClickable color='inherit' icon='menu' aria-label='open drawer' callback={handleSwitchDrawer(open)} />
+        <IconClickable color='default' icon='menu' aria-label='open drawer' callback={handleSwitchDrawer(open)} />
       )}
     </>
   );

@@ -1,7 +1,7 @@
 import { IApiDto } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
 import { useIcon } from '@vagabond-inc/react-boilerplate-md/dist/icon/hook/useIcon';
 import { MdButton } from '@vagabond-inc/react-boilerplate-md/dist/md/component/button/MdButton';
-import { MdMenu } from '@vagabond-inc/react-boilerplate-md/dist/md/component/menu/MdMenu';
+import { MdMenuProvider } from '@vagabond-inc/react-boilerplate-md/dist/md/component/menu/provider/MdMenuProvider';
 import { useCallback } from 'react';
 import { useChatbot } from '../hook/useChatbot';
 
@@ -42,7 +42,7 @@ export const CustomChatbotButton: React.FC<ICustomChatbotButtonProps> = ({ integ
   return (
     <>
       {(integrations?.length ?? 0) > 0 && (
-        <MdMenu
+        <MdMenuProvider
           className='button-icon'
           variant='text'
           title={<>{getIcon('toy', 'inherit')}</>}

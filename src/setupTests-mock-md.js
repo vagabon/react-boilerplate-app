@@ -122,14 +122,16 @@ const mockBoilerPlateMd = {
       {content}
     </div>
   ),
-  MdMenu: ({ elements }) => (
-    <div data-testid='MdMenu'>
+  MdMenuProvider: ({ elements }) => (
+    <div data-testid='MdMenuProvider'>
       {elements.map((element) => (
         <div>{element.element()}</div>
       ))}
     </div>
   ),
+  MdMenu: ({ children }) => <div data-testid='MdMenu'>{children}</div>,
   MdMenuItem: (props) => mockWithChildren('MdMenuItem', props),
+  MdMenuProviderItem: (props) => mockWithChildren('MdMenuProviderItem', props),
   MdSearchBar: ({ callback }) => <div data-testid='MdSearchBar' onClick={callback}></div>,
   MdSnackbar: (props) => mockWithChildren('MdSnackbar', props),
   MdSkeleton: (props) => mockWithChildren('MdSkeleton', props),
@@ -148,6 +150,7 @@ const mockBoilerPlateMd = {
 
   MdTooltip: (props) => mockWithChildren('MdTooltip', props),
 
+  useMenu: () => ({ anchorEl: null, open: false, handleClick: jest.fn(), handleClose: jest.fn() }),
   useFormError: () => ({ error: '' }),
   useAppTranslate: () => ({
     t: mockT,

@@ -11,6 +11,7 @@ import { CookieConsents } from '../../cookie/CookieConsents';
 import { Footer, IFoorterProps } from '../../footer/Footer';
 import { Header } from '../../header/Header';
 import { MenuDrawer } from '../../menu/drawer/MenuDrawer';
+import { MenuDrawerResize } from '../../menu/drawer/MenuDrawerResize';
 import { AppTheme } from '../AppTheme';
 
 export interface IAppThemeProviderProps extends IHeaderDto, IFoorterProps, PropsWithChildren {
@@ -21,6 +22,7 @@ export interface IAppThemeProviderProps extends IHeaderDto, IFoorterProps, Props
   showLanguage?: boolean;
   widthDrawer?: boolean;
   reactHeader?: ReactNode;
+  reactHeaderButton?: ReactNode;
   iframeChatbotUrl?: string;
 }
 
@@ -33,6 +35,7 @@ export const AppThemeProvider: React.FC<IAppThemeProviderProps> = memo(
     showLanguage = false,
     widthDrawer = true,
     reactHeader,
+    reactHeaderButton,
     children,
     ...rest
   }) => {
@@ -41,12 +44,14 @@ export const AppThemeProvider: React.FC<IAppThemeProviderProps> = memo(
     return (
       <AppTheme palette={palette}>
         <>
+          <MenuDrawerResize />
           <Header
             menu={menu}
             widthDrawer={widthDrawer}
             showNotification={showNotification}
             showLanguage={showLanguage}
             reactHeader={reactHeader}
+            reactHeaderButton={reactHeaderButton}
             {...rest}
           />
           <div className='flex flex-row flex1 overflow-hidden'>

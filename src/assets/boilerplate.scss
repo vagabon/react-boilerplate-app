@@ -58,12 +58,11 @@ h5 { font-size: 1.3rem !important; font-weight: 400 !important; }
 .align-self-center { align-self: center; }
 .align-self-end { align-self: flex-end; }
 .ellipsis { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.justify-center { justify-content: center; }
+.justify-center { justify-content: center !important; }
 .justify-end { justify-content: flex-end; }
 .space-between { justify-content: space-between; }
 .relative { position: relative; }
 .margin-10 { margin: 10px 10px;}
-.margin-top { margin-top: 10px; }
 .margin-top10 { margin-top: 10px !important; }
 .margin-top15 { margin-top: 15px !important; }
 .margin-top20 { margin-top: 20px !important; }
@@ -99,8 +98,12 @@ h5 { font-size: 1.3rem !important; font-weight: 400 !important; }
   .width33, .width50 { width: 100% !important; }
 }
 
+.text-underline { text-decoration: underline !important; text-underline-offset: 0.225rem !important; }
+
 .text-black { color: black !important; }
 .mode-dark .text-black { color: white !important; }
+.text-simple { color: rgba(0, 0, 0, 0.7) !important; }
+.mode-dark .text-simple { color: white !important; }
 
 .text-primary { color: var(--mui-palette-primary-main) !important; }
 .mode-dark .text-primary { color: var(--mui-palette-primary-main-dark) !important; }

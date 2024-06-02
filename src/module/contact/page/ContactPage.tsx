@@ -24,7 +24,7 @@ export const ContactPage: React.FC<IContactPageProps> = ({ ...rest }) => {
                 <br />
                 <Trans i18nKey='CONTACT.DESCRIPTION2' />
               </p>
-              <div className='flex-row flex-wrap margin-top gap4'>
+              <div className='flex-row flex-wrap margin-top-10 gap4'>
                 <MdChip label='REACT' color='secondary' />
                 <MdChip label='QUARKUS' color='secondary' />
                 <MdChip label='DOCKER' color='secondary' />

@@ -9,13 +9,7 @@ export const useTemplateDrawer = () => {
 
   const handleSwitchDrawer = useCallback(
     (open: boolean) => () => {
-      dispatch(
-        CommonAction.setDrawer({
-          open: !open,
-          variant: 'temporary',
-          force: false,
-        }),
-      );
+      dispatch(CommonAction.setDrawerOpen(!open));
     },
     [dispatch],
   );

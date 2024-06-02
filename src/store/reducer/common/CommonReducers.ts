@@ -137,6 +137,12 @@ export const CommonReducer = createSlice({
         drawer: action?.payload,
       };
     },
+    setDrawerOpen: (state: IApiState, action: PayloadAction<boolean>) => {
+      return {
+        ...state,
+        drawer: { ...state.drawer, open: action?.payload },
+      };
+    },
   },
 });
 export const CommonAction = { ...CommonReducer.actions };

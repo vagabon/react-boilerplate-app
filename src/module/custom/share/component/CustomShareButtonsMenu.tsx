@@ -1,5 +1,5 @@
 import { useIcon } from '@vagabond-inc/react-boilerplate-md/dist/icon/hook/useIcon';
-import { MdMenu } from '@vagabond-inc/react-boilerplate-md/dist/md/component/menu/MdMenu';
+import { MdMenuProvider } from '@vagabond-inc/react-boilerplate-md/dist/md/component/menu/provider/MdMenuProvider';
 import React, { memo, useCallback } from 'react';
 import { CustomShareButtonsMenuButton } from './CustomShareButtonsMenuButton';
 
@@ -26,7 +26,7 @@ export const CustomShareButtonsMenu: React.FC<ICustomShareButtonsMenuProps> = me
   );
 
   return (
-    <MdMenu
+    <MdMenuProvider
       className='button-icon'
       variant='contained'
       title={<>{getIcon('share', 'inherit')}</>}

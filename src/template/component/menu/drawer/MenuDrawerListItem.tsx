@@ -22,7 +22,9 @@ export const MenuDrawerListItem: React.FC<IMenuDrawerListItemProps> = memo(({ cl
   );
 
   return (
-    <MdListItem disablePadding className={(isCurrentLocation(link) ? 'font-weight-450 ' : '') + className}>
+    <MdListItem
+      disablePadding
+      className={(isCurrentLocation(link) ? 'font-weight-450 text-underline' : '') + className}>
       {children}
     </MdListItem>
   );

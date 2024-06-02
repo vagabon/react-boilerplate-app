@@ -1,12 +1,13 @@
-import { ListItem } from '@mui/material';
+import { MdListItem } from '@vagabond-inc/react-boilerplate-md/dist/md/component/list/MdListItem';
 import { PropsWithChildren, memo, useCallback, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 
 export interface IMenuDrawerListItemProps extends PropsWithChildren {
+  className?: string;
   link?: string;
 }
 
-export const MenuDrawerListItem: React.FC<IMenuDrawerListItemProps> = memo(({ link, children }) => {
+export const MenuDrawerListItem: React.FC<IMenuDrawerListItemProps> = memo(({ className = '', link, children }) => {
   const location = useLocation();
   const currentLocation = useMemo(() => location.pathname, [location.pathname]);
 
@@ -21,8 +22,8 @@ export const MenuDrawerListItem: React.FC<IMenuDrawerListItemProps> = memo(({ li
   );
 
   return (
-    <ListItem disablePadding className={isCurrentLocation(link) ? 'selected-secondary' : ''}>
+    <MdListItem disablePadding className={(isCurrentLocation(link) ? 'font-weight-450 ' : '') + className}>
       {children}
-    </ListItem>
+    </MdListItem>
   );
 });

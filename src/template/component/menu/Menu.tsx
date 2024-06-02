@@ -1,5 +1,5 @@
 import { MdBouttonGroup } from '@vagabond-inc/react-boilerplate-md/dist/md/component/button/group/MdBouttonGroup';
-import { MdMenuItem } from '@vagabond-inc/react-boilerplate-md/dist/md/component/menu/MdMenuItem';
+import { MdMenuItem } from '@vagabond-inc/react-boilerplate-md/dist/md/component/menu/item/MdMenuItem';
 import { MdToolbar } from '@vagabond-inc/react-boilerplate-md/dist/md/component/toolbar/MdToolbar';
 import { useMemo } from 'react';
 import { useLocation } from 'react-router-dom';

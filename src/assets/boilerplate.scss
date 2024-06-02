@@ -5,6 +5,7 @@ a { text-decoration: none !important; }
 button { cursor: pointer; font-weight: bold !important; &:focus { outline: none; } }
 .button-icon { min-width: 27px !important; width: 27px !important; }
 .align-end .button-icon { height: 40px; margin-bottom: 5px !important; }
+.button-contact { margin: -9px 0px; }
 
 .animate { transition: all .1s ease-in-out; }
 .animate:hover { transform: scale(1.03); }
@@ -21,6 +22,10 @@ h2 { font-size: 1.9rem !important; font-weight: 400 !important; }
 h3 { font-size: 1.7em !important; font-weight: 400 !important; }
 h4 { font-size: 1.5rem !important; font-weight: 400 !important; }
 h5 { font-size: 1.3rem !important; font-weight: 400 !important; }
+
+.text-sm { font-size: 0.825rem !important; }
+.text-md { font-size: 1rem !important; }
+.text-xl { font-size: 1.2rem !important; }
 
 @media screen and (max-width: 900px) {
   h1 { font-size: 1.9rem !important; font-weight: 450 !important; }
@@ -42,6 +47,7 @@ h5 { font-size: 1.3rem !important; font-weight: 400 !important; }
 .flex-wrap { flex-wrap: wrap; }
 .flex1 { flex: 1; }
 .border0 { border: 0px !important; }
+.border-radius5 { border-radius: 5px; }
 .gap4 { gap: 4px; }
 .gap5 { gap: 5px; }
 .gap10 { gap: 10px; }
@@ -56,23 +62,45 @@ h5 { font-size: 1.3rem !important; font-weight: 400 !important; }
 .justify-end { justify-content: flex-end; }
 .space-between { justify-content: space-between; }
 .relative { position: relative; }
+.margin-10 { margin: 10px 10px;}
+.margin-top { margin-top: 10px; }
+.margin-top10 { margin-top: 10px !important; }
+.margin-top15 { margin-top: 15px !important; }
+.margin-top20 { margin-top: 20px !important; }
+.margin-top30 { margin-top: 30px !important; }
+.margin-top40 { margin-top: 40px !important; }
+.margin-right-50 { margin-right: 50px !important; }
+.margin-left10 { margin-left: 10px !important; }
+.margin-left15 { margin-left: 15px !important; }
+.margin-bottom5 { margin-bottom: 5px !important; }
+.margin-bottom10 { margin-bottom: 10px !important; }
 .main-container .MuiPaper-root.margin-top30 { margin-top: 30px !important; }
 .overflow { overflow: auto; }
+.overflow-hidden { overflow: hidden; }
 .overflow-x-none { overflow-x: hidden; }
 .no-overflow { overflow: hidden; align-self: normal !important; .MuiCardContent-root { overflow: auto; } }
 .hidden { display: none; }
 .pointer { cursor: pointer !important; }
 .text-center { text-align: center; .MuiTypography-root { text-align: center; } }
-.margin-top { margin-top: 10px; }
+.text-justify { text-align: justify; }
+.user-none { user-select: none; }
 
 .width33 { width: 33%; }
 .width50 { width: 50%; }
 .width100 { width: 100%; }
 .heigth100 { height: 100%; }
+.heigth50px { height: 50px; }
+
+.font-weight-450 span { font-weight: 450 !important; }
+.height-20 { min-height: 20px !important; height: 20px !important; }
+.height-36 { min-height: 36px !important; height: 36px !important; }
 
 @media (max-width: 800px) {
   .width33, .width50 { width: 100% !important; }
 }
+
+.text-black { color: black !important; }
+.mode-dark .text-black { color: white !important; }
 
 .text-primary { color: var(--mui-palette-primary-main) !important; }
 .mode-dark .text-primary { color: var(--mui-palette-primary-main-dark) !important; }
@@ -102,3 +130,26 @@ h5 { font-size: 1.3rem !important; font-weight: 400 !important; }
 .mode-dark .border-error { border-color: var(--mui-palette-error-main-dark) !important; }
 
 .divider-margin { margin: 10px 0px; }
+.margin-05 { margin: 0.5rem; }
+
+.form-control { margin-bottom: 8px; margin-top: 16px; }
+.form-checkbox { padding: 0px 2px; }
+
+/***** TABLE ****/
+
+.MuiTableCell-root { font-size: 1rem !important; }
+table {
+  thead { 
+    th.MuiTableCell-root { 
+      background-color: var(--mui-palette-primary-main) !important;  
+      & > span, & > span > svg { color: #FFFFFF !important; }  
+    }
+  }
+  th { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+}
+.mode-dark thead th.MuiTableCell-root { background-color: var(--mui-palette-primary-main-dark) !important; }
+.admin table { table-layout: fixed; min-width: 837px; }
+
+.table-result { margin: 5px 0px; font-size: 1.2rem; }
+
+.MuiTablePagination-toolbar { justify-content: center; & > div:nth-child(1) { flex: 0 !important; } }

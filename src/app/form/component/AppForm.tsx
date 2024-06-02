@@ -80,7 +80,7 @@ export const AppForm: React.FC<IAppFormProps> = memo(
             </div>
             {(backButton || submitButton || rest.modalConfirm) && (
               <>
-                <div style={{ height: '20px' }}>&nbsp;</div>
+                <div className='height-20'>&nbsp;</div>
                 <div className='width100 flex-row justify-end'>
                   {backButton && <ButtonGoBack onGoBack={rest.onGoBack} />}
                   {submitButton && rest.onSubmit && (

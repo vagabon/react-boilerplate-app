@@ -24,19 +24,19 @@ export const CustomShareButtons: React.FC<ICustomShareButtonsProps> = memo(({ ur
   return (
     <div className='share-buttons'>
       <EmailShareButton url={url}>
-        <EmailIcon size={buttonSize} style={{ borderRadius: '5px' }} />
+        <EmailIcon className='border-radius5' size={buttonSize} />
       </EmailShareButton>
       <FacebookShareButton url={url} hashtag={hashtag}>
-        <FacebookIcon size={buttonSize} style={{ borderRadius: '5px' }} />
+        <FacebookIcon className='border-radius5' size={buttonSize} />
       </FacebookShareButton>
       <TwitterShareButton url={url} hashtags={[hashtag ?? '']}>
-        <TwitterIcon size={buttonSize} style={{ borderRadius: '5px' }} />
+        <TwitterIcon className='border-radius5' size={buttonSize} />
       </TwitterShareButton>
       <LinkedinShareButton url={url}>
-        <LinkedinIcon size={buttonSize} style={{ borderRadius: '5px' }} />
+        <LinkedinIcon className='border-radius5' size={buttonSize} />
       </LinkedinShareButton>
       <RedditShareButton url={url}>
-        <RedditIcon size={buttonSize} style={{ borderRadius: '5px' }} />
+        <RedditIcon className='border-radius5' size={buttonSize} />
       </RedditShareButton>
     </div>
   );

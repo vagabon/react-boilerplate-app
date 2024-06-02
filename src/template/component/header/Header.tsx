@@ -4,21 +4,21 @@ import { IHeaderDto } from '../../dto/HeaderDto';
 import { IMenuDto } from '../../dto/menu/MenuDto';
 import { Toolbar } from '../toolbar/Toolbar';
 import ToolbarProgress from '../toolbar/progress/ToolbarProgress';
+import { ToolbarSpace } from '../toolbar/space/ToolbarSpace';
 
 export interface IHeaderProps extends IHeaderDto {
   menu: IMenuDto[];
-  showNotification?: boolean;
-  reactHeader?: ReactNode;
   widthDrawer: boolean;
   showLanguage: boolean;
-  showOpenDrawer: boolean;
-  callbackDrawer?: () => void;
+  showNotification?: boolean;
+  reactHeader?: ReactNode;
 }
 
 export const Header: React.FC<IHeaderProps> = memo(({ menu, widthDrawer, ...rest }) => {
   return (
     <>
-      <MdAppBar sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+      <MdAppBar className='app-bar' sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+        <ToolbarSpace />
         <Toolbar
           apiUrl={rest.apiUrl}
           image={rest.image}
@@ -27,12 +27,10 @@ export const Header: React.FC<IHeaderProps> = memo(({ menu, widthDrawer, ...rest
           showNotification={rest.showNotification}
           showLanguage={rest.showLanguage}
           widthDrawer={widthDrawer}
-          showOpenDrawer={rest.showOpenDrawer}
-          callbackDrawer={rest.callbackDrawer}
           reactHeader={rest.reactHeader}
         />
       </MdAppBar>
-      {widthDrawer && <div style={{ height: '46px' }}></div>}
+      {widthDrawer && <div className='drawer-height'></div>}
       <ToolbarProgress />
     </>
   );

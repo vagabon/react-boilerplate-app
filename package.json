@@ -1,6 +1,6 @@
 {
   "name": "@vagabond-inc/react-boilerplate-app",
-  "version": "1.2.0d",
+  "version": "1.2.0f",
   "description": "Boilerplate App for React (Auth / Admin / News)",
   "private": false,
   "scripts": {
@@ -39,6 +39,7 @@
     "yup": "~1.4.0"
   },
   "devDependencies": {
+    "@vagabond-inc/react-boilerplate-md": "1.2.0d",
     "@babel/preset-env": "~7.24.6",
     "@babel/preset-react": "~7.24.6",
     "@babel/preset-typescript": "~7.24.6",
@@ -62,7 +63,6 @@
     "@types/react-google-recaptcha": "^2.1.9",
     "@typescript-eslint/eslint-plugin": "~7.11.0",
     "@typescript-eslint/parser": "~7.11.0",
-    "@vagabond-inc/react-boilerplate-md": "1.2.0a",
     "babel-jest": "~29.7.0",
     "babel-plugin-direct-import": "^1.0.0",
     "babel-plugin-react-compiler": "^0.0.0-experimental-938cd9a-20240601",

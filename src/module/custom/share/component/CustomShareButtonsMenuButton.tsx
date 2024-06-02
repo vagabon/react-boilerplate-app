@@ -23,27 +23,27 @@ export const CustomShareButtonsMenuButton: React.FC<{
     <>
       {type === 'email' && (
         <EmailShareButton url={url} onClick={handleClose}>
-          <EmailIcon size={buttonSize} style={{ borderRadius: '5px' }} />
+          <EmailIcon className='border-radius5' size={buttonSize} />
         </EmailShareButton>
       )}
       {type === 'facebook' && (
         <FacebookShareButton url={url} hashtag={hashtag ?? '#'} onClick={handleClose}>
-          <FacebookIcon size={buttonSize} style={{ borderRadius: '5px' }} />
+          <FacebookIcon className='border-radius5' size={buttonSize} />
         </FacebookShareButton>
       )}
       {type === 'twitter' && (
         <TwitterShareButton url={url} hashtags={[hashtag ?? '#']} onClick={handleClose}>
-          <TwitterIcon size={buttonSize} style={{ borderRadius: '5px' }} />
+          <TwitterIcon className='border-radius5' size={buttonSize} />
         </TwitterShareButton>
       )}
       {type === 'linkedin' && (
         <LinkedinShareButton url={url} onClick={handleClose}>
-          <LinkedinIcon size={buttonSize} style={{ borderRadius: '5px' }} />
+          <LinkedinIcon className='border-radius5' size={buttonSize} />
         </LinkedinShareButton>
       )}
       {type === 'reddit' && (
         <RedditShareButton url={url} onClick={handleClose}>
-          <RedditIcon size={buttonSize} style={{ borderRadius: '5px' }} />
+          <RedditIcon className='border-radius5' size={buttonSize} />
         </RedditShareButton>
       )}
     </>

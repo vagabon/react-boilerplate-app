@@ -74,9 +74,7 @@ export const RegisterPage: React.FC<IRegisterPageProps> = memo(
               backButton={false}>
               {(formikProps) => (
                 <>
-                  <div
-                    className='flex-row-responsive gap10 align-center justify-center divider-margin'
-                    style={{ marginBottom: '10px' }}>
+                  <div className='flex-row-responsive gap10 align-center justify-center divider-margin margin-bottom10'>
                     <GoogleOAuthProvider clientId={googleClientId}>
                       <LoginGoogle {...rest} />
                     </GoogleOAuthProvider>
@@ -93,7 +91,7 @@ export const RegisterPage: React.FC<IRegisterPageProps> = memo(
                   <MdInputText label='AUTH:FIELDS.PASSWORD' name='password' type='password' {...formikProps} />
                   <MdInputText label='AUTH:FIELDS.PASSWORD_CONFIRM' name='password2' type='password' {...formikProps} />
                   <MdFormSwitch label='AUTH:FIELDS.ACCEPT_TERMS' name='accept' {...formikProps} />
-                  <div className='flex' style={{ marginTop: '15px', alignItems: 'flex-end' }}>
+                  <div className='flex margin-top15 align-self-end'>
                     <ReCAPTCHA sitekey={googleCaptchaId} ref={captchaRef} theme={mode === 'dark' ? 'dark' : 'light'} />
                   </div>
                 </>

@@ -4,13 +4,13 @@ import { CustomChatbot } from '../../../../module/custom/chatbot/component/Custo
 import { CustomChatbotIntegration } from '../../../../module/custom/chatbot/component/CustomChatbotIntegration';
 import { IHeaderDto } from '../../../dto/HeaderDto';
 import { IMenuDto } from '../../../dto/menu/MenuDto';
+import { DRAWER_WIDTH } from '../../../hook/useTemplateDrawer';
 import { useTemplateFirebaseToken } from '../../../hook/useTemplateFirebaseToken';
-import { useTemplateTheme } from '../../../hook/useTemplateTheme';
 import { Container } from '../../container/Container';
 import { CookieConsents } from '../../cookie/CookieConsents';
 import { Footer, IFoorterProps } from '../../footer/Footer';
 import { Header } from '../../header/Header';
-import { MenuDrawer } from '../../menu/MenuDrawer';
+import { MenuDrawer } from '../../menu/drawer/MenuDrawer';
 import { AppTheme } from '../AppTheme';
 
 export interface IAppThemeProviderProps extends IHeaderDto, IFoorterProps, PropsWithChildren {
@@ -36,7 +36,6 @@ export const AppThemeProvider: React.FC<IAppThemeProviderProps> = memo(
     children,
     ...rest
   }) => {
-    const { drawerWidth, openDrawer, variantDrawer, showOpenDrawer, handleDrawerOpen } = useTemplateTheme();
     useTemplateFirebaseToken(rest.apiUrl, generateToken);
 
     return (
@@ -46,22 +45,12 @@ export const AppThemeProvider: React.FC<IAppThemeProviderProps> = memo(
             menu={menu}
             widthDrawer={widthDrawer}
             showNotification={showNotification}
-            showOpenDrawer={showOpenDrawer}
             showLanguage={showLanguage}
-            callbackDrawer={handleDrawerOpen(openDrawer)}
             reactHeader={reactHeader}
             {...rest}
           />
-          <div className='flex flex-row' style={{ flex: '1', overflow: 'hidden' }}>
-            {widthDrawer && (
-              <MenuDrawer
-                menu={menu}
-                drawerWidth={drawerWidth}
-                openDrawer={openDrawer}
-                variantDrawer={variantDrawer}
-                callbackClose={handleDrawerOpen(true)}
-              />
-            )}
+          <div className='flex flex-row flex1 overflow-hidden'>
+            {widthDrawer && <MenuDrawer menu={menu} drawerWidth={DRAWER_WIDTH} />}
             <Container>{children}</Container>
           </div>
           <CookieConsents />

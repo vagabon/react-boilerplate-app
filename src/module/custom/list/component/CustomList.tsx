@@ -74,7 +74,7 @@ export const CustomList: React.FC<ICustomListProps> = memo(
         {!datas || datas.length === 0 ? (
           <MdListItem className='no-animate' component='div' disablePadding>
             <MdListItem className='no-animate'>
-              <MdListItemText color='flex align-center' label={'NO_RESULT'} />
+              <MdListItemText className='flex align-center' primary={'NO_RESULT'} />
             </MdListItem>
           </MdListItem>
         ) : (
@@ -108,9 +108,9 @@ export const CustomList: React.FC<ICustomListProps> = memo(
                   </MdListItemIcon>
                 )}
                 <MdListItemText
-                  color={getTextColor(data.checked) + ' ' + (data.checked ? 'checked' : 'not-checked')}
-                  label={data.name}
-                  secondary={<>{data.secondary}</>}
+                  className={getTextColor(data.checked) + ' ' + (data.checked ? 'checked' : 'not-checked')}
+                  primary={data.name}
+                  secondary={data.secondary}
                 />
                 {(data.chip || data.chip === 0) && (
                   <MdChip className={chipClassName} label={String(data.chip)} icon={icon} />

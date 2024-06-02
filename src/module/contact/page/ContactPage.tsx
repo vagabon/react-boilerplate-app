@@ -45,11 +45,11 @@ export const ContactPage: React.FC<IContactPageProps> = ({ ...rest }) => {
                   <MdButton
                     startIcon={
                       <img
+                        className='button-contact'
                         src='/images/icons/discord.png'
                         title='logo discord'
                         alt='logo discord'
                         width='20px'
-                        style={{ margin: '-9px 0px' }}
                       />
                     }
                     url='https://discord.gg/TUy5MtVRt7'
@@ -61,11 +61,11 @@ export const ContactPage: React.FC<IContactPageProps> = ({ ...rest }) => {
                     <MdButton
                       startIcon={
                         <img
+                          className='button-contact'
                           src='/images/icons/github.png'
                           title='logo GitHub'
                           alt='logo GitHub'
                           width='20px'
-                          style={{ margin: '-9px 0px' }}
                         />
                       }
                       url='https://github.com/vagabon'
@@ -76,11 +76,11 @@ export const ContactPage: React.FC<IContactPageProps> = ({ ...rest }) => {
                     <MdButton
                       startIcon={
                         <img
+                          className='button-contact'
                           src='/images/icons/x.png'
                           title='logo GitHub'
                           alt='logo GitHub'
                           width='20px'
-                          style={{ margin: '-9px 0px' }}
                         />
                       }
                       url='https://github.com/vagabon'
@@ -92,11 +92,11 @@ export const ContactPage: React.FC<IContactPageProps> = ({ ...rest }) => {
                   <MdButton
                     startIcon={
                       <img
+                        className='button-contact'
                         src='/images/icons/blog.png'
                         title='logo blog vagabond'
                         alt='logo blog vagabond'
                         width='20px'
-                        style={{ margin: '-9px 0px' }}
                       />
                     }
                     url='https://blog.vagabond.synology.me'

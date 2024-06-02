@@ -26,7 +26,7 @@ export const AppFabAdd: React.FC<IAppFabAddProps> = memo(({ ...rest }) => {
   return (
     <div className='max-width relative'>
       {rest.urlAddRole && ProfileUtils.hasProfile(userConnected, rest.urlAddRole) && (
-        <div style={{ position: 'absolute', bottom: '1px', right: '1px', background: 'white', borderRadius: '25px' }}>
+        <div className='button-fab'>
           <MdFab size='medium' color='primary' callback={doCreate(rest.callback)}></MdFab>
         </div>
       )}

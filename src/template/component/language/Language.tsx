@@ -1,13 +1,16 @@
-import { FormControl, MenuItem, Select, SelectChangeEvent } from '@mui/material';
+import { JSONObject } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
+import { IListDto } from '@vagabond-inc/react-boilerplate-md/dist/dto/list/ListDto';
+import { MdFormSelect } from '@vagabond-inc/react-boilerplate-md/dist/md/component/form/select/MdFormSelect';
 import { memo, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 export interface ILanguageProps {
+  fullWidth?: boolean;
   show?: boolean;
   hidden?: boolean;
 }
 
-export const Language: React.FC<ILanguageProps> = memo(({ show, hidden = true }) => {
+export const Language: React.FC<ILanguageProps> = memo(({ fullWidth = false, show, hidden = true }) => {
   const { i18n } = useTranslation();
 
   useEffect(() => {
@@ -20,9 +23,8 @@ export const Language: React.FC<ILanguageProps> = memo(({ show, hidden = true })
   }, [i18n]);
 
   const handleChangeLanguage = useCallback(
-    (event: SelectChangeEvent<string | undefined>) => {
-      const value = event.target.value as string;
-      i18n?.changeLanguage(value);
+    (value?: string | JSONObject) => {
+      i18n?.changeLanguage(String(value));
     },
     [i18n],
   );
@@ -30,16 +32,20 @@ export const Language: React.FC<ILanguageProps> = memo(({ show, hidden = true })
   return (
     <>
       {show && (
-        <FormControl size='small' sx={{ margin: '0 !important', padding: '0 !important' }}>
-          <Select
-            name='language'
-            value={i18n.language}
-            onChange={handleChangeLanguage}
-            className={(hidden ? 'hidden-responsive ' : '') + 'select-language'}>
-            <MenuItem value='fr'>fr</MenuItem>
-            <MenuItem value='en'>en</MenuItem>
-          </Select>
-        </FormControl>
+        <MdFormSelect
+          name='langugage'
+          values={{ langugage: i18n.language }}
+          callBack={handleChangeLanguage}
+          className={(hidden ? 'hidden-responsive ' : '') + 'select-language'}
+          list={
+            [
+              { id: 'fr', libelle: 'fr' },
+              { id: 'en', libelle: 'en' },
+            ] as IListDto[]
+          }
+          defaultValue={false}
+          fullWidth={fullWidth}
+        />
       )}
     </>
   );

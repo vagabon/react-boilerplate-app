@@ -1,4 +1,3 @@
-import { IconClickable } from '@vagabond-inc/react-boilerplate-md/dist/icon/component/IconClickable';
 import { MdLink } from '@vagabond-inc/react-boilerplate-md/dist/md/component/link/MdLink';
 import { MdToolbar } from '@vagabond-inc/react-boilerplate-md/dist/md/component/toolbar/MdToolbar';
 import { MdTypo } from '@vagabond-inc/react-boilerplate-md/dist/md/component/typo/MdTypo';
@@ -6,7 +5,10 @@ import { ReactNode } from 'react';
 import { IMenuDto } from '../../dto/menu/MenuDto';
 import { Language } from '../language/Language';
 import { Menu } from '../menu/Menu';
+import { MenuDrawerButton } from '../menu/drawer/MenuDrawerButton';
+import { MenuDrawerResize } from '../menu/drawer/MenuDrawerResize';
 import ToolbarButtons from './buttons/ToolbarButtons';
+import { ToolbarDropdown } from './dropdown/ToolbarDropdown';
 import { ToolbarNotification } from './notification/ToolbarNotification';
 import { ToolbarTheme } from './theme/ToolbarTheme';
 
@@ -18,8 +20,6 @@ export interface IToolbarProps {
   showNotification?: boolean;
   showLanguage: boolean;
   widthDrawer: boolean;
-  showOpenDrawer: boolean;
-  callbackDrawer?: () => void;
   reactHeader?: ReactNode;
 }
 
@@ -27,14 +27,13 @@ export const Toolbar: React.FC<IToolbarProps> = ({ apiUrl, image, title, menu, .
   return (
     <>
       <MdToolbar id='header' className='max-width' sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        {rest.widthDrawer && rest.showOpenDrawer && (
-          <IconClickable color='inherit' icon='menu' aria-label='open drawer' callback={rest.callbackDrawer} />
-        )}
-        <MdTypo variant='body2' align='left' color='inherit' noWrap={true} sx={{ flex: 1, display: 'flex' }}>
-          <MdLink href='/' className='flex-row gap10' color='inherit' style={{ overflow: 'hidden' }}>
+        <MenuDrawerResize />
+        <MenuDrawerButton widthDrawer={rest.widthDrawer} />
+        <MdTypo className='flex flex1' variant='body2' align='left' color='inherit' noWrap={true}>
+          <MdLink href='/' className='flex-row gap10 overflow-hidden' color='inherit'>
             <img src={image} width={40} title={title} alt={'Logo de ' + title} />
-            <span className='flex justify-center' style={{ fontSize: '1.2rem', overflow: 'hidden' }}>
-              <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{title}</span>
+            <span className='flex justify-center overflow-hidden text-xl'>
+              <span className='ellipsis'>{title}</span>
             </span>
           </MdLink>
         </MdTypo>
@@ -43,6 +42,7 @@ export const Toolbar: React.FC<IToolbarProps> = ({ apiUrl, image, title, menu, .
         <Language show={rest.showLanguage} />
         {rest.reactHeader}
         <ToolbarButtons apiUrl={apiUrl} />
+        <ToolbarDropdown showLanguage={rest.showLanguage} reactHeader={rest.reactHeader} />
       </MdToolbar>
       {!rest.widthDrawer && <Menu menu={menu} />}
     </>

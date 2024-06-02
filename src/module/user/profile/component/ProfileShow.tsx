@@ -57,7 +57,7 @@ export const ProfileShow: React.FC<IProfileShowProps> = ({
           )}
         </>
       }>
-      <div className='flex align-center' style={{ flex: '0.3' }}>
+      <div className='flex align-center'>
         {profileReactChildren?.(user.id)}
         <ProfileAvatar {...rest} user={user} disabled={disabled} />
       </div>

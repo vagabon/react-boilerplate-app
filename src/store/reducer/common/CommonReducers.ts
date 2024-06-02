@@ -18,6 +18,8 @@ export interface IMessageState {
 
 export type ScrollsType = { pathname: string; position: number };
 
+export type DrawerType = { open: boolean; variant: string; force: boolean };
+
 export type ChatbotType = {
   show: boolean;
   selected: string;
@@ -28,6 +30,7 @@ export interface IApiState {
   loading: boolean;
   history: IPathDto[];
   scrolls: ScrollsType[];
+  drawer: DrawerType;
   chatbot: ChatbotType;
 }
 
@@ -39,6 +42,7 @@ const initialState: IApiState = {
   loading: false,
   history: [],
   scrolls: [],
+  drawer: { open: false, variant: 'temporary', force: false },
   chatbot: { show: false, selected: '' },
 };
 
@@ -125,6 +129,12 @@ export const CommonReducer = createSlice({
       return {
         ...state,
         chatbot: action?.payload,
+      };
+    },
+    setDrawer: (state: IApiState, action: PayloadAction<DrawerType>) => {
+      return {
+        ...state,
+        drawer: action?.payload,
       };
     },
   },

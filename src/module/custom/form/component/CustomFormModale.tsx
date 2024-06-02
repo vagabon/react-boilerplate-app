@@ -53,14 +53,14 @@ export const CustomFormModale: React.FC<ICustomFormModaleProps> = memo(({ apiUrl
           {(!datas || datas.length === 0) && (
             <MdListItem component='div' disablePadding>
               <MdListItem>
-                <MdListItemText color='flex justify-center' label='NO_RESULT' />
+                <MdListItemText className='flex justify-center' primary='NO_RESULT' />
               </MdListItem>
             </MdListItem>
           )}
           {datas?.map((data) => (
             <MdListItem key={data.id} component='div' disablePadding>
-              <MdListItemButton callback={rest.handleSelect(data)}>
-                <MdListItemText label={(data['name' as keyof IApiDto] as string) ?? ''} />
+              <MdListItemButton onClick={rest.handleSelect(data)}>
+                <MdListItemText primary={(data['name' as keyof IApiDto] as string) ?? ''} />
               </MdListItemButton>
             </MdListItem>
           ))}

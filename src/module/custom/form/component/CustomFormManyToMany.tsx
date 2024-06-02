@@ -69,7 +69,7 @@ export const CustomFormManyToMany: React.FC<ICustomFormManyToManyProps> = memo(
       <>
         <div className='flex m2m width100'>
           <div>
-            <MdTypo paragraph={true} sx={{ marginLeft: '10px' }}>
+            <MdTypo className='margin-left10' paragraph={true}>
               {translate(label)}
               {validationSchema?.['required' as keyof JSONObject] ? ' *' : ''}
             </MdTypo>

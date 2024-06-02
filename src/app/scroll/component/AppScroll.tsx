@@ -1,11 +1,11 @@
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import ReactGA from 'react-ga4';
 import { useLocation } from 'react-router-dom';
 import { useAppDispatch } from '../../../store/Store';
 import { CommonAction } from '../../../store/reducer/common/CommonReducers';
 import { useTemplateAppScroll } from '../../../template/hook/useTemplateAppScroll';
 
-export const AppScroll = () => {
+export const AppScroll: React.FC = () => {
   const dispatch = useAppDispatch();
   const location = useLocation();
   const lastHash = useRef('');
@@ -38,5 +38,5 @@ export const AppScroll = () => {
     }
   }, [location]);
 
-  return null;
+  return <></>;
 };

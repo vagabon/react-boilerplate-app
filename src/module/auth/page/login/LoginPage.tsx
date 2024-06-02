@@ -38,9 +38,7 @@ export const LoginPage: React.FC<ILoginPageProps> = memo(({ googleClientId, face
           backButton={false}>
           {(formikProps) => (
             <>
-              <div
-                className='flex-row-responsive gap10 align-center justify-center divider-margin'
-                style={{ marginBottom: '10px' }}>
+              <div className='flex-row-responsive gap10 align-center justify-center divider-margin margin-bottom10'>
                 <GoogleOAuthProvider clientId={googleClientId}>
                   <LoginGoogle {...rest} />
                 </GoogleOAuthProvider>

@@ -45,6 +45,7 @@ const mockBoilerPlateMd = {
   MdCardMedia: (props) => mockWithChildren('MdCardMedia', props),
   MdContent: (props) => mockWithChildren('MdContent', props),
   MdContainer: (props) => mockWithChildren('MdContainer', props),
+  MdDrawer: (props) => mockWithChildren('MdDrawer', props),
   MdDivider: (props) => mockWithChildren('MdDivider', props),
   MdFab: ({ callback }) => <div data-testid='MdFab' onClick={callback}></div>,
   MdForm: ({ onSubmit, children }) => (

@@ -16,9 +16,7 @@ export const ProfileRole: React.FC<IProfileRoleProps> = memo(({ showError = true
     <>
       {hasUserRole(rest.roles, rest.notRoles) && rest.children}
       {!hasUserRole(rest.roles, rest.notRoles) && showError && !rest.childrenIfNotAllowed && (
-        <MdCard style={{ marginTop: '20px', textAlign: 'center' }}>
-          Vous n&apos;êtes pas habilité à voir ce contenu.
-        </MdCard>
+        <MdCard className='text-center margin-top20'>Vous n&apos;êtes pas habilité à voir ce contenu.</MdCard>
       )}
       {!hasUserRole(rest.roles, rest.notRoles) && rest.childrenIfNotAllowed && <>{rest.childrenIfNotAllowed}</>}
     </>

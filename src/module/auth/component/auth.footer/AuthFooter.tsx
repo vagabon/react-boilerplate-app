@@ -21,7 +21,7 @@ export const AuthFooter: React.FC<IAuthFooter> = memo(({ ...rest }) => {
   }, []);
 
   return (
-    <MdGrid container style={{ marginTop: '15px' }}>
+    <MdGrid className='margin-top15' container>
       <MdGrid item xs>
         {getLink(rest.left)}
       </MdGrid>

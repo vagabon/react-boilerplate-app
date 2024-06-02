@@ -51,6 +51,7 @@ describe('AppThemeProvider', () => {
           loading: false,
           history: [],
           message: { id: '', message: '', type: 'success' },
+          drawer: { open: false, variant: 'temporary', force: false },
           chatbot: { selected: '', show: true },
         },
         auth: { isLoggedIn: false },

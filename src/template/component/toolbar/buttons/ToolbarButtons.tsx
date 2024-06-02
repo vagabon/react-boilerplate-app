@@ -3,8 +3,6 @@ import { MdAvatar } from '@vagabond-inc/react-boilerplate-md/dist/md/component/a
 import { MdButton } from '@vagabond-inc/react-boilerplate-md/dist/md/component/button/MdButton';
 import { useAppRouter } from '@vagabond-inc/react-boilerplate-md/dist/router/hook/useAppRouter';
 import { useAppImage } from '../../../../app/image/hook/useAppImage';
-import { useAuthLogout } from '../../../../module/auth/hook/logout/useAuthLogout';
-import { CustomModaleConfirm } from '../../../../module/custom/modale/component/CustomModaleConfirm';
 import { useAppSelector } from '../../../../store/Store';
 
 export interface IToolbarButtonsProps {
@@ -17,7 +15,6 @@ const ToolbarButtons: React.FC<IToolbarButtonsProps> = ({ apiUrl }) => {
   const username = useAppSelector((state) => state.auth.user?.user?.username);
   const avatar = useAppSelector((state) => state.auth.user?.user?.avatar);
   const { getImage } = useAppImage(apiUrl);
-  const { handleLogout } = useAuthLogout();
 
   return (
     <>
@@ -27,15 +24,6 @@ const ToolbarButtons: React.FC<IToolbarButtonsProps> = ({ apiUrl }) => {
         <IconClickable callback={handleNavigate('/profile')}>
           <MdAvatar name={username as string} image={getImage(avatar)} />
         </IconClickable>
-      )}
-      {username && (
-        <CustomModaleConfirm
-          classNameButton='hidden-responsive'
-          buttonVariant='contained'
-          buttonColor='error'
-          icon='exit'
-          callback={handleLogout}
-        />
       )}
     </>
   );

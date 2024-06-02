@@ -69,11 +69,11 @@ export const NotificationPage: React.FC<INotificationPageProps> = memo(
           <CustomModale className='modal-card modal-small' open={open} callbackOpen={closeModal}>
             {() => (
               <MdCard title={notification.title} date={notification.creationDate}>
-                <div className='flex flex1' style={{ marginTop: '20px' }}>
+                <div className='flex flex1 margin-top20'>
                   <div className='flex1'>
                     <MdMarkdown content={notification.message} />
                   </div>
-                  <MdButton label='GO_TO' callback={() => handleSelect(notification)} sx={{ alignSelf: 'end' }} />
+                  <MdButton label='GO_TO' className='align-self-end' callback={() => handleSelect(notification)} />
                 </div>
               </MdCard>
             )}

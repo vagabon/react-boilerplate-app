@@ -17,12 +17,12 @@ export const NotFoundPage: React.FC<INotFoundPageProps> = memo(({ ...rest }) => 
       <MdCard title='NOT_FOUND_PAGE'>
         <br />
         <MdAlert severity='error' label='NOT_FOUND_PAGE_DESCRIPTION' />
-        <div style={{ margin: '5px 0px 60px', color: 'primary.main' }}>
+        <div className='contact text-primary'>
           <h5>
             <Translate i18nKey='CONTACT_ME' />
           </h5>
-          <MdTypo color='secondary' sx={{ display: 'flex', justifyContent: 'center' }}>
-            <MdLink href={'mailto:' + rest.email} label={rest.email} sx={{ fontSize: '1.2rem' }} />
+          <MdTypo className='flex justify-center' color='secondary'>
+            <MdLink href={'mailto:' + rest.email} className='text-xl' label={rest.email} />
           </MdTypo>
         </div>
         <div className='flex align-center'>

@@ -60,14 +60,14 @@ export const MenuDrawer: React.FC<IDrawerProps> = memo(({ drawerWidth, menu }) =
                           notRoles={child.notRoles}
                           key={menu.title + '-' + child.title}
                           showError={false}>
-                          <MenuDrawerListItem className='height-36' link={child.link}>
+                          <MenuDrawerListItem level={2} className='height-36' link={child.link}>
                             <MdListItemButton
                               className='height-36'
                               onClick={handleSwitchDrawer(true)}
                               component={Link}
                               to={child.link}>
                               {menu.icon && <MdListItemIcon>{getIcon(child.icon, 'inherit')}</MdListItemIcon>}
-                              <MdListItemText content={child.title} className='' />
+                              <MdListItemText content={child.title} />
                             </MdListItemButton>
                           </MenuDrawerListItem>
                         </ProfileRole>

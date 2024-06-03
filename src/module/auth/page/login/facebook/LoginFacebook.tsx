@@ -5,11 +5,12 @@ import { useAuth } from '../../../hook/useAuth';
 
 export interface ILoginFacebookProps {
   apiUrl: string;
+  urlRedirectLogin: string;
   facebookClientId: string;
 }
 
-export const LoginFacebook: React.FC<ILoginFacebookProps> = memo(({ apiUrl, facebookClientId }) => {
-  const { handleFacebookLogin } = useAuth(apiUrl);
+export const LoginFacebook: React.FC<ILoginFacebookProps> = memo(({ apiUrl, urlRedirectLogin, facebookClientId }) => {
+  const { handleFacebookLogin } = useAuth(apiUrl, urlRedirectLogin);
 
   return (
     <FacebookLogin

@@ -8,6 +8,7 @@ global.mockWithChildren = (name, { children }) => <div data-testid={name}>{child
 const mockT = (value) => value;
 
 const mockBoilerPlateMd = {
+  Icon: ({ icon }) => <div data-testid='Icon'>{icon}</div>,
   IconClickable: ({ callback }) => <div data-testid='IconClickable' onClick={callback}></div>,
 
   useIcon: () => ({
@@ -110,8 +111,11 @@ const mockBoilerPlateMd = {
   MdListItemAvatar: (props) => mockWithChildren('MdListItemAvatar', props),
   MdListItemButton: (props) => mockWithChildren('MdListItemButton', props),
   MdListItemIcon: (props) => mockWithChildren('MdListItemIcon', props),
-  MdListItemText: (props) => mockWithChildren('MdListItemText', props),
-
+  MdListItemText: ({ onClick, children }) => (
+    <div data-testid='MdListItemText' onClick={onClick}>
+      {children}
+    </div>
+  ),
   MdCircularProgress: (props) => mockWithChildren('MdCircularProgress', props),
   MdLinearProgress: (props) => mockWithChildren('MdLinearProgress', props),
 

@@ -61,7 +61,7 @@ h5 { font-size: 1.3rem !important; font-weight: 400 !important; }
 .justify-end { justify-content: flex-end; }
 .space-between { justify-content: space-between; }
 .relative { position: relative; }
-.margin-10 { margin: 10px 10px;}
+.margin-10 { margin: 10px !important; }
 .margin-top10 { margin-top: 10px !important; }
 .margin-top15 { margin-top: 15px !important; }
 .margin-top20 { margin-top: 20px !important; }
@@ -70,6 +70,7 @@ h5 { font-size: 1.3rem !important; font-weight: 400 !important; }
 .margin-right-50 { margin-right: 50px !important; }
 .margin-left10 { margin-left: 10px !important; }
 .margin-left15 { margin-left: 15px !important; }
+.margin-bottom0 { margin-bottom: 0px !important; }
 .margin-bottom5 { margin-bottom: 5px !important; }
 .margin-bottom10 { margin-bottom: 10px !important; }
 .main-container .MuiPaper-root.margin-top30 { margin-top: 30px !important; }
@@ -77,7 +78,7 @@ h5 { font-size: 1.3rem !important; font-weight: 400 !important; }
 .overflow-hidden { overflow: hidden; }
 .overflow-x-none { overflow-x: hidden; }
 .no-overflow { overflow: hidden; align-self: normal !important; .MuiCardContent-root { overflow: auto; } }
-.hidden { display: none; }
+.hidden { display: none !important; }
 .pointer { cursor: pointer !important; }
 .text-center { text-align: center; .MuiTypography-root { text-align: center; } }
 .text-justify { text-align: justify; }
@@ -86,10 +87,11 @@ h5 { font-size: 1.3rem !important; font-weight: 400 !important; }
 .width33 { width: 33%; }
 .width50 { width: 50%; }
 .width100 { width: 100%; }
-.heigth100 { height: 100%; }
+.heigth100 { height: calc(100% - 5px); }
+.heigth20px { height: 20px; }
 .heigth50px { height: 50px; }
 
-.font-weight-450 span { font-weight: 450 !important; }
+.font-weight-450 { &, span { font-weight: 450 !important; } }
 .height-20 { min-height: 20px !important; height: 20px !important; }
 .height-36 { min-height: 36px !important; height: 36px !important; }
 
@@ -99,10 +101,12 @@ h5 { font-size: 1.3rem !important; font-weight: 400 !important; }
 
 .text-underline { text-decoration: underline !important; text-underline-offset: 0.225rem !important; }
 
-.text-black { color: black !important; }
-.mode-dark .text-black { color: white !important; }
-.text-simple { color: rgba(0, 0, 0, 0.7) !important; }
-.mode-dark .text-simple { color: white !important; }
+.text-black { &, * { color: black !important; } }
+.mode-dark .text-black { &, * { color: white !important; } }
+.text-simple { &, * { color: rgba(0, 0, 0, 0.7) !important; } }
+.mode-dark .text-simple { &, * { color: white !important; } }
+.text-grey { &, * { color: rgba(0, 0, 0, 0.7) !important; } }
+.mode-dark .text-grey { &, * { color: rgba(255, 255, 255, 0.7) !important; } }
 
 .text-primary { color: var(--mui-palette-primary-main) !important; }
 .mode-dark .text-primary { color: var(--mui-palette-primary-main-dark) !important; }

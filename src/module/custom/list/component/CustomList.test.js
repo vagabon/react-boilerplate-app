@@ -24,7 +24,7 @@ describe('CustomList', () => {
       />,
     );
     expect(screen.getByTestId('MdList')).toBeDefined();
-    fireEvent.click(screen.getAllByTestId('MdListItem')[0]);
+    fireEvent.click(screen.getAllByTestId('MdListItemText')[0]);
     expect(callback).toBeCalled();
     fireEvent.click(screen.getByTestId('MdFormCheckboxSimple'));
     expect(callbackCheckbox).toBeCalled();

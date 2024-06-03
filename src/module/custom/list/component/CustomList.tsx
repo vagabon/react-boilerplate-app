@@ -9,10 +9,9 @@ import { MdListItem } from '@vagabond-inc/react-boilerplate-md/dist/md/component
 import { MdListItemAvatar } from '@vagabond-inc/react-boilerplate-md/dist/md/component/list/MdListItemAvatar';
 import { MdListItemIcon } from '@vagabond-inc/react-boilerplate-md/dist/md/component/list/MdListItemIcon';
 import { MdListItemText } from '@vagabond-inc/react-boilerplate-md/dist/md/component/list/MdListItemText';
+import clsx from 'clsx';
 import React, { Fragment, memo } from 'react';
-import { shallowEqual } from 'react-redux';
 import { useAppImage } from '../../../../app/image/hook/useAppImage';
-import { useAppSelector } from '../../../../store/Store';
 import { CustomModaleConfirm } from '../../modale/component/CustomModaleConfirm';
 import { useCustomList } from '../hook/useCustomList';
 
@@ -36,7 +35,6 @@ export interface ICustomListProps {
   datas: ICustomListDto[];
   buttonChildren?: (data: IApiDto) => React.JSX.Element;
   callback?: (data: IApiDto) => void;
-  isCheckboxColor?: boolean;
   callbackCheckbox?: (id: ID, checked: boolean) => void;
   labelDelete?: string;
   callbackDelete?: (id: ID) => void;
@@ -53,20 +51,13 @@ export const CustomList: React.FC<ICustomListProps> = memo(
     chipClassName,
     buttonChildren,
     callback,
-    isCheckboxColor,
     callbackCheckbox,
     labelDelete,
     callbackDelete,
     iconSettings,
     callbackSettings,
   }) => {
-    const message = useAppSelector((state) => state.common.message, shallowEqual);
-    const { disabled, handleClick, handleClickChecbox, getIconColor, getTextColor } = useCustomList(
-      message,
-      callback,
-      callbackCheckbox,
-      isCheckboxColor,
-    );
+    const { handleClick, handleClickChecbox } = useCustomList(callback);
     const { getImage } = useAppImage(apiUrl);
 
     return (
@@ -80,11 +71,7 @@ export const CustomList: React.FC<ICustomListProps> = memo(
         ) : (
           datas?.map((data) => (
             <Fragment key={'custom-list-' + data.name + data.entity.id}>
-              <MdListItem
-                component='div'
-                disablePadding
-                callback={handleClick(data.entity)}
-                isCursor={callback !== undefined}>
+              <MdListItem component='div' disablePadding>
                 {data.avatar && (
                   <MdListItemAvatar>
                     <MdAvatar name={data.avatar} image={getImage(data.avatar)} />
@@ -93,24 +80,25 @@ export const CustomList: React.FC<ICustomListProps> = memo(
                 {callbackCheckbox && (
                   <MdListItemIcon>
                     <MdFormCheckboxSimple
+                      color='default'
                       name={'checkbox-' + data.entity.id}
                       edge='start'
                       checked={data.checked ?? false}
                       disableRipple
                       callbackClick={handleClickChecbox(data.entity.id, !data.checked, callbackCheckbox)}
-                      disabled={disabled}
                     />
                   </MdListItemIcon>
                 )}
                 {data.icon && (
-                  <MdListItemIcon>
-                    <IconClickable icon={data.icon} color={getIconColor(data.checked)} disabled={true} />
+                  <MdListItemIcon className={clsx(data.checked && 'text-grey', !data.checked && 'text-black')}>
+                    <IconClickable icon={data.icon} color={'inherit'} disabled={true} />
                   </MdListItemIcon>
                 )}
                 <MdListItemText
-                  className={getTextColor(data.checked) + ' ' + (data.checked ? 'checked' : 'not-checked')}
+                  className={clsx(data.checked ? 'checked' : 'not-checked', 'pointer')}
                   content={data.name}
                   secondary={data.secondary}
+                  onClick={handleClick(data.entity)}
                 />
                 {(data.chip || data.chip === 0) && (
                   <MdChip className={chipClassName} label={String(data.chip)} icon={icon} />
@@ -120,7 +108,7 @@ export const CustomList: React.FC<ICustomListProps> = memo(
                   <MdListItemIcon>
                     <IconClickable
                       icon={iconSettings ?? 'settings'}
-                      color='primary'
+                      color='inherit'
                       callback={() => callbackSettings(data.entity)}
                       disabled={data.disabled}
                     />

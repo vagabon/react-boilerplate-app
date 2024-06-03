@@ -39,7 +39,9 @@ $maxWidth: 1000px;
     flex: 1; 
     & > .max-width { align-items: normal; justify-content: flex-start; flex: 1; }
   }
-  .max-width { max-width: $maxWidth; margin: 0 auto; width: 100%; margin-bottom: 5px; display: flex; flex-direction: column; min-height: calc(100% - 5px); }
+  .max-width { 
+    max-width: $maxWidth; margin: 0 auto; width: 100%; margin-bottom: 5px; display: flex; flex-direction: column; min-height: calc(100% - 5px);
+  }
   .max-width-800 { max-width: 800; }
   .MuiListItemText-root { align-items: flex-start; flex-direction: column; display: flex; p { margin: 0px !important; } }
   .MuiPaper-root { margin: 5px !important; padding: 10px !important;  width: calc(100% - 10px); }
@@ -49,10 +51,11 @@ $maxWidth: 1000px;
   }
   .search-bar-card { padding: 0; .MuiCardContent-root { padding: 0 0.5rem !important; } }
   .search-bar { 
-    margin: 0px !important; padding: 5px; border-radius: 5px; display: flex; flex-direction: row; gap: 4px;
+    margin: 0px !important; padding: 5px; border-radius: 5px; display: flex; flex-direction: row; gap: 4px; align-items: end;
+    .MuiOutlinedInput-notchedOutline, label { border-color: inherit !important; color: inherit !important; }
     & > div { padding: 0px; margin: 0px; } 
-    & > div:nth-child(1) { flex: 1; width: auto !important; }
-    & > div:nth-child(2) { width: auto !important; & > div { height: 40px !important; } }
+    & > div:has(.input-search) { flex: 1; width: auto !important; }
+    & > div:has(.input-order) { width: auto !important; & > div { height: 40px !important; } }
   }
   .MuiPaper-root > .MuiCardContent-root > .search-bar { margin: 0 !important; padding: 0px !important; }
 }
@@ -148,7 +151,7 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
 .mode-dark .MuiAvatar-root { background-color: var(--mui-palette-secondary-main-dark) !important; }
 
 .MuiCardContent-root:last-child { padding-bottom: 5px !important; }
-.MuiCardHeader-action { margin: 0 !important; padding: 0 !important; margin-top: 7px !important; display: flex !important; gap: 5px !important; }
+.MuiCardHeader-action { margin: 0 !important; padding: 0 !important; margin-top: 2px !important; display: flex !important; gap: 5px !important; }
 
 .MuiListItem-root { min-height: 40px; max-height: 80px; }
 .MuiListItem-root.selected-primary {  border-left: 3px solid var(--mui-palette-primary-main) !important; }
@@ -218,9 +221,15 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
 /**** LISTE ***/
 
 .custom-list { 
-  .MuiListItem-root { padding-right: 5px !important; }
+  .MuiListItem-root { padding-right: 5px !important; gap: 4px; }
   .MuiListItemAvatar-root { min-width: 0px; margin: 0px 10px 0px 5px !important; .MuiButtonBase-root { margin: 0; } }
   .MuiListItemIcon-root { margin-right: 0px !important; }
+  .MuiChip-root { 
+    height: 25px; 
+    .MuiChip-label { 
+      font-size: 0.825rem !important; margin-top: 2px !important; padding-left: 10px !important; } 
+      svg { font-size: 1.2rem !important; margin-right: 4px !important; } 
+    }
  }
 
  @media screen and (max-width: 700px) {
@@ -338,7 +347,6 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
 .MuiInputLabel-root { line-height: 1.1em !important; top: -3px !important; }
 .MuiOutlinedInput-root { min-height: 40px !important; }
 .MuiSelect-select { display: flex !important; align-items: center !important; height: 19px !important; }
-//.MuiCardContent-root p { margin: 2px 5px !important; }
 .MuiFormLabel-root { top: -2px !important; }
 .MuiFormLabel-root.MuiInputLabel-shrink { top: 0px !important; }
 input, .MuiSelect-select { padding: 5px 25px 5px 10px !important; }
@@ -502,14 +510,12 @@ textarea { max-height: 250px !important; overflow: auto !important; }
 
 .profile-container {
   margin: 10px 0px 10px !important; display: flex; flex-direction: column; gap: 1rem; background: #3b3e3f; border-radius: 1rem; border-radius: 5px; margin: 8px; padding: 8px;
-  & > div:nth-child(1) { color: var(--mui-palette-secondary-main); font-weight: bold; }
-  .mode-dark & > div:nth-child(1) { color: var(--mui-palette-secondary-main-dark); }
+  & > div:nth-child(1) { font-weight: bold; }
   & > div:nth-child(2) {
     display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
     & > div {
       display: flex; flex-direction: row; align-items: center; gap: 10px; width: calc(50% - 10px); justify-content: space-between;
-      & > span:nth-child(1) { font-weight: bold; color: var(--mui-palette-secondary-main); }
-      .mode-dark & > span:nth-child(1) { color: var(--mui-palette-secondary-main-dark); }
+      & > span:nth-child(1) { font-weight: bold; }
       .MuiButtonBase-root span { font-size: 1.1rem; }
     }
   }
@@ -701,6 +707,7 @@ textarea { max-height: 250px !important; overflow: auto !important; }
 @media (max-width: 600px) {
   .chatbot-fab { width: 35px !important; height: 35px !important; min-height: 35px !important; right: 7px; }
   .chatbot-modale { width: 98%; height: calc(100% - 90px); top: 55px; bottom: 35px; right: 5px; }
+  .MuiButtonBase-root:has(.hidden-responsive) { min-width: 28px !important; width: 28px; .MuiButton-icon { margin-right: -3px !important; } }
 }
 
 .page-404 .contact { margin: 5px 0px 60px; }

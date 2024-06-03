@@ -5,10 +5,11 @@ import { useAuth } from '../../../hook/useAuth';
 
 export interface ILoginGoogleProps {
   apiUrl: string;
+  urlRedirectLogin: string;
 }
 
-export const LoginGoogle: React.FC<ILoginGoogleProps> = memo(({ apiUrl }) => {
-  const { handleGoogleLogin: doGoogleLogin } = useAuth(apiUrl);
+export const LoginGoogle: React.FC<ILoginGoogleProps> = memo(({ apiUrl, urlRedirectLogin }) => {
+  const { handleGoogleLogin: doGoogleLogin } = useAuth(apiUrl, urlRedirectLogin);
 
   const handleGoogleLogin = useGoogleLogin({
     onSuccess: (codeResponse) => {

@@ -8,9 +8,7 @@ import { IUserDto } from '../../user/user/dto/UserDto';
 import { LoginAction } from '../reducer/AuthReducers';
 import { AuthService } from '../service/AuthService';
 
-const URL_LOGIN_REDIRECT = '/profile';
-
-export const useAuth = (apiUrl: string) => {
+export const useAuth = (apiUrl: string, urlRedirectLogin: string = '/profile') => {
   const dispatch = useAppDispatch();
   const { navigate } = useAppRouter();
   const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn, shallowEqual);
@@ -20,10 +18,10 @@ export const useAuth = (apiUrl: string) => {
       AuthService.login(apiUrl, data.username as string, data.password as string).then((data) => {
         dispatch(LoginAction.setLoginSuccess(data as ICurrentUserDto<IUserDto>));
         AppStorageUtils.setCurrentUser(data as ICurrentUserDto<IUserDto>);
-        navigate?.(URL_LOGIN_REDIRECT);
+        navigate?.(urlRedirectLogin);
       });
     },
-    [apiUrl, dispatch, navigate],
+    [apiUrl, urlRedirectLogin, dispatch, navigate],
   );
 
   const handleGoogleLogin = useCallback(
@@ -31,10 +29,10 @@ export const useAuth = (apiUrl: string) => {
       AuthService.googleConnect(apiUrl, token).then((data) => {
         dispatch(LoginAction.setLoginSuccess(data as ICurrentUserDto<IUserDto>));
         AppStorageUtils.setCurrentUser(data as ICurrentUserDto<IUserDto>);
-        navigate?.(URL_LOGIN_REDIRECT);
+        navigate?.(urlRedirectLogin);
       });
     },
-    [apiUrl, dispatch, navigate],
+    [apiUrl, urlRedirectLogin, dispatch, navigate],
   );
 
   const handleFacebookLogin = useCallback(
@@ -42,10 +40,10 @@ export const useAuth = (apiUrl: string) => {
       AuthService.facebookConnect(apiUrl, token).then((data) => {
         dispatch(LoginAction.setLoginSuccess(data as ICurrentUserDto<IUserDto>));
         AppStorageUtils.setCurrentUser(data as ICurrentUserDto<IUserDto>);
-        navigate?.(URL_LOGIN_REDIRECT);
+        navigate?.(urlRedirectLogin);
       });
     },
-    [apiUrl, dispatch, navigate],
+    [apiUrl, urlRedirectLogin, dispatch, navigate],
   );
 
   const updateLocalStorage = useCallback(
@@ -57,12 +55,12 @@ export const useAuth = (apiUrl: string) => {
   );
 
   const redirectIfLogged = useCallback(
-    (url: string = URL_LOGIN_REDIRECT) => {
+    (url: string = urlRedirectLogin) => {
       if (isLoggedIn) {
         navigate?.(url, { replace: true });
       }
     },
-    [isLoggedIn, navigate],
+    [isLoggedIn, urlRedirectLogin, navigate],
   );
 
   return {

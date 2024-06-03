@@ -8,12 +8,14 @@ import { LoginPage } from './page/login/LoginPage';
 import { RegisterPage } from './page/register/RegisterPage';
 
 export interface IAuthRouterProps extends IHeaderDto {
+  urlRedirectLogin: string;
   googleClientId: string;
   facebookClientId: string;
   googleCaptchaId: string;
 }
 
 export const AuthRouter: React.FC<IAuthRouterProps> = ({
+  urlRedirectLogin,
   googleClientId,
   facebookClientId,
   googleCaptchaId,
@@ -24,12 +26,20 @@ export const AuthRouter: React.FC<IAuthRouterProps> = ({
       <Route>
         <Route
           path='/signin'
-          element={<LoginPage googleClientId={googleClientId} facebookClientId={facebookClientId} {...rest} />}
+          element={
+            <LoginPage
+              urlRedirectLogin={urlRedirectLogin}
+              googleClientId={googleClientId}
+              facebookClientId={facebookClientId}
+              {...rest}
+            />
+          }
         />
         <Route
           path='/signup'
           element={
             <RegisterPage
+              urlRedirectLogin={urlRedirectLogin}
               googleClientId={googleClientId}
               facebookClientId={facebookClientId}
               googleCaptchaId={googleCaptchaId}

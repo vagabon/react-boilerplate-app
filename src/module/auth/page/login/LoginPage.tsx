@@ -15,14 +15,14 @@ import LOGIN_SCHEMA from './schema/login.schema.json';
 
 const DEFAULT_VALUES = { username: '', password: '' };
 
-export interface ILoginPageProps {
+export interface ILoginPageProps extends IHeaderDto {
+  urlRedirectLogin: string;
   googleClientId: string;
   facebookClientId: string;
 }
-export interface ILoginPageProps extends IHeaderDto {}
 
 export const LoginPage: React.FC<ILoginPageProps> = memo(({ googleClientId, facebookClientId, ...rest }) => {
-  const { handleLogin, redirectIfLogged } = useAuth(rest.apiUrl);
+  const { handleLogin, redirectIfLogged } = useAuth(rest.apiUrl, rest.urlRedirectLogin);
 
   useEffect(() => {
     redirectIfLogged();

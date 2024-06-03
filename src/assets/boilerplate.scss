@@ -4,7 +4,6 @@ html, body, #root { height: 100%; }
 a { text-decoration: none !important; }
 button { cursor: pointer; font-weight: bold !important; &:focus { outline: none; } }
 .button-icon { min-width: 27px !important; width: 27px !important; }
-.align-end .button-icon { height: 40px; margin-bottom: 5px !important; }
 .button-contact { margin: -9px 0px; }
 
 .animate { transition: all .1s ease-in-out; }

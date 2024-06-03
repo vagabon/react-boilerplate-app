@@ -86,7 +86,7 @@ export const ToolbarDropdown: React.FC<IToolbarDropdownProps> = memo(({ apiUrl, 
           {isLoggedIn && (
             <>
               <MdMenuItem className='justify-center gap4' onClick={goToProfile}>
-                {getIcon('avatar')} Profile
+                {getIcon('avatar')}
               </MdMenuItem>
               {reactHeader && (
                 <MdMenuItem className='justify-center gap4' onClick={goToProfile}>

@@ -10,7 +10,6 @@
 .drawer-width { min-width: 240px !important; }
 .drawer-height { height: 46px !important; }
 
-
 #header {
   gap: 5px;
   .select-language {
@@ -32,14 +31,15 @@ $maxWidth: 1000px;
 .app-bar { display: flex !important; flex-direction: row !important; }
 
 .main-container {
-  display: flex; align-items: flex-start; overflow: auto; width: 100% !important; height: 100% !important; flex: 1; position: relative; 
+  display: flex; align-items: flex-start; width: 100% !important; height: 100% !important; flex: 1;
+  position: relative; overflow: auto; overflow-x: hidden;
   .container { overflow: auto; width: 100%; padding: 5px; }
   .MuiCardHeader-title { font-size: 1.5rem !important; }
   #infinite-container { 
     flex: 1; 
     & > .max-width { align-items: normal; justify-content: flex-start; flex: 1; }
   }
-  .max-width { max-width: $maxWidth; margin: 0 auto; width: 100%; margin-bottom: 5px; display: flex; flex-direction: column; }
+  .max-width { max-width: $maxWidth; margin: 0 auto; width: 100%; margin-bottom: 5px; display: flex; flex-direction: column; height: calc(100% - 5px); }
   .max-width-800 { max-width: 800; }
   .MuiListItemText-root { align-items: flex-start; flex-direction: column; display: flex; p { margin: 0px !important; } }
   .MuiPaper-root { margin: 5px !important; padding: 10px !important;  width: calc(100% - 10px); }
@@ -195,8 +195,9 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
 /**** BUTTON ****/
 
 .input-add { 
-  gap: 5px; align-items: center; 
-  button { min-width: 38px !important; min-height: 38px !important; } 
+  gap: 5px; align-items: center; position: relative;
+  .MuiInputBase-input { margin-right: 30px; }
+  button { min-width: 30px !important; min-height: 30px !important; position: absolute; bottom: 5px; right: 5px; } 
   .MuiFormControl-root { margin-top: 10px !important; }
   .MuiInputBase-root { padding: 8px 10px !important; }
   textarea { max-height: 150px !important; }

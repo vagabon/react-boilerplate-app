@@ -27,7 +27,7 @@ export const Toolbar: React.FC<IToolbarProps> = ({ apiUrl, image, title, menu, .
       <MdToolbar id='header' className='max-width' sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <MenuDrawerButton widthDrawer={rest.widthDrawer} />
         <MdTypo className='flex flex1' variant='body2' align='left' noWrap={true}>
-          <MdLink href='/' className='flex-row gap10 overflow-hidden text-simple font-weight-450'>
+          <MdLink href='/' className='flex-row gap10 overflow-hidden text-black font-weight-450 line-height-15'>
             <img src={image} width={40} title={title} alt={'Logo de ' + title} />
             <span className='flex justify-center overflow-hidden text-xl'>
               <span className='ellipsis'>{title}</span>

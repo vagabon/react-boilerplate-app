@@ -8,7 +8,7 @@
     },
     {
       "name": "sonarqube app",
-      "command": "npm run ci && npx sonar-scanner -Dsonar.login=$SONAR_TOKEN",
+      "command": "npm run ci && npx sonar-scanner -Dsonar.login=$SONAR_TOKEN -Dsonar.host.url=http://localhost:9000",
       "request": "launch",
       "type": "node-terminal"
     }

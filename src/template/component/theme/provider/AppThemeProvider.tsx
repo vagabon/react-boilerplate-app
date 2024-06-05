@@ -4,7 +4,6 @@ import { CustomChatbot } from '../../../../module/custom/chatbot/component/Custo
 import { CustomChatbotIntegration } from '../../../../module/custom/chatbot/component/CustomChatbotIntegration';
 import { IHeaderDto } from '../../../dto/HeaderDto';
 import { IMenuDto } from '../../../dto/menu/MenuDto';
-import { DRAWER_WIDTH } from '../../../hook/useTemplateDrawer';
 import { useTemplateFirebaseToken } from '../../../hook/useTemplateFirebaseToken';
 import { Container } from '../../container/Container';
 import { CookieConsents } from '../../cookie/CookieConsents';
@@ -55,7 +54,7 @@ export const AppThemeProvider: React.FC<IAppThemeProviderProps> = memo(
             {...rest}
           />
           <div className='flex flex-row flex1 overflow-hidden'>
-            {widthDrawer && <MenuDrawer menu={menu} drawerWidth={DRAWER_WIDTH} />}
+            {widthDrawer && <MenuDrawer menu={menu} showLanguage={showLanguage} />}
             <Container>{children}</Container>
           </div>
           <CookieConsents />

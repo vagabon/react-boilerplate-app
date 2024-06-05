@@ -16,7 +16,7 @@ export const AppTheme: React.FC<IAppThemeProps> = memo(({ palette, children }) =
       <RouterProvider>
         <AppScroll />
         <ThemeContextProvider palette={palette}>
-          <div className={'flex heigth100'}>{children}</div>
+          <div className={'flex height100'}>{children}</div>
         </ThemeContextProvider>
         <SnackbarProvider />
       </RouterProvider>

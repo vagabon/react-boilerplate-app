@@ -70,11 +70,12 @@ export const CustomModale: React.FC<ICustomModaleProps> = memo(
         {(button || buttonColor) && (
           <MdBadge badgeContent={iconBadge ?? 0} color={iconBadgeColor ?? 'primary'}>
             <MdButton
-              className={(icon ? 'button-icon ' : '') + rest.classNameButton}
+              className={(!button && icon ? 'button-icon ' : '') + rest.classNameButton}
               size={buttonSize}
               label={button}
               color={buttonColor}
-              icon={icon}
+              startIcon={button && icon ? icon : undefined}
+              icon={!button && icon ? icon : undefined}
               variant={buttonVariant ?? 'contained'}
               callback={openModal}
               disabled={disabled}

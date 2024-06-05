@@ -33,14 +33,14 @@ $maxWidth: 1000px;
 .main-container {
   display: flex; align-items: flex-start; width: 100% !important; height: 100% !important; flex: 1;
   position: relative; overflow: auto; overflow-x: hidden;
-  .container { overflow: auto; width: 100%; padding: 5px; }
+  .container { overflow: auto; width: 100%; }
   .MuiCardHeader-title { font-size: 1.5rem !important; }
   #infinite-container { 
     flex: 1; 
     & > .max-width { align-items: normal; justify-content: flex-start; flex: 1; }
   }
   .max-width { 
-    max-width: $maxWidth; margin: 0 auto; width: 100%; margin-bottom: 5px; display: flex; flex-direction: column; min-height: calc(100% - 5px);
+    max-width: $maxWidth; margin: 0 auto; width: 100%; display: flex; flex-direction: column; min-height: calc(100%);
   }
   .max-width-800 { max-width: 800; }
   .MuiListItemText-root { align-items: flex-start; flex-direction: column; display: flex; p { margin: 0px !important; } }
@@ -74,8 +74,7 @@ $maxWidth: 1000px;
   }
 }
 
-#footer a { margin: 0px 5px; color: var(--mui-palette-secondary-main) !important; font-weight: normal !important; }
-.mode-dark #footer a { color: var(--mui-palette-secondary-main-dark) !important; }
+#footer a { margin: 0px 5px; font-weight: normal !important; font-weight: 450; }
 
 @media screen and (max-width: 400px) {
   #footer span.copyright { display: none; }
@@ -85,6 +84,16 @@ $maxWidth: 1000px;
 #fade-menu { .Mui-selected { border-left: 2px solid rgba(234, 117, 0, 0.5) !important; } }
 
 /********************************************** MUI *************************************/
+
+.MuiDrawer-docked { width: 240px !important; }
+.MuiDrawer-paper { width: 240px !important; top: 46px !important; height: calc(100% - 46px) !important; }
+
+header, .MuiPaper-root { box-shadow: unset !important; } 
+header .MuiToolbar-root { border: 0 !important; }
+header { border-bottom: 1px solid  !important; border-color: rgba(0, 0, 0, 0.12) !important; }
+.mode-dark header { border-color: rgba(255, 255, 255, 0.12)  !important; }
+.no-border-color .MuiOutlinedInput-notchedOutline, .no-border-color label { border-color: inherit !important; color: inherit !important; }
+
 .mardown-with-summary a { color: var(--mui-palette-primary-main); }
 .mode-dark .mardown-with-summary a { color: var(--mui-palette-primary-main-dark); }
 
@@ -394,8 +403,7 @@ textarea { max-height: 250px !important; overflow: auto !important; }
   .MuiPaper-root { flex: 1; overflow: hidden; }
   & > .MuiBox-root {  
     position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    background-color: 'background.paper'; box-shadow: 24;
-    min-height: min-content; border: 0 !important;
+    background-color: 'background.paper'; box-shadow: 24; border: 0 !important;
     width: 45vw !important; min-height: 45vh !important; max-height: 95vh; display: flex; padding: 0px;
     .MuiPaper-root:not(.MuiAlert-root) {
       display: flex; flex-direction: column; width: 100% !important; min-height: 100% !important;
@@ -509,7 +517,7 @@ textarea { max-height: 250px !important; overflow: auto !important; }
 /*************************************************** PROFILE ***********************************************/
 
 .profile-container {
-  margin: 10px 0px 10px !important; display: flex; flex-direction: column; gap: 1rem; background: #3b3e3f; border-radius: 1rem; border-radius: 5px; margin: 8px; padding: 8px;
+  display: flex; flex-direction: column; gap: 1rem; background: #3b3e3f; border-radius: 1rem; border-radius: 5px; margin: 8px; padding: 8px;
   & > div:nth-child(1) { font-weight: bold; }
   & > div:nth-child(2) {
     display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
@@ -573,58 +581,6 @@ textarea { max-height: 250px !important; overflow: auto !important; }
 
 .subscription-items { align-items: stretch; }
 
-.subscription-container {
-  width: 350px; max-width: 350px; display: flex; flex-direction: column; align-items: center; flex: 1;
-  &.free, &.premium {  
-    .title {
-      background: #036288DC !important; color: #FFF; border-color: var(--mui-palette-secondary-main) !important;
-      border: 3px solid ; font-weight: bold; display: flex; align-items: center; max-width: 150px; padding: 5px;
-    }
-    .MuiPaper-root { border: 3px solid; margin-top: -3px !important; background: #f7ff053a; border-color: var(--mui-palette-secondary-main); display: flex; flex: 1; align-items: baseline;}
-  }
-  .MuiCardContent-root { 
-    font-size: 1.2rem; display: flex; align-items: center; height: 100%; justify-content: space-between;
-    & > div { margin: 5px 0; display: flex; align-items: center; text-align: center; }
-  }
-  &.free {   
-    .title {
-      background: #3D3D3DDC !important; border-color: #555555DC !important;
-    }
-    .MuiPaper-root { border: 3px solid; margin-top: -3px !important; background: #6566473A; border-color: #555555DC; }
-    .MuiCardContent-root { padding-top: 95px; }
-  }
-  .price-container {
-    display: flex; flex-direction: row; justify-content: space-between; width: 91%; margin-bottom: 17px;
-    .price { font-size: 1.5rem; font-weight: bold; align-self: center; }
-    .price-old { font-size: 1.7rem; text-decoration: line-through; align-self: center; }
-  }
-  .MuiSvgIcon-root { height: 25px; width: 25px; }
-  .bonus { font-weight: bold; margin: 10px 0 !important; width: 100%;  & > div:nth-child(2) { width: 80%; } }
-  .button-sub { margin-top: 30px !important; font-size: 1.8rem; padding: 2px 27px; }
-}
-.mode-dark .subscription-container .MuiPaper-root { 
-  background: rgba(204, 190, 121, 0.233); 
-}
-.subscription-container-title {
-  width: 170px !important; max-height: 34px !important; margin-top: 7px !important;
-  .title { width: 100%; justify-content: center; }
-}
-
-@media screen and (max-width: 800px) {
-  .subscription {
-    .flex-row-responsive {
-      img { width: 100%; height: 100%; max-height: 300px !important; }
-      ul { padding-left: 15px; }
-      .alert { width: 100% !important; margin-top: 0px !important; }
-      .subscription-container { margin-top: 10px; }
-    }
-  }
-  .subscription-form {
-    flex-direction: column-reverse !important;
-    & > div { margin-right: 0 !important; width: 100%; }
-  }
-}
-
 /*************************************************** SUBSCRIPTION *******************************************/
 
 .subscription .MuiDivider-root, .divider .MuiDivider-root { margin: 15px 0px; }
@@ -674,6 +630,10 @@ textarea { max-height: 250px !important; overflow: auto !important; }
 }
 .mode-dark .subscription-container .MuiPaper-root { 
   background: rgba(204, 190, 121, 0.233); 
+}
+.subscription-container-title {
+  width: 170px !important; max-height: 34px !important; margin-top: 7px !important;
+  .title { width: 100%; justify-content: center; }
 }
 
 @media screen and (max-width: 800px) {

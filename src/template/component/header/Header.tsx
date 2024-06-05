@@ -19,7 +19,7 @@ export const Header: React.FC<IHeaderProps> = memo(({ menu, widthDrawer, ...rest
   return (
     <>
       <MdAppBar className='app-bar' sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
-        <ToolbarSpace />
+        <ToolbarSpace image={rest.image} title={rest.title} />
         <Toolbar
           apiUrl={rest.apiUrl}
           image={rest.image}

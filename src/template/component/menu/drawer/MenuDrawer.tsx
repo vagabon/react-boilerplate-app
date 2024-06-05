@@ -13,14 +13,16 @@ import { ProfileRole } from '../../../../module/user/profile/component/role/Prof
 import { useAppSelector } from '../../../../store/Store';
 import { IMenuDto } from '../../../dto/menu/MenuDto';
 import { useTemplateDrawer } from '../../../hook/useTemplateDrawer';
+import { Language } from '../../language/Language';
+import { ToolbarTheme } from '../../toolbar/theme/ToolbarTheme';
 import { MenuDrawerListItem } from './MenuDrawerListItem';
 
 export interface IDrawerProps {
-  drawerWidth: number;
   menu: IMenuDto[];
+  showLanguage: boolean;
 }
 
-export const MenuDrawer: React.FC<IDrawerProps> = memo(({ drawerWidth, menu }) => {
+export const MenuDrawer: React.FC<IDrawerProps> = memo(({ menu, showLanguage }) => {
   const open = useAppSelector((state) => state.common.drawer.open, shallowEqual);
   const variant = useAppSelector((state) => state.common.drawer.variant, shallowEqual);
   const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn, shallowEqual);
@@ -28,58 +30,64 @@ export const MenuDrawer: React.FC<IDrawerProps> = memo(({ drawerWidth, menu }) =
   const { getIcon } = useIcon();
 
   return (
-    <MdDrawer
-      open={open}
-      variant={variant}
-      callbackClose={handleSwitchDrawer(true)}
-      anchor='left'
-      sx={{
-        width: drawerWidth,
-        flexShrink: 0,
-        [`& .MuiDrawer-paper`]: { width: drawerWidth, top: '46px', boxSizing: 'border-box' },
-      }}>
-      <MdBox className='overflow-auto'>
-        {menu?.map((menu) => (
-          <MdList key={menu.title}>
-            <ProfileRole roles={menu.roles} notRoles={menu.notRoles} key={menu.title} showError={false}>
-              {(!menu.notConnected || (menu.notConnected && !isLoggedIn)) && (
-                <>
-                  <MenuDrawerListItem key={menu.link} link={menu.base}>
-                    <MdListItemButton onClick={handleSwitchDrawer(true)} component={Link} to={menu.link}>
-                      {menu.icon && (
-                        <MdListItemIcon className='text-black'>{getIcon(menu.icon, 'inherit')} </MdListItemIcon>
-                      )}
-                      <MdListItemText content={menu.title} className='text-black font-weight-450' />
-                    </MdListItemButton>
-                  </MenuDrawerListItem>
-                  {menu.childrens && (
-                    <MdList className='margin-left15'>
-                      {menu.childrens?.map((child) => (
-                        <ProfileRole
-                          roles={child.roles}
-                          notRoles={child.notRoles}
-                          key={menu.title + '-' + child.title}
-                          showError={false}>
-                          <MenuDrawerListItem level={2} className='height-36' link={child.link}>
-                            <MdListItemButton
-                              className='height-36'
-                              onClick={handleSwitchDrawer(true)}
-                              component={Link}
-                              to={child.link}>
-                              {menu.icon && <MdListItemIcon>{getIcon(child.icon, 'inherit')}</MdListItemIcon>}
-                              <MdListItemText content={child.title} />
-                            </MdListItemButton>
-                          </MenuDrawerListItem>
-                        </ProfileRole>
-                      ))}
-                    </MdList>
-                  )}
-                  <MdDivider />
-                </>
-              )}
-            </ProfileRole>
-          </MdList>
-        ))}
+    <MdDrawer open={open} variant={variant} callbackClose={handleSwitchDrawer(true)} anchor='left'>
+      <MdBox className='flex overflow-auto height100 space-between'>
+        <div>
+          {menu?.map((menu) => (
+            <MdList key={menu.title}>
+              <ProfileRole roles={menu.roles} notRoles={menu.notRoles} key={menu.title} showError={false}>
+                {(!menu.notConnected || (menu.notConnected && !isLoggedIn)) && (
+                  <>
+                    <MenuDrawerListItem key={menu.link} link={menu.base}>
+                      <MdListItemButton onClick={handleSwitchDrawer(true)} component={Link} to={menu.link}>
+                        {menu.icon && (
+                          <MdListItemIcon className='text-black'>{getIcon(menu.icon, 'inherit')} </MdListItemIcon>
+                        )}
+                        <MdListItemText content={menu.title} className='text-black font-weight-450' />
+                      </MdListItemButton>
+                    </MenuDrawerListItem>
+                    {menu.childrens && (
+                      <MdList className='margin-left15'>
+                        {menu.childrens?.map((child) => (
+                          <ProfileRole
+                            roles={child.roles}
+                            notRoles={child.notRoles}
+                            key={menu.title + '-' + child.title}
+                            showError={false}>
+                            <MenuDrawerListItem level={2} className='height-36' link={child.link}>
+                              <MdListItemButton
+                                className='height-36'
+                                onClick={handleSwitchDrawer(true)}
+                                component={Link}
+                                to={child.link}>
+                                {menu.icon && <MdListItemIcon>{getIcon(child.icon, 'inherit')}</MdListItemIcon>}
+                                <MdListItemText content={child.title} />
+                              </MdListItemButton>
+                            </MenuDrawerListItem>
+                          </ProfileRole>
+                        ))}
+                      </MdList>
+                    )}
+                    <MdDivider />
+                  </>
+                )}
+              </ProfileRole>
+            </MdList>
+          ))}
+        </div>
+        <div>
+          <MdDivider />
+          <div className='flex-row align-center height50px'>
+            <div className='flex width50 align-center justify-center'>
+              <ToolbarTheme />
+            </div>
+            {showLanguage && (
+              <div className='flex width50 align-center justify-center padding-10'>
+                <Language fullWidth />
+              </div>
+            )}
+          </div>
+        </div>
       </MdBox>
     </MdDrawer>
   );

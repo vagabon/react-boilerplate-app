@@ -1,6 +1,6 @@
 {
   "name": "@vagabond-inc/react-boilerplate-app",
-  "version": "1.2.3b",
+  "version": "1.2.3d",
   "description": "Boilerplate App for React (Auth / Admin / News)",
   "private": false,
   "scripts": {
@@ -28,8 +28,8 @@
     "axios": "~1.7.2",
     "formik": "~2.4.6",
     "notistack": "~3.0.1",
-    "react": "^19.0.0-rc-0",
-    "react-dom": "^19.0.0-rc-0",
+    "react": "^19.0.0-rc.0",
+    "react-dom": "^19.0.0-rc.0",
     "react-ga4": "~2.1.0",
     "react-google-recaptcha": "~3.1.0",
     "react-helmet-async": "~2.0.5",
@@ -39,7 +39,7 @@
     "yup": "~1.4.0"
   },
   "devDependencies": {
-    "@vagabond-inc/react-boilerplate-md": "1.2.3c",
+    "@vagabond-inc/react-boilerplate-md": "1.2.3d",
     "@babel/preset-env": "~7.24.6",
     "@babel/preset-react": "~7.24.6",
     "@babel/preset-typescript": "~7.24.6",
@@ -108,8 +108,8 @@
     "i18next-browser-languagedetector": "~8.0.0",
     "mui-markdown": "~1.1.13",
     "notistack": "~3.0.1",
-    "react": "^19.0.0-rc-0",
-    "react-dom": "^19.0.0-rc-0",
+    "react": "^19.0.0-rc.0",
+    "react-dom": "^19.0.0-rc.0",
     "react-ga4": "~2.1.0",
     "react-google-recaptcha": "~3.1.0",
     "react-helmet-async": "~2.0.5",

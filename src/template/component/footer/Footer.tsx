@@ -20,14 +20,20 @@ export const Footer: React.FC<IFoorterProps> = memo(({ isContact = true, links, 
   return (
     <MdBox id='footer' sx={{ borderBottom: 1, borderColor: 'divider' }}>
       <MdContainer maxWidth='lg'>
-        <MdTypo variant='body2' color='secondary' align='center'>
+        <MdTypo variant='body2' align='center'>
           <span className='copyright'>
             {new Date().getFullYear()} {'©' + rest.title + ' '}
           </span>
           {links?.map((link) => (
-            <MdLink className='footer-link' key={link.label} label={link.label} href={link.url} target={link.target} />
+            <MdLink
+              className='footer-link text-black'
+              key={link.label}
+              label={link.label}
+              href={link.url}
+              target={link.target}
+            />
           ))}
-          {isContact && <MdLink href='/contact' label='Contact' />}
+          {isContact && <MdLink href='/contact' className='footer-link text-black' label='Contact' />}
         </MdTypo>
       </MdContainer>
     </MdBox>

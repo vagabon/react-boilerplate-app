@@ -36,8 +36,8 @@ h5 { font-size: 1.3rem !important; font-weight: 400 !important; }
 
 .flex { display: flex; flex-direction: column; }
 .grid { display: grid; }
-.flex-row { display: flex; flex-direction: row; }
-.flex-row-responsive { display: flex; flex-direction: row; align-items: center; }
+.flex-row { display: flex; flex-direction: row !important; }
+.flex-row-responsive { display: flex; flex-direction: row !important; align-items: center; }
 
 @media screen and (max-width: 800px) {
   .flex-row-responsive { flex-direction: column !important; }
@@ -61,6 +61,7 @@ h5 { font-size: 1.3rem !important; font-weight: 400 !important; }
 .justify-end { justify-content: flex-end; }
 .space-between { justify-content: space-between; }
 .relative { position: relative; }
+.padding-10 { padding: 10px !important; }
 .margin-10 { margin: 10px !important; }
 .margin-top10 { margin-top: 10px !important; }
 .margin-top15 { margin-top: 15px !important; }
@@ -68,6 +69,7 @@ h5 { font-size: 1.3rem !important; font-weight: 400 !important; }
 .margin-top30 { margin-top: 30px !important; }
 .margin-top40 { margin-top: 40px !important; }
 .margin-right-50 { margin-right: 50px !important; }
+.margin-left5 { margin-left: 5px !important; }
 .margin-left10 { margin-left: 10px !important; }
 .margin-left15 { margin-left: 15px !important; }
 .margin-bottom0 { margin-bottom: 0px !important; }
@@ -88,9 +90,9 @@ h5 { font-size: 1.3rem !important; font-weight: 400 !important; }
 .width33 { width: 33%; }
 .width50 { width: 50%; }
 .width100 { width: 100%; }
-.heigth100 { height: calc(100% - 5px); }
-.heigth20px { height: 20px; }
-.heigth50px { height: 50px; }
+.height100 { height: calc(100%); }
+.height20px { height: 20px; }
+.height50px { height: 50px; }
 
 .font-weight-450 { &, span { font-weight: 450 !important; } }
 .height-20 { min-height: 20px !important; height: 20px !important; }

@@ -49,6 +49,7 @@ export const ProfileShow: React.FC<IProfileShowProps> = ({
         <>
           {currentUserId === user.id && !disabled && (
             <CustomModaleConfirm
+              icon='exit'
               button='COMMON:LOGOUT'
               label='COMMON:LOGOUT_LABEL'
               buttonColor='error'

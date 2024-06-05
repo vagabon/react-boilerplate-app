@@ -29,8 +29,7 @@ export const Toolbar: React.FC<IToolbarProps> = ({ apiUrl, image, title, menu, .
     <>
       <MdToolbar id='header' className='max-width' sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <MenuDrawerButton widthDrawer={rest.widthDrawer} />
-        {!force && <ToolbarTitle title={title} image={image} />}
-        {force && <div className='flex1'></div>}
+        {force ? <div className='flex1'></div> : <ToolbarTitle title={title} image={image} />}
         {rest.showNotification && <ToolbarNotification apiUrl={apiUrl} />}
         {rest.reactHeaderButton}
         <ToolbarButtons />

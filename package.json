@@ -1,6 +1,6 @@
 {
   "name": "@vagabond-inc/react-boilerplate-app",
-  "version": "1.2.3d",
+  "version": "1.2.3e",
   "description": "Boilerplate App for React (Auth / Admin / News)",
   "private": false,
   "scripts": {
@@ -39,7 +39,7 @@
     "yup": "~1.4.0"
   },
   "devDependencies": {
-    "@vagabond-inc/react-boilerplate-md": "1.2.3d",
+    "@vagabond-inc/react-boilerplate-md": "1.2.3e",
     "@babel/preset-env": "~7.24.6",
     "@babel/preset-react": "~7.24.6",
     "@babel/preset-typescript": "~7.24.6",

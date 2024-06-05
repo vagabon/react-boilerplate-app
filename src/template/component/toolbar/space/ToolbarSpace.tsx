@@ -1,14 +1,16 @@
 import { memo } from 'react';
 import { shallowEqual } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import { useAppSelector } from '../../../../store/Store';
 import { IToolbarTitleProps, ToolbarTitle } from '../title/ToolbarTitle';
 
 export const ToolbarSpace: React.FC<IToolbarTitleProps> = memo(({ image, title }) => {
+  const location = useLocation();
   const force = useAppSelector((state) => state.common.drawer.force, shallowEqual);
 
   return (
     <>
-      {force && (
+      {force && location.pathname !== '/' && (
         <div className='drawer-width MuiToolbar-root margin-left5 flex'>
           <ToolbarTitle title={title} image={image} />
         </div>

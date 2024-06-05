@@ -1,7 +1,7 @@
 import { ReducerType } from '@reduxjs/toolkit';
 import { IApiDto, JSONObject } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
 import { IOrderDto } from '@vagabond-inc/react-boilerplate-md/dist/dto/form/FormDto';
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import { shallowEqual } from 'react-redux';
 import { useAppDispatch, useAppSelector } from '../../store/Store';
 import { IOrderState, IReducersActionsProps } from '../../store/reducer/BaseReducer';
@@ -24,14 +24,12 @@ export const useApiServiceFetchBy = <T extends IApiDto>(
   const order = useAppSelector((state) => state[stateName as keyof ReducerType].order, shallowEqual);
   const page = useAppSelector((state) => state[stateName as keyof ReducerType].page, shallowEqual);
   const { fetchBy, resetStopLoad } = useApiServiceFindBy<T>(apiUrl, uri, query, max);
-  const [firstRender, setFirstRender] = useState(false);
 
   const fetchByFields = useCallback(
     (values: string, page: number, order?: IOrderState) => {
       fetchBy(values, page, order?.order, order?.orderAsc ? '' : 'desc', (data) => {
         dispatch(action.setCount(data.totalElements));
         dispatch(page === 0 ? action.setDatas(data?.content ?? []) : action.addDatas(data?.content ?? []));
-        setFirstRender(true);
       });
     },
     [fetchBy, dispatch, action],
@@ -75,7 +73,6 @@ export const useApiServiceFetchBy = <T extends IApiDto>(
   );
 
   return {
-    firstRender,
     datas,
     search,
     count,

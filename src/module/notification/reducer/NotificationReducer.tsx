@@ -3,8 +3,8 @@ import { DefaultState, ReducerCrudState, ReducersActions } from '../../../store/
 import { INotificationDto } from '../dto/NotificationDto';
 
 export interface INotificationReducerState extends ReducerCrudState {
-  datas: INotificationDto[];
-  data: INotificationDto[];
+  datas?: INotificationDto[];
+  data?: INotificationDto[];
   nbNotification?: number;
 }
 

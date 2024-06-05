@@ -1,4 +1,3 @@
-global.firstRender = false;
 const mockDatas = [];
 global.mockWithChildren = (name, { children }) => <div data-testid={name}>{children}</div>;
 
@@ -147,7 +146,6 @@ const mocks = {
     resetStopLoad: jest.fn(),
   }),
   useApiServiceFetchBy: () => ({
-    firstRender: global.firstRender,
     datas: mockDatas,
     search: '',
     count: 0,

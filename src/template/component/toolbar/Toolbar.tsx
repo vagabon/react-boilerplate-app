@@ -1,6 +1,7 @@
 import { MdToolbar } from '@vagabond-inc/react-boilerplate-md/dist/md/component/toolbar/MdToolbar';
 import { ReactNode } from 'react';
 import { shallowEqual } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import { useAppSelector } from '../../../store/Store';
 import { IMenuDto } from '../../dto/menu/MenuDto';
 import { Menu } from '../menu/Menu';
@@ -23,13 +24,18 @@ export interface IToolbarProps {
 }
 
 export const Toolbar: React.FC<IToolbarProps> = ({ apiUrl, image, title, menu, ...rest }) => {
+  const location = useLocation();
   const force = useAppSelector((state) => state.common.drawer.force, shallowEqual);
 
   return (
     <>
       <MdToolbar id='header' className='max-width' sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <MenuDrawerButton widthDrawer={rest.widthDrawer} />
-        {force ? <div className='flex1'></div> : <ToolbarTitle title={title} image={image} />}
+        {force && location.pathname !== '/' ? (
+          <div className='flex1'></div>
+        ) : (
+          <ToolbarTitle title={title} image={image} />
+        )}
         {rest.showNotification && <ToolbarNotification apiUrl={apiUrl} />}
         {rest.reactHeaderButton}
         <ToolbarButtons />

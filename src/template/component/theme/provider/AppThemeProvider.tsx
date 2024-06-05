@@ -1,5 +1,6 @@
 import { JSONObject } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
 import { PropsWithChildren, ReactNode, memo } from 'react';
+import { useLocation } from 'react-router-dom';
 import { CustomChatbot } from '../../../../module/custom/chatbot/component/CustomChatbot';
 import { CustomChatbotIntegration } from '../../../../module/custom/chatbot/component/CustomChatbotIntegration';
 import { IHeaderDto } from '../../../dto/HeaderDto';
@@ -38,6 +39,7 @@ export const AppThemeProvider: React.FC<IAppThemeProviderProps> = memo(
     children,
     ...rest
   }) => {
+    const location = useLocation();
     useTemplateFirebaseToken(rest.apiUrl, generateToken);
 
     return (
@@ -54,7 +56,7 @@ export const AppThemeProvider: React.FC<IAppThemeProviderProps> = memo(
             {...rest}
           />
           <div className='flex flex-row flex1 overflow-hidden'>
-            {widthDrawer && <MenuDrawer menu={menu} showLanguage={showLanguage} />}
+            {widthDrawer && location.pathname !== '/' && <MenuDrawer menu={menu} showLanguage={showLanguage} />}
             <Container>{children}</Container>
           </div>
           <CookieConsents />

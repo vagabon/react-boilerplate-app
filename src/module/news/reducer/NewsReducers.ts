@@ -3,8 +3,8 @@ import { DefaultState, ReducerCrudState, ReducersActions } from '../../../store/
 import { INewsDto } from '../dto/NewsDto';
 
 export interface NewsReducerState extends ReducerCrudState {
-  datas: INewsDto[];
-  data: INewsDto[];
+  datas?: INewsDto[];
+  data?: INewsDto[];
 }
 
 const initialState: NewsReducerState = {

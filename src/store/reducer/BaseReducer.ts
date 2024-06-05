@@ -9,8 +9,8 @@ export interface IOrderState {
 }
 
 export interface ReducerCrudState {
-  datas: IApiDto[];
-  data: IApiDto[];
+  datas?: IApiDto[];
+  data?: IApiDto[];
   count: number;
   search: string;
   order: IOrderState;
@@ -18,8 +18,8 @@ export interface ReducerCrudState {
 }
 
 export const DefaultState: ReducerCrudState = {
-  datas: [],
-  data: [],
+  datas: undefined,
+  data: undefined,
   search: '',
   order: { order: 'id', orderAsc: false },
   page: 0,
@@ -46,7 +46,7 @@ export const ReducersActions = {
     };
   },
   addDatas: <T extends ReducerCrudState>(state: T, action: PayloadAction<IApiDto[]>) => {
-    const oldDatas: IApiDto[] = [...state.datas];
+    const oldDatas: IApiDto[] = state.datas ? [...state.datas] : [];
     action.payload.forEach((item: IApiDto) => oldDatas.push(item));
     return {
       ...state,
@@ -54,7 +54,7 @@ export const ReducersActions = {
     };
   },
   updataDatas: <T extends ReducerCrudState>(state: T, action: PayloadAction<IApiDto>) => {
-    let newDatas: IApiDto[] = [...state.datas];
+    let newDatas: IApiDto[] = state.datas ? [...state.datas] : [];
     newDatas = newDatas.map((data) => {
       return data.id === action.payload.id ? action.payload : data;
     });
@@ -64,7 +64,7 @@ export const ReducersActions = {
     };
   },
   setData: <T extends ReducerCrudState>(state: T, action: PayloadAction<IApiDto>) => {
-    const data = [...state.data];
+    const data = state.datas ? [...state.datas] : [];
     data[action.payload.id as number] = action.payload;
     return {
       ...state,

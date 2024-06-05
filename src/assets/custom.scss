@@ -168,6 +168,8 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
 .MuiListItem-root.selected-secondary {  border-left: 3px solid var(--mui-palette-secondary-main) !important; }
 .mode-dark .MuiListItem-root.selected-secondary {  border-left: 3px solid var(--mui-palette-secondary-main-dark) !important; }
 
+.MuiTablePagination-root .MuiToolbar-root { align-items: baseline; }
+
 .MuiDrawer-root { 
   ul { padding: 0px !important; overflow: hidden; }
 }

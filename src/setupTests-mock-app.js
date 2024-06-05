@@ -145,16 +145,18 @@ const mocks = {
     },
     resetStopLoad: jest.fn(),
   }),
-  useApiServiceFetchBy: () => ({
+  useApiServiceFetchByState: () => ({
     datas: mockDatas,
     search: '',
     count: 0,
     page: 0,
+    order: { order: 'order', orderAsc: false },
+  }),
+  useApiServiceFetchBy: () => ({
     doFetchByFields: jest.fn(),
     doSearch: (search, callback) => {
       callback?.();
     },
-    order: { order: 'order', orderAsc: false },
     doChangePage: (page, callback) => () => {
       callback?.();
     },

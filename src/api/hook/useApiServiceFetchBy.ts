@@ -27,10 +27,20 @@ export const useApiServiceFetchBy = <T extends IApiDto>(
 
   const fetchByFields = useCallback(
     (values: string, page: number, order?: IOrderState) => {
-      fetchBy(values, page, order?.order, order?.orderAsc ? '' : 'desc', (data) => {
-        dispatch(action.setCount(data.totalElements));
-        dispatch(page === 0 ? action.setDatas(data?.content ?? []) : action.addDatas(data?.content ?? []));
-      });
+      fetchBy(
+        values,
+        page,
+        order?.order,
+        order?.orderAsc ? '' : 'desc',
+        (data) => {
+          dispatch(action.setCount(data.totalElements));
+          dispatch(page === 0 ? action.setDatas(data?.content ?? []) : action.addDatas(data?.content ?? []));
+        },
+        () => {
+          dispatch(action.setCount(0));
+          dispatch(action.setDatas([]));
+        },
+      );
     },
     [fetchBy, dispatch, action],
   );

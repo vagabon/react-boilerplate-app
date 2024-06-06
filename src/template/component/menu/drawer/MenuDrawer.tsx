@@ -60,7 +60,7 @@ export const MenuDrawer: React.FC<IDrawerProps> = memo(({ menu, showLanguage }) 
                                 onClick={handleSwitchDrawer(true)}
                                 component={Link}
                                 to={child.link}>
-                                {menu.icon && <MdListItemIcon>{getIcon(child.icon, 'inherit')}</MdListItemIcon>}
+                                {child.icon && <MdListItemIcon>{getIcon(child.icon, 'inherit')}</MdListItemIcon>}
                                 <MdListItemText content={child.title} />
                               </MdListItemButton>
                             </MenuDrawerListItem>

@@ -17,6 +17,8 @@ describe('useApiServiceFetchBy', () => {
       .spyOn(ApiService, 'findBy')
       .mockReturnValue(Promise.resolve({ content: [{ data: 'TEST' }] }));
     const action = {
+      setData: jest.fn(),
+      setDatas: jest.fn(),
       setSearchAndPage: jest.fn(),
       setCount: jest.fn(),
       setPage: jest.fn(),

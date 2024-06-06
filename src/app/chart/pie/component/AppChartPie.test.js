@@ -10,7 +10,7 @@ describe('AppChartPie', () => {
         name: 'name',
       },
     ];
-    render(<AppChartPie custumList={custumList} />);
+    render(<AppChartPie custumList={custumList} mainColor='#123456' />);
     expect(screen.getByTestId('MdCard')).toBeDefined();
   });
 });

@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { IHeaderDto } from '../../template/dto/HeaderDto';
 import { NotFoundPage } from '../not-found/page/NotFoundPage';
@@ -12,6 +13,7 @@ export interface IAuthRouterProps extends IHeaderDto {
   googleClientId: string;
   facebookClientId: string;
   googleCaptchaId: string;
+  footer: ReactNode;
 }
 
 export const AuthRouter: React.FC<IAuthRouterProps> = ({

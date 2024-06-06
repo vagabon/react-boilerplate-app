@@ -9,7 +9,7 @@ import { IMenuDto } from '../../../dto/menu/MenuDto';
 import { useTemplateFirebaseToken } from '../../../hook/useTemplateFirebaseToken';
 import { Container } from '../../container/Container';
 import { CookieConsents } from '../../cookie/CookieConsents';
-import { Footer, IFoorterProps } from '../../footer/Footer';
+import { IFoorterProps } from '../../footer/Footer';
 import { Header } from '../../header/Header';
 import { MenuDrawer } from '../../menu/drawer/MenuDrawer';
 import { MenuDrawerResize } from '../../menu/drawer/MenuDrawerResize';
@@ -63,7 +63,6 @@ export const AppThemeProvider: React.FC<IAppThemeProviderProps> = memo(
           <CookieConsents />
           <CustomChatbot iframeUrl={rest.iframeChatbotUrl} />
           <CustomChatbotIntegration />
-          <Footer {...rest} />
         </>
       </AppTheme>
     );

@@ -35,6 +35,7 @@ export const NotificationList: React.FC<INotificationListProps> = memo(
             callback={callbackClick}
             callbackCheckbox={callbackCheckbox}
             iconSettings='right'
+            iconColor='primary'
             callbackSettings={callbackSettings}
             datas={custumList}
           />

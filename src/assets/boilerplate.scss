@@ -104,12 +104,10 @@ h5 { font-size: 1.3rem !important; font-weight: 400 !important; }
 
 .text-underline { text-decoration: underline !important; text-underline-offset: 0.225rem !important; }
 
+.text-grey { &, * { color: rgba(0, 0, 0, 0.625) !important; } }
+.mode-dark .text-grey { &, * { color: rgba(255, 255, 255, 0.625) !important; } }
 .text-black { &, * { color: black !important; } }
 .mode-dark .text-black { &, * { color: white !important; } }
-.text-simple { &, * { color: rgba(0, 0, 0, 0.7) !important; } }
-.mode-dark .text-simple { &, * { color: white !important; } }
-.text-grey { &, * { color: rgba(0, 0, 0, 0.7) !important; } }
-.mode-dark .text-grey { &, * { color: rgba(255, 255, 255, 0.7) !important; } }
 
 .text-primary { color: var(--mui-palette-primary-main) !important; }
 .mode-dark .text-primary { color: var(--mui-palette-primary-main-dark) !important; }

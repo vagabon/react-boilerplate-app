@@ -39,6 +39,7 @@ export interface ICustomListProps {
   labelDelete?: string;
   callbackDelete?: (id: ID) => void;
   iconSettings?: string;
+  iconColor?: 'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning' | 'default';
   callbackSettings?: (data: IApiDto) => void;
 }
 
@@ -55,6 +56,7 @@ export const CustomList: React.FC<ICustomListProps> = memo(
     labelDelete,
     callbackDelete,
     iconSettings,
+    iconColor,
     callbackSettings,
   }) => {
     const { handleClick, handleClickChecbox } = useCustomList(callback);
@@ -108,7 +110,7 @@ export const CustomList: React.FC<ICustomListProps> = memo(
                   <MdListItemIcon>
                     <IconClickable
                       icon={iconSettings ?? 'settings'}
-                      color='inherit'
+                      color={iconColor ?? 'secondary'}
                       callback={() => callbackSettings(data.entity)}
                       disabled={data.disabled}
                     />

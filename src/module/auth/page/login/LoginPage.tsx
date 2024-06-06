@@ -2,7 +2,7 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import { MdCard } from '@vagabond-inc/react-boilerplate-md/dist/md/component/card/MdCard';
 import { MdInputText } from '@vagabond-inc/react-boilerplate-md/dist/md/component/form/text/MdInputText';
 import { ObjectUtils } from '@vagabond-inc/react-boilerplate-md/dist/utils/object/ObjectUtils';
-import { memo, useEffect } from 'react';
+import { ReactNode, memo, useEffect } from 'react';
 import { AppContent } from '../../../../app/content/component/AppContent';
 import { AppForm } from '../../../../app/form/component/AppForm';
 import { IHeaderDto } from '../../../../template/dto/HeaderDto';
@@ -19,9 +19,10 @@ export interface ILoginPageProps extends IHeaderDto {
   urlRedirectLogin: string;
   googleClientId: string;
   facebookClientId: string;
+  footer: ReactNode;
 }
 
-export const LoginPage: React.FC<ILoginPageProps> = memo(({ googleClientId, facebookClientId, ...rest }) => {
+export const LoginPage: React.FC<ILoginPageProps> = memo(({ googleClientId, facebookClientId, footer, ...rest }) => {
   const { handleLogin, redirectIfLogged } = useAuth(rest.apiUrl, rest.urlRedirectLogin);
 
   useEffect(() => {
@@ -49,7 +50,6 @@ export const LoginPage: React.FC<ILoginPageProps> = memo(({ googleClientId, face
                 name='username'
                 {...formikProps}
                 changeValue={ObjectUtils.toLowerCase}
-                isFocus={true}
               />
               <MdInputText label='AUTH:FIELDS.PASSWORD' name='password' type='password' {...formikProps} />
             </>
@@ -58,6 +58,7 @@ export const LoginPage: React.FC<ILoginPageProps> = memo(({ googleClientId, face
 
         <AuthFooter left={AuthFooterEnum.FORGETED_PASSWORD} rigth={AuthFooterEnum.SIGNUP} />
       </MdCard>
+      {footer}
     </AppContent>
   );
 });

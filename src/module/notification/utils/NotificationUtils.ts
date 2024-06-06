@@ -8,7 +8,7 @@ export const NotificationUtils = {
     getNotificationIcon: (category: string) => void,
   ): ICustomListDto[] => {
     return (
-      notifications.map(
+      notifications?.map(
         (notification) =>
           ({
             icon: getNotificationIcon(notification.category as string),

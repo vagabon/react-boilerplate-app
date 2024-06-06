@@ -1,7 +1,7 @@
 import { MdCard } from '@vagabond-inc/react-boilerplate-md/dist/md/component/card/MdCard';
 import { MdInputText } from '@vagabond-inc/react-boilerplate-md/dist/md/component/form/text/MdInputText';
 import { MdTypo } from '@vagabond-inc/react-boilerplate-md/dist/md/component/typo/MdTypo';
-import { memo, useCallback, useEffect, useState } from 'react';
+import { ReactNode, memo, useCallback, useEffect, useState } from 'react';
 import { AppContent } from '../../../../app/content/component/AppContent';
 import { AppForm } from '../../../../app/form/component/AppForm';
 import { IHeaderDto } from '../../../../template/dto/HeaderDto';
@@ -14,9 +14,11 @@ import CHECK_IDENTITY_SCHEMA from './schema/check.identity.schema.json';
 
 const DEFAULT_VALUES = { token: '' };
 
-export interface ICheckIdentityPageProps extends IHeaderDto {}
+export interface ICheckIdentityPageProps extends IHeaderDto {
+  footer: ReactNode;
+}
 
-export const CheckIdentityPage: React.FC<ICheckIdentityPageProps> = memo(({ ...rest }) => {
+export const CheckIdentityPage: React.FC<ICheckIdentityPageProps> = memo(({ footer, ...rest }) => {
   const [state, setState] = useState<boolean>(false);
   const { redirectIfLogged } = useAuth(rest.apiUrl);
 
@@ -60,6 +62,7 @@ export const CheckIdentityPage: React.FC<ICheckIdentityPageProps> = memo(({ ...r
 
         <AuthFooter left={AuthFooterEnum.FORGETED_PASSWORD} rigth={AuthFooterEnum.SIGNIN} />
       </MdCard>
+      {footer}
     </AppContent>
   );
 });

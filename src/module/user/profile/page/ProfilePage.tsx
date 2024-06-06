@@ -1,6 +1,6 @@
 import { ID } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
 import { useAppRouter } from '@vagabond-inc/react-boilerplate-md/dist/router/hook/useAppRouter';
-import { memo, useEffect } from 'react';
+import { ReactNode, memo, useEffect } from 'react';
 import { shallowEqual } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { AppContent } from '../../../../app/content/component/AppContent';
@@ -12,9 +12,10 @@ import { ProfileShow } from '../component/ProfileShow';
 export interface IProfilePageProps extends IHeaderDto {
   profileReact: (id: ID) => React.JSX.Element;
   profileReactChildren?: (id: ID) => React.JSX.Element;
+  footer: ReactNode;
 }
 
-export const ProfilePage: React.FC<IProfilePageProps> = memo(({ ...rest }) => {
+export const ProfilePage: React.FC<IProfilePageProps> = memo(({ footer, ...rest }) => {
   const { navigate } = useAppRouter();
   const { id = -1 } = useParams();
   const currentUser = useAppSelector((state) => state.auth?.user?.user, shallowEqual);
@@ -34,6 +35,7 @@ export const ProfilePage: React.FC<IProfilePageProps> = memo(({ ...rest }) => {
   return (
     <AppContent {...rest} className='flex1 profil-content' seo='SEO:PROFIL'>
       <ProfileShow {...rest} user={id !== -1 ? user : currentUser} />
+      {footer}
     </AppContent>
   );
 });

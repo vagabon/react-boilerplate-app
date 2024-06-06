@@ -4,20 +4,23 @@ import { MdChip } from '@vagabond-inc/react-boilerplate-md/dist/md/component/chi
 import { MdLink } from '@vagabond-inc/react-boilerplate-md/dist/md/component/link/MdLink';
 import { MdTypo } from '@vagabond-inc/react-boilerplate-md/dist/md/component/typo/MdTypo';
 import { Translate } from '@vagabond-inc/react-boilerplate-md/dist/translate/component/Translate';
+import { ReactNode } from 'react';
 import { Trans } from 'react-i18next';
 import { AppContent } from '../../../app/content/component/AppContent';
 import { IHeaderDto } from '../../../template/dto/HeaderDto';
 
-export interface IContactPageProps extends IHeaderDto {}
+export interface IContactPageProps extends IHeaderDto {
+  footer: ReactNode;
+}
 
-export const ContactPage: React.FC<IContactPageProps> = ({ ...rest }) => {
+export const ContactPage: React.FC<IContactPageProps> = ({ footer, ...rest }) => {
   return (
     <AppContent {...rest} className='flex1 profil-content' seo='SEO:CONTACT'>
       <section className='contact-page'>
         <MdCard icon='profile' title='CONTACT.TITLE' titleVariant='h2' className='justify-center'>
           <div className='flex-row-responsive flex1 align-start'>
             <div className='width50 align-center flex'>
-              <img className='vagabond border-secondary' src='images/vagabond.png' title='vagabond' alt='vagabond' />
+              <img className='vagabond border-secondary' src='/images/vagabond.png' title='vagabond' alt='vagabond' />
               <MdTypo content='CONTACT.LOGIN' component='h3' />
               <p>
                 <Translate i18nKey='CONTACT.DESCRIPTION' />
@@ -142,6 +145,7 @@ export const ContactPage: React.FC<IContactPageProps> = ({ ...rest }) => {
           <MdLink href='https://www.links4rewards.fr' label='https://www.links4rewards.fr' />
         </MdCard>
       </section>
+      {footer}
     </AppContent>
   );
 };

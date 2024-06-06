@@ -8,8 +8,8 @@ const ToolbarButtons: React.FC<IToolbarButtonsProps> = () => {
 
   return (
     <>
-      <MdButton url='/auth/signup' label='AUTH:SIGNUP' variant='outlined' className='text-simple' show={!isLoggedIn} />
-      <MdButton url='/auth/signin' label='AUTH:SIGNIN' variant='contained' show={!isLoggedIn} />
+      <MdButton url='/auth/signup' label='AUTH:SIGNUP' variant='outlined' show={!isLoggedIn} />
+      <MdButton url='/auth/signin' label='AUTH:SIGNIN' variant='contained' color='secondary' show={!isLoggedIn} />
     </>
   );
 };

@@ -1,7 +1,7 @@
 import { MdButton } from '@vagabond-inc/react-boilerplate-md/dist/md/component/button/MdButton';
 import { MdCard } from '@vagabond-inc/react-boilerplate-md/dist/md/component/card/MdCard';
 import { MdTypo } from '@vagabond-inc/react-boilerplate-md/dist/md/component/typo/MdTypo';
-import { memo, useEffect, useState } from 'react';
+import { ReactNode, memo, useEffect, useState } from 'react';
 import { shallowEqual } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { AppContent } from '../../../../app/content/component/AppContent';
@@ -10,9 +10,11 @@ import { IHeaderDto } from '../../../../template/dto/HeaderDto';
 import { useAuth } from '../../hook/useAuth';
 import { AuthService } from '../../service/AuthService';
 
-export interface IActivationPageProps extends IHeaderDto {}
+export interface IActivationPageProps extends IHeaderDto {
+  footer: ReactNode;
+}
 
-export const ActivationPage: React.FC<IActivationPageProps> = memo(({ ...rest }) => {
+export const ActivationPage: React.FC<IActivationPageProps> = memo(({ footer, ...rest }) => {
   const params = useParams();
   const [isActivated, setIsActivated] = useState<boolean | undefined>(undefined);
   const message = useAppSelector((state) => state.common.message.message, shallowEqual);
@@ -52,6 +54,7 @@ export const ActivationPage: React.FC<IActivationPageProps> = memo(({ ...rest })
           </>
         )}
       </MdCard>
+      {footer}
     </AppContent>
   );
 });

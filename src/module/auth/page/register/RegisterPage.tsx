@@ -6,7 +6,7 @@ import { MdInputText } from '@vagabond-inc/react-boilerplate-md/dist/md/componen
 import { MdTypo } from '@vagabond-inc/react-boilerplate-md/dist/md/component/typo/MdTypo';
 import { IThemeContextDto, useThemeContent } from '@vagabond-inc/react-boilerplate-md/dist/theme/context/ThemeContext';
 import { ObjectUtils } from '@vagabond-inc/react-boilerplate-md/dist/utils/object/ObjectUtils';
-import { memo, useCallback, useEffect, useRef, useState } from 'react';
+import { ReactNode, memo, useCallback, useEffect, useRef, useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { useApiService } from '../../../../api/hook/useApiService';
 import { AppContent } from '../../../../app/content/component/AppContent';
@@ -26,10 +26,11 @@ const DEFAULT_VALUES: JSONObject = new RegisterDto() as JSONObject;
 
 export interface IRegisterPageProps extends ILoginPageProps {
   googleCaptchaId: string;
+  footer: ReactNode;
 }
 
 export const RegisterPage: React.FC<IRegisterPageProps> = memo(
-  ({ googleClientId, facebookClientId, googleCaptchaId, ...rest }) => {
+  ({ googleClientId, facebookClientId, googleCaptchaId, footer, ...rest }) => {
     const { mode } = useThemeContent() as IThemeContextDto;
     const { redirectIfLogged } = useAuth(rest.apiUrl);
     const { httpPost } = useApiService(rest.apiUrl);
@@ -85,7 +86,6 @@ export const RegisterPage: React.FC<IRegisterPageProps> = memo(
                     name='username'
                     {...formikProps}
                     changeValue={ObjectUtils.toLowerCase}
-                    isFocus={true}
                   />
                   <MdInputText label='AUTH:FIELDS.EMAIL' name='email' {...formikProps} />
                   <MdInputText label='AUTH:FIELDS.PASSWORD' name='password' type='password' {...formikProps} />
@@ -101,6 +101,7 @@ export const RegisterPage: React.FC<IRegisterPageProps> = memo(
           {isRegister && <MdTypo content='AUTH:REGISTER.SUCCESS' />}
           <AuthFooter left={AuthFooterEnum.FORGETED_PASSWORD} rigth={AuthFooterEnum.SIGNIN} />
         </MdCard>
+        {footer}
       </AppContent>
     );
   },

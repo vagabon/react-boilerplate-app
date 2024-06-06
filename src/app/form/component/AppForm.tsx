@@ -81,15 +81,16 @@ export const AppForm: React.FC<IAppFormProps> = memo(
             {(backButton || submitButton || rest.modalConfirm) && (
               <>
                 <div className='height-20'>&nbsp;</div>
-                <div className='width100 flex-row justify-end'>
+                <div className='width100 flex-row justify-end gap4'>
                   {backButton && <ButtonGoBack onGoBack={rest.onGoBack} />}
                   {submitButton && rest.onSubmit && (
-                    <MdButton label='COMMON:SUBMIT' callback={doSubmit(values, validateForm)} />
+                    <MdButton label='COMMON:SUBMIT' color='secondary' callback={doSubmit(values, validateForm)} />
                   )}
                   {rest.modalConfirm && (
                     <CustomModaleConfirm
                       label={rest.modalConfirm}
                       button='COMMON:SUBMIT'
+                      buttonColor='secondary'
                       callback={doSubmit(values, validateForm)}
                     />
                   )}

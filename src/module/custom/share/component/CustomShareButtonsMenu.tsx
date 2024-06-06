@@ -29,6 +29,7 @@ export const CustomShareButtonsMenu: React.FC<ICustomShareButtonsMenuProps> = me
     <MdMenuProvider
       className='button-icon'
       variant='contained'
+      color='secondary'
       title={<>{getIcon('share', 'inherit')}</>}
       elements={[
         {

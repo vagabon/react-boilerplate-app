@@ -39,7 +39,11 @@ export const MenuDrawer: React.FC<IDrawerProps> = memo(({ menu, showLanguage }) 
                 {(!menu.notConnected || (menu.notConnected && !isLoggedIn)) && (
                   <>
                     <MenuDrawerListItem key={menu.link} link={menu.base}>
-                      <MdListItemButton onClick={handleSwitchDrawer(true)} component={Link} to={menu.link}>
+                      <MdListItemButton
+                        className='gap5'
+                        onClick={handleSwitchDrawer(true)}
+                        component={Link}
+                        to={menu.link}>
                         {menu.icon && (
                           <MdListItemIcon className='text-black'>{getIcon(menu.icon, 'inherit')} </MdListItemIcon>
                         )}
@@ -56,7 +60,7 @@ export const MenuDrawer: React.FC<IDrawerProps> = memo(({ menu, showLanguage }) 
                             showError={false}>
                             <MenuDrawerListItem level={2} className='height-36' link={child.link}>
                               <MdListItemButton
-                                className='height-36'
+                                className='gap10 height-36'
                                 onClick={handleSwitchDrawer(true)}
                                 component={Link}
                                 to={child.link}>

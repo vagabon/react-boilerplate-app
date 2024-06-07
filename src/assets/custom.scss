@@ -603,22 +603,25 @@ textarea { max-height: 250px !important; overflow: auto !important; }
 
 .subscription-container {
   width: 350px; max-width: 350px; display: flex; flex-direction: column; align-items: center; flex: 1;
-  &.free, &.premium {  
+  &.free, &.premium, &.enterprise {  
     .title {
-      background: #036288DC !important; color: #FFF; border-color: var(--mui-palette-secondary-main) !important;
+      border-color: var(--mui-palette-secondary-main) !important;
       border: 3px solid ; font-weight: bold; display: flex; align-items: center; max-width: 150px; padding: 5px;
     }
-    .MuiPaper-root { border: 3px solid; margin-top: -3px !important; background: #f7ff053a; border-color: var(--mui-palette-secondary-main); display: flex; flex: 1; align-items: baseline;}
+    .MuiPaper-root { border: 3px solid; margin-top: -3px !important; border-color: var(--mui-palette-secondary-main); display: flex; flex: 1; align-items: baseline;}
   }
   .MuiCardContent-root { 
     font-size: 1.2rem; display: flex; align-items: center; height: 100%; justify-content: space-between;
     & > div { margin: 5px 0; display: flex; align-items: center; text-align: center; }
   }
+  &.enterprise .title {
+    border-color: var(--mui-palette-premium-main) !important;
+  }
   &.free {   
     .title {
-      background: #3D3D3DDC !important; border-color: #555555DC !important;
+      border-color: #555555DC !important;
     }
-    .MuiPaper-root { border: 3px solid; margin-top: -3px !important; background: #6566473A; border-color: #555555DC; }
+    .MuiPaper-root { border: 3px solid; margin-top: -3px !important; border-color: #555555DC; }
     .MuiCardContent-root { padding-top: 95px; }
   }
   .price-container {
@@ -629,9 +632,6 @@ textarea { max-height: 250px !important; overflow: auto !important; }
   .MuiSvgIcon-root { height: 25px; width: 25px; }
   .bonus { font-weight: bold; margin: 10px 0 !important; width: 100%;  & > div:nth-child(2) { width: 80%; } }
   .button-sub { margin-top: 30px !important; font-size: 1.8rem; padding: 2px 27px; }
-}
-.mode-dark .subscription-container .MuiPaper-root { 
-  background: rgba(204, 190, 121, 0.233); 
 }
 .subscription-container-title {
   width: 170px !important; max-height: 34px !important; margin-top: 7px !important;
@@ -648,7 +648,6 @@ textarea { max-height: 250px !important; overflow: auto !important; }
     }
   }
   .subscription-form {
-    flex-direction: column-reverse !important;
     & > div { margin-right: 0 !important; width: 100%; }
   }
 }

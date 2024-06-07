@@ -40,7 +40,7 @@ export const MenuDrawer: React.FC<IDrawerProps> = memo(({ menu, showLanguage }) 
                   <>
                     <MenuDrawerListItem key={menu.link} link={menu.base}>
                       <MdListItemButton
-                        className='gap5'
+                        className='gap10'
                         onClick={handleSwitchDrawer(true)}
                         component={Link}
                         to={menu.link}>

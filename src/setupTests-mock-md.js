@@ -8,7 +8,7 @@ global.mockWithChildren = (name, { children }) => <div data-testid={name}>{child
 const mockT = (value) => value;
 
 const mockBoilerPlateMd = {
-  Icon: ({ icon }) => <div data-testid='Icon'>{icon}</div>,
+  Icon: ({ icon }) => <span data-testid='Icon'>{icon}</span>,
   IconClickable: ({ callback }) => <div data-testid='IconClickable' onClick={callback}></div>,
 
   useIcon: () => ({

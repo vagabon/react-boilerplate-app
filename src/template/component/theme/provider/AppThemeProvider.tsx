@@ -1,9 +1,7 @@
 import { JSONObject } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
 import { PropsWithChildren, ReactNode, memo } from 'react';
-import { shallowEqual } from 'react-redux';
 import { CustomChatbot } from '../../../../module/custom/chatbot/component/CustomChatbot';
 import { CustomChatbotIntegration } from '../../../../module/custom/chatbot/component/CustomChatbotIntegration';
-import { useAppSelector } from '../../../../store/Store';
 import { IHeaderDto } from '../../../dto/HeaderDto';
 import { IMenuDto } from '../../../dto/menu/MenuDto';
 import { useTemplateFirebaseToken } from '../../../hook/useTemplateFirebaseToken';
@@ -40,7 +38,6 @@ export const AppThemeProvider: React.FC<IAppThemeProviderProps> = memo(
     children,
     ...rest
   }) => {
-    const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn, shallowEqual);
     useTemplateFirebaseToken(rest.apiUrl, generateToken);
 
     return (
@@ -57,7 +54,7 @@ export const AppThemeProvider: React.FC<IAppThemeProviderProps> = memo(
             {...rest}
           />
           <div className='flex flex-row flex1 overflow-hidden'>
-            {widthDrawer && isLoggedIn && <MenuDrawer menu={menu} showLanguage={showLanguage} />}
+            {widthDrawer && <MenuDrawer menu={menu} showLanguage={showLanguage} />}
             <Container>{children}</Container>
           </div>
           <CookieConsents />

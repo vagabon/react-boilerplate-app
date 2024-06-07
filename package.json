@@ -1,6 +1,6 @@
 {
   "name": "@vagabond-inc/react-boilerplate-app",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "Boilerplate App for React (Auth / Admin / News)",
   "private": false,
   "scripts": {
@@ -22,9 +22,9 @@
   },
   "dependencies": {
     "@greatsumini/react-facebook-login": "~3.3.3",
-    "@mui/x-charts": "~7.6.1",
+    "@mui/x-charts": "~7.6.2",
     "@react-oauth/google": "~0.12.1",
-    "@reduxjs/toolkit": "~2.2.4",
+    "@reduxjs/toolkit": "~2.2.5",
     "axios": "~1.7.2",
     "formik": "~2.4.6",
     "notistack": "~3.0.1",
@@ -39,7 +39,7 @@
     "yup": "~1.4.0"
   },
   "devDependencies": {
-    "@vagabond-inc/react-boilerplate-md": "1.2.5",
+    "@vagabond-inc/react-boilerplate-md": "1.2.6",
     "@babel/preset-env": "~7.24.7",
     "@babel/preset-react": "~7.24.7",
     "@babel/preset-typescript": "~7.24.7",

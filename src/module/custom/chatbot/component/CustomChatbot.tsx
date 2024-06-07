@@ -17,7 +17,7 @@ export const CustomChatbot: React.FC<ICustomChatbotProps> = ({ iframeUrl }) => {
             className='chatbot-fab'
             icon='toy'
             size='small'
-            color='primary'
+            color='secondary'
             callback={() => setShowChatbot(!showChatbot)}
           />
           <CustomChatboIframe

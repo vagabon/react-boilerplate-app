@@ -78,7 +78,7 @@ export const MenuDrawer: React.FC<IDrawerProps> = memo(({ menu, showLanguage }) 
         <div>
           <MdDivider />
           <div className='flex-row align-center height50px'>
-            <div className='flex width50 align-center justify-center'>
+            <div className={(showLanguage ? 'width50 ' : 'width100 ') + 'flex align-center justify-center'}>
               <ToolbarTheme />
             </div>
             {showLanguage && (

@@ -147,7 +147,7 @@ tspan { font-weight: bold; }
 div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
 .MuiButtonBase-root { margin: 0px !important; } 
 .MuiListItemIcon-root { 
-  margin-right: 10px; min-width: 0px !important; 
+  min-width: 0px !important; 
   .MuiButtonBase-root { margin: 0px !important; padding: 6px !important; } 
 }
 .MuiToolbar-root {  
@@ -258,7 +258,7 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
     & > div { width: calc(50% - 10px) }
   }
   .bento { 
-    display: flex; flex-direction: column; gap: 10px; 
+    display: flex; flex-direction: column;
     a { font-size: 1.4rem !important; }
     & > div { width: calc(100% - 5px); flex: 1; }
    .MuiCardContent-root { justify-content: flex-start; }
@@ -305,9 +305,9 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
     .MuiPaper-root:nth-child(2) { display: none !important; }
   }
   .news-list {
-    /**.flex { flex-direction: column !important; }**/
     .bento { 
       flex-direction: column; gap: 5px; width: 100% !important; 
+      & > div { min-height: 240px; & > div > a { padding-bottom: 10px; }}
     }
   }
 }

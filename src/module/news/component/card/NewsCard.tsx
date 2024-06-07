@@ -38,7 +38,6 @@ export const NewsCard: React.FC<INewsCardProps> = memo(({ apiUrl, news, endPoint
     <>
       <MdCard
         title={news.title}
-        //avatar={apiUrl + '/file/download?fileName=' + news.avatar}
         image={apiUrl + '/file/download?fileName=' + news.image}
         date={news.creationDate}
         urlUpdate={hasUserRole(['ADMIN']) ? '/' + endPoint + '/update/' + news.id : undefined}
@@ -52,7 +51,7 @@ export const NewsCard: React.FC<INewsCardProps> = memo(({ apiUrl, news, endPoint
         <MdCard className='md-summary'>
           <MdMarkdown content={summary}></MdMarkdown>
           <div className='news-tags'>
-            {news.tags?.split(',').map((tag) => <MdChip key={tag} label={tag} color='info' />)}
+            {news.tags?.split(',').map((tag) => <MdChip key={tag} label={tag} color='default' />)}
           </div>
           <NewsShare news={news} endPoint={endPoint} />
         </MdCard>

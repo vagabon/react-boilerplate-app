@@ -28,10 +28,10 @@ export const ContactPage: React.FC<IContactPageProps> = ({ footer, ...rest }) =>
                 <Trans i18nKey='CONTACT.DESCRIPTION2' />
               </p>
               <div className='flex-row flex-wrap margin-top-10 gap4'>
-                <MdChip label='REACT' color='secondary' />
-                <MdChip label='QUARKUS' color='secondary' />
-                <MdChip label='DOCKER' color='secondary' />
-                <MdChip label='GIT' color='secondary' />
+                <MdChip label='REACT' color='default' />
+                <MdChip label='QUARKUS' color='default' />
+                <MdChip label='DOCKER' color='default' />
+                <MdChip label='GIT' color='default' />
               </div>
             </div>
             <div className='width50 flex gap10'>
@@ -93,6 +93,7 @@ export const ContactPage: React.FC<IContactPageProps> = ({ footer, ...rest }) =>
                     />
                   </div>
                   <MdButton
+                    color='secondary'
                     startIcon={
                       <img
                         className='button-contact'

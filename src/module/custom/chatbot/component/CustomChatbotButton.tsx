@@ -44,6 +44,7 @@ export const CustomChatbotButton: React.FC<ICustomChatbotButtonProps> = ({ integ
       {(integrations?.length ?? 0) > 0 && (
         <MdMenuProvider
           className='button-icon'
+          color='secondary'
           variant='text'
           title={<>{getIcon('toy', 'inherit')}</>}
           elements={getIntegrations(integrations)}

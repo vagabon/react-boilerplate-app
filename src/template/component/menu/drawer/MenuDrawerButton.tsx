@@ -10,13 +10,12 @@ export interface IMenuDrawerButtonProps {
 
 export const MenuDrawerButton: React.FC<IMenuDrawerButtonProps> = memo(({ widthDrawer }) => {
   const open = useAppSelector((state) => state.common.drawer.open, shallowEqual);
-  const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn, shallowEqual);
   const force = useAppSelector((state) => state.common.drawer.force, shallowEqual);
   const { handleSwitchDrawer } = useTemplateDrawer();
 
   return (
     <>
-      {widthDrawer && !force && isLoggedIn && (
+      {widthDrawer && !force && (
         <IconClickable color='default' icon='menu' aria-label='open drawer' callback={handleSwitchDrawer(open)} />
       )}
     </>

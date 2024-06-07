@@ -37,7 +37,13 @@ export const CustomFile: React.FC<ICustomFileProps> = ({
 
   return (
     <>
-      <MdButton icon='upload' className='button-icon' variant={variant} callback={openModal} />
+      <MdButton
+        icon='upload'
+        color='secondary'
+        className='button-icon'
+        variant={variant}
+        callback={openModal}
+      />
       <CustomModaleForm open={open} icon='upload' title={title} callbackOpen={closeModal}>
         {(modalProps) => (
           <MdFormFile

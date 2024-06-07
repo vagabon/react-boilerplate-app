@@ -1,16 +1,18 @@
 import { memo, useEffect } from 'react';
+import { shallowEqual } from 'react-redux';
 import { useAppResize } from '../../../../app/resize/hook/useAppResize';
-import { useAppDispatch } from '../../../../store/Store';
+import { useAppDispatch, useAppSelector } from '../../../../store/Store';
 import { CommonAction } from '../../../../store/reducer/common/CommonReducers';
 
 export const MAX_DRAWER_WIDTH = 1024;
 
 export const MenuDrawerResize: React.FC = memo(() => {
   const dispatch = useAppDispatch();
+  const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn, shallowEqual);
   const { windowSize } = useAppResize();
 
   useEffect(() => {
-    if (windowSize.width && windowSize.width > MAX_DRAWER_WIDTH) {
+    if (windowSize.width && windowSize.width > MAX_DRAWER_WIDTH && isLoggedIn) {
       dispatch(
         CommonAction.setDrawer({
           open: true,
@@ -27,7 +29,7 @@ export const MenuDrawerResize: React.FC = memo(() => {
         }),
       );
     }
-  }, [dispatch, windowSize.width]);
+  }, [dispatch, windowSize.width, isLoggedIn]);
 
   return <></>;
 });

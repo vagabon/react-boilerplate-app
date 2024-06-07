@@ -27,7 +27,7 @@ export const AppFabAdd: React.FC<IAppFabAddProps> = memo(({ ...rest }) => {
     <div className='relative'>
       {rest.urlAddRole && ProfileUtils.hasProfile(userConnected, rest.urlAddRole) && (
         <div className='button-fab'>
-          <MdFab size='medium' color='primary' callback={doCreate(rest.callback)}></MdFab>
+          <MdFab size='medium' color='secondary' callback={doCreate(rest.callback)}></MdFab>
         </div>
       )}
     </div>

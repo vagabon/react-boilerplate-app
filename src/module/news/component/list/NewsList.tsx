@@ -26,7 +26,7 @@ export const NewsList: React.FC<INewsListProps> = memo(({ endPoint, newsAction, 
       urlAdd={'/' + endPoint + '/add'}
       urlAddRole={['ADMIN']}>
       <>
-        {news.map((oneNews: INewsDto) => (
+        {news?.map((oneNews: INewsDto) => (
           <NewsCardSmall {...rest} key={'news_' + oneNews.id} news={oneNews} endPoint={endPoint} />
         ))}
       </>

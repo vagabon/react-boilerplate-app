@@ -65,7 +65,13 @@ export const NewsForm: React.FC<INewsFormProps> = memo(({ endPoint, newsAction, 
         title={news.id ? getLocale('UPDATE') : getLocale('CREATE')}
         actions={
           <>
-            <CustomFile apiUrl={rest.apiUrl} title='Image' directory={endPoint} callback={handleUpdateImage} />
+            <CustomFile
+              variant='text'
+              apiUrl={rest.apiUrl}
+              title='Image'
+              directory={endPoint}
+              callback={handleUpdateImage}
+            />
             <CustomChatbotButton integrations={rest.integrations} />
           </>
         }>

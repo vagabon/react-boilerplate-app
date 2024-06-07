@@ -1,4 +1,4 @@
-const mockDatas = [];
+global.mockDatas = [];
 global.mockWithChildren = (name, { children }) => <div data-testid={name}>{children}</div>;
 
 const mocks = {
@@ -146,7 +146,7 @@ const mocks = {
     resetStopLoad: jest.fn(),
   }),
   useApiServiceFetchByState: () => ({
-    datas: mockDatas,
+    datas: global.mockDatas,
     search: '',
     count: 0,
     page: 0,

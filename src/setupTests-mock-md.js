@@ -119,7 +119,7 @@ const mockBoilerPlateMd = {
   MdCircularProgress: (props) => mockWithChildren('MdCircularProgress', props),
   MdLinearProgress: (props) => mockWithChildren('MdLinearProgress', props),
 
-  MdLink: (props) => mockWithChildren('MdLink', props),
+  MdLink: ({ href, children }) => <a href={href}>{children}</a>,
   MdMarkdown: ({ summaryCallback, content }) => (
     <div data-testid='MdMarkdown'>
       {summaryCallback?.('newSummary')}

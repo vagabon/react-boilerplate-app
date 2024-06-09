@@ -31,8 +31,8 @@ export const MenuDrawer: React.FC<IDrawerProps> = memo(({ menu, showLanguage }) 
 
   return (
     <MdDrawer open={open} variant={variant} callbackClose={handleSwitchDrawer(true)} anchor='left'>
-      <MdBox className='flex overflow-auto height100 space-between'>
-        <div>
+      <MdBox className='flex height100 space-between'>
+        <div className='overflow'>
           {menu?.map((menu) => (
             <MdList key={menu.title}>
               <ProfileRole roles={menu.roles} notRoles={menu.notRoles} key={menu.title} showError={false}>

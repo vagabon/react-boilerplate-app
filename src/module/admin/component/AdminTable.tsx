@@ -1,9 +1,10 @@
 import { JSONObject } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
+import { MdButton } from '@vagabond-inc/react-boilerplate-md/dist/md/component/button/MdButton';
 import { MdCard } from '@vagabond-inc/react-boilerplate-md/dist/md/component/card/MdCard';
 import { MdSearchBar } from '@vagabond-inc/react-boilerplate-md/dist/md/component/searchbar/MdSearchBar';
 import { MdTableWithPagination } from '@vagabond-inc/react-boilerplate-md/dist/md/component/table/MdTableWithPagination';
+import { useAppRouter } from '@vagabond-inc/react-boilerplate-md/dist/router/hook/useAppRouter';
 import { memo, useCallback, useEffect, useState } from 'react';
-import { AppFabAdd } from '../../../app/button/component/fab/add/AppFabAdd';
 import { AppButtonRefresh } from '../../../app/button/component/refresh/AppButtonRefresh';
 import { IBaseCustomSeoProps } from '../../custom/seo/component/CustomSeo';
 import { ProfileRole } from '../../user/profile/component/role/ProfileRole';
@@ -19,6 +20,7 @@ export interface IAdminListPageProps extends IBaseCustomSeoProps {
 }
 
 export const AdminTable: React.FC<IAdminListPageProps> = memo(({ activePage, conf, ...rest }) => {
+  const { handleNavigate } = useAppRouter();
   const [pageConf, setPageConf] = useState<IAdminTabDto>();
   const { state } = useAdminState(activePage, pageConf as IAdminTabDto);
   const [cells, setCells] = useState(pageConf?.cells);
@@ -59,30 +61,35 @@ export const AdminTable: React.FC<IAdminListPageProps> = memo(({ activePage, con
   }, [activePage, conf.tabs]);
 
   return (
-    <>
-      <MdCard className='flex flex1'>
-        <ProfileRole roles={['ADMIN']}>
-          <div className='flex flex-row align-end'>
-            <MdSearchBar className='flex1' callBack={handleSearch} search={state?.filter?.search} />
+    <MdCard id='admin-table' className='flex flex1'>
+      <ProfileRole roles={['ADMIN']}>
+        <div className='search-bar-provider flex flex-row'>
+          <MdSearchBar className='flex1' callBack={handleSearch} search={state?.filter?.search} />
+          <div className='flex gap5'>
+            <MdButton
+              className='button-icon'
+              icon='add'
+              color='secondary'
+              callback={handleNavigate('/admin/update/' + activePage + '/-1')}
+            />
             <AppButtonRefresh data={search} callback={handleSearch} />
           </div>
-          {pageConf && cells && state?.table && (
-            <MdTableWithPagination
-              count={state?.count}
-              datas={state?.datas as JSONObject[]}
-              page={state?.table.page}
-              cells={cells}
-              rowsPerPage={state?.table.rowsPerPage}
-              sortBy={state?.table.sortBy}
-              sortByOrder={state?.table.sortByOrder}
-              url={'/admin/update/' + activePage + '/'}
-              callBack={handleTableChange}
-              showEmpty
-            />
-          )}
-        </ProfileRole>
-      </MdCard>
-      <AppFabAdd urlAdd={'/admin/update/' + activePage + '/-1'} urlAddRole={['ADMIN']} />
-    </>
+        </div>
+        {pageConf && cells && state?.table && (
+          <MdTableWithPagination
+            count={state?.count}
+            datas={state?.datas as JSONObject[]}
+            page={state?.table.page}
+            cells={cells}
+            rowsPerPage={state?.table.rowsPerPage}
+            sortBy={state?.table.sortBy}
+            sortByOrder={state?.table.sortByOrder}
+            url={'/admin/update/' + activePage + '/'}
+            callBack={handleTableChange}
+            showEmpty
+          />
+        )}
+      </ProfileRole>
+    </MdCard>
   );
 });

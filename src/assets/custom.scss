@@ -168,7 +168,6 @@ div:not(.search-bar-card) > .MuiCardContent-root { flex: 1; }
 .MuiListItem-root.selected-secondary {  border-left: 3px solid var(--mui-palette-secondary-main) !important; }
 .mode-dark .MuiListItem-root.selected-secondary {  border-left: 3px solid var(--mui-palette-secondary-main-dark) !important; }
 
-.mode-dark thead th.MuiTableCell-root { span { color: black !important; } }
 .MuiTablePagination-root .MuiToolbar-root { align-items: baseline; }
 
 .MuiDrawer-root { 
@@ -673,3 +672,9 @@ textarea { max-height: 250px !important; overflow: auto !important; }
 }
 
 .page-404 .contact { margin: 5px 0px 60px; }
+
+/*************************************************** ADMIN *******************************************/
+#admin-table {
+  .search-bar-provider { align-items: center; }
+  .search-bar .MuiFormControl-root { margin: 0px !important; }
+}

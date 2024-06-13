@@ -1,5 +1,3 @@
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { IApiDto, JSONObject } from '@vagabond-inc/react-boilerplate-md/dist/dto/api/ApiDto';
 import { MdCard } from '@vagabond-inc/react-boilerplate-md/dist/md/component/card/MdCard';
 import { useTranslate } from '@vagabond-inc/react-boilerplate-md/dist/translate/hook/useTranslate';
@@ -77,24 +75,22 @@ export const AdminShowPage: React.FC<IAdminShowPageProps> = memo(({ conf, ...res
   }, [translate, id, pageConf]);
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <AppContent {...rest} seo='SEO:ADMIN'>
-        <ProfileRole roles={['ADMIN']}>
-          <MdCard title={getTitle()}>
-            {state && (
-              <CustomForm
-                {...rest}
-                endPoint={page}
-                urlGoBack={'/admin/tab/' + page}
-                conf={formConf}
-                values={state.data}
-                schema={pageConf?.form as IYupValidators}
-                handleUpdate={handleUpdate}
-              />
-            )}
-          </MdCard>
-        </ProfileRole>
-      </AppContent>
-    </LocalizationProvider>
+    <AppContent {...rest} seo='SEO:ADMIN'>
+      <ProfileRole roles={['ADMIN']}>
+        <MdCard title={getTitle()}>
+          {state && (
+            <CustomForm
+              {...rest}
+              endPoint={page}
+              urlGoBack={'/admin/tab/' + page}
+              conf={formConf}
+              values={state.data}
+              schema={pageConf?.form as IYupValidators}
+              handleUpdate={handleUpdate}
+            />
+          )}
+        </MdCard>
+      </ProfileRole>
+    </AppContent>
   );
 });

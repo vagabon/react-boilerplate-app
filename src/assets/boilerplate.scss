@@ -154,7 +154,7 @@ table {
   }
   th { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 }
-.mode-dark thead th.MuiTableCell-root { background-color: var(--mui-palette-primary-main-dark) !important; }
+.mode-dark thead th.MuiTableCell-root { background-color: var(--mui-palette-primary-main-dark) !important; span, svg { color: black !important; } }
 .admin table { table-layout: fixed; min-width: 837px; }
 
 .table-result { margin: 5px 0px; font-size: 1.2rem; }

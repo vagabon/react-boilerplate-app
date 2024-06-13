@@ -8,6 +8,9 @@ import { FormInputType, MdInputText } from '@vagabond-inc/react-boilerplate-md/d
 import { MdInputTextSimple } from '@vagabond-inc/react-boilerplate-md/dist/md/component/form/text/MdInputTextSimple';
 import { useAppRouter } from '@vagabond-inc/react-boilerplate-md/dist/router/hook/useAppRouter';
 import { ObjectUtils } from '@vagabond-inc/react-boilerplate-md/dist/utils/object/ObjectUtils';
+import dayjs from 'dayjs';
+import timezone from 'dayjs/plugin/timezone';
+import utc from 'dayjs/plugin/utc';
 import { Fragment, memo, useCallback } from 'react';
 import { AppForm } from '../../../../app/form/component/AppForm';
 import { IYupValidators } from '../../../../app/form/utils/AppFormUtils';
@@ -15,6 +18,9 @@ import { IFormDto } from '../../../admin/dto/AdminConfDto';
 import { useCustomFormUpload } from '../hook/useCustomFormUpload';
 import { CustomFormManyToMany } from './CustomFormManyToMany';
 import { CustomFormSelect } from './CustomFormSelect';
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 export interface ICustomFormProps {
   apiUrl: string;

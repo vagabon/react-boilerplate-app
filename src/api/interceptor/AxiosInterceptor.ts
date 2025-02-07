@@ -1,4 +1,4 @@
-import { EnhancedStore } from '@reduxjs/toolkit/dist/configureStore';
+import { EnhancedStore } from '@reduxjs/toolkit';
 import { UuidUtils } from '@vagabond-inc/react-boilerplate-md/dist/utils/uuid/UuidUtils';
 import axios, { AxiosError, AxiosHeaders, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { AppStorageUtils } from '../../app/storage/utils/AppStorageUtils';

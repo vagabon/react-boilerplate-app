@@ -30,7 +30,7 @@ export const AppStorageUtils = {
     try {
       return JSON.parse(localStorage.getItem(name) ?? '') as T;
     } catch (e) {
-      console.error('failed to load json', name);
+      console.error('failed to load json', name, e);
     }
   },
 

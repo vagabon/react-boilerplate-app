@@ -1,5 +1,4 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { EnhancedStore } from '@reduxjs/toolkit/dist/configureStore';
+import { configureStore, EnhancedStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { combineReducers } from 'redux';
 import { AuthReducers } from '../module/auth/reducer/AuthReducers';

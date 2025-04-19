@@ -42,7 +42,7 @@ export const AxiosInterceptor = <U>(
       let data;
       try {
         data = JSON.parse(response.config.data);
-      } catch (e) {
+      } catch (_) {
         data = response.config.data;
       }
       console.log(response.config.url, data, response.status, response.data);
